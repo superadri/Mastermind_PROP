@@ -8,9 +8,12 @@ public class Algorithm {
 
   private int width;
   private int nColors;
+  private int size;
   private boolean repetition;
   private ArrayList<String> allColors;
-  private ArrayList<String> allComb;
+  private ArrayList<String> allCombs;
+  private ArrayList<Boolean> discarded;
+  private ArrayList< ArrayList<String> > answerMatrix;
   private String comb;
 
   public Algorithm(int width, int nColors, boolean repetition) {
@@ -20,15 +23,65 @@ public class Algorithm {
     this.repetition = repetition;
     this.allColors = new ArrayList<String>(nColors);
     generateColors();
+    this.size = 0; // Initialization just in case
     if (repetition) {
-      int size = (int)(Math.pow((double)(nColors), (double)(width)));
-      this.allComb = new ArrayList<String>(size);
-      setAllComb();
+      size = (int)(Math.pow((double)(nColors), (double)(width)));
+      this.allCombs = new ArrayList<String>(size);
+      setAllCombs();
     } else {
-      int size = binomial(nColors, width);
-      this.allComb = new ArrayList<String>(size);
-      setAllCombNoRep();
+      size = binomial(nColors, width);
+      this.allCombs = new ArrayList<String>(size);
+      setAllCombsNoRep();
     }
+    this.discarded = new ArrayList<Boolean>(size);
+    for (int i = 0; i < size; ++i) {
+      discarded.add(false);
+    }
+    this.answerMatrix = new ArrayList< ArrayList<String> >(size);
+    fillAnswerMatrix();
+  }
+
+  public String play() {
+    // We can use 'comb' because after the constructor, it's not needed.
+    comb = "";
+    // check board state (last play answer)
+    // discard options
+    // get minmax
+    return comb;
+  }
+
+  private void fillAnswerMatrix() {
+    for (int i = 0; i < size; ++i) {
+      for (int j = 0; j < size; ++j) {
+        // answerMatrix[i][j] = "la resposta que donaria si haguessim " +
+        // + "proposat la combinacio [i] i el code fos la combinacio [j] ?"
+        String guess = allCombs.get(i);
+        String code = allCombs.get(j);
+        String answer = calculateAnswer(guess, code);
+        // answerMatrix[i][j] = answer;
+      }
+    }
+  }
+
+  private String calculateAnswer(String g, String c) {
+    char[] guess = g.toCharArray();
+    char[] code = c.toCharArray();
+    String answer = "";
+    ArrayList<Boolean> checked = new ArrayList<Boolean>(width);
+    // first pass: Black pins -> color & position correct
+    for (int i = 0; i < width; ++i) {
+      if (guess[i] == code[i]) {
+        answer += 'B';
+        // checked[i] = true;
+        // checked.set(i, true);
+      }
+    }
+    // second pass: Red pins: color correct & position incorrect
+    // <code here>
+    // third pass: X (n pin): color incorrect & position incorrect
+    // fill remaining slots with X
+    // <code here>
+    return answer;
   }
 
   private void generateColors() {
@@ -39,31 +92,31 @@ public class Algorithm {
     }
   }
 
-  private void setAllComb() {
-    if (comb.length() < nColors) {
+  private void setAllCombs() {
+    if (comb.length() < width) {
       for (int i = 0; i < allColors.size(); ++i) {
         String oldComb = comb;
         comb += allColors.get(i);
-        setAllComb();
+        setAllCombs();
         comb = oldComb;
       }
     } else {
-      allComb.add(comb);
+      allCombs.add(comb);
     }
   }
 
-  private void setAllCombNoRep() {
-    if (comb.length() < nColors) {
+  private void setAllCombsNoRep() {
+    if (comb.length() < width) {
       for (int i = 0; i < allColors.size(); ++i) {
         String oldComb = comb;
         if (!comb.contains(allColors.get(i))) {
           comb += allColors.get(i);
-          setAllCombNoRep();
+          setAllCombsNoRep();
         }
         comb = oldComb;
       }
     } else {
-      allComb.add(comb);
+      allCombs.add(comb);
     }
   }
 
@@ -76,10 +129,10 @@ public class Algorithm {
     return f * factorial(f - 1);
   }
 
-  public void printAllComb() {
-    System.out.println("allComb size = " + allComb.size());
-    for (int i = 0; i < allComb.size(); ++i) {
-      System.out.println(allComb.get(i));
+  public void printAllCombs() {
+    System.out.println("size = " + size + ", allCombs size = " + allCombs.size());
+    for (int i = 0; i < allCombs.size(); ++i) {
+      System.out.println(allCombs.get(i));
     }
   }
 
