@@ -157,10 +157,11 @@ public class Algorithm {
   }
 
   private int binomial(int n, int k) {
-    return factorial(n) / (factorial(k) * factorial(n - k));
+    return factorial(n) / factorial(n - k);
   }
 
   private int factorial(int f) {
+    if (f == 0) { return 1; }
     if (f < 2) { return f; }
     return f * factorial(f - 1);
   }
