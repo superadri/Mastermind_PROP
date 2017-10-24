@@ -10,9 +10,9 @@ public class Algorithm {
   private int nColors;
   private int size;
   private boolean repetition;
-  private ArrayList<String> allColors;
-  private ArrayList<String> allCombs;
-  private ArrayList<Boolean> discarded;
+  private String[] allColors;
+  private String[] allCombs;
+  private boolean[] discarded;
   private String[][] answerMatrix;
   private String comb;
 
@@ -21,22 +21,18 @@ public class Algorithm {
     this.width = width;
     this.nColors = nColors;
     this.repetition = repetition;
-    this.allColors = new ArrayList<String>(nColors);
+    this.allColors = new String[nColors];
     generateColors();
     this.size = 0; // Initialization just in case
+    size = setSize();
+    this.allCombs = new String[size];
     if (repetition) {
-      size = (int)(Math.pow((double)(nColors), (double)(width)));
-      this.allCombs = new ArrayList<String>(size);
-      setAllCombs();
+      setAllCombs(0);
     } else {
-      size = binomial(nColors, width);
-      this.allCombs = new ArrayList<String>(size);
-      setAllCombsNoRep();
+      setAllCombsNoRep(0);
     }
-    this.discarded = new ArrayList<Boolean>(size);
-    for (int i = 0; i < size; ++i) {
-      discarded.add(false);
-    }
+    this.discarded = new boolean[size];
+    for (int i = 0; i < size; ++i) { discarded[i] = false; }
     this.answerMatrix = new String[size][size];
     fillAnswerMatrix();
   }
@@ -50,13 +46,13 @@ public class Algorithm {
     return comb;
   }
 
+  // answerMatrix[i][j] = "la resposta que donaria si haguessim " +
+  // + "proposat la combinacio [i] i el code fos la combinacio [j] ?"
   private void fillAnswerMatrix() {
     for (int i = 0; i < size; ++i) {
       for (int j = 0; j < size; ++j) {
-        // answerMatrix[i][j] = "la resposta que donaria si haguessim " +
-        // + "proposat la combinacio [i] i el code fos la combinacio [j] ?"
-        String guess = allCombs.get(i);
-        String code = allCombs.get(j);
+        String guess = allCombs[i];
+        String code = allCombs[j];
         String answer = calculateAnswer(guess, code);
         answerMatrix[i][j] = answer;
       }
@@ -109,44 +105,55 @@ public class Algorithm {
         answer += "X"; // X for no pin
       }
     }
-    System.out.println(answer);
     return answer;
+  }
+
+  private int setSize() {
+    if (repetition) {
+      return (int)(Math.pow((double)(nColors), (double)(width)));
+    }
+    return binomial(nColors, width);
   }
 
   private void generateColors() {
     for (char c = 'A'; c < (char)('A' + nColors); ++c) {
       String color = new String();
       color += c;
-      allColors.add(color);
+      int i = (int)(c - 'A');
+      allColors[i] = color;
     }
   }
 
-  private void setAllCombs() {
+  private int setAllCombs(int n) {
     if (comb.length() < width) {
-      for (int i = 0; i < allColors.size(); ++i) {
+      for (int i = 0; i < allColors.length; ++i) {
         String oldComb = comb;
-        comb += allColors.get(i);
-        setAllCombs();
+        comb += allColors[i];
+        n = setAllCombs(n);
         comb = oldComb;
       }
     } else {
-      allCombs.add(comb);
+      allCombs[n] = comb;
+      ++n;
     }
+    return n;
   }
 
-  private void setAllCombsNoRep() {
+  private int setAllCombsNoRep(int n) {
     if (comb.length() < width) {
-      for (int i = 0; i < allColors.size(); ++i) {
+      for (int i = 0; i < allColors.length; ++i) {
         String oldComb = comb;
-        if (!comb.contains(allColors.get(i))) {
-          comb += allColors.get(i);
-          setAllCombsNoRep();
+        if (!comb.contains(allColors[i])) {
+          comb += allColors[i];
+          n = setAllCombsNoRep(n);
         }
         comb = oldComb;
       }
     } else {
-      allCombs.add(comb);
+      allCombs[n] = comb;
+      ++n;
     }
+    return n;
   }
 
   private int binomial(int n, int k) {
@@ -159,9 +166,9 @@ public class Algorithm {
   }
 
   public void printAllCombs() {
-    System.out.println("size = " + size + ", allCombs size = " + allCombs.size());
-    for (int i = 0; i < allCombs.size(); ++i) {
-      System.out.println(allCombs.get(i));
+    System.out.println("size = " + size + ", allCombs size = " + allCombs.length);
+    for (int i = 0; i < allCombs.length; ++i) {
+      System.out.println(allCombs[i]);
     }
   }
 
@@ -170,8 +177,8 @@ public class Algorithm {
   }
 
   public void printAllColors() {
-    for (int i = 0; i < allColors.size(); ++i) {
-      System.out.println(allColors.get(i));
+    for (int i = 0; i < allColors.length; ++i) {
+      System.out.println(allColors[i]);
     }
   }
 
