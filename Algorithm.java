@@ -13,7 +13,7 @@ public class Algorithm {
   private ArrayList<String> allColors;
   private ArrayList<String> allCombs;
   private ArrayList<Boolean> discarded;
-  private ArrayList< ArrayList<String> > answerMatrix;
+  private String[][] answerMatrix;
   private String comb;
 
   public Algorithm(int width, int nColors, boolean repetition) {
@@ -37,15 +37,15 @@ public class Algorithm {
     for (int i = 0; i < size; ++i) {
       discarded.add(false);
     }
-    this.answerMatrix = new ArrayList< ArrayList<String> >(size);
+    this.answerMatrix = new String[size][size];
     fillAnswerMatrix();
   }
 
   public String play() {
-    // We can use 'comb' because after the constructor, it's not needed.
+    // We can use "comb" because after the constructor, it's not needed.
     comb = "";
-    // check board state (last play answer)
-    // discard options
+    // check board state (last play answer) calling class board (?)
+    // update discard options
     // get minmax
     return comb;
   }
@@ -58,8 +58,17 @@ public class Algorithm {
         String guess = allCombs.get(i);
         String code = allCombs.get(j);
         String answer = calculateAnswer(guess, code);
-        // answerMatrix[i][j] = answer;
+        answerMatrix[i][j] = answer;
       }
+    }
+  }
+
+  public void printAnswerMatrix() {
+    for (int i = 0; i < size; ++i) {
+      for (int j = 0; j < size; ++j) {
+        System.out.print(answerMatrix[i][j] + " ");
+      }
+      System.out.println();
     }
   }
 
@@ -67,20 +76,40 @@ public class Algorithm {
     char[] guess = g.toCharArray();
     char[] code = c.toCharArray();
     String answer = "";
-    ArrayList<Boolean> checked = new ArrayList<Boolean>(width);
+    String impossible_answer = "";
+    for (int i = 0; i < width - 1; ++i) { impossible_answer += 'B'; }
+    boolean[] guessChecked = new boolean[width];
+    boolean[] codeChecked = new boolean[width];
+    for (int i = 0; i < width; ++i) {
+      guessChecked[i] = false;
+      codeChecked[i] = false;
+    }
     // first pass: Black pins -> color & position correct
     for (int i = 0; i < width; ++i) {
       if (guess[i] == code[i]) {
-        answer += 'B';
-        // checked[i] = true;
-        // checked.set(i, true);
+        answer += 'B'; // B for Black pin
+        guessChecked[i] = true;
+        codeChecked[i] = true;
       }
     }
     // second pass: Red pins: color correct & position incorrect
-    // <code here>
-    // third pass: X (n pin): color incorrect & position incorrect
+    for (int i = 0; i < width && !answer.equals(impossible_answer); ++i) {
+      for (int j = 0; j < width && !guessChecked[i]; ++j) {
+        if (!codeChecked[j] && guess[i] == code[j]) {
+          answer += 'R'; // R for Red pin
+          guessChecked[i] = true;
+          codeChecked[j] = true;
+        }
+      }
+    }
+    // third pass: X (no pin): color incorrect & position incorrect
     // fill remaining slots with X
-    // <code here>
+    for (int i = 0; i < width; ++i) {
+      if (!guessChecked[i]) {
+        answer += "X"; // X for no pin
+      }
+    }
+    System.out.println(answer);
     return answer;
   }
 

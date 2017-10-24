@@ -14,6 +14,8 @@ public class Main {
     alg.printAllColors();
     System.out.println("Printing all combinations...");
     alg.printAllCombs();
+    System.out.println("Printing answer matrix...");
+    alg.printAnswerMatrix();
     System.out.println("Done.");
   }
 
