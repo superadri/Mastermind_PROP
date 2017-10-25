@@ -13,11 +13,14 @@ public class Algorithm {
   private String[] allColors;
   private String[] allCombs;
   private boolean[] discarded;
+  private double[] minDiscard;
   private String[][] answerMatrix;
   private String comb;
+  private int combIndex;
 
   public Algorithm(int width, int nColors, boolean repetition) {
     this.comb = "";
+    this.combIndex = 0; // Initialization just in case
     this.width = width;
     this.nColors = nColors;
     this.repetition = repetition;
@@ -32,18 +35,49 @@ public class Algorithm {
       setAllCombsNoRep(0);
     }
     this.discarded = new boolean[size];
+    this.minDiscard = new double[size];
     for (int i = 0; i < size; ++i) { discarded[i] = false; }
     this.answerMatrix = new String[size][size];
     fillAnswerMatrix();
   }
 
   public String play() {
-    // We can use "comb" because after the constructor, it's not needed.
-    comb = "";
     // check board state (last play answer) calling class board (?)
+    // TODO code here
+    String answer = "";
     // update discard options
+    updateDiscarded(answer);
     // get minmax
+    // we can use "comb" because after the constructor, it's not needed
+    getMin(); // could also be implemented with probabilities
+    getMaxMin();
     return comb;
+  }
+
+  private void updateDiscarded(String answer) {
+    for (int i = 0; i < size; ++i) {
+      if (!answerMatrix[combIndex][i].equals(answer)) { discarded[i] = true; }
+    }
+  }
+
+  private void getMin() {
+    for (int i = 0; i < size; ++i) {
+      int min = size;
+      for (int j = 0; j < size; ++j) {
+        // count how many combinations give the same answers, for all answers, C
+      }
+      // if (C < min) { min = C; }
+      // minDiscard[i] = C
+    }
+  }
+
+  private void getMaxMin() {
+    int max = 0;
+    for (int i = 0; i < size; ++i) {
+      if (minDiscard[i] > max) { max = minDiscard[i]; }
+    }
+    combIndex = max;
+    comb = allCombs[combIndex];
   }
 
   // answerMatrix[i][j] = "la resposta que donaria si haguessim " +
