@@ -13,7 +13,7 @@ public class Algorithm {
   private String[] allColors;
   private String[] allCombs;
   private boolean[] discarded;
-  private double[] minDiscard;
+  private int[] minDiscard;
   private String[][] answerMatrix;
   private String comb;
   private int combIndex;
@@ -35,7 +35,7 @@ public class Algorithm {
       setAllCombsNoRep(0);
     }
     this.discarded = new boolean[size];
-    this.minDiscard = new double[size];
+    this.minDiscard = new int[size];
     for (int i = 0; i < size; ++i) { discarded[i] = false; }
     this.answerMatrix = new String[size][size];
     fillAnswerMatrix();
@@ -60,14 +60,22 @@ public class Algorithm {
     }
   }
 
+  // TODO improve efficiency: now it's O(n3)
   private void getMin() {
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < size; ++i) { // for each combination
       int min = size;
-      for (int j = 0; j < size; ++j) {
-        // count how many combinations give the same answers, for all answers, C
+      if (!discarded[i]) {
+        for (int j = 0; j < size; ++j) { // for each answer
+          int count = 0;
+          if (!discarded[j]) {
+            for (int k = 0; k < size; ++k) { // for all other answers
+              if (!discarded[k] && answerMatrix[i][j].equals(answerMatrix[i][k])) { ++count; }
+            }
+          }
+          if (count < min) { min = count; }
+        }
       }
-      // if (C < min) { min = C; }
-      // minDiscard[i] = C
+      minDiscard[i] = min;
     }
   }
 
@@ -146,7 +154,7 @@ public class Algorithm {
     if (repetition) {
       return (int)(Math.pow((double)(nColors), (double)(width)));
     }
-    return binomial(nColors, width);
+    return partialPermutations(nColors, width);
   }
 
   private void generateColors() {
@@ -190,13 +198,12 @@ public class Algorithm {
     return n;
   }
 
-  private int binomial(int n, int k) {
+  private int partialPermutations(int n, int k) {
     return factorial(n) / factorial(n - k);
   }
 
   private int factorial(int f) {
     if (f == 0) { return 1; }
-    if (f < 2) { return f; }
     return f * factorial(f - 1);
   }
 
