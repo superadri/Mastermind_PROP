@@ -41,10 +41,7 @@ public class Algorithm {
     fillAnswerMatrix();
   }
 
-  public String play() {
-    // check board state (last play answer) calling class board (?)
-    // TODO code here
-    String answer = "";
+  public String play(String answer) {
     // update discard options
     updateDiscarded(answer);
     // get minmax

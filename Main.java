@@ -7,7 +7,7 @@ public class Main {
   public static void main(String[] args) {
     int width = 3;
     int nColors = 3;
-    boolean repetition = false;
+    boolean repetition = true;
     System.out.println("Initiazing algorithm...");
     Algorithm alg = new Algorithm(width, nColors, repetition);
     System.out.println("Printing all colors...");
