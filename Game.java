@@ -19,7 +19,11 @@ public class Game {
   // private Board board;
 
   public Game() {
-    // TODO
+    // TODO to start new game
+  }
+
+  public Game(String parameters) {
+    // TODO to continue saved game
   }
 
 }
