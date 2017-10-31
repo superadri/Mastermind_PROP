@@ -9,13 +9,14 @@ public class Main {
     int nColors = 3;
     boolean repetition = true;
     System.out.println("Initiazing algorithm...");
-    Play p = new Play(width, nColors, repetition);
+    CodeMaker cm = new CodeMaker(width, nColors, repetition);
+    CodeBreaker cb = new CodeBreaker(width, nColors, repetition);
     System.out.println("Printing all colors...");
-    p.printAllColors();
+    cm.printAllColors();
     System.out.println("Printing all combinations...");
-    p.printAllCombs();
+    cm.printAllCombs();
     System.out.println("Printing answer matrix...");
-    p.printAnswerMatrix();
+    cm.printAnswerMatrix();
     System.out.println("Done.");
   }
 

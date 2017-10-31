@@ -1,10 +1,17 @@
-// Play.java
+// CodeMaker.java
 
 // package mastermind;
 
 /*
 
 Usage
+
+CodeMaker(int width, int nColors, boolean repetition);
+  Creates an instance of the class CodeMaker with the given parameters.
+
+TODO createCode(String difficulty);
+  Creates a code depending on the given difficulty.
+  This definition as well as the parameters are subject to change.
 
 void printAnswerMatrix();
   Prints which answer would be given for all possible combinations of
@@ -26,28 +33,10 @@ void printSingleColor(String color);
 
 */
 
-public class Play {
+public class CodeMaker extends Play {
 
-  public Algorithm alg;
-
-  public void printAnswerMatrix() {
-    alg.printAnswerMatrix();
-  }
-
-  public void printAllCombs() {
-    alg.printAllCombs();
-  }
-
-  public void printSingleComb(String combination) {
-    alg.printSingleComb(combination);
-  }
-
-  public void printAllColors() {
-    alg.printAllColors();
-  }
-
-  public void printSingleColor(String color) {
-    alg.printSingleColor(color);
+  public CodeMaker(int width, int nColors, boolean repetition) {
+    this.alg = new Algorithm(width, nColors, repetition);
   }
 
 }
