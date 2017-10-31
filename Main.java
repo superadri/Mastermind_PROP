@@ -9,13 +9,13 @@ public class Main {
     int nColors = 3;
     boolean repetition = true;
     System.out.println("Initiazing algorithm...");
-    Algorithm alg = new Algorithm(width, nColors, repetition);
+    Play p = new Play(width, nColors, repetition);
     System.out.println("Printing all colors...");
-    alg.printAllColors();
+    p.printAllColors();
     System.out.println("Printing all combinations...");
-    alg.printAllCombs();
+    p.printAllCombs();
     System.out.println("Printing answer matrix...");
-    alg.printAnswerMatrix();
+    p.printAnswerMatrix();
     System.out.println("Done.");
   }
 

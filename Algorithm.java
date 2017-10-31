@@ -2,6 +2,40 @@
 
 // package mastermind;
 
+/*
+
+Usage
+
+Algorithm(int width, int nColors, boolean repetition);
+  Creates an instance of the class Algorithm with the given parameters.
+
+String playCombination();
+  Returns a String that represents the combination to be played.
+
+void shareAnswer(String answer);
+  Lets the algorithm know the answer to the previously proposed combination so
+  that it can update its internal tracking of the state of the game.
+
+void printAnswerMatrix();
+  Prints which answer would be given for all possible combinations of
+  proposed combination / code.
+
+void printAllCombs();
+  Prints all the possible combinations.
+
+void printSingleComb(String combination);
+  Prints the String it receives as a parameter.
+  Intended for printing combinations.
+
+void printAllColors();
+  Prints all the possible colors.
+
+void printSingleColor(String color);
+  Prints the String it receives as a parameter.
+  Intended for printing colors.
+
+*/
+
 import java.util.ArrayList;
 
 public class Algorithm {
@@ -41,14 +75,50 @@ public class Algorithm {
     fillAnswerMatrix();
   }
 
-  public String play(String answer) {
-    // update discard options
-    updateDiscarded(answer);
+  // use followed by shareAnswer
+  public String playCombination() {
     // get minmax
     // we can use "comb" because after the constructor, it's not needed
     getMin(); // could also be implemented with probabilities
     getMaxMin();
+    System.out.println("Play: " + comb);
     return comb;
+  }
+
+  // use once after playCombination
+  public void shareAnswer(String answer) {
+    // update discard options
+    updateDiscarded(answer);
+  }
+
+  public void printAnswerMatrix() {
+    for (int i = 0; i < size; ++i) {
+      for (int j = 0; j < size; ++j) {
+        System.out.print(answerMatrix[i][j] + " ");
+      }
+      System.out.println();
+    }
+  }
+
+  public void printAllCombs() {
+    System.out.println("size = " + size + ", allCombs size = " + allCombs.length);
+    for (int i = 0; i < allCombs.length; ++i) {
+      System.out.println(allCombs[i]);
+    }
+  }
+
+  public void printSingleComb(String combination) {
+    System.out.println(combination);
+  }
+
+  public void printAllColors() {
+    for (int i = 0; i < allColors.length; ++i) {
+      System.out.println(allColors[i]);
+    }
+  }
+
+  public void printSingleColor(String color) {
+    System.out.println(color);
   }
 
   private void updateDiscarded(String answer) {
@@ -98,21 +168,10 @@ public class Algorithm {
     }
   }
 
-  public void printAnswerMatrix() {
-    for (int i = 0; i < size; ++i) {
-      for (int j = 0; j < size; ++j) {
-        System.out.print(answerMatrix[i][j] + " ");
-      }
-      System.out.println();
-    }
-  }
-
   private String calculateAnswer(String g, String c) {
     char[] guess = g.toCharArray();
     char[] code = c.toCharArray();
     String answer = "";
-    String impossible_answer = "";
-    for (int i = 0; i < width - 1; ++i) { impossible_answer += 'B'; }
     boolean[] guessChecked = new boolean[width];
     boolean[] codeChecked = new boolean[width];
     for (int i = 0; i < width; ++i) {
@@ -128,7 +187,7 @@ public class Algorithm {
       }
     }
     // second pass: Red pins: color correct & position incorrect
-    for (int i = 0; i < width && !answer.equals(impossible_answer); ++i) {
+    for (int i = 0; i < width; ++i) {
       for (int j = 0; j < width && !guessChecked[i]; ++j) {
         if (!codeChecked[j] && guess[i] == code[j]) {
           answer += 'R'; // R for Red pin
@@ -202,27 +261,6 @@ public class Algorithm {
   private int factorial(int f) {
     if (f == 0) { return 1; }
     return f * factorial(f - 1);
-  }
-
-  public void printAllCombs() {
-    System.out.println("size = " + size + ", allCombs size = " + allCombs.length);
-    for (int i = 0; i < allCombs.length; ++i) {
-      System.out.println(allCombs[i]);
-    }
-  }
-
-  public void printSingleComb(String combination) {
-    System.out.println(combination);
-  }
-
-  public void printAllColors() {
-    for (int i = 0; i < allColors.length; ++i) {
-      System.out.println(allColors[i]);
-    }
-  }
-
-  public void printSingleColor(String color) {
-    System.out.println(color);
   }
 
 }
