@@ -36,11 +36,13 @@ void printSingleColor(String color);
 
 */
 
+import java.util.Scanner;
+
 public class CodeBreaker extends Algorithm {
 
   public CodeBreaker(int width, int nColors, boolean repetition) {
     this.comb = "";
-    this.combIndex = 0; // Initialization just in case
+    this.guessIndex = 0; // Initialization just in case
     this.width = width;
     this.nColors = nColors;
     this.repetition = repetition;
@@ -59,12 +61,11 @@ public class CodeBreaker extends Algorithm {
     for (int i = 0; i < size; ++i) { discarded[i] = false; }
     this.answerMatrix = new String[size][size];
     fillAnswerMatrix();
+    //printAnswerMatrix();
   }
 
   // use followed by shareAnswer
   public String playCombination() {
-    // get minmax
-    // we can use "comb" because after the constructor, it's not needed
     getMin(); // could also be implemented with probabilities
     return getMaxMin();
   }
@@ -76,7 +77,12 @@ public class CodeBreaker extends Algorithm {
   }
 
   public void printAnswerMatrix() {
+    for (int i = 0; i < width; ++i) { System.out.print(" "); }
+    System.out.print(" ");
+    for (int i = 0; i < size; ++i) { System.out.print(allCombs[i] + " "); }
+    System.out.println();
     for (int i = 0; i < size; ++i) {
+      System.out.print(allCombs[i] + " ");
       for (int j = 0; j < size; ++j) {
         System.out.print(answerMatrix[i][j] + " ");
       }
@@ -85,7 +91,8 @@ public class CodeBreaker extends Algorithm {
   }
 
   public void printAllCombs() {
-    System.out.println("size = " + size + ", allCombs size = " + allCombs.length);
+    System.out.println("size = " + size + ", allCombs size = " +
+      allCombs.length);
     for (int i = 0; i < allCombs.length; ++i) {
       System.out.println(allCombs[i]);
     }
@@ -105,55 +112,74 @@ public class CodeBreaker extends Algorithm {
     System.out.println(color);
   }
 
-  // If it is possible that the combination[i] is the code, then the answer
-  // received to the guess combination[combIndex] would have been equal to
-  // the answer stored in the answerMatrix. Otherwise, combination[i] is NOT
+  // If it is possible that the combination[ci] is the code, then the answer
+  // received to the guess combination[gi] would have been equal to the
+  // answer stored in the answerMatrix. Otherwise, combination[ci] is NOT
   // the possible code, so it gets discarded.
   private void updateDiscarded(String answer) {
-    for (int i = 0; i < size; ++i) {
-      if (!answerMatrix[combIndex][i].equals(answer)) { discarded[i] = true; }
+    //Scanner sc = new Scanner(System.in);
+    int gi = guessIndex;
+    for (int ci = 0; ci < size; ++ci) {
+      if (!answerMatrix[gi][ci].equals(answer)) { discarded[ci] = true; }
+      //System.out.println("guess " + allCombs[gi] + " if code was " + allCombs[ci] + " answer would've been " + answerMatrix[gi][ci] + " and it got " + answer + " so" +
+      //" discarded[" + ci + "] is " + discarded[ci] + ".");
+      //String dontCare = sc.nextLine();
     }
   }
 
   // TODO improve efficiency: now it's O(n3)
-  // Note: discarded combinations will get min=size, but doesn't matter because
+  // Note: discarded guesses will get min=size, but doesn't matter because
   // getMaxMin only checks non-discarded combinations.
   private void getMin() {
-    for (int i = 0; i < size; ++i) { // for each combination
+    //Scanner sc = new Scanner(System.in);
+    // for each guess
+    for (int gi = 0; gi < size; ++gi) {
       int min = size;
-        for (int j = 0; !discarded[i] && j < size; ++j) { // for each answer
+        // for each code
+        for (int ci = 0; !discarded[gi] && ci != gi && ci < size; ++ci) {
           int count = 0;
-          for (int k = 0; !discarded[j] && k < size; ++k) { // for all other answers
-            if (!discarded[k] && answerMatrix[i][j].equals(answerMatrix[i][k])) { ++count; }
+          // for all answers
+          for (int ai = 0; !discarded[ci] && ai < size; ++ai) {
+            if (!discarded[ai] && answerMatrix[gi][ai].equals(
+              answerMatrix[gi][ci])) { ++count; }
           }
           if (count < min) { min = count; }
+          //System.out.println("guess " + allCombs[gi] + " has " + count + " codes with answers like " + answerMatrix[gi][ci] + ".");
+          //String dontCare = sc.nextLine();
         }
-      minDiscard[i] = min;
+      minDiscard[gi] = min;
+      //System.out.println("minDiscard for " + allCombs[gi] + " is " + minDiscard[gi] + " or " + min + ".");
+      //String dontCare = sc.nextLine();
     }
   }
 
   // For each non-discarded guess, if it would discard more options than the
   // maximum up until now, then choose that guess.
   private String getMaxMin() {
-    int max = 0;
-    for (int i = 0; i < size; ++i) {
-      if (!discarded[i] && minDiscard[i] > max) {
-        max = minDiscard[i];
-        combIndex = i;
+    //Scanner sc = new Scanner(System.in);
+    int max = -1;
+    for (int gi = 0; gi < size; ++gi) {
+      if (!discarded[gi] && minDiscard[gi] > max) {
+        //System.out.println(allCombs[gi] + " is not discarded and has a minDiscard of " + minDiscard[gi] + " which is greater than the current maximum which is " + max + ".");
+        //String dontCare = sc.nextLine();
+        max = minDiscard[gi];
+        guessIndex = gi;
       }
     }
-    return allCombs[combIndex];
+    //System.out.println("max(minDiscard) is " + max + " which corresponds to " + allCombs[guessIndex] + ".");
+    //String dontCare = sc.nextLine();
+    return allCombs[guessIndex];
   }
 
   // answerMatrix[i][j] = "la resposta que donaria si haguessim " +
   // + "proposat la combinacio [i] i el code fos la combinacio [j] ?"
   private void fillAnswerMatrix() {
-    for (int i = 0; i < size; ++i) {
-      for (int j = 0; j < size; ++j) {
-        String guess = allCombs[i];
-        String code = allCombs[j];
+    for (int gi = 0; gi < size; ++gi) {
+      for (int ci = 0; ci < size; ++ci) {
+        String guess = allCombs[gi];
+        String code = allCombs[ci];
         String answer = calculateAnswer(guess, code);
-        answerMatrix[i][j] = answer;
+        answerMatrix[gi][ci] = answer;
       }
     }
   }

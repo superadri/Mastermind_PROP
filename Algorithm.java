@@ -48,7 +48,7 @@ public class Algorithm {
   public int[] minDiscard;
   public String[][] answerMatrix;
   public String comb;
-  public int combIndex;
+  public int guessIndex;
 
   // TODO is anything necessary here?
 
