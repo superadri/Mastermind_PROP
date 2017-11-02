@@ -6,7 +6,7 @@ import java.util.*;
 public class Time {
 
 		// Attribute
-    int iniTime, finalTime;
+    float iniTime, finalTime;
 	Calendar c;
 
 		// Constructor
@@ -16,7 +16,7 @@ public class Time {
 	}
 
 		// Getter && Setter
-    public int GetTime() {
+    public float GetTime() {
 		return (finalTime - iniTime);
 	}
     // public void SetTime(double newTime) {  iniTime; }
@@ -25,19 +25,22 @@ public class Time {
 	public void StartTime(){
 		System.out.println("Start Crono");
 		c = Calendar.getInstance();
-		System.out.println( "Minute: " + c.get(Calendar.MINUTE) + ", Second: " + c.get(Calendar.SECOND) );
-		this.iniTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) );
+		System.out.println( "Minute: " + c.get(Calendar.MINUTE) +
+							", Second: " + c.get(Calendar.SECOND) +
+							", MillSecond: " + c.get(Calendar.MILLISECOND));
+		this.iniTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 100 );
 	}
 
 	public void StopTime(){
 		System.out.println("Stop Crono");
 		c = Calendar.getInstance();
-		System.out.println( "Minute: " + c.get(Calendar.MINUTE) + ", Second: " + c.get(Calendar.SECOND) );
-		this.finalTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) );
+		System.out.println( "Minute: " + c.get(Calendar.MINUTE) +
+							", Second: " + c.get(Calendar.SECOND) +
+							", MillSecond: " + c.get(Calendar.MILLISECOND));
+		this.finalTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 100 );
 	}
 
 		// Test Method
-	/*
 	public static void main(String[] args) {
 		Time t = new Time();
 		t.StartTime();
@@ -47,5 +50,4 @@ public class Time {
 
 		System.out.println(t.GetTime());
 	}
-	*/
 }
