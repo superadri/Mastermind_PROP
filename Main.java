@@ -5,11 +5,12 @@
 public class Main {
 
   public static void main(String[] args) {
-    int width = 3;
-    int nColors = 3;
-    boolean repetition = true;
-    //String[] gameParameters = {"1","1","3","3","1"};
-    String[] gameParameters = {"1","1","4","6","1"};
+    int width = 4;
+    int nColors = 6;
+    boolean repetition = false;
+		// this.computerCM, this.computerCB, this.width, this.nColors, this.repetition
+    String[] gameParameters = {"1","1","4","6","0"};
+
     Game game = new Game(gameParameters);
     /*
     System.out.println("Printing all colors...");

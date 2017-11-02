@@ -3,37 +3,35 @@
 // package mastermind;
 
 /*
+	Usage
 
-Usage
+	CodeBreaker(int width, int nColors, boolean repetition);
+	  Creates an instance of the class CodeBreaker with the given parameters.
 
-CodeBreaker(int width, int nColors, boolean repetition);
-  Creates an instance of the class CodeBreaker with the given parameters.
+	String playCombination();
+	  Returns a String that represents the combination to be played.
 
-String playCombination();
-  Returns a String that represents the combination to be played.
+	void shareAnswer(String answer);
+	  Lets the algorithm know the answer to the previously proposed combination so
+	  that it can update its internal tracking of the state of the game.
 
-void shareAnswer(String answer);
-  Lets the algorithm know the answer to the previously proposed combination so
-  that it can update its internal tracking of the state of the game.
+	void printAnswerMatrix();
+	  Prints which answer would be given for all possible combinations of
+	  proposed combination / code.
 
-void printAnswerMatrix();
-  Prints which answer would be given for all possible combinations of
-  proposed combination / code.
+	void printAllCombs();
+	  Prints all the possible combinations.
 
-void printAllCombs();
-  Prints all the possible combinations.
+	void printSingleComb(String combination);
+	  Prints the String it receives as a parameter.
+	  Intended for printing combinations.
 
-void printSingleComb(String combination);
-  Prints the String it receives as a parameter.
-  Intended for printing combinations.
+	void printAllColors();
+	  Prints all the possible colors.
 
-void printAllColors();
-  Prints all the possible colors.
-
-void printSingleColor(String color);
-  Prints the String it receives as a parameter.
-  Intended for printing colors.
-
+	void printSingleColor(String color);
+	  Prints the String it receives as a parameter.
+	  Intended for printing colors.
 */
 
 import java.util.Scanner;
@@ -134,20 +132,20 @@ public class CodeBreaker extends Algorithm {
     //Scanner sc = new Scanner(System.in);
     // for each guess
     for (int gi = 0; gi < size; ++gi) {
-      int min = size;
+      // int min = size; count < min
+	  int max = -1; // count > max
         // for each code
         for (int ci = 0; !discarded[gi] && ci != gi && ci < size; ++ci) {
           int count = 0;
           // for all answers
           for (int ai = 0; !discarded[ci] && ai < size; ++ai) {
-            if (!discarded[ai] && answerMatrix[gi][ai].equals(
-              answerMatrix[gi][ci])) { ++count; }
+            if ( !discarded[ai] && answerMatrix[gi][ai].equals(answerMatrix[gi][ci]) ) { ++count; }
           }
-          if (count < min) { min = count; }
+          if (count > max) { max = count; }
           //System.out.println("guess " + allCombs[gi] + " has " + count + " codes with answers like " + answerMatrix[gi][ci] + ".");
           //String dontCare = sc.nextLine();
         }
-      minDiscard[gi] = min;
+      minDiscard[gi] = max;
       //System.out.println("minDiscard for " + allCombs[gi] + " is " + minDiscard[gi] + " or " + min + ".");
       //String dontCare = sc.nextLine();
     }
@@ -157,12 +155,13 @@ public class CodeBreaker extends Algorithm {
   // maximum up until now, then choose that guess.
   private String getMaxMin() {
     //Scanner sc = new Scanner(System.in);
-    int max = -1;
+    // int max = -1; // > max
+	int min = size; // < min
     for (int gi = 0; gi < size; ++gi) {
-      if (!discarded[gi] && minDiscard[gi] > max) {
+      if (!discarded[gi] && minDiscard[gi] < min) {
         //System.out.println(allCombs[gi] + " is not discarded and has a minDiscard of " + minDiscard[gi] + " which is greater than the current maximum which is " + max + ".");
         //String dontCare = sc.nextLine();
-        max = minDiscard[gi];
+        min = minDiscard[gi];
         guessIndex = gi;
       }
     }
@@ -189,26 +188,23 @@ public class CodeBreaker extends Algorithm {
     char[] code = c.toCharArray();
     String answer = "";
     boolean[] guessChecked = new boolean[width];
-    boolean[] codeChecked = new boolean[width];
+
     for (int i = 0; i < width; ++i) {
       guessChecked[i] = false;
-      codeChecked[i] = false;
     }
     // first pass: Black pins -> color & position correct
     for (int i = 0; i < width; ++i) {
       if (guess[i] == code[i]) {
         answer += 'B'; // B for Black pin
         guessChecked[i] = true;
-        codeChecked[i] = true;
       }
     }
     // second pass: Red pins: color correct & position incorrect
     for (int i = 0; i < width; ++i) {
       for (int j = 0; j < width && !guessChecked[i]; ++j) {
-        if (!codeChecked[j] && guess[i] == code[j]) {
+        if (!guessChecked[j] && guess[i] == code[j]) {
           answer += 'R'; // R for Red pin
           guessChecked[i] = true;
-          codeChecked[j] = true;
         }
       }
     }
@@ -248,6 +244,7 @@ public class CodeBreaker extends Algorithm {
       }
     } else {
       allCombs[n] = comb;
+	  System.out.println(comb);
       ++n;
     }
     return n;

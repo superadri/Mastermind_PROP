@@ -3,16 +3,14 @@
 // package mastermind;
 
 /*
+	Usage
 
-Usage
+	CodeMaker(int width, int nColors, boolean repetition);
+	  Creates an instance of the class CodeMaker with the given parameters.
 
-CodeMaker(int width, int nColors, boolean repetition);
-  Creates an instance of the class CodeMaker with the given parameters.
-
-TODO createCode(String difficulty);
-  Creates a code depending on the given difficulty.
-  This definition as well as the parameters are subject to change.
-
+	TODO createCode(String difficulty);
+	  Creates a code depending on the given difficulty.
+	  This definition as well as the parameters are subject to change.
 */
 
 public class CodeMaker extends Algorithm {

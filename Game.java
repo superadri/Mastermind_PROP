@@ -1,18 +1,17 @@
 // Game.java
 
-// package mastermind
+// package mastermind;
 
 /*
+	Usage
 
-Usage
+	Game(String[] gameParameters);
+	  Creates an instance of the class Game with the given parameters.
+	  Used to create a new game.
 
-Game(String[] gameParameters);
-  Creates an instance of the class Game with the given parameters.
-  Used to create a new game.
-
-TODO Game(String[] gameParameters, boolean continueGame);
-  Creates an instance of the class Game with the given parameters.
-  Used to continue a saved game.
+	TODO Game(String[] gameParameters, boolean continueGame);
+	  Creates an instance of the class Game with the given parameters.
+	  Used to continue a saved game.
 
 */
 
@@ -41,6 +40,7 @@ public class Game {
     this.width = Integer.parseInt(gameParameters[2]);
     this.nColors = Integer.parseInt(gameParameters[3]);
     this.repetition = Integer.parseInt(gameParameters[4]) != 0;
+	System.out.println("width: "+this.width+", nColors: "+this.nColors+", repetition: "+this.repetition);
     if (computerCM) {
       System.out.println("Initiazing CodeMaker algorithm...");
       this.cm = new CodeMaker(width, nColors, repetition);
@@ -57,21 +57,26 @@ public class Game {
     // the register or something.
   }
 
-  public void start() {
-    System.out.println("Starting new game...");
-    if (computerCM) { code = cm.createCode("EASY"); }
-    else { code = scanCombination(); }
-    System.out.println("CodeMaker: code = " + code);
-    do {
-      if (computerCB) {
-        guess = cb.playCombination();
-      } else { guess = scanCombination(); }
-      System.out.println("CodeBreaker: guess = " + guess);
-      String answer = calculateAnswer(guess, code);
-      System.out.println("Game: answer = " + answer);
-      if (computerCB) { cb.shareAnswer(answer); }
-    } while (!guess.equals(code));
-  }
+	public void start() {
+		System.out.println("Starting new game...");
+		if (computerCM) {
+			// code = cm.createCode("EASY");
+			code = "AABB";
+		} else { code = scanCombination(); }
+		System.out.println("CodeMaker: code = " + code);
+
+		int controlExit = 0;
+		do {
+			if (controlExit == 10) { break; }
+			if (computerCB) { guess = cb.playCombination(); }
+			else { guess = scanCombination(); }
+			System.out.println("CodeBreaker: guess = " + guess);
+			String answer = calculateAnswer(guess, code);
+			System.out.println("Game: answer = " + answer);
+			if (computerCB) { cb.shareAnswer(answer); }
+			++controlExit;
+		} while (!guess.equals(code));
+	}
 
   private String scanCombination() {
     // TODO

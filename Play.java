@@ -3,12 +3,10 @@
 // package mastermind;
 
 /*
+	Usage
 
-Usage
-
-Play();
-  Creates an instance of the class Play with the given parameters.
-
+	Play();
+	  Creates an instance of the class Play with the given parameters.
 */
 
 public class Play {

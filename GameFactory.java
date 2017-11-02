@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package mastermind;
+
+// package mastermind;
 
 import java.util.Scanner;
 
-/**
- *
- * @author Sony
- */
 public class GameFactory {
-    
+
     public static void main(String[] args) {
         // TODO code application logic here
         instructions(); // gives user instructions
@@ -36,26 +28,26 @@ public class GameFactory {
         }
         else  {
             System.out.println("No existe usuario");
-            
+
             newgame();
         }
-        
+
     }
 
     private static void instructions() {
        // TODO imprimir normas de mastermind
        System.out.println("Instructiones para el juego Mastermind:\n");
        System.out.println("---------------"); //TODO poner normas mastermind
-       
-       
+
+
     }
 
     private static void newgame() {
        System.out.println("NewGame");
-       
+
     }
 
     private static void continuegame() {
        System.out.println("ContinueGame");
-    }  
+    }
 }
