@@ -40,6 +40,7 @@ public class Time {
 		this.finalTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 100 );
 	}
 
+	/*
 		// Test Method
 	public static void main(String[] args) {
 		Time t = new Time();
@@ -50,4 +51,5 @@ public class Time {
 
 		System.out.println(t.GetTime());
 	}
+	*/
 }

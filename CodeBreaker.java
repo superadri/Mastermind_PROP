@@ -59,7 +59,7 @@ public class CodeBreaker extends Algorithm {
     for (int i = 0; i < size; ++i) { discarded[i] = false; }
     this.answerMatrix = new String[size][size];
     fillAnswerMatrix();
-    //printAnswerMatrix();
+    // printAnswerMatrix();
   }
 
   // use followed by shareAnswer
@@ -162,6 +162,7 @@ public class CodeBreaker extends Algorithm {
         //System.out.println(allCombs[gi] + " is not discarded and has a minDiscard of " + minDiscard[gi] + " which is greater than the current maximum which is " + max + ".");
         //String dontCare = sc.nextLine();
         min = minDiscard[gi];
+		// System.out.println(min);
         guessIndex = gi;
       }
     }
@@ -244,7 +245,6 @@ public class CodeBreaker extends Algorithm {
       }
     } else {
       allCombs[n] = comb;
-	  System.out.println(comb);
       ++n;
     }
     return n;

@@ -32,24 +32,25 @@ public class Game {
   int nColors;
   boolean repetition;
 
-  public Game(String[] gameParameters) {
-    this.code = ""; // Initialization just in case
-    this.guess = "";
-    this.computerCM = Integer.parseInt(gameParameters[0]) != 0;
-    this.computerCB = Integer.parseInt(gameParameters[1]) != 0;
-    this.width = Integer.parseInt(gameParameters[2]);
-    this.nColors = Integer.parseInt(gameParameters[3]);
-    this.repetition = Integer.parseInt(gameParameters[4]) != 0;
-	System.out.println("width: "+this.width+", nColors: "+this.nColors+", repetition: "+this.repetition);
-    if (computerCM) {
-      System.out.println("Initiazing CodeMaker algorithm...");
-      this.cm = new CodeMaker(width, nColors, repetition);
-    }
-    if (computerCB) {
-      System.out.println("Initiazing CodeBreaker algorithm...");
-      this.cb = new CodeBreaker(width, nColors, repetition);
-    }
-  }
+	public Game(String[] gameParameters) {
+		this.code = ""; // Initialization just in case
+		this.guess = "";
+		this.computerCM = Integer.parseInt(gameParameters[0]) != 0;
+		this.computerCB = Integer.parseInt(gameParameters[1]) != 0;
+		this.width = Integer.parseInt(gameParameters[2]);
+		this.nColors = Integer.parseInt(gameParameters[3]);
+		this.repetition = Integer.parseInt(gameParameters[4]) != 0;
+		System.out.println("Initial Configure");
+		System.out.println("width: "+this.width+", nColors: "+this.nColors+", repetition: "+this.repetition);
+		if (computerCM) {
+			System.out.println("Initiazing CodeMaker algorithm...");
+			this.cm = new CodeMaker(width, nColors, repetition);
+		}
+		if (computerCB) {
+			System.out.println("Initiazing CodeBreaker algorithm...");
+			this.cb = new CodeBreaker(width, nColors, repetition);
+		}
+	}
 
   public Game(String[] gameParameters, boolean continueGame) {
     // TODO continue saved game
