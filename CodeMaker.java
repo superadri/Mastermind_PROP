@@ -15,28 +15,30 @@
 
 public class CodeMaker extends Algorithm {
 
-  public CodeMaker(int width, int nColors, boolean repetition) {
-    this.width = width;
-    this.nColors = nColors;
-    this.repetition = repetition;
-  }
+	public CodeMaker(int width, int nColors, boolean repetition) {
+		this.width = width;
+		this.nColors = nColors;
+		this.repetition = repetition;
+	}
 
-  public String createCode(String difficulty) {
-    if (difficulty == "HARD") {
-      // TODO
-      return "";
-    } else {
-      return easyCode();
-    }
-  }
+	public String createCode(String difficulty) {
+		if (difficulty == "HARD") {		// Like a HardCoder mode
+			// TODO : We can take the code we never get right, (we tried before) and use one of them (list)
+			return "";
+		} else if (difficulty == "MEDIUM") {	// Like a HardCoder mode
+			// TODO : We can take the code we sometimes get right, (we tried before) and use one of them (list)
+			return "";
+		}
+		else if (difficulty == "HARDCODER") { return "AABB"; }
+		else if (difficulty == "EASY"){ return easyCode(); }
+	}
 
-  private String easyCode() {
-    String code = "";
-    for (int i = 0; i < width; ++i) {
-      int j = (int)(Math.floor(nColors * Math.random()));
-      code += (char)('A' + j);
-    }
-    return code;
-  }
-
+	private String easyCode() {
+		String code = "";
+		for (int i = 0; i < width; ++i) {
+		  int j = (int)(Math.floor(nColors * Math.random()));
+		  code += (char)('A' + j);
+		}
+		return code;
+	}
 }

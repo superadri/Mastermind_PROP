@@ -62,7 +62,7 @@ public class Game {
 		System.out.println("Starting new game...");
 		if (computerCM) {
 			// code = cm.createCode("EASY");
-			code = "AABB";
+			code = cm.createCode("HARDCODER");
 		} else { code = scanCombination(); }
 		System.out.println("CodeMaker: code = " + code);
 
