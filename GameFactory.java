@@ -1,11 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mastermind;
 
-// package mastermind;
-
+import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ *
+ * @author Sony
+ */
 public class GameFactory {
-
-    public static void main(String[] args) {
+    
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
         instructions(); // gives user instructions
 
@@ -28,36 +37,38 @@ public class GameFactory {
         }
         else  {
             System.out.println("No existe usuario");
-
+            
             newgame();
         }
-
+        
     }
 
     private static void instructions() {
        // TODO imprimir normas de mastermind
        System.out.println("Instructiones para el juego Mastermind:\n");
        System.out.println("---------------"); //TODO poner normas mastermind
-
-
+       
+       
     }
 
     private static void newgame() {
-       System.out.println("NewGame");
-
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("NewGame");
+        boolean b = false;
+        while(!b){ //por si se equivoca al escoger
+            b = true;
+            System.out.println("Escoge dificultat: Facil/Medio/Dificil");
+            String respuesta = teclado.nextLine();
+            if (respuesta.equals("Facil")){}
+            else if (respuesta.equals("Medio")){}
+            else if (respuesta.equals("Dificil")){}
+            else {b = false;}
+        }
+        Mastermid mastermind = new Mastermind(respuesta);
     }
 
     private static void continuegame() {
        System.out.println("ContinueGame");
-    }
-
-	// Hay que definir, que clase contien el Main, en este caso, si seguimos el hilo de MainClass,
-	// Habría que crear un constructor aquí, e invocarlo Main, o donde sea necesario
-
-	/*
-	  // Test Method
-	public static void main(String[] args) {
-		GameFactory gamefactory = new GameFactory();
-	}
-	*/
+       Mastermind mastermind = new Mastermind();
+    }  
 }
