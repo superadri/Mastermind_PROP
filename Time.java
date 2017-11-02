@@ -16,40 +16,43 @@ public class Time {
 	}
 
 		// Getter && Setter
-    public float GetTime() {
+    public float getTime() {
 		return (finalTime - iniTime);
 	}
     // public void SetTime(double newTime) {  iniTime; }
 
 		// Method
-	public void StartTime(){
-		System.out.println("Start Crono");
+	public void startTime(){
+		System.out.println("Start_Crono");
 		c = Calendar.getInstance();
 		System.out.println( "Minute: " + c.get(Calendar.MINUTE) +
 							", Second: " + c.get(Calendar.SECOND) +
 							", MillSecond: " + c.get(Calendar.MILLISECOND));
-		this.iniTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 100 );
+		this.iniTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 1000 );
 	}
 
-	public void StopTime(){
-		System.out.println("Stop Crono");
+	public void stopTime(){
+		System.out.println("Stop_Crono");
 		c = Calendar.getInstance();
 		System.out.println( "Minute: " + c.get(Calendar.MINUTE) +
 							", Second: " + c.get(Calendar.SECOND) +
 							", MillSecond: " + c.get(Calendar.MILLISECOND));
-		this.finalTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 100 );
+		this.finalTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 1000 );
 	}
 
 	/*
 		// Test Method
 	public static void main(String[] args) {
 		Time t = new Time();
-		t.StartTime();
+		t.startTime();
+
+			// Delay 10s
 		try { Thread.sleep(10000); }
 		catch(InterruptedException ex) { Thread.currentThread().interrupt(); }
-		t.StopTime();
 
-		System.out.println(t.GetTime());
+		t.stopTime();
+
+		System.out.println(t.getTime());
 	}
 	*/
 }

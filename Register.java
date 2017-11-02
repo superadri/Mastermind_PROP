@@ -13,7 +13,7 @@ public class Register {
     ArrayList<String> nomUsers = new ArrayList();
     public Register() {
         try {
-            File f = new File("src/mastermind/registro.txt");
+            File f = new File("/usr/share/mastermind/registro.txt");
             Scanner s = new Scanner(f);
             while(s.hasNextLine()){
                 String line = s.nextLine();
@@ -51,10 +51,19 @@ public class Register {
             ++i;
         }
         String usern = username.toString();
-        nomUsers .add(usern);
+        nomUsers.add(usern);
         char a = line.charAt(i+1);
 
         Player p = new Player(a,usern);
         users.add(p);
     }
+
+	// Nota -> revisar la creación del file, sino existe, y si ya existe, que lo abra
+
+	/*
+		// Test Method
+	public static void main(String[] args) {
+		Register register = new Register();
+	}
+	*/
 }

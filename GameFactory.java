@@ -50,4 +50,14 @@ public class GameFactory {
     private static void continuegame() {
        System.out.println("ContinueGame");
     }
+
+	// Hay que definir, que clase contien el Main, en este caso, si seguimos el hilo de MainClass,
+	// Habría que crear un constructor aquí, e invocarlo Main, o donde sea necesario
+
+	/*
+	  // Test Method
+	public static void main(String[] args) {
+		GameFactory gamefactory = new GameFactory();
+	}
+	*/
 }

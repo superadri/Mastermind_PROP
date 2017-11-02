@@ -276,4 +276,12 @@ public class CodeBreaker extends Algorithm {
     return f * factorial(f - 1);
   }
 
+	/*
+	// Test Method
+  public static void main(String[] args) {
+		CodeBreaker codebreaker = new CodeBreaker(4,6,false);
+  }
+  */
+
+
 }

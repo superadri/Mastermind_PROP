@@ -22,15 +22,16 @@ public class CodeMaker extends Algorithm {
 	}
 
 	public String createCode(String difficulty) {
+		String codeOut = "";
 		if (difficulty == "HARD") {		// Like a HardCoder mode
 			// TODO : We can take the code we never get right, (we tried before) and use one of them (list)
-			return "";
+			codeOut = "";
 		} else if (difficulty == "MEDIUM") {	// Like a HardCoder mode
 			// TODO : We can take the code we sometimes get right, (we tried before) and use one of them (list)
-			return "";
-		}
-		else if (difficulty == "HARDCODER") { return "AABB"; }
-		else if (difficulty == "EASY"){ return easyCode(); }
+			codeOut = "";
+		} else if (difficulty == "HARDCODER") { codeOut = "AABB"; }
+		else if (difficulty == "EASY"){ codeOut = easyCode(); }
+		return codeOut;
 	}
 
 	private String easyCode() {
@@ -41,4 +42,11 @@ public class CodeMaker extends Algorithm {
 		}
 		return code;
 	}
+
+	/*
+	  // Test Method
+	public static void main(String[] args) {
+		CodeMaker codemaker = new CodeMaker(4,6,false);
+	}
+	*/
 }

@@ -18,4 +18,12 @@ public class Player {
         return username;
     }
 
+	/*
+	  // Test Method
+	public static void main(String[] args) {
+		Player player = new Player('y',"Juancho");
+		System.out.println("Name: "+player.getUsername()+", Start: "+player.getGame_start());
+	}
+	*/
+
 }

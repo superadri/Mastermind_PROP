@@ -87,41 +87,49 @@ public class Game {
   // TODO repeated code from CodeBreaker!!!
   // Also, if this code stays here, it doesn't need the parameters.
   private String calculateAnswer(String g, String c) {
-    char[] guess = g.toCharArray();
-    char[] code = c.toCharArray();
-    String answer = "";
-    boolean[] guessChecked = new boolean[width];
-    boolean[] codeChecked = new boolean[width];
-    for (int i = 0; i < width; ++i) {
-      guessChecked[i] = false;
-      codeChecked[i] = false;
-    }
-    // first pass: Black pins -> color & position correct
-    for (int i = 0; i < width; ++i) {
-      if (guess[i] == code[i]) {
-        answer += 'B'; // B for Black pin
-        guessChecked[i] = true;
-        codeChecked[i] = true;
-      }
-    }
-    // second pass: Red pins: color correct & position incorrect
-    for (int i = 0; i < width; ++i) {
-      for (int j = 0; j < width && !guessChecked[i]; ++j) {
-        if (!codeChecked[j] && guess[i] == code[j]) {
-          answer += 'R'; // R for Red pin
-          guessChecked[i] = true;
-          codeChecked[j] = true;
-        }
-      }
-    }
-    // third pass: X (no pin): color incorrect & position incorrect
-    // fill remaining slots with X
-    for (int i = 0; i < width; ++i) {
-      if (!guessChecked[i]) {
-        answer += "X"; // X for no pin
-      }
-    }
-    return answer;
-  }
+		char[] guess = g.toCharArray();
+		char[] code = c.toCharArray();
+		String answer = "";
+		boolean[] guessChecked = new boolean[width];
+		boolean[] codeChecked = new boolean[width];
+		for (int i = 0; i < width; ++i) {
+		  guessChecked[i] = false;
+		  codeChecked[i] = false;
+		}
+		// first pass: Black pins -> color & position correct
+		for (int i = 0; i < width; ++i) {
+		  if (guess[i] == code[i]) {
+		    answer += 'B'; // B for Black pin
+		    guessChecked[i] = true;
+		    codeChecked[i] = true;
+		  }
+		}
+		// second pass: Red pins: color correct & position incorrect
+		for (int i = 0; i < width; ++i) {
+		  for (int j = 0; j < width && !guessChecked[i]; ++j) {
+		    if (!codeChecked[j] && guess[i] == code[j]) {
+		      answer += 'R'; // R for Red pin
+		      guessChecked[i] = true;
+		      codeChecked[j] = true;
+		    }
+		  }
+		}
+		// third pass: X (no pin): color incorrect & position incorrect
+		// fill remaining slots with X
+		for (int i = 0; i < width; ++i) {
+			if (!guessChecked[i]) {
+				answer += "X"; // X for no pin
+			}
+		}
+		return answer;
+	}
+
+	  // Test Method
+	/*
+	public static void main(String[] args) {
+		String[] gameParameters = {"1","1","4","6","0"};
+		Game game = new Game(gameParameters);
+	}
+	*/
 
 }
