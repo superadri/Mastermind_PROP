@@ -9,11 +9,11 @@ package mastermind;
  *
  * @author Sony
  */
-public class Person {
+public class Player {
     char game_start;
     String username;
 
-    public Person(char game_start, String username) {
+    public Player(char game_start, String username) {
         this.game_start = game_start;
         this.username = username;
     }
@@ -25,5 +25,5 @@ public class Person {
     public String getUsername() {
         return username;
     }
-    
+
 }
