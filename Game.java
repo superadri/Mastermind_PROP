@@ -13,6 +13,10 @@
 	  Creates an instance of the class Game with the given parameters.
 	  Used to continue a saved game.
 
+  String sendGuess(String sentGuess);
+    Sends a guess to this class (Game).
+    Used by CodeBreaker algorithm.
+
 */
 
 public class Game {
@@ -42,15 +46,17 @@ public class Game {
 		this.width = Integer.parseInt(gameParameters[2]);
 		this.nColors = Integer.parseInt(gameParameters[3]);
 		this.repetition = Integer.parseInt(gameParameters[4]) != 0;
-		System.out.println("Initial Configure");
-		System.out.println("width: "+this.width+", nColors: "+this.nColors+", repetition: "+this.repetition);
+		System.out.println("Initial Configuration>");
+		System.out.println("width = " + this.width +
+      ", nColors = " + this.nColors +
+      ", repetition = " + this.repetition + ".");
 		if (computerCM) {
 			System.out.println("Initiazing CodeMaker algorithm...");
 			this.cm = new CodeMaker(width, nColors, repetition);
 		}
 		if (computerCB) {
 			System.out.println("Initiazing CodeBreaker algorithm...");
-			this.cb = new CodeBreaker(width, nColors, repetition);
+			this.cb = new CodeBreaker(this, width, nColors, repetition);
 		}
 	}
 
@@ -61,6 +67,7 @@ public class Game {
   }
 
 	public void start() {
+    int turn = 0;
 		System.out.println("Starting new game...");
 		if (computerCM) {
 			// code = cm.createCode("EASY");
@@ -69,14 +76,16 @@ public class Game {
 		} else { code = scanCombination(); }
 		System.out.println("CodeMaker: code = " + code);
 		do {
-			if (computerCB) { cb.playCombination(this); }
+			if (computerCB) { cb.playCombination(); }
 			else {
         guess = scanCombination();
         answer = calculateAnswer(guess, code);
       }
 			System.out.println("CodeBreaker: guess = " + guess);
 			System.out.println("Game: answer = " + answer);
+      ++turn;
 		} while (!guess.equals(code));
+    System.out.println("Game: code guessed in " + turn + " turns.");
 	}
 
   public String sendGuess(String sentGuess) {
@@ -85,14 +94,13 @@ public class Game {
     return answer;
   }
 
-  private String scanCombination() {
-    // TODO
-    return "";
+  public void printAnswerMatrix() {
+    cb.printAnswerMatrix();
   }
 
   // TODO repeated code from CodeBreaker!!!
   // Also, if this code stays here, it doesn't need the parameters.
-  private String calculateAnswer(String g, String c) {
+  public String calculateAnswer(String g, String c) {
 		char[] guess = g.toCharArray();
 		char[] code = c.toCharArray();
 		String answer = "";
@@ -129,6 +137,11 @@ public class Game {
 		}
 		return answer;
 	}
+
+  private String scanCombination() {
+    // TODO
+    return "";
+  }
 
 	  // Test Method
 	/*

@@ -41,9 +41,10 @@ import java.util.Scanner;
 
 public class CodeBreaker extends Algorithm {
 
-  public CodeBreaker(int width, int nColors, boolean repetition) {
+  public CodeBreaker(Game game, int width, int nColors, boolean repetition) {
     this.comb = "";
     this.guessIndex = 0; // Initialization just in case
+    this.game = game;
     this.width = width;
     this.nColors = nColors;
     this.repetition = repetition;
@@ -65,7 +66,7 @@ public class CodeBreaker extends Algorithm {
     //printAnswerMatrix();
   }
 
-  public void playCombination(Game game) {
+  public void playCombination() {
     getMin();
     String guess = getMaxMin();
     String answer = game.sendGuess(guess);
@@ -186,48 +187,10 @@ public class CodeBreaker extends Algorithm {
       for (int ci = 0; ci < size; ++ci) {
         String guess = allCombs[gi];
         String code = allCombs[ci];
-        String answer = calculateAnswer(guess, code);
+        String answer = game.calculateAnswer(guess, code);
         answerMatrix[gi][ci] = answer;
       }
     }
-  }
-
-  private String calculateAnswer(String g, String c) {
-    char[] guess = g.toCharArray();
-    char[] code = c.toCharArray();
-    String answer = "";
-    boolean[] guessChecked = new boolean[width];
-    boolean[] codeChecked = new boolean[width];
-    for (int i = 0; i < width; ++i) {
-      guessChecked[i] = false;
-      codeChecked[i] = false;
-    }
-    // first pass: Black pins -> color & position correct
-    for (int i = 0; i < width; ++i) {
-      if (guess[i] == code[i]) {
-        answer += 'B'; // B for Black pin
-        guessChecked[i] = true;
-        codeChecked[i] = true;
-      }
-    }
-    // second pass: Red pins: color correct & position incorrect
-    for (int i = 0; i < width; ++i) {
-      for (int j = 0; j < width && !guessChecked[i]; ++j) {
-        if (!codeChecked[j] && guess[i] == code[j]) {
-          answer += 'R'; // R for Red pin
-          guessChecked[i] = true;
-          codeChecked[j] = true;
-        }
-      }
-    }
-    // third pass: X (no pin): color incorrect & position incorrect
-    // fill remaining slots with X
-    for (int i = 0; i < width; ++i) {
-      if (!guessChecked[i]) {
-        answer += "X"; // X for no pin
-      }
-    }
-    return answer;
   }
 
   private int setSize() {

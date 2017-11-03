@@ -37,6 +37,7 @@
 
 public class Algorithm {
 
+  public Game game;
   public int width;
   public int nColors;
   public int size;
