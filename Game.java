@@ -23,6 +23,7 @@ public class Game {
   public CodeBreaker cb;
   private String code;
   private String guess;
+  private String answer;
   // public Player playerOne
   // public Player playerTwo
   // public Time time;
@@ -35,6 +36,7 @@ public class Game {
 	public Game(String[] gameParameters) {
 		this.code = ""; // Initialization just in case
 		this.guess = "";
+		this.answer = "";
 		this.computerCM = Integer.parseInt(gameParameters[0]) != 0;
 		this.computerCB = Integer.parseInt(gameParameters[1]) != 0;
 		this.width = Integer.parseInt(gameParameters[2]);
@@ -66,19 +68,22 @@ public class Game {
       code = "FEDC";
 		} else { code = scanCombination(); }
 		System.out.println("CodeMaker: code = " + code);
-
-		//int controlExit = 0;
 		do {
-			//if (controlExit == 10) { break; }
-			if (computerCB) { guess = cb.playCombination(); }
-			else { guess = scanCombination(); }
+			if (computerCB) { cb.playCombination(this); }
+			else {
+        guess = scanCombination();
+        answer = calculateAnswer(guess, code);
+      }
 			System.out.println("CodeBreaker: guess = " + guess);
-			String answer = calculateAnswer(guess, code);
 			System.out.println("Game: answer = " + answer);
-			if (computerCB) { cb.shareAnswer(answer); }
-			//++controlExit;
 		} while (!guess.equals(code));
 	}
+
+  public String sendGuess(String sentGuess) {
+    guess = sentGuess;
+    answer = calculateAnswer(guess, code);
+    return answer;
+  }
 
   private String scanCombination() {
     // TODO

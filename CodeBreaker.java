@@ -11,10 +11,8 @@ CodeBreaker(int width, int nColors, boolean repetition);
 
 String playCombination();
   Returns a String that represents the combination to be played.
-
-void shareAnswer(String answer);
-  Lets the algorithm know the answer to the previously proposed combination so
-  that it can update its internal tracking of the state of the game.
+  Gets the answer to the previously proposed combination from the class Game
+  and updates its internal tracking of the state of the game.
 
 void printAnswerMatrix();
   Prints which answer would be given for all possible combinations of
@@ -33,6 +31,9 @@ void printAllColors();
 void printSingleColor(String color);
   Prints the String it receives as a parameter.
   Intended for printing colors.
+
+void testMinDiscard();
+  Prints the list of minimum combinations that a guess would discard.
 
 */
 
@@ -64,16 +65,16 @@ public class CodeBreaker extends Algorithm {
     //printAnswerMatrix();
   }
 
-  // use followed by shareAnswer
-  public String playCombination() {
-    getMin(); // could also be implemented with probabilities
-    return getMaxMin();
+  public void playCombination(Game game) {
+    getMin();
+    String guess = getMaxMin();
+    String answer = game.sendGuess(guess);
+    updateDiscarded(answer);
   }
 
-  // use once after playCombination
-  public void shareAnswer(String answer) {
-    // update discard options
-    updateDiscarded(answer);
+  public void testMinDiscard() {
+    getMin();
+    printMinDiscard();
   }
 
   public void printAnswerMatrix() {
@@ -112,6 +113,13 @@ public class CodeBreaker extends Algorithm {
     System.out.println(color);
   }
 
+  public void printMinDiscard() {
+    System.out.println("Printing minDiscard for all combinations...");
+    for (int i = 0; i < size; ++i) {
+      System.out.println(allCombs[i] + ": " + minDiscard[i]);
+    }
+  }
+
   // If it is possible that the combination[ci] is the code, then the answer
   // received to the guess combination[gi] would have been equal to the
   // answer stored in the answerMatrix. Otherwise, combination[ci] is NOT
@@ -140,11 +148,11 @@ public class CodeBreaker extends Algorithm {
           int count = 0;
           // for all answers
           for (int ai = 0; !discarded[ci] && ai < size; ++ai) {
-            if (!discarded[ai] && answerMatrix[gi][ai].equals(
+            if (!discarded[ai] && !answerMatrix[gi][ai].equals(
               answerMatrix[gi][ci])) { ++count; }
           }
           if (count < min) { min = count; }
-          //System.out.println("guess " + allCombs[gi] + " has " + count + " codes with answers like " + answerMatrix[gi][ci] + ".");
+          //System.out.println("guess " + allCombs[gi] + " has " + count + " codes with answers different from " + answerMatrix[gi][ci] + ".");
           //String dontCare = sc.nextLine();
         }
       minDiscard[gi] = min;
