@@ -62,20 +62,21 @@ public class Game {
 		System.out.println("Starting new game...");
 		if (computerCM) {
 			// code = cm.createCode("EASY");
-			code = cm.createCode("HARDCODER");
+			// code = cm.createCode("HARDCODER");
+      code = "FEDC";
 		} else { code = scanCombination(); }
 		System.out.println("CodeMaker: code = " + code);
 
-		int controlExit = 0;
+		//int controlExit = 0;
 		do {
-			if (controlExit == 10) { break; }
+			//if (controlExit == 10) { break; }
 			if (computerCB) { guess = cb.playCombination(); }
 			else { guess = scanCombination(); }
 			System.out.println("CodeBreaker: guess = " + guess);
 			String answer = calculateAnswer(guess, code);
 			System.out.println("Game: answer = " + answer);
 			if (computerCB) { cb.shareAnswer(answer); }
-			++controlExit;
+			//++controlExit;
 		} while (!guess.equals(code));
 	}
 

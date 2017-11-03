@@ -9,7 +9,7 @@ public class Main {
 		int nColors = 6;
 		boolean repetition = false;
 			// this.computerCM, this.computerCB, this.width, this.nColors, this.repetition
-		String[] gameParameters = {"1","1","4","6","0"};
+		String[] gameParameters = {"1","1","4","6","1"};
 		Game game = new Game(gameParameters);
 		Time t = new Time();
 		/*
