@@ -90,11 +90,11 @@ public class GameFactory {
         boolean b = false;
         while(!b){ //por si se equivoca al escoger
             b = true;
-            System.out.println("Escoge dificultat: Facil/Medio/Dificil");
+            System.out.println("Escoge dificultat: EASY/MEDIUM/HARD");
             String respuesta = teclado.nextLine();
-            if (respuesta.equals("Facil")){}
-            else if (respuesta.equals("Medio")){}
-            else if (respuesta.equals("Dificil")){}
+            if (respuesta.equals("EASY")){}
+            else if (respuesta.equals("MEDIUM")){}
+            else if (respuesta.equals("HARD")){}
             else {b = false;}
         }
         Mastermid mastermind = new Mastermind(respuesta);

@@ -41,30 +41,30 @@ import java.util.Scanner;
 
 public class CodeBreaker extends Algorithm {
 
-  public CodeBreaker(Game game, int width, int nColors, boolean repetition) {
-    this.comb = "";
-    this.guessIndex = 0; // Initialization just in case
-    this.game = game;
-    this.width = width;
-    this.nColors = nColors;
-    this.repetition = repetition;
-    this.allColors = new String[nColors];
-    generateColors();
-    this.size = 0; // Initialization just in case
-    size = setSize();
-    this.allCombs = new String[size];
-    if (repetition) {
-      setAllCombs(0);
-    } else {
-      setAllCombsNoRep(0);
-    }
-    this.discarded = new boolean[size];
-    this.minDiscard = new int[size];
-    for (int i = 0; i < size; ++i) { discarded[i] = false; }
-    this.answerMatrix = new String[size][size];
-    fillAnswerMatrix();
-    //printAnswerMatrix();
-  }
+	public CodeBreaker(Game game, int width, int nColors, boolean repetition) {
+		this.comb = "";
+		this.guessIndex = 0; // Initialization just in case
+		this.game = game;
+		this.width = width;
+		this.nColors = nColors;
+		this.repetition = repetition;
+		this.allColors = new String[nColors];
+		generateColors();
+		this.size = 0; // Initialization just in case
+		size = setSize();
+		this.allCombs = new String[size];
+		if (repetition) {
+		  setAllCombs(0);
+		} else {
+		  setAllCombsNoRep(0);
+		}
+		this.discarded = new boolean[size];
+		this.minDiscard = new int[size];
+		for (int i = 0; i < size; ++i) { discarded[i] = false; }
+		this.answerMatrix = new String[size][size];
+		fillAnswerMatrix();
+		//printAnswerMatrix();
+	}
 
   public void playCombination() {
     getMin();

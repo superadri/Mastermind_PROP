@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 public class Register {
     ArrayList<Player> users = new ArrayList();
     ArrayList<String> nomUsers = new ArrayList();
+	
     public Register() {
         try {
             File f = new File("/usr/share/mastermind/registro.txt");
