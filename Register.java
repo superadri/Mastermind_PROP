@@ -9,11 +9,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Register {
-    ArrayList<Player> users = new ArrayList();
-    ArrayList<String> nomUsers = new ArrayList();
-	
+    private ArrayList<Player> users = new ArrayList<Player>();
+    private ArrayList<String> nomUsers = new ArrayList<String>();
+
     public Register() {
         try {
+			// File f = new File("~/Git_Project/mastermind/registro.txt");
             File f = new File("/usr/share/mastermind/registro.txt");
             Scanner s = new Scanner(f);
             while(s.hasNextLine()){
