@@ -26,8 +26,8 @@ public class Game {
   public CodeMaker cm;
   public CodeBreaker cb;
   private String code;
-  private String guess;
-  private String answer;
+  public String guess;
+  public String answer;
   // public Player playerOne
   // public Player playerTwo
   // public Time time;
@@ -60,10 +60,12 @@ public class Game {
 		}
 	}
 
-  public Game(String[] gameParameters, boolean continueGame) {
-    // TODO continue saved game
-    // asuming class Game receives gameParameters read by another class from
-    // the register or something.
+  public void continueGame(String[] rounds) {
+    for (int i = 0; i < rounds.length; ++i) {
+      String guess = rounds[i];
+      String answer = rounds[i + 1];
+      cb.updateDiscarded(guess, answer);
+    }
   }
 
 	public void start() {
@@ -88,6 +90,10 @@ public class Game {
     System.out.println("Game: code guessed in " + turn + " turns.");
 	}
 
+  public void sendCode(Play play, String code) {
+    if (play.role.equals("CODEMAKER")) { this.code = code; }
+  }
+
   public String sendGuess(String sentGuess) {
     guess = sentGuess;
     answer = calculateAnswer(guess, code);
@@ -96,6 +102,10 @@ public class Game {
 
   public void printAnswerMatrix() {
     cb.printAnswerMatrix();
+  }
+
+  public String calculateAnswer(String g) {
+    return calculateAnswer(g, this.code);
   }
 
   // TODO repeated code from CodeBreaker!!!

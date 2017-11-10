@@ -121,6 +121,19 @@ public class CodeBreaker extends Algorithm {
     }
   }
 
+	public void updateDiscarded(String guess, String answer) {
+		int gi = 0;
+		for (int i = 0; i < size; ++i) {
+			if (allCombs[i].equals(guess)) {
+				gi = i;
+				break;
+			}
+		}
+		for (int ci = 0; ci < size; ++ci) {
+			if (!answerMatrix[gi][ci].equals(answer)) { discarded[ci] = true; }
+		}
+	}
+
   // If it is possible that the combination[ci] is the code, then the answer
   // received to the guess combination[gi] would have been equal to the
   // answer stored in the answerMatrix. Otherwise, combination[ci] is NOT

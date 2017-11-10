@@ -9,10 +9,39 @@
 	  Creates an instance of the class Play with the given parameters.
 */
 
+import java.util.Scanner;
+
 public class Play {
 
-  public Play() {}
+  Game game;
+  String role;
 
-  // TODO
+  public Play(Game game, String role) {
+    this.game = game;
+    this.role = role;
+  }
+
+  public void makePlay() {
+    if (role.equals("CODEMAKER")) {
+      String code = "";
+  		if (game.computerCM) {
+  			// code = cm.createCode("EASY");
+  			// code = cm.createCode("HARDCODER");
+        code = "FEDC";
+  		} else { code = scanCombination(); }
+      game.sendCode(this, code);
+    }
+    // else if (role.equals("CODEBREAKER"))
+		if (game.computerCB) { game.cb.playCombination(); }
+		else {
+      game.guess = scanCombination();
+      game.answer = game.calculateAnswer(game.guess);
+    }
+  }
+
+  private String scanCombination() {
+    Scanner sc = new Scanner(System.in);
+    return sc.nextLine();
+  }
 
 }
