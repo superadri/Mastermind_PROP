@@ -28,16 +28,22 @@ public class Game {
   private String code;
   public String guess;
   public String answer;
+  public Time time;
   // public Player playerOne
   // public Player playerTwo
-  // public Time time;
   // public Board board;
 
+  int turn;
   int width;
+  int height;
   int nColors;
   boolean repetition;
+  double lastTime;
+  double currentTime;
 
 	public Game(String[] gameParameters) {
+    this.time = new Time();
+    this.turn = 0;
 		this.code = ""; // Initialization just in case
 		this.guess = "";
 		this.answer = "";
@@ -46,6 +52,7 @@ public class Game {
 		this.width = Integer.parseInt(gameParameters[2]);
 		this.nColors = Integer.parseInt(gameParameters[3]);
 		this.repetition = Integer.parseInt(gameParameters[4]) != 0;
+    this.height = Integer.parseInt(gameParameters[5]);
 		System.out.println("Initial Configuration>");
 		System.out.println("width = " + this.width +
       ", nColors = " + this.nColors +
@@ -60,17 +67,29 @@ public class Game {
 		}
 	}
 
-  public void continueGame(String[] rounds) {
+  public void continueGame(double lastTime; String code, String[] rounds) {
+    this.lastTime = lastTime;
+    this.code = code;
     for (int i = 0; i < rounds.length; ++i) {
       String guess = rounds[i];
       String answer = rounds[i + 1];
       cb.updateDiscarded(guess, answer);
+      ++this.turn;
     }
+    runGame();
   }
 
-	public void start() {
-    int turn = 0;
+  public void startNewGame() {
+    this.lastTime = 0;
 		System.out.println("Starting new game...");
+    runGame();
+  }
+
+	public void runGame() {
+		time.startTime();
+    // falta time.stopTime()
+    // situarlo dependiendo si se acaba el juego o se guarda la partida.
+    // currentTime = lastTime + time.getTime();
 		if (computerCM) {
 			// code = cm.createCode("EASY");
 			// code = cm.createCode("HARDCODER");
