@@ -1,2 +1,2 @@
-adriamarcoval,0
-adria,1
+adri 1 1.23 2 GGG XXX GGG XXX GGG
+adriam 0

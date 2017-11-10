@@ -1,36 +1,59 @@
-
-// package mastermind;
+package mastermind;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Register {
     private ArrayList<Player> users = new ArrayList<Player>();
     private ArrayList<String> nomUsers = new ArrayList<String>();
+    
+    
+    
+   
+    public Register() throws FileNotFoundException {
+        File f = new File("src/mastermind/registro.txt");
+        Scanner in = new Scanner(f);
+        in.useLocale(Locale.ENGLISH);
 
-    public Register() {
-        try {
-			// File f = new File("~/Git_Project/mastermind/registro.txt");
-            File f = new File("/usr/share/mastermind/registro.txt");
-            Scanner s = new Scanner(f);
-            while(s.hasNextLine()){
-                String line = s.nextLine();
-                add_to_array(line);
+        while(in.hasNext()){
+             
+           String username = in.next();
+           nomUsers.add(username);
+            //pendingGame
+            String a =in.next();
+            char c = a.charAt(0);
+            
+            if (a.equals("1")){
+                //entonces hay mas lineas
+                double time = in.nextDouble();
+                
+                //respuestas
+                int i = in.nextInt() * 2;
+                ArrayList<String> respuestas = new ArrayList<>();
+                while (i > 0) {
+                    respuestas.add(in.next());
+                    --i;
+                }
+      
+                //codigo
+                String codigo = in.next();
+                Player p = new Player(c,username,respuestas,time,codigo);
+                users.add(p);
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            else {
+               Player p = new Player(c,username);
+                users.add(p);
+            }
+            }
     }
 
     public boolean user_exists(String username){
         return nomUsers.contains(username);
     }
 
-    @SuppressWarnings("null")
      public boolean game_start_user(String username){
          int i = 0;
          boolean trobat = false;
@@ -42,22 +65,6 @@ public class Register {
          }
          char a = p.getGame_start();
         return p.getGame_start()== '1';
-    }
-
-    private void add_to_array(String line) {
-        int i = 0;
-        StringBuilder username = new StringBuilder();
-        while(i < line.length() && line.charAt(i) != ',' ){
-            char a = line.charAt(i);
-            username.append(a);
-            ++i;
-        }
-        String usern = username.toString();
-        nomUsers.add(usern);
-        char a = line.charAt(i+1);
-
-        Player p = new Player(a,usern);
-        users.add(p);
     }
 
 	// Nota -> revisar la creación del file, sino existe, y si ya existe, que lo abra
