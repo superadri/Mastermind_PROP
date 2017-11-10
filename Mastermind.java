@@ -40,7 +40,7 @@ public class Mastermind {
 
 		// Devolver los resultados
 
-		System.out.println("ArrayList");
+		System.out.println("ArrayList_Data_Return");
 	}
 
 		// Getter && Setter
