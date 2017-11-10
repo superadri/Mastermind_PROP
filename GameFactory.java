@@ -1,4 +1,4 @@
-package mastermind;
+// package mastermind;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -13,31 +13,34 @@ public class GameFactory {
         // TODO code application logic here
         instructions(); // gives user instructions
 
-        
         Register r = new Register();
-           
-        System.out.println("Escribe usuario");
-        Scanner teclado = new Scanner(System.in);
-        String username = teclado.nextLine(); 
-        
-        if(r.user_exists(username)){
-            System.out.println("Existe usuario");
-            if(r.game_start_user(username)){
-                System.out.println("Quieres continuar la anterior partida? SI/NO");
-                String respuesta = teclado.nextLine();
-                if (respuesta.equals("SI")) continuegame();
-                else newgame(username);
-            }
-            else {
-                newgame(username);
-            }
-        }
-        else  {
-            System.out.println("No existe usuario");
+		boolean nolimit = true;
+		while(nolimit) {
+	        System.out.println("Escribe usuario");
+	        Scanner teclado = new Scanner(System.in);
+	        String username = teclado.nextLine();
 
-            newgame(username);
-        }
+	        if(r.user_exists(username)){
+	            System.out.println("Existe usuario");
+	            if(r.game_start_user(username)){
+	                System.out.println("Quieres continuar la anterior partida? SI/NO");
+	                String respuesta = teclado.nextLine();
+	                if (respuesta.equals("SI")) continuegame();
+	                else newgame(username);
+	            }
+	            else {
+	                newgame(username);
+	            }
+	        }
+	        else  {
+	            System.out.println("No existe usuario");
+	            newgame(username);
+	        }
 
+			// if (Mastermind mastermind == exit) break;
+			// Devolución ->
+			// ArrayList l = mastermind.getAttributeList();
+		}
     }
 
     private static void instructions() {
@@ -47,7 +50,7 @@ public class GameFactory {
 
 	   /*
 Mastermind - Rules of the game.
-        - The computer picks a sequence of colors. The number of colors is the code length. 
+        - The computer picks a sequence of colors. The number of colors is the code length.
        The default code length is 4 but it can be changed when starting a new game.
         - The objective of the game is to guess the exact positions of the colors in the computer's sequence.
         - By default, a color can be used only once in a code sequence. If you start a new game with
@@ -67,7 +70,6 @@ Mastermind - Rules of the game.
         - Good Luck!!
 	   */
 
-
     }
 
     private static void newgame(String username) {
@@ -76,12 +78,10 @@ Mastermind - Rules of the game.
         boolean b = false;
         String player1 = username;
         String player2 = "MACHINE";
-        
-        player1 = teclado.nextLine();
-        
+
         boolean soyCM = false;
         String rs;
-         while(!b){ 
+         while(!b){
             b = true;
             System.out.println("Quieres ser CodeBreaker o CodeMaker?\nCodeBreaker->CB\nCodeMaker->CM");
             rs = teclado.nextLine();
@@ -89,23 +89,24 @@ Mastermind - Rules of the game.
             else if (rs.equals("CB")) soyCM = false;
             else {b = false;}
         }
-        
-           b = false;
-        String respuesta;
-        while(!b){ 
+
+		b = false;
+        String respuesta = "";
+        while(!b){
             b = true;
             System.out.println("Escoge dificultat: EASY/MEDIUM/HARD");
             respuesta = teclado.nextLine();
             if (!(respuesta.equals("EASY") || respuesta.equals("MEDIUM") || respuesta.equals("HARD"))) b = false;
         }
+		Mastermind mastermind;
         //te paso player2 como MACHINE
-       //if (soyCM) Mastermid mastermind = new Mastermind(player1,player2,respuesta);
-       // else Mastermid mastermind = new Mastermind(player2,player1,respuesta);
+       if (soyCM) { mastermind = new Mastermind(player1,player2,respuesta); }
+       else { mastermind = new Mastermind(player2,player1,respuesta); }
     }
 
     private static void continuegame() {
        System.out.println("ContinueGame");
-       
+
        //Mastermind mastermind = new Mastermind();
     }
 }

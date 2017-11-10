@@ -67,6 +67,7 @@ public class Game {
 		}
 	}
 
+/*
   public void continueGame(double lastTime; String code, String[] rounds) {
     this.lastTime = lastTime;
     this.code = code;
@@ -78,6 +79,7 @@ public class Game {
     }
     runGame();
   }
+  */
 
   public void startNewGame() {
     this.lastTime = 0;
@@ -93,18 +95,18 @@ public class Game {
 		if (computerCM) {
 			// code = cm.createCode("EASY");
 			// code = cm.createCode("HARDCODER");
-      code = "FEDC";
+      		code = "FEDC";
 		} else { code = scanCombination(); }
 		System.out.println("CodeMaker: code = " + code);
 		do {
 			if (computerCB) { cb.playCombination(); }
 			else {
-        guess = scanCombination();
-        answer = calculateAnswer(guess, code);
-      }
+		        guess = scanCombination();
+		        answer = calculateAnswer(guess, code);
+		    }
 			System.out.println("CodeBreaker: guess = " + guess);
 			System.out.println("Game: answer = " + answer);
-      ++turn;
+      		++turn;
 		} while (!guess.equals(code));
     System.out.println("Game: code guessed in " + turn + " turns.");
 	}

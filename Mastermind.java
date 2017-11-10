@@ -10,22 +10,45 @@ public class Mastermind {
 		private Integer height, width, nColors, repetition;
 
 		// Constructor
-	public Mastermind(String computerCM, String computerCB, String respuesta) {
+		/*
+			public Mastermind(String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta){
+				respuesta = String [] = { CodeA, answersTipsA }
+				game = new Game(gameParameters); <- difficulty
+				game.continueGame(time, Code, respuesta);
+			}
+		*/
+
+	public Mastermind(String computerCM, String computerCB, String difficulty) {
 		this.computerCM = computerCM;
 		this.computerCB = computerCB;
-		setDataNextGame(respuesta);
-		String[] gameParameters = {computerCM, computerCB, this.width.toString(), this.nColors.toString(), this.repetition.toString()};
+		Integer numCM = 1;
+		Integer numCB = 0;
+		if (computerCM.equals("MACHINE")) { numCM = 0; }
+		if (computerCB.equals("MACHINE")) { numCB = 1; }
+		setDataNextGame(difficulty);
+		String[] gameParameters = {numCM.toString(), numCB.toString(), this.width.toString(), this.nColors.toString(), this.repetition.toString(), this.height.toString()};
 		game = new Game(gameParameters);
+
 		t = new Time();
 
 		t.startTime();
-		game.start();
+		game.startNewGame();
+		// game.getAttribute();
 		t.stopTime();
 
 		System.out.println("Texe: "+t.getTime()+"s");
+
+		// Devolver los resultados
+
+		System.out.println("ArrayList");
 	}
 
 		// Getter && Setter
+		/*
+		public ArrayList getAttributeList() {
+			return ArrayList(...)
+		}
+		*/
 
 			// name User or Machine
 		public String getWhoisCM(){
@@ -45,25 +68,27 @@ public class Mastermind {
 		}
 
 		public void setDataNextGame(String difficulty) {
-			if (difficulty == "EASY"){
+			if ( difficulty.equals("EASY") ){
+				this.repetition = 0;
+				this.nColors = 6;
+				this.height = 10;
+				this.width = 4;
+			} else if ( difficulty.equals("MEDIUM") ) {
+				this.repetition = 0;
+				this.nColors = 6;
+				this.height = 7;
+				this.width = 4;
+			} else if ( difficulty.equals("HARD") ) {
 				this.repetition = 1;
 				this.nColors = 6;
-				this.height = 5;
-				this.width = 4;
-			} else if (difficulty == "MEDIUM") {
-				this.repetition = 1;
-				this.nColors = 5;
-				this.height = 6;
-				this.width = 4;
-			} else if (difficulty == "HARD") {
-				this.repetition = 0;
-				this.nColors = 4;
 				this.height = 7;
 				this.width = 4;
 			}
 		}
 
 		// Method
+
+
 
 		// Test Method
 	public static void main(String[] args) {

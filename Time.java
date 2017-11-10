@@ -6,7 +6,7 @@ import java.util.*;
 public class Time {
 
 		// Attribute
-    float iniTime, finalTime;
+    double iniTime, finalTime;
 	Calendar c;
 
 		// Constructor
@@ -16,7 +16,7 @@ public class Time {
 	}
 
 		// Getter && Setter
-    public float getTime() {
+    public double getTime() {
 		return (finalTime - iniTime);
 	}
     // public void SetTime(double newTime) {  iniTime; }

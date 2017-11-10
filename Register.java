@@ -1,4 +1,4 @@
-package mastermind;
+// package mastermind;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,27 +9,25 @@ import java.util.Scanner;
 public class Register {
     private ArrayList<Player> users = new ArrayList<Player>();
     private ArrayList<String> nomUsers = new ArrayList<String>();
-    
-    
-    
-   
+
     public Register() throws FileNotFoundException {
-        File f = new File("src/mastermind/registro.txt");
+        // File f = new File("src/mastermind/registro.txt");
+		File f = new File("/Users/sirdrope/Git_Project/mastermind/registro.txt");
         Scanner in = new Scanner(f);
         in.useLocale(Locale.ENGLISH);
 
         while(in.hasNext()){
-             
+
            String username = in.next();
            nomUsers.add(username);
             //pendingGame
             String a =in.next();
             char c = a.charAt(0);
-            
+
             if (a.equals("1")){
                 //entonces hay mas lineas
                 double time = in.nextDouble();
-                
+
                 //respuestas
                 int i = in.nextInt() * 2;
                 ArrayList<String> respuestas = new ArrayList<>();
@@ -37,7 +35,7 @@ public class Register {
                     respuestas.add(in.next());
                     --i;
                 }
-      
+
                 //codigo
                 String codigo = in.next();
                 Player p = new Player(c,username,respuestas,time,codigo);

@@ -1,4 +1,4 @@
-package mastermind;
+// package mastermind;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class Player {
         this.game_start = game_start;
         this.username = username;
     }
-    
+
      public Player(char game_start, String username, ArrayList<String> respuestas,double time,String codigo) {
         this.game_start = game_start;
         this.username = username;
