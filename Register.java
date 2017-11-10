@@ -11,8 +11,7 @@ public class Register {
     private ArrayList<String> nomUsers = new ArrayList<String>();
 
     public Register() throws FileNotFoundException {
-        // File f = new File("src/mastermind/registro.txt");
-		File f = new File("/Users/sirdrope/Git_Project/mastermind/registro.txt");
+	      File f = new File("persistency/registro.txt");
         Scanner in = new Scanner(f);
         in.useLocale(Locale.ENGLISH);
 

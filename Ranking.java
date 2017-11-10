@@ -17,8 +17,7 @@ public class Ranking {
 		// Constructor
 	public Ranking() {
 		try {
-			// File f = new File("src/mastermind/registro.txt");
-			File f = new File("/Users/sirdrope/Git_Project/mastermind/registro.txt");
+			File f = new File("persistency/registro.txt");
 			Scanner s = new Scanner(f);
 			while( s.hasNextLine() ) {
 			    String line = s.nextLine();
