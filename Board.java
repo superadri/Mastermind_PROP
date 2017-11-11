@@ -42,30 +42,26 @@ public class Board {
     this.code = code;
   }
 
-  public String getCode() {
-    return code;
-  }
-
   public void setGuessAndAnswer(String guess, String answer) {
     setGuess(guess);
     setAnswer(answer);
     ++index;
   }
 
-  private void setGuess(String guess) {
-    guesses[index] = guess;
-  }
-
-  public String getCode(int g) {
+  public String getGuess(int g) {
     return guesses[g];
-  }
-
-  private void setAnswer(String answer) {
-    answers[index] = answer;
   }
 
   public String getAnswer(int a) {
     return answers[a];
+  }
+
+  private void setGuess(String guess) {
+    guesses[index] = guess;
+  }
+
+  private void setAnswer(String answer) {
+    answers[index] = answer;
   }
 
 }

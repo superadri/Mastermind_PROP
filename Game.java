@@ -74,11 +74,14 @@ public class Game {
     this.lastTime = lastTime;
     this.code = code;
     board.setCode(code);
+    System.out.println("Showing previous attempts:");
     for (int i = 0; i < rounds.length; ++i) {
       String guess = rounds[i];
       String answer = rounds[i + 1];
       board.setGuessAndAnswer(guess, answer);
-      cb.updateDiscarded(guess, answer);
+			System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
+			System.out.println("Game: answer = " + board.getAnswer(turn));
+      if (computerCB) { cb.updateDiscarded(guess, answer); }
       ++this.turn;
     }
     runGame();
@@ -101,8 +104,8 @@ public class Game {
       Play cbplay = new Play(this, "CODEBREAKER");
       cbplay.makePlay();
       board.setGuessAndAnswer(guess, answer);
-			System.out.println("CodeBreaker: guess = " + guess);
-			System.out.println("Game: answer = " + answer);
+			System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
+			System.out.println("Game: answer = " + board.getAnswer(turn));
   		++turn;
       if (!guess.equals(code)) { continuePlaying = askContinue(); }
 		} while (!continuePlaying.equals("n") && !guess.equals(code));
