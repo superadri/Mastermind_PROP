@@ -19,6 +19,8 @@
 
 */
 
+import java.util.Scanner;
+
 public class Game {
 
   public boolean computerCM;
@@ -67,8 +69,7 @@ public class Game {
 		}
 	}
 
-/*
-  public void continueGame(double lastTime; String code, String[] rounds) {
+  public void continueGame(double lastTime, String code, String[] rounds) {
     this.lastTime = lastTime;
     this.code = code;
     for (int i = 0; i < rounds.length; ++i) {
@@ -79,7 +80,6 @@ public class Game {
     }
     runGame();
   }
-  */
 
   public void startNewGame() {
     this.lastTime = 0;
@@ -89,26 +89,23 @@ public class Game {
 
 	public void runGame() {
 		time.startTime();
-    // falta time.stopTime()
-    // situarlo dependiendo si se acaba el juego o se guarda la partida.
-    // currentTime = lastTime + time.getTime();
-		if (computerCM) {
-			// code = cm.createCode("EASY");
-			// code = cm.createCode("HARDCODER");
-      		code = "FEDC";
-		} else { code = scanCombination(); }
+		Play cmplay = new Play(this, "CODEMAKER");
+    cmplay.makePlay();
 		System.out.println("CodeMaker: code = " + code);
+    String continuePlaying = "";
 		do {
-			if (computerCB) { cb.playCombination(); }
-			else {
-		        guess = scanCombination();
-		        answer = calculateAnswer(guess, code);
-		    }
+      Play cbplay = new Play(this, "CODEBREAKER");
+      cbplay.makePlay();
 			System.out.println("CodeBreaker: guess = " + guess);
 			System.out.println("Game: answer = " + answer);
-      		++turn;
-		} while (!guess.equals(code));
-    System.out.println("Game: code guessed in " + turn + " turns.");
+  		++turn;
+      if (!guess.equals(code)) { continuePlaying = askContinue(); }
+		} while (!continuePlaying.equals("n") && !guess.equals(code));
+    time.stopTime();
+    double currentTime = time.getTime();
+    currentTime += lastTime;
+    if (continuePlaying.equals("n")) { askSaveGame(); }
+    else { System.out.println("Game: code guessed in " + turn + " turns."); }
 	}
 
   public void sendCode(Play play, String code) {
@@ -169,9 +166,21 @@ public class Game {
 		return answer;
 	}
 
-  private String scanCombination() {
-    // TODO
-    return "";
+  private String askContinue() {
+    System.out.print("Continue playing? (y/n): ");
+    Scanner sc = new Scanner(System.in);
+    return sc.nextLine();
+  }
+
+  private void askSaveGame() {
+      System.out.print("Save game? (y/n): ");
+      Scanner sc = new Scanner(System.in);
+      String saveGame = sc.nextLine();
+      if (saveGame.equals("y")) { saveGame(); }
+  }
+
+  private void saveGame() {
+    System.out.println("mastermind.saveGame(code, board)");
   }
 
 	  // Test Method

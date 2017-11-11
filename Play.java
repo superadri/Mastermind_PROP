@@ -40,6 +40,7 @@ public class Play {
   }
 
   private String scanCombination() {
+    System.out.print("Enter your combination: ");
     Scanner sc = new Scanner(System.in);
     return sc.nextLine();
   }
