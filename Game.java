@@ -31,9 +31,9 @@ public class Game {
   public String guess;
   public String answer;
   public Time time;
-  // public Player playerOne
-  // public Player playerTwo
-  // public Board board;
+  public Board board;
+  //public Player playerCM;
+  //public Player playerCB;
 
   int turn;
   int width;
@@ -67,14 +67,17 @@ public class Game {
 			System.out.println("Initiazing CodeBreaker algorithm...");
 			this.cb = new CodeBreaker(this, width, nColors, repetition);
 		}
+    this.board = new Board(height);
 	}
 
   public void continueGame(double lastTime, String code, String[] rounds) {
     this.lastTime = lastTime;
     this.code = code;
+    board.setCode(code);
     for (int i = 0; i < rounds.length; ++i) {
       String guess = rounds[i];
       String answer = rounds[i + 1];
+      board.setGuessAndAnswer(guess, answer);
       cb.updateDiscarded(guess, answer);
       ++this.turn;
     }
@@ -84,18 +87,20 @@ public class Game {
   public void startNewGame() {
     this.lastTime = 0;
 		System.out.println("Starting new game...");
+		Play cmplay = new Play(this, "CODEMAKER");
+    cmplay.makePlay();
+    board.setCode(code);
     runGame();
   }
 
 	public void runGame() {
 		time.startTime();
-		Play cmplay = new Play(this, "CODEMAKER");
-    cmplay.makePlay();
 		System.out.println("CodeMaker: code = " + code);
     String continuePlaying = "";
 		do {
       Play cbplay = new Play(this, "CODEBREAKER");
       cbplay.makePlay();
+      board.setGuessAndAnswer(guess, answer);
 			System.out.println("CodeBreaker: guess = " + guess);
 			System.out.println("Game: answer = " + answer);
   		++turn;

@@ -25,14 +25,16 @@ String getCode(int n);
 
 public class Board {
 
-  public String[] rows;
-  private String code;
+  public String[] guesses;
+  public String[] answers;
   private int height;
   private int index;
+  private String code;
 
   public Board(int height) {
     this.height = height;
-    this.rows = new String[height];
+    this.guesses = new String[height];
+    this.answers = new String[height];
     this.index = 0;
   }
 
@@ -44,21 +46,26 @@ public class Board {
     return code;
   }
 
-  public void setGuess(String guess) {
-    try { rows[index] = guess; }
-    catch(Exception e) {
-      if (index >= height) { System.out.println("No more guesses available."); }
-      else { System.out.println("ERROR"); }
-    }
+  public void setGuessAndAnswer(String guess, String answer) {
+    setGuess(guess);
+    setAnswer(answer);
+    ++index;
   }
 
-  public String getCode(int n) {
-    try { return rows[n]; }
-    catch(Exception e) {
-      if (n < 0 || n >= height) { System.out.println("Index out of bounds"); }
-      else { System.out.println("ERROR"); }
-    }
-    return "";
+  private void setGuess(String guess) {
+    guesses[index] = guess;
+  }
+
+  public String getCode(int g) {
+    return guesses[g];
+  }
+
+  private void setAnswer(String answer) {
+    answers[index] = answer;
+  }
+
+  public String getAnswer(int a) {
+    return answers[a];
   }
 
 }
