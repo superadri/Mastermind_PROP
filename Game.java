@@ -57,7 +57,7 @@ public class Game {
     this.height = Integer.parseInt(gameParameters[5]);
 		System.out.println("Initial Configuration>");
 		System.out.println("width = " + this.width +
-      ", nColors = " + this.nColors +
+      ", nLetters = " + this.nColors +
       ", repetition = " + this.repetition + ".");
 		if (computerCM) {
 			System.out.println("Initiazing CodeMaker algorithm...");
@@ -115,6 +115,19 @@ public class Game {
     if (continuePlaying.equals("n")) { askSaveGame(); }
     else { System.out.println("Game: code guessed in " + turn + " turns."); }
 	}
+
+	// TODO: game.getAttribute();
+	// Necesito una función con los datos que debas pasarme,
+	// Para que pueda pedirtelos y así, pasarselo al GameFactory...
+	// Concretame todos los datos que necesitas para continuar una partida
+	// Sería estos:
+		// String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta
+	// Hay datos que ya tengo yo, pero sólo es para saberlo
+/*
+	public void getAttribute(){
+
+	}
+*/
 
   public void sendCode(Play play, String code) {
     if (play.role.equals("CODEMAKER")) { this.code = code; }

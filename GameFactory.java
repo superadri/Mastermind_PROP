@@ -9,40 +9,49 @@ import java.util.Scanner;
  */
 public class GameFactory {
 
+	Mastermind mastermind;
+	Register r;
+
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        instructions(); // gives user instructions
-
-        Register r = new Register();
-		boolean nolimit = true;
-		while(nolimit) {
-	        System.out.print("Escribe usuario: ");
-	        Scanner teclado = new Scanner(System.in);
-	        String username = teclado.nextLine();
-
-	        if( r.user_exists(username) ){
-	            // System.out.println("Existe usuario");
-				System.out.println("Cargando Datos...");
-	            if(r.game_start_user(username)){
-	                System.out.println(username+" - Quieres continuar la partida anterior? Si(s)/No(n)");
-	                String respuesta = teclado.nextLine();
-	                if ( respuesta.equals("s") ) { continuegame(); }
-	                else { newgame(username); }
-	            } else {
-					newgame(username);
-	            }
-	        } else {
-	            System.out.println(username+" - Usuario nuevo, creando nueva partida...");
-	            newgame(username);
-	        }
-
-			// if (Mastermind mastermind == exit) break;
-			// Devolución ->
-			// ArrayList l = mastermind.getAttributeList();
-		}
+		GameFactory gf = new GameFactory();
+		gf.menu();
     }
 
-    private static void instructions() {
+	public void menu(){
+		instructions(); // gives user instructions
+	 	r = new Register();
+		boolean nolimit = true;
+		while(nolimit) {
+			System.out.print("Escribe un usuario: ");
+			Scanner teclado = new Scanner(System.in);
+			String username = teclado.nextLine();
+
+			if( r.user_exists(username) ){
+				// System.out.println("Existe usuario");
+				System.out.println("Cargando Datos...");
+				if(r.game_start_user(username)){
+					System.out.println(username+" - Quieres continuar la partida anterior? Si(s)/No(n)");
+					String respuesta = teclado.nextLine();
+					if ( respuesta.equals("s") ) { continuegame(); }
+					else { newgame(username); }
+				} else {
+					newgame(username);
+				}
+			} else {
+				System.out.println(username+" - Usuario nuevo!");
+				System.out.println("Creando nueva partida...");
+				newgame(username);
+			}
+
+			// TODO: Ya tienes listo el ArrayList
+			// ArrayList<String> L = mastermind.getAttributeList();
+
+			// if (Mastermind mastermind == exit) break;
+		}
+	}
+
+    private void instructions() {
        // TODO imprimir normas de mastermind
        System.out.println("Instructiones para el juego Mastermind:\n");
 	   System.out.println("		Mastermind - Rules of the game\n");
@@ -74,21 +83,21 @@ public class GameFactory {
 
     }
 
-    private static void newgame(String username) {
+    private void newgame(String username) {
         Scanner teclado = new Scanner(System.in);
-        System.out.println("NewGame");
-        boolean b = false;
+        // System.out.println("NewGame");
         String player1 = username;
         String player2 = "MACHINE";
 
+		boolean b = false;
         boolean soyCM = false;
         String rs;
-         while(!b){
+        while(!b){
             b = true;
             System.out.print("Quieres ser [ CodeBreaker(1) / CodeMaker(2) ]: ");
             rs = teclado.nextLine();
-			if (rs.equals("1")) soyCM = false;
-            else if (rs.equals("2"))soyCM = true;
+			if ( rs.equals("1") ) { soyCM = true; }
+			else if ( rs.equals("2") ) { soyCM = false; }
             else { b = false; }
         }
 
@@ -100,15 +109,15 @@ public class GameFactory {
             respuesta = teclado.nextLine();
             if (!(respuesta.equals("1") || respuesta.equals("2") || respuesta.equals("3"))) b = false;
         }
-		Mastermind mastermind;
         //te paso player2 como MACHINE
        if (soyCM) { mastermind = new Mastermind(player1,player2,respuesta); }
        else { mastermind = new Mastermind(player2,player1,respuesta); }
     }
 
-    private static void continuegame() {
+    private void continuegame() {
        System.out.println("ContinueGame");
-
-       //Mastermind mastermind = new Mastermind();
+	   	// TODO: Tienes que pasarme todos estos parámetros, para que pueda restablecer una partida
+		// Si son, estos los parámetros necesarios
+       		// mastermind = new Mastermind(String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta);
     }
 }
