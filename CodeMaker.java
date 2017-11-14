@@ -25,12 +25,12 @@ public class CodeMaker extends Algorithm {
 		String codeOut = "";
 		if (difficulty == "HARD") {		// Like a HardCoder mode
 			// TODO : We can take the code we never get right, (we tried before) and use one of them (list)
-			codeOut = "";
+			codeOut = easyCode();
 		} else if (difficulty == "MEDIUM") {	// Like a HardCoder mode
 			// TODO : We can take the code we sometimes get right, (we tried before) and use one of them (list)
-			codeOut = "";
+			codeOut = easyCode();
 		} else if (difficulty == "HARDCODER") { codeOut = "AABB"; }
-		else if (difficulty == "EASY"){ codeOut = easyCode(); }
+		else if (difficulty == "EASY") { codeOut = easyCode(); }
 		return codeOut;
 	}
 

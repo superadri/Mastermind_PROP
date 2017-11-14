@@ -87,26 +87,26 @@ public class Game {
     runGame();
   }
 
-  public void startNewGame() {
-    this.lastTime = 0;
+	public void startNewGame() {
+		this.lastTime = 0;
 		System.out.println("Starting new game...");
 		Play cmplay = new Play(this, "CODEMAKER");
-    cmplay.makePlay();
-    board.setCode(code);
-    runGame();
-  }
+		cmplay.makePlay();
+		board.setCode(code);
+		runGame();
+	}
 
 	public void runGame() {
 		time.startTime();
 		System.out.println("CodeMaker: code = " + code);
-    String continuePlaying = "";
+    	String continuePlaying = "";
 		do {
-      Play cbplay = new Play(this, "CODEBREAKER");
-      cbplay.makePlay();
-      board.setGuessAndAnswer(guess, answer);
+			Play cbplay = new Play(this, "CODEBREAKER");
+			cbplay.makePlay();
+			board.setGuessAndAnswer(guess, answer);
 			System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
 			System.out.println("Game: answer = " + board.getAnswer(turn));
-  		++turn;
+  			++turn;
       if (!guess.equals(code)) { continuePlaying = askContinue(); }
 		} while (!continuePlaying.equals("n") && !guess.equals(code));
     time.stopTime();

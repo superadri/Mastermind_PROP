@@ -16,24 +16,23 @@ public class GameFactory {
         Register r = new Register();
 		boolean nolimit = true;
 		while(nolimit) {
-	        System.out.println("Escribe usuario");
+	        System.out.print("Escribe usuario: ");
 	        Scanner teclado = new Scanner(System.in);
 	        String username = teclado.nextLine();
 
-	        if(r.user_exists(username)){
-	            System.out.println("Existe usuario");
+	        if( r.user_exists(username) ){
+	            // System.out.println("Existe usuario");
+				System.out.println("Cargando Datos...");
 	            if(r.game_start_user(username)){
-	                System.out.println("Quieres continuar la anterior partida? SI/NO");
+	                System.out.println(username+" - Quieres continuar la partida anterior? Si(s)/No(n)");
 	                String respuesta = teclado.nextLine();
-	                if (respuesta.equals("SI")) continuegame();
-	                else newgame(username);
+	                if ( respuesta.equals("s") ) { continuegame(); }
+	                else { newgame(username); }
+	            } else {
+					newgame(username);
 	            }
-	            else {
-	                newgame(username);
-	            }
-	        }
-	        else  {
-	            System.out.println("No existe usuario");
+	        } else {
+	            System.out.println(username+" - Usuario nuevo, creando nueva partida...");
 	            newgame(username);
 	        }
 
@@ -46,10 +45,13 @@ public class GameFactory {
     private static void instructions() {
        // TODO imprimir normas de mastermind
        System.out.println("Instructiones para el juego Mastermind:\n");
-       System.out.println("---------------"); //TODO poner normas mastermind
+	   System.out.println("		Mastermind - Rules of the game\n");
+       System.out.println("---------------\n");
+
+	   	//TODO poner normas mastermind
 
 	   /*
-Mastermind - Rules of the game.
+			Mastermind - Rules of the game.
         - The computer picks a sequence of colors. The number of colors is the code length.
        The default code length is 4 but it can be changed when starting a new game.
         - The objective of the game is to guess the exact positions of the colors in the computer's sequence.
@@ -83,20 +85,20 @@ Mastermind - Rules of the game.
         String rs;
          while(!b){
             b = true;
-            System.out.println("Quieres ser CodeBreaker o CodeMaker?\nCodeBreaker->CB\nCodeMaker->CM");
+            System.out.print("Quieres ser [ CodeBreaker(1) / CodeMaker(2) ]: ");
             rs = teclado.nextLine();
-            if (rs.equals("CM"))soyCM = true;
-            else if (rs.equals("CB")) soyCM = false;
-            else {b = false;}
+			if (rs.equals("1")) soyCM = false;
+            else if (rs.equals("2"))soyCM = true;
+            else { b = false; }
         }
 
 		b = false;
         String respuesta = "";
         while(!b){
             b = true;
-            System.out.println("Escoge dificultat: EASY/MEDIUM/HARD");
+            System.out.print("Escoge dificultat[ EASY(1) / MEDIUM(2) / HARD(3) ]: ");
             respuesta = teclado.nextLine();
-            if (!(respuesta.equals("EASY") || respuesta.equals("MEDIUM") || respuesta.equals("HARD"))) b = false;
+            if (!(respuesta.equals("1") || respuesta.equals("2") || respuesta.equals("3"))) b = false;
         }
 		Mastermind mastermind;
         //te paso player2 como MACHINE

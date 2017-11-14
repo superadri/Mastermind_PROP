@@ -8,6 +8,7 @@ public class Mastermind {
 		private Game game;
 		private String computerCM, computerCB;
 		private Integer height, width, nColors, repetition;
+		ArrayList<
 
 		// Constructor
 		/*
@@ -28,16 +29,8 @@ public class Mastermind {
 		setDataNextGame(difficulty);
 		String[] gameParameters = {numCM.toString(), numCB.toString(), this.width.toString(), this.nColors.toString(), this.repetition.toString(), this.height.toString()};
 		game = new Game(gameParameters);
-
-		t = new Time();
-
-		t.startTime();
 		game.startNewGame();
 		// game.getAttribute();
-		t.stopTime();
-
-		System.out.println("Texe: "+t.getTime()+"s");
-
 		// Devolver los resultados
 
 		System.out.println("ArrayList_Data_Return");
@@ -68,17 +61,17 @@ public class Mastermind {
 		}
 
 		public void setDataNextGame(String difficulty) {
-			if ( difficulty.equals("EASY") ){
+			if ( difficulty.equals("1") ){ // EASY
 				this.repetition = 0;
 				this.nColors = 6;
 				this.height = 10;
 				this.width = 4;
-			} else if ( difficulty.equals("MEDIUM") ) {
+			} else if ( difficulty.equals("2") ) { // MEDIUM
 				this.repetition = 0;
 				this.nColors = 6;
 				this.height = 7;
 				this.width = 4;
-			} else if ( difficulty.equals("HARD") ) {
+			} else if ( difficulty.equals("3") ) { // HARD
 				this.repetition = 1;
 				this.nColors = 6;
 				this.height = 7;
@@ -87,7 +80,7 @@ public class Mastermind {
 		}
 
 		// Method
-
+		// mastermind.saveGame(code, board)
 
 
 		// Test Method
