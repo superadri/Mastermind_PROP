@@ -8,7 +8,7 @@ public class Mastermind {
 		private Game game;
 		private String computerCM, computerCB;
 		private Integer height, width, nColors, repetition;
-		ArrayList<
+		// ArrayList<
 
 		// Constructor
 		/*
