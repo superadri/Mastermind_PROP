@@ -1,4 +1,9 @@
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TimeTest {
@@ -20,41 +25,42 @@ public class TimeTest {
 	}
 
 		// Esperas expected -> Tu defines la exepción
-	@Test(expected=IllegalCoinException.class)
+	// @Test(expected=IllegalCoinException.class)
 		// Expected FileNotFoundExceptio
 			// Puedes cambiar el comportamiento si salta Expected
-	public void testStartTimeEqual0() throws FileNotFoundException {
+	@Test
+	public void testStartTimeEqual0() {//throws FileNotFoundException {
 		// Equal0 -> Que es lo que quieres testear
 		System.out.println("Test - StartTimee()");
 		message = "Hi!" + "Robert"; // HardCoder
 			// Comparar con lo que te da....
-		assertEquals(message,messageUtil.salutationMessage());
+		assertEquals(message,"hi");
 	}
 
 	@Test
 	public void testStopTime() {
 		System.out.println("Test - StopTime()");
 		message = "Hi!" + "Robert";
-		assertEquals(message,messageUtil.salutationMessage());
+		assertEquals(message,"hi");
 	}
 
 	@Test
 	public void testGetTime() {
 		System.out.println("Test - GetTime()");
 		message = "Hi!" + "Robert";
-		assertEquals(message,messageUtil.salutationMessage());
+		assertEquals(message,"hi");
 	}
 
 	@Test
 	public void testConstructora() {
 		System.out.println("Test - Constructora()");
 		message = "Hi!" + "Robert";
-		assertEquals(message,messageUtil.salutationMessage());
+		assertEquals(message,"hi");
 	}
 
-	static void main() {
+	public static void main(String[] args) {
 		TimeTest tt = new TimeTest();
-		tt.iniTest();
+		tt.setUp();
 		tt.testStartTimeEqual0();
 		tt.testStopTime();
 		tt.testGetTime();

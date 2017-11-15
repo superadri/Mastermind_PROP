@@ -12,28 +12,33 @@ public class Mastermind {
 	private ArrayList<String> listSaveGame;
 
 		// Constructor
+		/*
 	public Mastermind(String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta){
 		respuesta = String [] = { CodeA, answersTipsA }
 		game = new Game(gameParameters); <- difficulty
 		game.continueGame(time, Code, respuesta);
 	}
+	*/
 
 	public Mastermind(String computerCM, String computerCB, String difficulty) {
-		this.computerCM = computerCM;
-		this.computerCB = computerCB;
-		Integer numCM = 1;
-		Integer numCB = 0;
-		if (computerCM.equals("MACHINE")) { numCM = 0; }
-		if (computerCB.equals("MACHINE")) { numCB = 1; }
-		setDataNextGame(difficulty);
-		String[] gameParameters = {numCM.toString(), numCB.toString(), this.width.toString(), this.nColors.toString(), this.repetition.toString(), this.height.toString()};
-		game = new Game(gameParameters);
-		game.startNewGame();
-		// TODO: Coger los datos necesarios, para salvar la partida -> game.getAttribute();
+		boolean controlExe = true;
+		while (controlExe) {
+			this.computerCM = computerCM;
+			this.computerCB = computerCB;
+			Integer numCM = 1;
+			Integer numCB = 0;
+			if (computerCM.equals("MACHINE")) { numCM = 0; }
+			if (computerCB.equals("MACHINE")) { numCB = 1; }
+			setDataNextGame(difficulty);
+			String[] gameParameters = {numCM.toString(), numCB.toString(), this.width.toString(), this.nColors.toString(), this.repetition.toString(), this.height.toString()};
+			game = new Game(gameParameters);
+			game.startNewGame();
+			// TODO: Coger los datos necesarios, para salvar la partida -> game.getAttribute();
 
-		// Devolver los resultados
-			// Sólo si hay que guardarlos
-			// System.out.println("ArrayList_Data_Return");
+			// Devolver los resultados
+				// Sólo si hay que guardarlos
+				// System.out.println("ArrayList_Data_Return");
+		}
 	}
 
 		// Getter && Setter

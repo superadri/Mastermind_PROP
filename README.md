@@ -9,4 +9,6 @@
 		Main-Class: GameFactory
 
 // Ejecutar .jar:
-	java -jar Mastermind_Orlando.jar 
+	java -jar Mastermind_Orlando.jar
+
+// jUnit -> javac -cp junit-4.10.jar:. TimeTest.java
