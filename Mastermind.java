@@ -12,13 +12,11 @@ public class Mastermind {
 	private ArrayList<String> listSaveGame;
 
 		// Constructor
-		/*
-		public Mastermind(String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta){
-			respuesta = String [] = { CodeA, answersTipsA }
-			game = new Game(gameParameters); <- difficulty
-			game.continueGame(time, Code, respuesta);
-		}
-		*/
+	public Mastermind(String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta){
+		respuesta = String [] = { CodeA, answersTipsA }
+		game = new Game(gameParameters); <- difficulty
+		game.continueGame(time, Code, respuesta);
+	}
 
 	public Mastermind(String computerCM, String computerCB, String difficulty) {
 		this.computerCM = computerCM;
@@ -38,14 +36,19 @@ public class Mastermind {
 			// System.out.println("ArrayList_Data_Return");
 	}
 
-	/*
 		// Getter && Setter
+
+	/*
 		public ArrayList<String> getAttributeList() {
 			listSaveGame = new ArrayList<String>();
 
 			return listSaveGame
 		}
 	*/
+
+	public Mastermind objMastermind(){
+		return this;
+	}
 
 		// name User or Machine
 	public String getWhoisCM(){
@@ -86,10 +89,8 @@ public class Mastermind {
 		// Method
 	// mastermind.saveGame(code, board)
 
-	/*
 		// Test Method
 	public static void main(String[] args) {
 		Mastermind mastermind = new Mastermind("1","1","EASY");
 	}
-	*/
 }
