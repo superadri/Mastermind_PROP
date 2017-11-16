@@ -23,20 +23,17 @@ public class Mastermind {
 	*/
 
 	public Mastermind(String computerCM, String computerCB, String difficulty) {
-		boolean controlExe = true;
-		while (controlExe) {
-			this.computerCM = computerCM;
-			this.computerCB = computerCB;
-			setDataNextGame(difficulty);
-			this.game = new Game(this);
-			game.startNewGame();
-			// TODO: Coger los datos necesarios, para salvar la partida -> game.getAttribute();
-			// -> Se lo envio de Game a Mastermind por la funcion saveGame
+		this.computerCM = computerCM;
+		this.computerCB = computerCB;
+		setDataNextGame(difficulty);
+		this.game = new Game(this);
+		game.startNewGame();
+		// TODO: Coger los datos necesarios, para salvar la partida -> game.getAttribute();
+		// -> Se lo envio de Game a Mastermind por la funcion saveGame
 
-			// Devolver los resultados
-				// Sólo si hay que guardarlos
-				// System.out.println("ArrayList_Data_Return");
-		}
+		// Devolver los resultados
+			// Sólo si hay que guardarlos
+			// System.out.println("ArrayList_Data_Return");
 	}
 
 	public void saveGame(String code, String[] allPairsGA) {

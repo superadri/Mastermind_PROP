@@ -43,9 +43,9 @@ public class GameFactory {
 				System.out.println("Creando nueva partida...");
 				newgame(username);
 			}
-			System.out.println("Quieres jugar otra partida?(s/n): ");
+			System.out.print("Quieres jugar otra partida? (s/n): ");
 			String exitControl = teclado.nextLine();
-			if ( exitControl.equals("n") ) { break; }
+			if ( exitControl.equals("n") ) { nolimit = false; }
 
 			// TODO: Ya tienes listo el ArrayList
 			// ArrayList<String> L = mastermind.getAttributeList();
