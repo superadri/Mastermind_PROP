@@ -119,21 +119,19 @@ public class GameFactory {
     }
 
 	public void saveGame(ArrayList<String> listItems, String[] allPairsGA) {
-		// repetition, height, width, nColors son los mismos, ya los tienes aqui
-			// No tienes porque guardarlos en la pila un copia,
-			// guardalos directamente en el file
+		// No tienes porque guardarlos en la pila un copia,
+		// guardalos directamente en el file
 		this.listItems = listItems;
 		this.allPairsGA = allPairsGA;
-
 		/*
-		for (int i = 0; i < listItems.size(); ++i) {
-			System.out.println(listItems.get(i));
-		}
+			for (int i = 0; i < listItems.size(); ++i) {
+				System.out.println(listItems.get(i));
+			}
 
-		for (int i = 0; i < allPairsGA.length; ++i) {
-			if (i%2 == 0) { System.out.println("Guess number " + i + ": " + allPairsGA[i]); }
-			else { System.out.println("Answer: " + allPairsGA[i]); }
-		}
+			for (int i = 0; i < allPairsGA.length; ++i) {
+				if (i%2 == 0) { System.out.println("Guess number " + i + ": " + allPairsGA[i]); }
+				else { System.out.println("Answer: " + allPairsGA[i]); }
+			}
 		*/
 	}
 
