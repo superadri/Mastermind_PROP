@@ -29,7 +29,7 @@ public class Game {
   public String guess, answer;
   public Time time;
   public Board board;
-  public int turn, width, height, nColors;
+  public int turn, width, height, nLetters;
   public double lastTime, currentTime;
   //public Player playerCM, playerCB;
 
@@ -46,20 +46,20 @@ public class Game {
     if ((mastermind.getWhoisCB()).equals("MACHINE")) { computerCB = true; }
     else { computerCB = false; }
 		this.width = mastermind.getwidth();
-		this.nColors = mastermind.getnColors();
+		this.nLetters = mastermind.getnLetters();
 		this.repetition = mastermind.getrepetition();
     this.height = mastermind.getheight();
 		System.out.println("Initial Configuration>");
 		System.out.println("width = " + this.width +
-      ", nLetters = " + this.nColors +
+      ", nLetters = " + this.nLetters +
       ", repetition = " + this.repetition + ".");
 		if (computerCM) {
 			System.out.println("Initiazing CodeMaker algorithm...");
-			this.cm = new CodeMaker(width, nColors, repetition);
+			this.cm = new CodeMaker(width, nLetters, repetition);
 		}
 		if (computerCB) {
 			System.out.println("Initiazing CodeBreaker algorithm...");
-			this.cb = new CodeBreaker(this, width, nColors, repetition);
+			this.cb = new CodeBreaker(this, width, nLetters, repetition);
 		}
     this.board = new Board(height);
 	}
@@ -126,8 +126,8 @@ public class Game {
 		return this.height;
 	}
 
-	public Integer getnColors(){
-		return this.nColors;
+	public Integer getnLetters(){
+		return this.nLetters;
 	}
 
 	public boolean getrepetition(){

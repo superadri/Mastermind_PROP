@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,8 +10,10 @@ import java.util.Scanner;
  */
 public class GameFactory {
 
-	Mastermind mastermind;
-	Register r;
+	private Mastermind mastermind;
+	private Register r;
+	private ArrayList<String> listItems;
+	private String[] allPairsGA;
 
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
@@ -48,7 +51,7 @@ public class GameFactory {
 			if ( exitControl.equals("n") ) { nolimit = false; }
 
 			// TODO: Ya tienes listo el ArrayList
-			// ArrayList<String> L = mastermind.getAttributeList();
+				// ya tienes los datos en String code, String [] allPairsGA;
 
 			// if (Mastermind mastermind == exit) break;
 		}
@@ -97,7 +100,7 @@ public class GameFactory {
         String rs;
         while(!b){
             b = true;
-            System.out.print("Quieres ser [ CodeBreaker(1) / CodeMaker(2) ]: ");
+            System.out.print("Quieres ser [ CodeMaker(1) / CodeBreaker(2) ]: ");
             rs = teclado.nextLine();
 			if ( rs.equals("1") ) { soyCM = true; }
 			else if ( rs.equals("2") ) { soyCM = false; }
@@ -113,9 +116,28 @@ public class GameFactory {
             if (!(respuesta.equals("1") || respuesta.equals("2") || respuesta.equals("3"))) b = false;
         }
         //te paso player2 como MACHINE
-       if (soyCM) { mastermind = new Mastermind(player1,player2,respuesta); }
-       else { mastermind = new Mastermind(player2,player1,respuesta); }
+       if (soyCM) { mastermind = new Mastermind(player1,player2,respuesta,this); }
+       else { mastermind = new Mastermind(player2,player1,respuesta,this); }
     }
+
+	public void saveGame(ArrayList<String> listItems, String[] allPairsGA) {
+		// repetition, height, width, nColors son los mismos, ya los tienes aqui
+
+			// No tienes porque guardarlos en la pila un copia,
+			// guardalos directamente en el file
+		this.listItems = listItems;
+		this.allPairsGA = allPairsGA;
+		/*
+		for (int i = 0; i < listItems.size(); ++i) {
+			System.out.println(listItems.get(i));
+		}
+
+		for (int i = 0; i < allPairsGA.length; ++i) {
+			if (i%2 == 0) { System.out.println("Guess number " + i + ": " + allPairsGA[i]); }
+			else { System.out.println("Answer: " + allPairsGA[i]); }
+		}
+		*/
+	}
 
     private void continuegame() {
        System.out.println("ContinueGame");
