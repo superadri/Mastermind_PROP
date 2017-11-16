@@ -9,19 +9,20 @@ public class Mastermind {
 	public boolean repetition;
 	public int height, width, nLetters;
 	private String computerCM, computerCB;
-	ArrayList<String> listItems;
-	String[] allPairsGA;
+	private ArrayList<String> listItems;
+	private String[] allPairsGA;
 	private Game game;
 	private GameFactory gameFactory;
 
 		// Constructor
-		/*
-	public Mastermind(String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta){
-		respuesta = String [] = { CodeA, answersTipsA }
-		game = new Game(gameParameters); <- difficulty
-		game.continueGame(time, Code, respuesta);
+	// Los parámetros que sean necesarios ADRIAAAA PASAMELOSSS COÑOOOO jajaj XD
+	// String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta
+	// double lastTime, String code, String[] rounds
+	public Mastermind(){
+		game = new Game(this);
+		// game.continueGame(lastTime, code,rounds);
+		gameFactory.saveGame(this.listItems,this.allPairsGA);
 	}
-	*/
 
 	public Mastermind(String computerCM, String computerCB, String difficulty, GameFactory gameFactory) {
 		this.gameFactory = gameFactory;
@@ -34,7 +35,6 @@ public class Mastermind {
 	}
 
 	public void saveGame(String code, String[] allPairsGA) {
-		// repetition, height, width, nLetters son los mismos, ya los tienes aqui
 		listItems = new ArrayList<String>();
 		listItems.add(code);
 		listItems.add(String.valueOf(this.repetition));

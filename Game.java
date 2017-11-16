@@ -104,6 +104,9 @@ public class Game {
       if (!guess.equals(code)) { continuePlaying = askContinue(); }
 		} while (!continuePlaying.equals("n") && !guess.equals(code));
     time.stopTime();
+	// TODO: Hay que poner el tiempo real, sale raro
+	// Guardar el tiempo que se lleva acumulado, si paras una partida
+	// Para luego restablecerlo por donde lo habías dejado!
     double currentTime = time.getTime();
     currentTime += lastTime;
     if (continuePlaying.equals("n")) { askSaveGame(); }
