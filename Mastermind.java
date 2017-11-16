@@ -21,7 +21,7 @@ public class Mastermind {
 	public Mastermind(){
 		game = new Game(this);
 		// game.continueGame(lastTime, code,rounds);
-		gameFactory.saveGame(this.listItems,this.allPairsGA);
+		//gameFactory.saveGame(this.listItems,this.allPairsGA);
 	}
 
 	public Mastermind(String computerCM, String computerCB, String difficulty, GameFactory gameFactory) {
