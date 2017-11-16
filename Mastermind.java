@@ -31,10 +31,20 @@ public class Mastermind {
 			this.game = new Game(this);
 			game.startNewGame();
 			// TODO: Coger los datos necesarios, para salvar la partida -> game.getAttribute();
+			// -> Se lo envio de Game a Mastermind por la funcion saveGame
 
 			// Devolver los resultados
 				// Sólo si hay que guardarlos
 				// System.out.println("ArrayList_Data_Return");
+		}
+	}
+
+	public void saveGame(String code, String[] allPairsGA) {
+		// repetition, height, width, nColors son los mismos, ya los tienes aqui
+		System.out.println("code: " + code);
+		for (int i = 0; i < allPairsGA.length; ++i) {
+			if (i%2 == 0) { System.out.println("Guess number " + i + ": " + allPairsGA[i]); }
+			else { System.out.println("Answer: " + allPairsGA[i]); }
 		}
 	}
 
@@ -91,9 +101,6 @@ public class Mastermind {
 			this.width = 4;
 		}
 	}
-
-		// Method
-	// mastermind.saveGame(code, board)
 
 		// Test Method
 	public static void main(String[] args) {

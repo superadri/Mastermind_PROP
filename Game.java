@@ -109,7 +109,7 @@ public class Game {
     if (continuePlaying.equals("n")) { askSaveGame(); }
     else { System.out.println("Game: code guessed in " + turn + " turns."); }
 	}
-  
+
 	public boolean getIsComputerCM(){
 		return this.computerCM;
 	}
@@ -204,7 +204,7 @@ public class Game {
   }
 
   private void saveGame() {
-    System.out.println("mastermind.saveGame(code, board)");
+    mastermind.saveGame(this.code, board.getAllPairsGA());
   }
 
 	  // Test Method

@@ -25,17 +25,25 @@ String getCode(int n);
 
 public class Board {
 
-  public String[] guesses;
-  public String[] answers;
-  private int height;
-  private int index;
+  public String[] guesses, answers;
+
+  private int height, currentAttempt;
   private String code;
 
   public Board(int height) {
     this.height = height;
     this.guesses = new String[height];
     this.answers = new String[height];
-    this.index = 0;
+    this.currentAttempt = 0;
+  }
+
+  public String[] getAllPairsGA() {
+    String[] allPairsGA = new String[2*currentAttempt];
+    for (int i = 0; i < currentAttempt; ++i) {
+      allPairsGA[2*i] = getGuess(i);
+      allPairsGA[2*i+1] = getAnswer(i);
+    }
+    return allPairsGA;
   }
 
   public void setCode(String code) {
@@ -45,23 +53,23 @@ public class Board {
   public void setGuessAndAnswer(String guess, String answer) {
     setGuess(guess);
     setAnswer(answer);
-    ++index;
+    ++currentAttempt;
   }
 
-  public String getGuess(int g) {
-    return guesses[g];
+  public String getGuess(int gi) {
+    return guesses[gi];
   }
 
-  public String getAnswer(int a) {
-    return answers[a];
+  public String getAnswer(int ai) {
+    return answers[ai];
   }
 
   private void setGuess(String guess) {
-    guesses[index] = guess;
+    guesses[currentAttempt] = guess;
   }
 
   private void setAnswer(String answer) {
-    answers[index] = answer;
+    answers[currentAttempt] = answer;
   }
 
 }
