@@ -40,6 +40,15 @@ public class Mastermind {
 		listItems.add(Integer.toString(this.width));
 		listItems.add(Integer.toString(this.nLetters));
 		gameFactory.saveGame(this.listItems,allPairsGA);
+
+		for (int i = 0; i < listItems.size(); ++i) {
+			System.out.println(listItems.get(i));
+		}
+
+		for (int i = 0; i < allPairsGA.length; ++i) {
+			if (i%2 == 0) { System.out.println("Guess number " + i + ": " + allPairsGA[i]); }
+			else { System.out.println("Answer: " + allPairsGA[i]); }
+		}
 	}
 
 		// name User or Machine

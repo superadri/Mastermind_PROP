@@ -104,8 +104,9 @@ public class Game {
       if (!guess.equals(code)) { continuePlaying = askContinue(); }
 		} while (!continuePlaying.equals("n") && !guess.equals(code));
     time.stopTime();
-    double currentTime = time.getTime();
-    currentTime += lastTime;
+    currentTime = time.getTime();
+    // currentTime += lastTime; ?
+	time.printTime(currentTime);
     if (continuePlaying.equals("n")) { askSaveGame(); }
     else { System.out.println("Game: code guessed in " + turn + " turns."); }
 	}

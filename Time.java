@@ -18,6 +18,7 @@ public class Time {
 
 		// Getter && Setter
     public double getTime() {
+
 		return (finalTime - iniTime);
 	}
     // public void SetTime(double newTime) {  iniTime; }
@@ -26,23 +27,35 @@ public class Time {
 	public void startTime(){
 		System.out.println("Start_Crono");
 		c = Calendar.getInstance();
-		minut = c.get(Calendar.MINUTE);
 		/*
-		System.out.println( "Minute: " + minut +
+		System.out.println( "Minute: " + c.get(Calendar.MINUTE) +
 							", Second: " + c.get(Calendar.SECOND) +
 							", MillSecond: " + c.get(Calendar.MILLISECOND));
 		*/
-		this.iniTime = ( minut*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 1000 );
+		this.iniTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 1000 );
+		// System.out.println(this.iniTime);
 	}
 
 	public void stopTime(){
 		System.out.println("Stop_Crono");
 		c = Calendar.getInstance();
-		minut = c.get(Calendar.MINUTE) - minut;
-		System.out.println( "Minute: " + minut +
+		/*
+		System.out.println( "Minute: " + c.get(Calendar.MINUTE) +
 							", Second: " + c.get(Calendar.SECOND) +
 							", MillSecond: " + c.get(Calendar.MILLISECOND));
-		this.finalTime = ( minut*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 1000 );
+		*/
+		this.finalTime = ( c.get(Calendar.MINUTE)*60 + c.get(Calendar.SECOND) + (float)c.get(Calendar.MILLISECOND) / 1000 );
+		// System.out.println(this.finalTime);
+	}
+
+	static public void printTime(double totalSecs){
+		int minute = (int)totalSecs/ 60;
+		int seconds = (int)totalSecs - minute*60;
+		int milli = (int)((totalSecs - seconds) * 1000);
+
+		System.out.println( "Minute: " + minute +
+							", Second: " + seconds +
+							", MillSecond: " + milli);
 	}
 
 	/*
