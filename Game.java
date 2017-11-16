@@ -204,7 +204,7 @@ public class Game {
   }
 
   private void saveGame() {
-    mastermind.saveGame(this.code, board.getAllPairsGA());
+    mastermind.saveGame(this.code, this.currentTime, board.getAllPairsGA());
   }
 
 	  // Test Method
