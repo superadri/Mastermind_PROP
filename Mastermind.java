@@ -37,17 +37,11 @@ public class Mastermind {
 		// repetition, height, width, nLetters son los mismos, ya los tienes aqui
 		listItems = new ArrayList<String>();
 		listItems.add(code);
-		listItems.add(Integer.toString(height));
-		listItems.add(Integer.toString(width));
-		listItems.add(Integer.toString(nLetters));
+		listItems.add(String.valueOf(this.repetition));
+		listItems.add(Integer.toString(this.height));
+		listItems.add(Integer.toString(this.width));
+		listItems.add(Integer.toString(this.nLetters));
 		this.allPairsGA = allPairsGA;
-		/*
-		System.out.println("code: " + code);
-		for (int i = 0; i < allPairsGA.length; ++i) {
-			if (i%2 == 0) { System.out.println("Guess number " + i + ": " + allPairsGA[i]); }
-			else { System.out.println("Answer: " + allPairsGA[i]); }
-		}
-		*/
 	}
 
 		// name User or Machine
