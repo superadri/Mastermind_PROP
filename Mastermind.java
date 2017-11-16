@@ -31,7 +31,7 @@ public class Mastermind {
 		setDataNextGame(difficulty);
 		this.game = new Game(this);
 		game.startNewGame();
-		gameFactory.saveGame(this.listItems,this.allPairsGA);
+		//gameFactory.saveGame(this.listItems,this.allPairsGA);
 	}
 
 	public void saveGame(String code, String[] allPairsGA) {
@@ -42,6 +42,7 @@ public class Mastermind {
 		listItems.add(Integer.toString(this.width));
 		listItems.add(Integer.toString(this.nLetters));
 		this.allPairsGA = allPairsGA;
+		gameFactory.saveGame(this.listItems,this.allPairsGA);
 	}
 
 		// name User or Machine
