@@ -23,38 +23,32 @@ import java.util.Scanner;
 
 public class Game {
 
-  public boolean computerCM;
-  public boolean computerCB;
+  public boolean computerCM, computerCB, repetition;
   public CodeMaker cm;
   public CodeBreaker cb;
-  private String code;
-  public String guess;
-  public String answer;
+  public String guess, answer;
   public Time time;
   public Board board;
-  //public Player playerCM;
-  //public Player playerCB;
+  public int turn, width, height, nColors;
+  public double lastTime, currentTime;
+  //public Player playerCM, playerCB;
 
-  int turn;
-  int width;
-  int height;
-  int nColors;
-  boolean repetition;
-  double lastTime;
-  double currentTime;
+  private Mastermind mastermind;
+  private String code;
 
-	public Game(String[] gameParameters) {
+	public Game(Mastermind mastermind) {
+    this.mastermind = mastermind;
     this.time = new Time();
     this.turn = 0;
-		this.code = ""; // Initialization just in case
-		this.guess = "";
-		this.answer = "";
-		this.computerCM = Integer.parseInt(gameParameters[0]) != 0;
-		this.computerCB = Integer.parseInt(gameParameters[1]) != 0;
-		this.width = Integer.parseInt(gameParameters[2]);
-		this.nColors = Integer.parseInt(gameParameters[3]);
-		this.repetition = Integer.parseInt(gameParameters[4]) != 0;
-    this.height = Integer.parseInt(gameParameters[5]);
+		this.code = this.guess = this.answer = ""; // Initialization just in case
+    if ((mastermind.getWhoisCM()).equals("MACHINE")) { computerCM = true; }
+    else { computerCM = false; }
+    if ((mastermind.getWhoisCB()).equals("MACHINE")) { computerCB = true; }
+    else { computerCB = false; }
+		this.width = mastermind.getwidth();
+		this.nColors = mastermind.getnColors();
+		this.repetition = mastermind.getrepetition();
+    this.height = mastermind.getheight();
 		System.out.println("Initial Configuration>");
 		System.out.println("width = " + this.width +
       ", nLetters = " + this.nColors +
@@ -115,19 +109,30 @@ public class Game {
     if (continuePlaying.equals("n")) { askSaveGame(); }
     else { System.out.println("Game: code guessed in " + turn + " turns."); }
 	}
-
-	// TODO: game.getAttribute();
-	// Necesito una función con los datos que debas pasarme,
-	// Para que pueda pedirtelos y así, pasarselo al GameFactory...
-	// Concretame todos los datos que necesitas para continuar una partida
-	// Sería estos:
-		// String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta
-	// Hay datos que ya tengo yo, pero sólo es para saberlo
-/*
-	public void getAttribute(){
-
+  
+	public boolean getIsComputerCM(){
+		return this.computerCM;
 	}
-*/
+
+	public boolean getIsComputerCB(){
+		return this.computerCB;
+	}
+
+	public Integer getwidth(){
+		return this.width;
+	}
+
+	public Integer getheight(){
+		return this.height;
+	}
+
+	public Integer getnColors(){
+		return this.nColors;
+	}
+
+	public boolean getrepetition(){
+		return this.repetition;
+	}
 
   public void sendCode(Play play, String code) {
     if (play.role.equals("CODEMAKER")) { this.code = code; }
@@ -147,8 +152,6 @@ public class Game {
     return calculateAnswer(g, this.code);
   }
 
-  // TODO repeated code from CodeBreaker!!!
-  // Also, if this code stays here, it doesn't need the parameters.
   public String calculateAnswer(String g, String c) {
 		char[] guess = g.toCharArray();
 		char[] code = c.toCharArray();
