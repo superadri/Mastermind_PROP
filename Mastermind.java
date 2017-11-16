@@ -31,10 +31,10 @@ public class Mastermind {
 		game.startNewGame();
 	}
 
-	public void saveGame(String code, int time, String[] allPairsGA) {
+	public void saveGame(String code, double time, String[] allPairsGA) {
 		listItems = new ArrayList<String>();
 		listItems.add(code);
-		listItems.add(Integer.toString(time));
+		listItems.add(Double.toString(time));
 		listItems.add(String.valueOf(this.repetition));
 		listItems.add(Integer.toString(this.height));
 		listItems.add(Integer.toString(this.width));
