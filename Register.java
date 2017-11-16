@@ -68,8 +68,6 @@ public class Register {
         return p.getGame_start()== '1';
     }
 
-	// Nota -> revisar la creación del file, sino existe, y si ya existe, que lo abra
-
 	/*
 		// Test Method
 	public static void main(String[] args) {

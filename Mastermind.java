@@ -10,7 +10,6 @@ public class Mastermind {
 	public int height, width, nLetters;
 	private String computerCM, computerCB;
 	private ArrayList<String> listItems;
-	private String[] allPairsGA;
 	private Game game;
 	private GameFactory gameFactory;
 
@@ -21,7 +20,6 @@ public class Mastermind {
 	public Mastermind(){
 		game = new Game(this);
 		// game.continueGame(lastTime, code,rounds);
-		//gameFactory.saveGame(this.listItems,this.allPairsGA);
 	}
 
 	public Mastermind(String computerCM, String computerCB, String difficulty, GameFactory gameFactory) {
@@ -31,7 +29,6 @@ public class Mastermind {
 		setDataNextGame(difficulty);
 		this.game = new Game(this);
 		game.startNewGame();
-		//gameFactory.saveGame(this.listItems,this.allPairsGA);
 	}
 
 	public void saveGame(String code, String[] allPairsGA) {
@@ -41,8 +38,7 @@ public class Mastermind {
 		listItems.add(Integer.toString(this.height));
 		listItems.add(Integer.toString(this.width));
 		listItems.add(Integer.toString(this.nLetters));
-		this.allPairsGA = allPairsGA;
-		gameFactory.saveGame(this.listItems,this.allPairsGA);
+		gameFactory.saveGame(this.listItems,allPairsGA);
 	}
 
 		// name User or Machine

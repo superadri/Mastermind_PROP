@@ -31,7 +31,6 @@ public class GameFactory {
 			String username = teclado.nextLine();
 
 			if( r.user_exists(username) ){
-				// System.out.println("Existe usuario");
 				System.out.println("Cargando Datos...");
 				if(r.game_start_user(username)){
 					System.out.println(username+" - Quieres continuar la partida anterior? Si(s)/No(n)");
@@ -91,7 +90,6 @@ public class GameFactory {
 
     private void newgame(String username) {
         Scanner teclado = new Scanner(System.in);
-        // System.out.println("NewGame");
         String player1 = username;
         String player2 = "MACHINE";
 
@@ -122,11 +120,11 @@ public class GameFactory {
 
 	public void saveGame(ArrayList<String> listItems, String[] allPairsGA) {
 		// repetition, height, width, nColors son los mismos, ya los tienes aqui
-
 			// No tienes porque guardarlos en la pila un copia,
 			// guardalos directamente en el file
 		this.listItems = listItems;
 		this.allPairsGA = allPairsGA;
+
 		/*
 		for (int i = 0; i < listItems.size(); ++i) {
 			System.out.println(listItems.get(i));
