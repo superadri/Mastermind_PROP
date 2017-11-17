@@ -1,70 +1,85 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package mastermind;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ *
+ * @author Sony
+ */
 public class TimeTest {
+    
+    public TimeTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
 
-	Time t;
-	String message;
+    /**
+     * Test of getTime method, of class Time.
+     */
+    @Test
+    public void testGetTime() {
+        System.out.println("getTime");
+        Time instance = new Time();
+        double expResult = 0.0;
+        double result = instance.getTime();
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 
-	@Before
-	public void setUp(){
-		t = new Time();
-		message = "Start Test && Initialization";
-		System.out.println(message);
-	}
+    /**
+     * Test of startTime method, of class Time.
+     */
+    @Test
+    public void testStartTime() {
+        System.out.println("startTime");
+        Time instance = new Time();
+        instance.startTime();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 
-	@After
-	public void finTest(){
-		message = "Fin Test";
-		System.out.println(message);
-	}
+    /**
+     * Test of stopTime method, of class Time.
+     */
+    @Test
+    public void testStopTime() {
+        System.out.println("stopTime");
+        Time instance = new Time();
+        instance.stopTime();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
 
-		// Esperas expected -> Tu defines la exepción
-	// @Test(expected=IllegalCoinException.class)
-		// Expected FileNotFoundExceptio
-			// Puedes cambiar el comportamiento si salta Expected
-	@Test
-	public void testStartTimeEqual0() {//throws FileNotFoundException {
-		// Equal0 -> Que es lo que quieres testear
-		System.out.println("Test - StartTimee()");
-		message = "Hi!" + "Robert"; // HardCoder
-			// Comparar con lo que te da....
-		assertEquals(message,"hi");
-	}
-
-	@Test
-	public void testStopTime() {
-		System.out.println("Test - StopTime()");
-		message = "Hi!" + "Robert";
-		assertEquals(message,"hi");
-	}
-
-	@Test
-	public void testGetTime() {
-		System.out.println("Test - GetTime()");
-		message = "Hi!" + "Robert";
-		assertEquals(message,"hi");
-	}
-
-	@Test
-	public void testConstructora() {
-		System.out.println("Test - Constructora()");
-		message = "Hi!" + "Robert";
-		assertEquals(message,"hi");
-	}
-
-	public static void main(String[] args) {
-		TimeTest tt = new TimeTest();
-		tt.setUp();
-		tt.testStartTimeEqual0();
-		tt.testStopTime();
-		tt.testGetTime();
-		tt.testConstructora();
-		tt.finTest();
-	}
+    /**
+     * Test of printTime method, of class Time.
+     */
+    @Test
+    public void testPrintTime() {
+        System.out.println("printTime");
+        double totalSecs = 0.0;
+        Time.printTime(totalSecs);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
 }
