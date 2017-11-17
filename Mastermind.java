@@ -6,26 +6,39 @@ import java.util.ArrayList;
 public class Mastermind {
 
 		// Attribute
+	public boolean gameSave;
 	public boolean repetition;
 	public int height, width, nLetters;
+	private String difficulty;
 	private String computerCM, computerCB;
 	private ArrayList<String> listItems;
 	private Game game;
-	private GameFactory gameFactory;
 
 		// Constructor
 	// Los parámetros que sean necesarios ADRIAAAA PASAMELOSSS COÑOOOO jajaj XD
 	// String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta
 	// double lastTime, String code, String[] rounds
-	public Mastermind(){
-		game = new Game(this);
-		// game.continueGame(lastTime, code,rounds);
-	}
-
-	public Mastermind(String computerCM, String computerCB, String difficulty, GameFactory gameFactory) {
-		this.gameFactory = gameFactory;
+	public Mastermind(String computerCM, String computerCB, String difficulty, double time, String code, ArrayList<String> respuesta){
 		this.computerCM = computerCM;
 		this.computerCB = computerCB;
+		this.gameSave = false;
+		if (difficulty.equals("EASY")) { this.difficulty = "1"; }
+		else if (difficulty.equals("MEDIUM")) { this.difficulty = "2"; }
+		else if (difficulty.equals("HARD")) { this.difficulty = "3"; }
+		setDataNextGame(this.difficulty);
+		game = new Game(this);
+		String[] respuestaFinal = new String[respuesta.size()];
+		for (int i = 0; i < respuesta.size(); ++i) {
+			respuestaFinal[i] = respuesta.get(i);
+		}
+		game.continueGame(time, code, respuestaFinal);
+	}
+
+	public Mastermind(String computerCM, String computerCB, String difficulty) {
+		this.computerCM = computerCM;
+		this.computerCB = computerCB;
+		this.gameSave = false;
+		this.difficulty = difficulty;
 		setDataNextGame(difficulty);
 		this.game = new Game(this);
 		game.startNewGame();
@@ -33,23 +46,21 @@ public class Mastermind {
 
 	public void saveGame(String code, double time, String[] allPairsGA) {
 		listItems = new ArrayList<String>();
-		listItems.add(code);
+		this.gameSave = true;
+		for (int i = 0; i < allPairsGA.length; ++i) {
+			listItems.add(allPairsGA[i]);
+		}
 		listItems.add(Double.toString(time));
-		listItems.add(String.valueOf(this.repetition));
-		listItems.add(Integer.toString(this.height));
-		listItems.add(Integer.toString(this.width));
-		listItems.add(Integer.toString(this.nLetters));
-		gameFactory.saveGame(this.listItems,allPairsGA);
-		/*
-			for (int i = 0; i < listItems.size(); ++i) {
-				System.out.println(listItems.get(i));
-			}
+		listItems.add(code);
+		String strDifficulty = new String();
+		if (this.difficulty.equals("1")) { strDifficulty = "EASY"; }
+		else if (this.difficulty.equals("2")) { strDifficulty = "MEDIUM"; }
+		else if (this.difficulty.equals("3")) { strDifficulty = "HARD"; }
+		listItems.add(strDifficulty);
+	}
 
-			for (int i = 0; i < allPairsGA.length; ++i) {
-				if (i%2 == 0) { System.out.println("Guess number " + i + ": " + allPairsGA[i]); }
-				else { System.out.println("Answer: " + allPairsGA[i]); }
-			}
-		*/
+	public ArrayList<String> saveGametoGameFactory() {
+		return listItems;
 	}
 
 		// name User or Machine
@@ -78,6 +89,7 @@ public class Mastermind {
 	}
 
 	public void setDataNextGame(String difficulty) {
+
 		if ( difficulty.equals("1") ){ // EASY
 			this.repetition = false;
 			this.nLetters = 6;

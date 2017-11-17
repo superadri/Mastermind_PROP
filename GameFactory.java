@@ -1,5 +1,4 @@
-// package mastermind;
-
+//package mastermind;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -12,8 +11,10 @@ public class GameFactory {
 
 	private Mastermind mastermind;
 	private Register r;
-	private ArrayList<String> listItems;
-	private String[] allPairsGA;
+	private boolean soyCM;
+
+	//private ArrayList<String> listItems;
+	//private String[] allPairsGA;
 
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
@@ -21,7 +22,7 @@ public class GameFactory {
 		gf.menu();
     }
 
-	public void menu(){
+	public void menu() throws IOException{
 		instructions(); // gives user instructions
 	 	r = new Register();
 		boolean nolimit = true;
@@ -31,36 +32,54 @@ public class GameFactory {
 			String username = teclado.nextLine();
 
 			if( r.user_exists(username) ){
+				// System.out.println("Existe usuario");
 				System.out.println("Cargando Datos...");
 				if(r.game_start_user(username)){
 					System.out.println(username+" - Quieres continuar la partida anterior? Si(s)/No(n)");
 					String respuesta = teclado.nextLine();
-					if ( respuesta.equals("s") ) { continuegame(); }
+					if ( respuesta.equals("s") ) { continuegame(username); }
 					else { newgame(username); }
 				} else {
+                                    System.out.println(username+" - Usuario existe!");
 					newgame(username);
 				}
 			} else {
 				System.out.println(username+" - Usuario nuevo!");
-				System.out.println("Creando nueva partida...");
+
 				newgame(username);
 			}
-			System.out.print("Quieres jugar otra partida? (s/n): ");
+
+			if (mastermind.gameSave) {
+				ArrayList<String> listItems = new ArrayList<String>();
+				listItems = mastermind.saveGametoGameFactory();
+				ArrayList<String> respuestas = new ArrayList<String>();
+				int limitList = listItems.size()-3;
+				for (int i = 0; i < limitList; ++i) {
+					respuestas.add(listItems.get(i));
+				}
+
+				String role;
+				if (soyCM) { role = "CM"; }
+				else { role = "CB"; }
+
+				r.set_continueGame('1',username,respuestas,Double.parseDouble(listItems.get(limitList)),listItems.get(limitList+1),listItems.get(limitList+2),role);
+				System.out.print("1 "+username+" ");
+				for (int i = 0; i < limitList; ++i) { System.out.print(listItems.get(i)+" "); }
+				for (int i = limitList; i < limitList+3; ++i) { System.out.print(listItems.get(i)+" "); }
+				System.out.println(role);
+			} else { r.finished_game(username); }
+
+            System.out.print("Quieres jugar otra partida? (s/n): ");
 			String exitControl = teclado.nextLine();
 			if ( exitControl.equals("n") ) { nolimit = false; }
-
-			// TODO: Ya tienes listo el ArrayList
-				// ya tienes los datos en String code, String [] allPairsGA;
-
-			// if (Mastermind mastermind == exit) break;
 		}
 	}
 
     private void instructions() {
        // TODO imprimir normas de mastermind
-       System.out.println("Instructiones para el juego Mastermind:\n");
-	   System.out.println("		Mastermind - Rules of the game\n");
-       System.out.println("---------------\n");
+        System.out.println("Instructiones para el juego Mastermind:\n");
+	System.out.println("		Mastermind - Rules of the game\n");
+        System.out.println("---------------\n");
 
 	   	//TODO poner normas mastermind
 
@@ -89,19 +108,23 @@ public class GameFactory {
     }
 
     private void newgame(String username) {
+        System.out.println("Creando nueva partida...");
         Scanner teclado = new Scanner(System.in);
+        // System.out.println("NewGame");
         String player1 = username;
         String player2 = "MACHINE";
 
-		boolean b = false;
-        boolean soyCM = false;
+        boolean b = false;
+        soyCM = false;
+        boolean maquina = false;
         String rs;
         while(!b){
             b = true;
-            System.out.print("Quieres ser [ CodeMaker(1) / CodeBreaker(2) ]: ");
+            System.out.print("Quieres ser [ CodeMaker(1) / CodeBreaker(2) /MaquinavsMaquina(3) ]: ");
             rs = teclado.nextLine();
-			if ( rs.equals("1") ) { soyCM = true; }
-			else if ( rs.equals("2") ) { soyCM = false; }
+            if ( rs.equals("1") ) { soyCM = true; }
+            else if ( rs.equals("2") ) { soyCM = false; }
+            else if ( rs.equals("3") ) { maquina = true; }
             else { b = false; }
         }
 
@@ -114,31 +137,30 @@ public class GameFactory {
             if (!(respuesta.equals("1") || respuesta.equals("2") || respuesta.equals("3"))) b = false;
         }
         //te paso player2 como MACHINE
-       if (soyCM) { mastermind = new Mastermind(player1,player2,respuesta,this); }
-       else { mastermind = new Mastermind(player2,player1,respuesta,this); }
+         if (soyCM) { mastermind = new Mastermind(player1,player2,respuesta); }
+         else if (maquina) {mastermind = new Mastermind(player2,player2,respuesta);}
+         else { mastermind = new Mastermind(player2,player1,respuesta); }
     }
 
-	public void saveGame(ArrayList<String> listItems, String[] allPairsGA) {
-		// No tienes porque guardarlos en la pila un copia,
-		// guardalos directamente en el file
-		this.listItems = listItems;
-		this.allPairsGA = allPairsGA;
-		/*
-			for (int i = 0; i < listItems.size(); ++i) {
-				System.out.println(listItems.get(i));
-			}
-
-			for (int i = 0; i < allPairsGA.length; ++i) {
-				if (i%2 == 0) { System.out.println("Guess number " + i + ": " + allPairsGA[i]); }
-				else { System.out.println("Answer: " + allPairsGA[i]); }
-			}
-		*/
-	}
-
-    private void continuegame() {
+    private void continuegame(String username) {
        System.out.println("ContinueGame");
 	   	// TODO: Tienes que pasarme todos estos parámetros, para que pueda restablecer una partida
 		// Si son, estos los parámetros necesarios
-       		// mastermind = new Mastermind(String computerCM, String computerCB, String difficulty, double time, String Code, String [] respuesta);
+        Player p= r.getPlayer(username);
+        String rol = p.getRol();
+				String computerCM, computerCB;
+        if (rol.equals("CM")) {
+            computerCM = username;
+            computerCB = "MACHINE";
+        }
+        else {
+            computerCB = username;
+            computerCM = "MACHINE";
+        }
+        String difficulty = p.getDificultat();
+        double time = p.getTime();
+        String Code = p.getCodigo();
+        ArrayList<String>respuesta = p.getRespuestas();
+       	mastermind = new Mastermind(computerCM, computerCB, difficulty,time, Code,respuesta);
     }
 }
