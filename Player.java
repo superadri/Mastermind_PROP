@@ -3,11 +3,10 @@
 import java.util.ArrayList;
 
 public class Player {
-    char game_start;
-    String username;
-    //esto si game_start = 1;
-    ArrayList<String> respuestas = new ArrayList<>();
-    double time;
+    private char game_start;
+    private ArrayList<String> respuestas = new ArrayList<>();
+    private double time;
+    private String username, codigo, dificultat, rol;
 
     public ArrayList<String> getRespuestas() {
         return respuestas;
@@ -28,10 +27,6 @@ public class Player {
     public String getRol() {
         return rol;
     }
-    String codigo;
-    String dificultat;
-    String rol;
-
 
     public Player(char game_start, String username) {
         this.game_start = game_start;
@@ -72,14 +67,5 @@ public class Player {
 		System.out.println("Name: "+player.getUsername()+", Start: "+player.getGame_start());
 	}
 	*/
-
-    void delete_all() {
-        game_start = '0';
-        respuestas = null;
-        time = 0;
-        codigo = null;
-        rol = null;
-        dificultat = null;
-    }
 
 }
