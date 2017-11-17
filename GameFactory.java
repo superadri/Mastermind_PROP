@@ -11,6 +11,7 @@ public class GameFactory {
 
 	private Mastermind mastermind;
 	private Register r;
+	private Ranking rank;
 	private boolean soyCM;
 
 	//private ArrayList<String> listItems;
@@ -24,7 +25,8 @@ public class GameFactory {
 
 	public void menu() throws IOException{
 		instructions(); // gives user instructions
-	 	r = new Register();
+	 	this.r = new Register();
+		this.rank = new Ranking();
 		boolean nolimit = true;
 		while(nolimit) {
 			System.out.print("Escribe un usuario: ");
@@ -40,7 +42,7 @@ public class GameFactory {
 					if ( respuesta.equals("s") ) { continuegame(username); }
 					else { newgame(username); }
 				} else {
-                                    System.out.println(username+" - Usuario existe!");
+        System.out.println(username+" - Usuario existe!");
 					newgame(username);
 				}
 			} else {
@@ -48,7 +50,10 @@ public class GameFactory {
 
 				newgame(username);
 			}
-
+			String strTime = "";
+			String strCode = "";
+			String strDifficulty = "";
+			int turns = 0;
 			if (mastermind.gameSave) {
 				ArrayList<String> listItems = new ArrayList<String>();
 				listItems = mastermind.saveGametoGameFactory();
@@ -57,19 +62,26 @@ public class GameFactory {
 				for (int i = 0; i < limitList; ++i) {
 					respuestas.add(listItems.get(i));
 				}
-
+				turns = limitList/2;
 				String role;
 				if (soyCM) { role = "CM"; }
 				else { role = "CB"; }
-
-				r.set_continueGame('1',username,respuestas,Double.parseDouble(listItems.get(limitList)),listItems.get(limitList+1),listItems.get(limitList+2),role);
+				strTime = listItems.get(limitList);
+				strCode = listItems.get(limitList+1);
+				strDifficulty = listItems.get(limitList+2);
+				// hasPausedGame username respuestas time code difficulty
+				r.set_continueGame('1',username,respuestas,Double.parseDouble(strTime),strCode,strDifficulty,role);
 				System.out.print("1 "+username+" ");
 				for (int i = 0; i < limitList; ++i) { System.out.print(listItems.get(i)+" "); }
 				for (int i = limitList; i < limitList+3; ++i) { System.out.print(listItems.get(i)+" "); }
 				System.out.println(role);
-			} else { r.finished_game(username); }
-
-            System.out.print("Quieres jugar otra partida? (s/n): ");
+			} else {
+				r.finished_game(username);
+				// difficulty turns time username
+				rank.updateRanking(strDifficulty, turns, strTime, username);
+			}
+			rank.showRanking(strDifficulty);
+      System.out.print("Quieres jugar otra partida? (s/n): ");
 			String exitControl = teclado.nextLine();
 			if ( exitControl.equals("n") ) { nolimit = false; }
 		}

@@ -1,64 +1,102 @@
 
 // package mastermind;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+import javafx.util.*;
 
 public class Ranking {
+
+	private File f;
+	private String route;
+	//private Map< String, Pair<String, String> > m;
+	private Map< String, String > m;
 
 		// Attribute
 	private ArrayList<String> nomUsers = new ArrayList<String>();
 
 		// Constructor
 	public Ranking() {
-		try {
-			File f = new File("persistency/registro.txt");
-			Scanner s = new Scanner(f);
-			while( s.hasNextLine() ) {
-			    String line = s.nextLine();
-			    add_to_array(line);
-			}
-        } catch (FileNotFoundException ex) {
-			ex.printStackTrace();
-        }
+		//this.m = new HashMap< String, Pair<String, String> >();
+		this.m = new HashMap< String, String >();
 	}
 
-		// Getter && Setter
-	public ArrayList<String> getListUsers() {
-		return nomUsers;
+	// Ordena primero por dificultad (implicito, un archivo para cada), despues
+	// por turnos, despues por tiempo (que es mas dificil que haya empate)
+	public void updateRanking(String difficulty, int turns, String time, String username) {
+		openFile(difficulty);
+		// A partir de aqui ya hay un fichero abierto en f
+		// y nos podemos olvidar de "difficulty
+		m.put(time, username);
+		saveFile();
 	}
 
-		// Method
-	public void printListUsers() {
-		for(int i = 0; i < nomUsers.size(); ++i){
-			System.out.println("Input("+i+"):"+nomUsers.get(i));
+	public void showRanking(String difficulty) {
+		openFile(difficulty);
+		// A partir de aqui ya hay un fichero abierto en f
+		// y nos podemos olvidar de "difficulty"
+		Iterator it = m.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry e = (Map.Entry)it.next();
+			//System.out.println(e.getKey() + " " + (e.getValue()).getKey() + " " + (e.getValue()).getValue());
+			System.out.println(e.getKey() + " " + e.getValue());
 		}
 	}
 
-	private void add_to_array(String line) {
-		int i = 0;
-		// Hay que acabar de definir como serán los campos de registro.txt
-		// Para adaptarlo a él
+	private void openFile(String difficulty) {
+			try {
+				this.route = "persistency/ranking"+difficulty+".txt";
+				this.f = new File(route);
+				Scanner s = new Scanner(f);
+				s.useLocale(Locale.ENGLISH);
+				while( s.hasNext() ) {
+				    //String turn = s.next(); // por implementar
+						String time = s.next();
+						String username = s.next();
+						addToMap(/*turn,*/ time, username);
+				}
+	    } catch (FileNotFoundException ex) {
+				ex.printStackTrace();
+	    }
+	}
+
+		// Campos: turnos tiempo username
+	private void addToMap(/*String turn,*/ String time, String username) {
 		/*
-		StringBuilder input = new StringBuilder();
-		while ( i < line.length() ) {
-			while( line.charAt(i) != ' ' ){
-				char a = line.charAt(i);
-				input.append(a);
-				++i;
-			}
-			input.append(" ");
-		}
-		String usern = input.toString();
-		nomUsers.add(usern);
+		Pair<String, String> p = new Pair<String, String>(time, username);
+		m.put(turn, p);
 		*/
+		m.put(time, username);
+	}
+
+	private void saveFile() {
+		try {
+			File filename = new File(route);
+			FileWriter fw = new FileWriter(filename, true); //the true will append the new data
+			Iterator it = m.entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry e = (Map.Entry)it.next();
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append(e.getKey() + " " + e.getValue());
+				stringBuilder.append("\n");
+				String finalString = stringBuilder.toString();
+				fw.write(finalString);//appends the string to the file
+			}
+			fw.close();
+		} catch(Exception e) {
+				e.printStackTrace();
+		}
 	}
 
 		// Test Method
 	public static void main(String[] args) {
 		Ranking rank = new Ranking();
-		rank.printListUsers();
+		rank.showRanking("EASY");
+		rank.updateRanking("EASY", 3, "5.2468", "Paco");
+		rank.saveFile();
 	}
 }

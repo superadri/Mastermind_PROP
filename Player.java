@@ -60,6 +60,15 @@ public class Player {
         this.rol = rol;
     }
 
+    void delete_all() {
+        game_start = '0';
+        respuestas = null;
+        time = 0;
+        codigo = null;
+        rol = null;
+        dificultat = null;
+    }
+
 	/*
 	  // Test Method
 	public static void main(String[] args) {
