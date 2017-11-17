@@ -175,6 +175,7 @@ public class GameFactory {
             computerCM = "MACHINE";
         }
         String difficulty = p.getDificultat();
+	respuesta = difficulty;
         double time = p.getTime();
         String Code = p.getCodigo();
         ArrayList<String>respuesta = p.getRespuestas();
