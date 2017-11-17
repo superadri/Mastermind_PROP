@@ -41,10 +41,6 @@ public class Game {
     this.time = new Time();
     this.turn = 0;
 		this.code = this.guess = this.answer = ""; // Initialization just in case
-    if ((mastermind.getWhoisCM()).equals("MACHINE")) { computerCM = true; }
-    else { computerCM = false; }
-    if ((mastermind.getWhoisCB()).equals("MACHINE")) { computerCB = true; }
-    else { computerCB = false; }
 		this.width = mastermind.getwidth();
 		this.nLetters = mastermind.getnLetters();
 		this.repetition = mastermind.getrepetition();
@@ -53,14 +49,18 @@ public class Game {
 		System.out.println("width = " + this.width +
       ", nLetters = " + this.nLetters +
       ", repetition = " + this.repetition + ".");
-		if (computerCM) {
+    if ((mastermind.getWhoisCM()).equals("MACHINE")) {
+      computerCM = true;
 			System.out.println("Initiazing CodeMaker algorithm...");
 			this.cm = new CodeMaker(width, nLetters, repetition);
-		}
-		if (computerCB) {
+    }
+    else { computerCM = false; }
+    if ((mastermind.getWhoisCB()).equals("MACHINE")) {
+      computerCB = true;
 			System.out.println("Initiazing CodeBreaker algorithm...");
 			this.cb = new CodeBreaker(this, width, nLetters, repetition);
-		}
+    }
+    else { computerCB = false; }
     this.board = new Board(height);
 	}
 
@@ -84,6 +84,7 @@ public class Game {
 	public void startNewGame() {
 		this.lastTime = 0;
 		System.out.println("Starting new game...");
+    if (!repetition) { System.out.print("NO REPETITIONS ALLOWED -> "); }
 		Play cmplay = new Play(this, "CODEMAKER");
 		cmplay.makePlay();
 		board.setCode(code);
@@ -102,13 +103,14 @@ public class Game {
 			System.out.println("Game: answer = " + board.getAnswer(turn));
   			++turn;
       if (!guess.equals(code)) { continuePlaying = askContinue(); }
-		} while (!continuePlaying.equals("n") && !guess.equals(code));
+		} while (turn < height && !continuePlaying.equals("n") && !guess.equals(code));
     time.stopTime();
     currentTime = time.getTime();
-    // currentTime += lastTime; ?
-	time.printTime(currentTime);
+    currentTime += lastTime;
+	  time.printTime(currentTime);
     if (continuePlaying.equals("n")) { askSaveGame(); }
-    else { System.out.println("Game: code guessed in " + turn + " turns."); }
+    else if (guess.equals(code)) { System.out.println("Game: code guessed in " + turn + " turns."); }
+    else { System.out.println("You didn't guess the code."); }
 	}
 
 	public boolean getIsComputerCM(){
