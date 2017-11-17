@@ -13,6 +13,7 @@ public class GameFactory {
 	private Register r;
 	private Ranking rank;
 	private boolean soyCM;
+	public String respuesta;
 
 	//private ArrayList<String> listItems;
 	//private String[] allPairsGA;
@@ -24,6 +25,7 @@ public class GameFactory {
     }
 
 	public void menu() throws IOException{
+		this.respuesta = "";
 		instructions(); // gives user instructions
 	 	this.r = new Register();
 		this.rank = new Ranking();
@@ -54,6 +56,9 @@ public class GameFactory {
 			String strCode = "";
 			String strDifficulty = "";
 			int turns = 0;
+			if ( respuesta.equals("1") ) { strDifficulty = "EASY"; }
+			else if ( respuesta.equals("2") ) { strDifficulty = "MEDIUM"; }
+			else if ( respuesta.equals("3") ) { strDifficulty = "HARD"; }
 			if (mastermind.gameSave) {
 				ArrayList<String> listItems = new ArrayList<String>();
 				listItems = mastermind.saveGametoGameFactory();
@@ -76,6 +81,7 @@ public class GameFactory {
 				for (int i = limitList; i < limitList+3; ++i) { System.out.print(listItems.get(i)+" "); }
 				System.out.println(role);
 			} else {
+				strTime = Double.toString(mastermind.getTime());
 				r.finished_game(username);
 				// difficulty turns time username
 				rank.updateRanking(strDifficulty, turns, strTime, username);
@@ -141,7 +147,6 @@ public class GameFactory {
         }
 
 		b = false;
-        String respuesta = "";
         while(!b){
             b = true;
             System.out.print("Escoge dificultat[ EASY(1) / MEDIUM(2) / HARD(3) ]: ");

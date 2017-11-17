@@ -63,6 +63,10 @@ public class Mastermind {
 		return listItems;
 	}
 
+	public double getTime(){
+		return (this.game).getTime();
+	}
+
 		// name User or Machine
 	public String getWhoisCM(){
 		return this.computerCM;

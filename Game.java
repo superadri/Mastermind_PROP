@@ -113,6 +113,10 @@ public class Game {
     else { System.out.println("You didn't guess the code."); }
 	}
 
+	public double getTime(){
+		return this.currentTime;
+	}
+
 	public boolean getIsComputerCM(){
 		return this.computerCM;
 	}

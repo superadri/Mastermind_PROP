@@ -21,6 +21,7 @@ public class Ranking {
 
 		// Constructor
 	public Ranking() {
+		this.f = null;
 		//this.m = new HashMap< String, Pair<String, String> >();
 		this.m = new HashMap< String, String >();
 	}
@@ -75,13 +76,14 @@ public class Ranking {
 
 	private void saveFile() {
 		try {
-			File filename = new File(route);
-			FileWriter fw = new FileWriter(filename, true); //the true will append the new data
+			FileWriter fw = new FileWriter(this.f); //the true will append the new data
 			Iterator it = m.entrySet().iterator();
 			while (it.hasNext()) {
 				Map.Entry e = (Map.Entry)it.next();
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(e.getKey() + " " + e.getValue());
+				stringBuilder.append(e.getKey());
+				stringBuilder.append(" ");
+				stringBuilder.append(e.getValue());
 				stringBuilder.append("\n");
 				String finalString = stringBuilder.toString();
 				fw.write(finalString);//appends the string to the file
@@ -93,10 +95,12 @@ public class Ranking {
 	}
 
 		// Test Method
+		/*
 	public static void main(String[] args) {
 		Ranking rank = new Ranking();
 		rank.showRanking("EASY");
 		rank.updateRanking("EASY", 3, "5.2468", "Paco");
 		rank.saveFile();
 	}
+	*/
 }
