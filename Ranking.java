@@ -37,6 +37,7 @@ public class Ranking {
 	}
 
 	public void showRanking(String difficulty) {
+		System.out.println("\nRANKING: " );
 		openFile(difficulty);
 		// A partir de aqui ya hay un fichero abierto en f
 		// y nos podemos olvidar de "difficulty"
@@ -46,6 +47,7 @@ public class Ranking {
 			//System.out.println(e.getKey() + " " + (e.getValue()).getKey() + " " + (e.getValue()).getValue());
 			System.out.println(e.getKey() + " " + e.getValue());
 		}
+		System.out.println();
 	}
 
 	private void openFile(String difficulty) {

@@ -99,7 +99,7 @@ public class Register {
         if (!user_exists(newuser)){
             nomUsers.add(newuser);
             Player p = new Player('0',newuser);
-	    users.add(p);
+	    	users.add(p);
             FileWriter fw = new FileWriter(filename,true); //the true will append the new data
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(newuser);
