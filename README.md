@@ -12,5 +12,5 @@
 	java -jar Mastermind_Orlando.jar
 
 // jUnit
-	javac -cp junit-4.12.jar:. TimeTest.java TestRunner.java
-	java TestRunner
+	// javac -cp junit-4.12.jar:. TimeTest.java TestRunner.java
+	// java TestRunner
