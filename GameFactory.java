@@ -138,7 +138,7 @@ public class GameFactory {
         String rs;
         while(!b){
             b = true;
-            System.out.print("Quieres ser [ CodeMaker(1) / CodeBreaker(2) /MaquinavsMaquina(3) ]: ");
+            System.out.print("Quieres ser [ CodeMaker(1) / CodeBreaker(2) / MaquinavsMaquina(3) ]: ");
             rs = teclado.nextLine();
             if ( rs.equals("1") ) { soyCM = true; }
             else if ( rs.equals("2") ) { soyCM = false; }
