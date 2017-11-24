@@ -92,7 +92,9 @@ public class GameFactory {
     private void instructions() {
        // TODO imprimir normas de mastermind
         System.out.println("Instructiones para el juego Mastermind:\n");
-	System.out.println("		Mastermind - Rules of the game\n");
+		System.out.println("	Mastermind - Rules of the game\n");
+		System.out.println("		B -> Correct Pos & Letter");
+		System.out.println("		R -> Correct Letter\n");
         System.out.println("---------------\n");
 
 	   	//TODO poner normas mastermind
