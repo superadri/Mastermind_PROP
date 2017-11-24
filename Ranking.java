@@ -14,7 +14,7 @@ public class Ranking {
 	private File f;
 	private String route;
 	//private Map< String, Pair<String, String> > m;
-	private Map< String, String > m;
+	private Map< Double, String > m;
 
 		// Attribute
 	private ArrayList<String> nomUsers = new ArrayList<String>();
@@ -22,13 +22,12 @@ public class Ranking {
 		// Constructor
 	public Ranking() {
 		this.f = null;
-		//this.m = new HashMap< String, Pair<String, String> >();
-		this.m = new HashMap< String, String >();
+		this.m = new HashMap<Double, String>();
 	}
 
 	// Ordena primero por dificultad (implicito, un archivo para cada), despues
 	// por turnos, despues por tiempo (que es mas dificil que haya empate)
-	public void updateRanking(String difficulty, int turns, String time, String username) {
+	public void updateRanking(String difficulty, int turns, Double time, String username) {
 		openFile(difficulty);
 		// A partir de aqui ya hay un fichero abierto en f
 		// y nos podemos olvidar de "difficulty
@@ -58,7 +57,7 @@ public class Ranking {
 				s.useLocale(Locale.ENGLISH);
 				while( s.hasNext() ) {
 				    //String turn = s.next(); // por implementar
-						String time = s.next();
+						Double time = Double.parseDouble(s.next());
 						String username = s.next();
 						addToMap(/*turn,*/ time, username);
 				}
@@ -68,7 +67,7 @@ public class Ranking {
 	}
 
 		// Campos: turnos tiempo username
-	private void addToMap(/*String turn,*/ String time, String username) {
+	private void addToMap(/*String turn,*/ Double time, String username) {
 		/*
 		Pair<String, String> p = new Pair<String, String>(time, username);
 		m.put(turn, p);

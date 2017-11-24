@@ -44,7 +44,7 @@ public class GameFactory {
 					if ( respuesta.equals("s") ) { continuegame(username); }
 					else { newgame(username); }
 				} else {
-        System.out.println(username+" - Usuario existe!");
+        			System.out.println(username+" - Usuario existe!");
 					newgame(username);
 				}
 			} else {
@@ -52,13 +52,10 @@ public class GameFactory {
 
 				newgame(username);
 			}
-			String strTime = "";
+			Double strTime;
 			String strCode = "";
-			String strDifficulty = "";
+			String strDifficulty = respuesta;
 			int turns = 0;
-			if ( respuesta.equals("1") ) { strDifficulty = "EASY"; }
-			else if ( respuesta.equals("2") ) { strDifficulty = "MEDIUM"; }
-			else if ( respuesta.equals("3") ) { strDifficulty = "HARD"; }
 			if (mastermind.gameSave) {
 				ArrayList<String> listItems = new ArrayList<String>();
 				listItems = mastermind.saveGametoGameFactory();
@@ -71,23 +68,22 @@ public class GameFactory {
 				String role;
 				if (soyCM) { role = "CM"; }
 				else { role = "CB"; }
-				strTime = listItems.get(limitList);
+				strTime = Double.parseDouble(listItems.get(limitList));
 				strCode = listItems.get(limitList+1);
 				strDifficulty = listItems.get(limitList+2);
 				// hasPausedGame username respuestas time code difficulty
-				r.set_continueGame('1',username,respuestas,Double.parseDouble(strTime),strCode,strDifficulty,role);
+				r.set_continueGame('1',username,respuestas,strTime,strCode,strDifficulty,role);
 				System.out.print("1 "+username+" ");
 				for (int i = 0; i < limitList; ++i) { System.out.print(listItems.get(i)+" "); }
 				for (int i = limitList; i < limitList+3; ++i) { System.out.print(listItems.get(i)+" "); }
 				System.out.println(role);
 			} else {
-				strTime = Double.toString(mastermind.getTime());
+				strTime = mastermind.getTime();
 				r.finished_game(username);
-				// difficulty turns time username
 				rank.updateRanking(strDifficulty, turns, strTime, username);
 			}
 			rank.showRanking(strDifficulty);
-      System.out.print("Quieres jugar otra partida? (s/n): ");
+      		System.out.print("Quieres jugar otra partida? (s/n): ");
 			String exitControl = teclado.nextLine();
 			if ( exitControl.equals("n") ) { nolimit = false; }
 		}
@@ -154,16 +150,20 @@ public class GameFactory {
             if (!(respuesta.equals("1") || respuesta.equals("2") || respuesta.equals("3"))) b = false;
         }
         //te paso player2 como MACHINE
-         if (soyCM) { mastermind = new Mastermind(player1,player2,respuesta); }
-         else if (maquina) {mastermind = new Mastermind(player2,player2,respuesta);}
-         else { mastermind = new Mastermind(player2,player1,respuesta); }
+		if ( respuesta.equals("1") ) { respuesta = "EASY"; }
+		else if ( respuesta.equals("2") ) { respuesta = "MEDIUM"; }
+		else if ( respuesta.equals("3") ) { respuesta = "HARD"; }
+
+		if (soyCM) { mastermind = new Mastermind(player1,player2,respuesta); }
+		else if (maquina) {mastermind = new Mastermind(player2,player2,respuesta);}
+		else { mastermind = new Mastermind(player2,player1,respuesta); }
     }
 
     private void continuegame(String username) {
        System.out.println("ContinueGame");
 	   	// TODO: Tienes que pasarme todos estos parámetros, para que pueda restablecer una partida
 		// Si son, estos los parámetros necesarios
-        Player p= r.getPlayer(username);
+        Player p = r.getPlayer(username);
         String rol = p.getRol();
 				String computerCM, computerCB;
         if (rol.equals("CM")) {
@@ -175,7 +175,8 @@ public class GameFactory {
             computerCM = "MACHINE";
         }
         String difficulty = p.getDificultat();
-	respuesta = difficulty;
+		respuesta = difficulty;
+		System.out.println("Player"+respuesta);
         double time = p.getTime();
         String Code = p.getCodigo();
         ArrayList<String>respuesta = p.getRespuestas();

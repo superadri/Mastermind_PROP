@@ -22,9 +22,8 @@ public class Mastermind {
 		this.computerCM = computerCM;
 		this.computerCB = computerCB;
 		this.gameSave = false;
-		if (difficulty.equals("EASY")) { this.difficulty = "1"; }
-		else if (difficulty.equals("MEDIUM")) { this.difficulty = "2"; }
-		else if (difficulty.equals("HARD")) { this.difficulty = "3"; }
+		this.difficulty = difficulty;
+		System.out.println("Mastermind"+this.difficulty);
 		setDataNextGame(this.difficulty);
 		game = new Game(this);
 		String[] respuestaFinal = new String[respuesta.size()];
@@ -52,11 +51,7 @@ public class Mastermind {
 		}
 		listItems.add(Double.toString(time));
 		listItems.add(code);
-		String strDifficulty = new String();
-		if (this.difficulty.equals("1")) { strDifficulty = "EASY"; }
-		else if (this.difficulty.equals("2")) { strDifficulty = "MEDIUM"; }
-		else if (this.difficulty.equals("3")) { strDifficulty = "HARD"; }
-		listItems.add(strDifficulty);
+		listItems.add(this.difficulty);
 	}
 
 	public ArrayList<String> saveGametoGameFactory() {
@@ -94,17 +89,17 @@ public class Mastermind {
 
 	public void setDataNextGame(String difficulty) {
 
-		if ( difficulty.equals("1") ){ // EASY
+		if ( difficulty.equals("EASY") ){ // EASY
 			this.repetition = false;
 			this.nLetters = 6;
 			this.height = 10;
 			this.width = 4;
-		} else if ( difficulty.equals("2") ) { // MEDIUM
+		} else if ( difficulty.equals("MEDIUM") ) { // MEDIUM
 			this.repetition = false;
 			this.nLetters = 6;
 			this.height = 7;
 			this.width = 4;
-		} else if ( difficulty.equals("3") ) { // HARD
+		} else if ( difficulty.equals("HARD") ) { // HARD
 			this.repetition = true;
 			this.nLetters = 6;
 			this.height = 7;

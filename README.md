@@ -12,7 +12,6 @@
 	java -jar Mastermind_Orlando.jar
 
 // jUnit .jar:
-	// Tienes que tener la clase a analizar Time.java,
-	// clase test, TimeTest.java, y ejecutor del test, TestRunner.java
-	javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar TimeTest.java TestRunner.java
-	java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar TestRunner
+	(Tienes que tener la clase a analizar Time.java, clase test, TimeTest.java, y ejecutor del test, TestRunner.java)
+		javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar TimeTest.java TestRunner.java
+		java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar TestRunner

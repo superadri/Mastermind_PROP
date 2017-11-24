@@ -16,7 +16,7 @@ public class Register {
     public Register() {
 		try {
 		//File f = new File("persistency/registro.txt");
-               File f = new File("persistency/registro.txt");
+            File f = new File("persistency/registro.txt");
 	        Scanner in = new Scanner(f);
 	        in.useLocale(Locale.ENGLISH);
 
@@ -25,7 +25,7 @@ public class Register {
 	           String username = in.next();
 	           nomUsers.add(username);
 	            //pendingGame
-	            String a =in.next();
+	            String a = in.next();
 	            char c = a.charAt(0);
 
 	            if (a.equals("1")){
@@ -42,14 +42,14 @@ public class Register {
 
 	                //codigo
 	                String codigo = in.next();
-                        String dificultat = in.next();
-                        String rol = in.next();
+                    String dificultat = in.next();
+                    String rol = in.next();
 	                Player p = new Player(c,username,respuestas,time,codigo,dificultat,rol);
 	                users.add(p);
 	            }
 	            else {
 	               Player p = new Player(c,username);
-	                users.add(p);
+	               users.add(p);
 	            }
 	        }
 		} catch (FileNotFoundException ex) {
@@ -160,7 +160,7 @@ public class Register {
         if (!user_exists(newuser)){
             nomUsers.add(newuser);
             Player p = new Player('1',newuser,respuestas,time,codigo,dificultat,rol);
-	    users.add(p);
+	    	users.add(p);
             FileWriter fw = new FileWriter(filename,true); //the true will append the new data
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(newuser);

@@ -1,21 +1,4 @@
-adri 1 1.23 2 GGG XXX GGG XXX GGG adriam 0
-asdasd 0
-PPPP 0
-AAAA 0
-fdgdfg 0
-sdgfds 0
-tjdth 0
-jkbhg 0
-jdthsr 0
-ynyn 0
-lol 1 2.3380126953125 1 ABCD RRRR BDAC EASY CM
-paco 0
+Paco 0
 pepe 0
-pepeeee 0
-orlando 1 3.970947265625 1 ABCD BRRR BCAD EASY CM
-pep 0
-apap 0
-as 0
-asd 0
-Eli 0
-Raul 0
+PAco 0
+Felipe 0

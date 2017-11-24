@@ -37,14 +37,14 @@ public class Game {
   private String code;
 
 	public Game(Mastermind mastermind) {
-    this.mastermind = mastermind;
-    this.time = new Time();
-    this.turn = 0;
+	    this.mastermind = mastermind;
+	    this.time = new Time();
+	    this.turn = 0;
 		this.code = this.guess = this.answer = ""; // Initialization just in case
 		this.width = mastermind.getwidth();
 		this.nLetters = mastermind.getnLetters();
 		this.repetition = mastermind.getrepetition();
-    this.height = mastermind.getheight();
+    	this.height = mastermind.getheight();
 		System.out.println("Initial Configuration>");
 		System.out.println("width = " + this.width +
       ", nLetters = " + this.nLetters +
@@ -73,8 +73,8 @@ public class Game {
       this.guess = rounds[i];
       this.answer = rounds[i + 1];
       board.setGuessAndAnswer(guess, answer);
-			System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
-			System.out.println("Game: answer = " + board.getAnswer(turn));
+	  System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
+	  System.out.println("Game: answer = " + board.getAnswer(turn));
       if (computerCB) { cb.updateDiscarded(guess, answer); }
       ++this.turn;
     }
@@ -94,23 +94,23 @@ public class Game {
 	public void runGame() {
 		time.startTime();
 		System.out.println("CodeMaker: code = " + code);
-    	String continuePlaying = "";
+		String continuePlaying = "";
 		do {
 			Play cbplay = new Play(this, "CODEBREAKER");
 			cbplay.makePlay();
 			board.setGuessAndAnswer(guess, answer);
 			System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
 			System.out.println("Game: answer = " + board.getAnswer(turn));
-  			++turn;
-      if (!guess.equals(code)) { continuePlaying = askContinue(); }
+				++turn;
+		if (!guess.equals(code)) { continuePlaying = askContinue(); }
 		} while (turn < height && !continuePlaying.equals("n") && !guess.equals(code));
-    time.stopTime();
-    currentTime = time.getTime();
-    currentTime += lastTime;
-	  time.printTime(currentTime);
-    if (continuePlaying.equals("n")) { askSaveGame(); }
-    else if (guess.equals(code)) { System.out.println("Game: code guessed in " + turn + " turns."); }
-    else { System.out.println("You didn't guess the code."); }
+		time.stopTime();
+		currentTime = time.getTime();
+		currentTime += lastTime;
+		time.printTime(currentTime);
+		if (continuePlaying.equals("n")) { askSaveGame(); }
+		else if (guess.equals(code)) { System.out.println("Game: code guessed in " + turn + " turns."); }
+		else { System.out.println("You didn't guess the code."); }
 	}
 
 	public double getTime(){
