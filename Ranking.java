@@ -13,8 +13,7 @@ public class Ranking {
 
 	private File f;
 	private String route;
-	//private Map< String, Pair<String, String> > m;
-	private Map< Double, String > m;
+	private Map<Double, String> m;
 
 		// Attribute
 	private ArrayList<String> nomUsers = new ArrayList<String>();
@@ -40,11 +39,16 @@ public class Ranking {
 		openFile(difficulty);
 		// A partir de aqui ya hay un fichero abierto en f
 		// y nos podemos olvidar de "difficulty"
-		Iterator it = m.entrySet().iterator();
+		MyComparator comparator = new MyComparator(m);
+		Map<Double, String> sortedMap = new TreeMap<Double, String>(comparator);
+		sortedMap.putAll(m);
+		Iterator it = sortedMap.entrySet().iterator();
+		int count = 1;
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry)it.next();
 			//System.out.println(e.getKey() + " " + (e.getValue()).getKey() + " " + (e.getValue()).getValue());
-			System.out.println(e.getKey() + " " + e.getValue());
+			System.out.println(count + " - "+ e.getKey() + " " + e.getValue());
+			++count;
 		}
 		System.out.println();
 	}
@@ -78,7 +82,10 @@ public class Ranking {
 	private void saveFile() {
 		try {
 			FileWriter fw = new FileWriter(this.f); //the true will append the new data
-			Iterator it = m.entrySet().iterator();
+			MyComparator comparator = new MyComparator(m);
+    		Map<Double, String> sortedMap = new TreeMap<Double, String>(comparator);
+    		sortedMap.putAll(m);
+			Iterator it = sortedMap.entrySet().iterator();
 			while (it.hasNext()) {
 				Map.Entry e = (Map.Entry)it.next();
 				StringBuilder stringBuilder = new StringBuilder();
@@ -89,6 +96,7 @@ public class Ranking {
 				String finalString = stringBuilder.toString();
 				fw.write(finalString);//appends the string to the file
 			}
+			// m = sortedMap;
 			fw.close();
 		} catch(Exception e) {
 				e.printStackTrace();
@@ -104,4 +112,20 @@ public class Ranking {
 		rank.saveFile();
 	}
 	*/
+}
+
+class MyComparator implements Comparator<Double> {
+    Map<Double, String> map;
+
+    public MyComparator(Map<Double, String> map) {
+        this.map = map;
+    }
+
+    public int compare(Double a, Double b) {
+		int compD = Double.compare(a, b);
+		if (compD > 0) { compD = 1; }
+		else if (compD < 0) { compD = -1; }
+		else if (compD == 0) { compD = -1; }
+		return compD;
+    }
 }
