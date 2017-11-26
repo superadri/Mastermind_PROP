@@ -26,20 +26,20 @@ public class Ranking {
 
 	// Ordena primero por dificultad (implicito, un archivo para cada), despues
 	// por turnos, despues por tiempo (que es mas dificil que haya empate)
-	public void updateRanking(String difficulty, int turns, Double time, String username) {
+	public void updateRanking(String difficulty, int turns, Double time, String username, String role) {
 		m.clear();
-		openFile(difficulty);
+		openFile(difficulty,role);
 		// A partir de aqui ya hay un fichero abierto en f
 		// y nos podemos olvidar de "difficulty
 		m.put(time, username);
-		
+
 		saveFile();
 	}
 
-	public void showRanking(String difficulty) {
+	public void showRanking(String difficulty, String role) {
 		System.out.println("\nRANKING: " );
 		m.clear();
-		openFile(difficulty);
+		openFile(difficulty,role);
 		// A partir de aqui ya hay un fichero abierto en f
 		// y nos podemos olvidar de "difficulty"
 		MyComparator comparator = new MyComparator(m);
@@ -56,9 +56,9 @@ public class Ranking {
 		System.out.println();
 	}
 
-	private void openFile(String difficulty) {
+	private void openFile(String difficulty,String role) {
 			try {
-				this.route = "persistency/ranking"+difficulty+".txt";
+				this.route = "persistency/ranking"+difficulty+role+".txt";
 				this.f = new File(route);
 				System.out.println(this.f);
 				Scanner s = new Scanner(f);

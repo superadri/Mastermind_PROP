@@ -60,6 +60,10 @@ public class GameFactory {
 			String strCode = "";
 			String strDifficulty = respuesta;
 			int turns = 0;
+			String role;
+			if (soyCM) { role = "CM"; }
+			else { role = "CB"; }
+
 			if (mastermind.gameSave) {
 				ArrayList<String> listItems = new ArrayList<String>();
 				listItems = mastermind.saveGametoGameFactory();
@@ -69,9 +73,6 @@ public class GameFactory {
 					respuestas.add(listItems.get(i));
 				}
 				turns = limitList/2;
-				String role;
-				if (soyCM) { role = "CM"; }
-				else { role = "CB"; }
 				strTime = Double.parseDouble(listItems.get(limitList));
 				strCode = listItems.get(limitList+1);
 				strDifficulty = listItems.get(limitList+2);
@@ -84,10 +85,10 @@ public class GameFactory {
 			} else {
 				strTime = mastermind.getTime();
 				r.finished_game(username);
-				rank.updateRanking(strDifficulty, turns, strTime, username);
+				rank.updateRanking(strDifficulty, turns, strTime, username,role);
 			}
-			rank.showRanking(strDifficulty);
-      		System.out.print("Quieres jugar otra partida? (s/n): ");
+			rank.showRanking(strDifficulty,role);
+      System.out.print("Quieres jugar otra partida? (s/n): ");
 			String exitControl = teclado.nextLine();
 			if ( exitControl.equals("n") ) { nolimit = false; }
 		}
