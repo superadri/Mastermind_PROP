@@ -20,8 +20,9 @@ public class GameFactory {
 
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-		GameFactory gf = new GameFactory();
-		gf.menu();
+				new VistaInstrucciones().hacerVisible();
+				GameFactory gf = new GameFactory();
+				gf.menu();
     }
 
 	public void menu() throws IOException{
@@ -31,9 +32,12 @@ public class GameFactory {
 		this.rank = new Ranking();
 		boolean nolimit = true;
 		while(nolimit) {
-			System.out.print("Escribe un usuario: ");
+			String username = "";
 			Scanner teclado = new Scanner(System.in);
-			String username = teclado.nextLine();
+			while (username.equals("")) {
+				System.out.print("Escribe un usuario: ");
+				username = teclado.nextLine();
+			}
 
 			if( r.user_exists(username) ){
 				// System.out.println("Existe usuario");
