@@ -60,7 +60,6 @@ public class Ranking {
 			try {
 				this.route = "persistency/ranking"+difficulty+role+".txt";
 				this.f = new File(route);
-				System.out.println(this.f);
 				Scanner s = new Scanner(f);
 				s.useLocale(Locale.ENGLISH);
 				while( s.hasNext() ) {
