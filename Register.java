@@ -14,47 +14,42 @@ public class Register {
     private ArrayList<String> nomUsers = new ArrayList<String>();
 
     public Register() {
-		try {
-		//File f = new File("persistency/registro.txt");
+  		try {
+  		//File f = new File("persistency/registro.txt");
             File f = new File("persistency/registro.txt");
-	        Scanner in = new Scanner(f);
-	        in.useLocale(Locale.ENGLISH);
-
-	        while(in.hasNext()){
-
-	           String username = in.next();
-	           nomUsers.add(username);
-	            //pendingGame
-	            String a = in.next();
-	            char c = a.charAt(0);
-
-	            if (a.equals("1")){
-	                //entonces hay mas lineas
-	                double time = in.nextDouble();
-
-	                //respuestas
-	                int i = in.nextInt() * 2;
-	                ArrayList<String> respuestas = new ArrayList<>();
-	                while (i > 0) {
-	                    respuestas.add(in.next());
-	                    --i;
-	                }
-
-	                //codigo
-	                String codigo = in.next();
+  	        Scanner in = new Scanner(f);
+  	        in.useLocale(Locale.ENGLISH);
+  	        while(in.hasNext()){
+  	           String username = in.next();
+  	           nomUsers.add(username);
+  	            //pendingGame
+  	            String a = in.next();
+  	            char c = a.charAt(0);
+  	            if (a.equals("1")){
+  	                //entonces hay mas lineas
+  	                double time = in.nextDouble();
+  	                //respuestas
+  	                int i = in.nextInt() * 2;
+  	                ArrayList<String> respuestas = new ArrayList<>();
+  	                while (i > 0) {
+  	                    respuestas.add(in.next());
+  	                    --i;
+  	                }
+  	                //codigo
+  	                String codigo = in.next();
                     String dificultat = in.next();
                     String rol = in.next();
-	                Player p = new Player(c,username,respuestas,time,codigo,dificultat,rol);
-	                users.add(p);
-	            }
-	            else {
-	               Player p = new Player(c,username);
-	               users.add(p);
-	            }
-	        }
-		} catch (FileNotFoundException ex) {
-			ex.printStackTrace();
-		}
+  	                Player p = new Player(c,username,respuestas,time,codigo,dificultat,rol);
+  	                users.add(p);
+  	            }
+  	            else {
+  	               Player p = new Player(c,username);
+  	               users.add(p);
+  	            }
+  	        }
+  		} catch (FileNotFoundException ex) {
+  			ex.printStackTrace();
+  		}
     }
 
     public boolean user_exists(String username){
@@ -99,93 +94,55 @@ public class Register {
         if (!user_exists(newuser)){
             nomUsers.add(newuser);
             Player p = new Player('0',newuser);
-	    	users.add(p);
+	    	    users.add(p);
             FileWriter fw = new FileWriter(filename,true); //the true will append the new data
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(newuser);
-            stringBuilder.append(" 0\n");
-            String finalString = stringBuilder.toString();
-            fw.write(finalString);//appends the string to the file
+            stringBuilder.append(newuser+" 0\n");
+            fw.write(stringBuilder.toString());//appends the string to the file
             fw.close();
         }
         else {
-            //hay que modificar la linea del usuario ya existente poner a 0
-            //borrar todo si tenia partida empezada
             Player p = users.get(pos_player(newuser));
             if (p.getGame_start() == '1') p.delete_all();
-
-            //escribir fichero desde 0
-             FileWriter fw = new FileWriter(filename);
-
+            FileWriter fw = new FileWriter(filename);
             Iterator<Player> itr = users.iterator();
             while (itr.hasNext()) {
                StringBuilder stringBuilder = new StringBuilder();
                 p = itr.next();
-                stringBuilder.append(p.getUsername());
-                stringBuilder.append(" ");
-                stringBuilder.append(p.getGame_start());
+                stringBuilder.append(p.getUsername()+" "+p.getGame_start());
                 if (p.getGame_start() == '1') {
-                    stringBuilder.append(" ");
-                    stringBuilder.append(p.getTime());
-                    stringBuilder.append(" ");
+                    stringBuilder.append(" "+p.getTime()+" ");
                     ArrayList<String> respuestas = p.getRespuestas();
-                    stringBuilder.append(respuestas.size()/2);
-                    stringBuilder.append(" ");
+                    stringBuilder.append(respuestas.size()/2+" ");
                     Iterator<String> itr1 = respuestas.iterator();
-                    while (itr1.hasNext()) {
-                        stringBuilder.append(itr1.next());
-                        stringBuilder.append(" ");
-                    }
-                    stringBuilder.append(p.getCodigo());
-                    stringBuilder.append(" ");
-                    stringBuilder.append(p.getDificultat());
-                    stringBuilder.append(" ");
-                    stringBuilder.append(p.getRol());
+                    while (itr1.hasNext()) stringBuilder.append(itr1.next()+" ");
+                    stringBuilder.append(p.getCodigo()+" "+p.getDificultat()+" "+p.getRol());
                 }
                 stringBuilder.append("\n");
-                String finalString = stringBuilder.toString();
-                fw.write(finalString);
+                fw.write(stringBuilder.toString());
             }
              fw.close();
-
         }
-
-
     }
      public void set_continueGame (char game_start, String newuser, ArrayList<String> respuestas,double time,String codigo,String dificultat,String rol) throws IOException{
          //File f = new File("persistency/registro.txt");
         String ruta = "persistency/registro.txt";
         File filename = new File(ruta);
-
         if (!user_exists(newuser)){
             nomUsers.add(newuser);
             Player p = new Player('1',newuser,respuestas,time,codigo,dificultat,rol);
-	    	users.add(p);
+            users.add(p);
             FileWriter fw = new FileWriter(filename,true); //the true will append the new data
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(newuser);
-            stringBuilder.append(" 1 ");
+            stringBuilder.append(newuser+" 1 ");
             String cadena = String.valueOf(time);
-            stringBuilder.append(cadena);
-            stringBuilder.append(" ");
+            stringBuilder.append(cadena+" ");
             String size = String.valueOf(respuestas.size()/2);
-            stringBuilder.append(size);
-            stringBuilder.append(" ");
+            stringBuilder.append(size+" ");
             Iterator<String> itr = respuestas.iterator();
-            while (itr.hasNext()) {
-                stringBuilder.append(itr.next());
-                stringBuilder.append(" ");
-            }
-
-            stringBuilder.append(" ");
-            stringBuilder.append(codigo);
-            stringBuilder.append(" ");
-            stringBuilder.append(dificultat);
-            stringBuilder.append(" ");
-            stringBuilder.append(rol);
-            stringBuilder.append("\n");
-            String finalString = stringBuilder.toString();
-            fw.write(finalString);//appends the string to the file
+            while (itr.hasNext()) stringBuilder.append(itr.next()+" ");
+            stringBuilder.append(codigo+" "+dificultat+" "+rol+"\n");
+            fw.write(stringBuilder.toString());//appends the string to the file
             fw.close();
         }
         else {
@@ -201,30 +158,17 @@ public class Register {
             while (itr.hasNext()) {
                 StringBuilder stringBuilder = new StringBuilder();
                 p = itr.next();
-                stringBuilder.append(p.getUsername());
-                stringBuilder.append(" ");
-                stringBuilder.append(p.getGame_start());
+                stringBuilder.append(p.getUsername()+" "+p.getGame_start());
                 if (p.getGame_start() == '1') {
-                    stringBuilder.append(" ");
-                    stringBuilder.append(p.getTime());
-                    stringBuilder.append(" ");
+                    stringBuilder.append(" "+ p.getTime()+" ");
                     ArrayList<String> respuestas1 = p.getRespuestas();
-                    stringBuilder.append(respuestas1.size()/2);
-                    stringBuilder.append(" ");
+                    stringBuilder.append(respuestas1.size()/2+" ");
                     Iterator<String> itr1 = respuestas1.iterator();
-                    while (itr1.hasNext()) {
-                        stringBuilder.append(itr1.next());
-                        stringBuilder.append(" ");
-                    }
-                    stringBuilder.append(p.getCodigo());
-                    stringBuilder.append(" ");
-                    stringBuilder.append(p.getDificultat());
-                    stringBuilder.append(" ");
-                    stringBuilder.append(p.getRol());
+                    while (itr1.hasNext()) stringBuilder.append(itr1.next()+" ");
+                    stringBuilder.append(p.getCodigo()+" "+p.getDificultat()+" "+p.getRol());
                 }
                 stringBuilder.append("\n");
-                String finalString = stringBuilder.toString();
-                fw.write(finalString);
+                fw.write(stringBuilder.toString());
             }
              fw.close();
         }
