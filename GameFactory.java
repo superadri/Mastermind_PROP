@@ -12,7 +12,7 @@ public class GameFactory {
 	private Mastermind mastermind;
 	private Register r;
 	private Ranking rank;
-	private boolean soyCM;
+	private boolean soyCM,soyCB;
 	public String respuesta;
 
 	//private ArrayList<String> listItems;
@@ -62,7 +62,8 @@ public class GameFactory {
 			int turns = 0;
 			String role;
 			if (soyCM) { role = "CM"; }
-			else { role = "CB"; }
+			else if (soyCB) { role = "CB"; }
+			else { role = "CM";}
 
 			if (mastermind.gameSave) {
 				ArrayList<String> listItems = new ArrayList<String>();
@@ -137,6 +138,7 @@ public class GameFactory {
 
         boolean b = false;
         soyCM = false;
+				soyCB = false;
         boolean maquina = false;
         String rs;
         while(!b){
@@ -144,7 +146,7 @@ public class GameFactory {
             System.out.print("Quieres ser [ CodeMaker(1) / CodeBreaker(2) / MaquinavsMaquina(3) ]: ");
             rs = teclado.nextLine();
             if ( rs.equals("1") ) { soyCM = true; }
-            else if ( rs.equals("2") ) { soyCM = false; }
+            else if ( rs.equals("2") ) { soyCB = true; }
             else if ( rs.equals("3") ) { maquina = true; }
             else { b = false; }
         }
@@ -182,8 +184,8 @@ public class GameFactory {
             computerCM = "MACHINE";
         }
         String difficulty = p.getDificultat();
-		respuesta = difficulty;
-		System.out.println("Player"+respuesta);
+				respuesta = difficulty;
+				System.out.println("Player"+respuesta);
         double time = p.getTime();
         String Code = p.getCodigo();
         ArrayList<String>respuesta = p.getRespuestas();
