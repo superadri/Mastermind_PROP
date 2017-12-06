@@ -1,4 +1,4 @@
-Paco 0
+Paco 1 2.60791015625 1 ABCD BBRR ABDC EASY CM
 pepe 0
 PAco 0
 Felipe 0
