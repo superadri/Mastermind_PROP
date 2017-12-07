@@ -70,7 +70,7 @@ public void setNoQuestionNewGame() {
 public void questioNewGame(String rol, String difficulty) throws IOException {
 	// TODO Auto-generated method stub
 	if (rol.equals("CodeMaker")) rol = "CM";
-	else if (rol.equals("Codebreaker")) rol = "CB";
+	else if (rol.equals("CodeBreaker")) rol = "CB";
 	else if (rol.equals("MachinevsMachine")) rol = "MACHINE";
 	
 	if (difficulty.equals("Hard")) difficulty = "HARD";
