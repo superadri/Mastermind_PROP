@@ -1,0 +1,11 @@
+pepi 0
+pepo 0
+pep 0
+adr 0
+marco 0
+caca 0
+Adria 0
+pepe 1 3.60400390625 1 ABCD BBBX ABCF EASY CM
+matias 0
+Matias 0
+adri 0

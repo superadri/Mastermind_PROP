@@ -1,0 +1,8 @@
+paco
+1
+3
+ABAB
+y
+n
+y
+n
