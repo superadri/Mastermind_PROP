@@ -113,9 +113,48 @@ public class MastermindView {
 
     public MastermindView() {
 
+        JButton[] board = {button1, button2, button3, button4, button5, button6, button7, button8, button9, button10,
+        button11, button12, button13, button14, button15, button16, button17, button18, button19, button20, button21,
+        button22, button23, button24, button25, button26, button27, button28, button29, button30, button31, button32,
+        button33, button34, button35, button36, button37, button38, button39, button40, button41, button42, button43,
+        button44, button45, button46, button47, button48, button49, button50, button51, button52, button53, button54,
+        button55, button56, button57, button58, button59, button60, button61, button62, button63, button64, button65,
+        button66, button67, button68, button69, button70, button71, button72, button73, button74, button75, button76,
+        button77, button78, button79, button80};
+
         try {
-            Image img = ImageIO.read(getClass().getResource("./redbutton-hi.png"));
-            //buttonRed.setIcon(new ImageIcon(img));
+
+            Image img = ImageIO.read(getClass().getResource("./peg-red.png"));
+            buttonRed.setIcon(new ImageIcon(img));
+            img = ImageIO.read(getClass().getResource("./peg-orange.png"));
+            buttonOrange.setIcon(new ImageIcon(img));
+            img = ImageIO.read(getClass().getResource("./peg-yellow.png"));
+            buttonYellow.setIcon(new ImageIcon(img));
+            img = ImageIO.read(getClass().getResource("./peg-green.png"));
+            buttonGreen.setIcon(new ImageIcon(img));
+            img = ImageIO.read(getClass().getResource("./peg-blue.png"));
+            buttonBlue.setIcon(new ImageIcon(img));
+            img = ImageIO.read(getClass().getResource("./peg-purple.png"));
+            buttonPurple.setIcon(new ImageIcon(img));
+            img = ImageIO.read(getClass().getResource("./peg-black.png"));
+            for (JButton btn : board) { btn.setIcon(new ImageIcon(img)); }
+
+            // Hardcoded guess
+            img = ImageIO.read(getClass().getResource("./peg-red.png"));
+            button73.setIcon(new ImageIcon(img));
+            button74.setIcon(new ImageIcon(img));
+            img = ImageIO.read(getClass().getResource("./peg-blue.png"));
+            button75.setIcon(new ImageIcon(img));
+            button76.setIcon(new ImageIcon(img));
+
+            // Hardcoded answer
+            img = ImageIO.read(getClass().getResource("./peg-red.png"));
+            button78.setIcon(new ImageIcon(img));
+            button80.setIcon(new ImageIcon(img));
+            img = ImageIO.read(getClass().getResource("./peg-white.png"));
+            button77.setIcon(new ImageIcon(img));
+            button79.setIcon(new ImageIcon(img));
+
         } catch (Exception ex) {
             System.out.println(ex);
         }
