@@ -3,209 +3,154 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.rmi.server.ExportException;
 
 public class MastermindView {
+
     private JPanel backgroundPanel;
-    private JButton buttonRed;
-    private JButton buttonOrange;
-    private JButton buttonYellow;
-    private JButton buttonGreen;
-    private JButton buttonBlue;
-    private JButton buttonPurple;
-    private JButton buttonGuess;
+    private JButton buttonMakeGuess;
     private JLabel labelGuess10;
     private JPanel contentPanel;
-    private JPanel buttonBarPanel;
+    private JPanel selectColorPanel;
     private JPanel boardPanel;
-    private JPanel titlePanel;
-    private JPanel guessAndAnswersPanel;
-    private JPanel guess10Panel;
-    private JPanel guess9Panel;
-    private JPanel guess8Panel;
-    private JPanel guess7Panel;
-    private JPanel guess6Panel;
-    private JPanel guess5Panel;
-    private JPanel guess4Panel;
-    private JPanel guess3Panel;
-    private JPanel guess2Panel;
-    private JPanel guess1Panel;
-    private JLabel Label10;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
-    private JButton button7;
-    private JButton button8;
-    private JButton button9;
-    private JButton button10;
-    private JButton button11;
-    private JButton button12;
-    private JButton button13;
-    private JButton button14;
-    private JButton button15;
-    private JButton button16;
-    private JButton button17;
-    private JButton button18;
-    private JButton button19;
-    private JButton button20;
-    private JButton button21;
-    private JButton button22;
-    private JButton button23;
-    private JButton button24;
-    private JButton button25;
-    private JButton button26;
-    private JButton button27;
-    private JButton button28;
-    private JButton button29;
-    private JButton button30;
-    private JButton button31;
-    private JButton button32;
-    private JButton button33;
-    private JButton button34;
-    private JButton button35;
-    private JButton button36;
-    private JButton button37;
-    private JButton button38;
-    private JButton button39;
-    private JButton button40;
-    private JButton button41;
-    private JButton button42;
-    private JButton button43;
-    private JButton button44;
-    private JButton button45;
-    private JButton button46;
-    private JButton button47;
-    private JButton button48;
-    private JButton button49;
-    private JButton button50;
-    private JButton button51;
-    private JButton button52;
-    private JButton button53;
-    private JButton button54;
-    private JButton button55;
-    private JButton button56;
-    private JButton button57;
-    private JButton button58;
-    private JButton button59;
-    private JButton button60;
-    private JButton button61;
-    private JButton button62;
-    private JButton button63;
-    private JButton button64;
-    private JButton button65;
-    private JButton button66;
-    private JButton button67;
-    private JButton button68;
-    private JButton button69;
-    private JButton button70;
-    private JButton button71;
-    private JButton button72;
-    private JButton button73;
-    private JButton button74;
-    private JButton button75;
-    private JButton button76;
-    private JButton button77;
-    private JButton button78;
-    private JButton button79;
-    private JButton button80;
+    private JPanel panelLabels;
+    private JPanel panelGuesses;
+    private JPanel panelAnswers;
+    private JLabel selectRed, selectOrange, selectYellow, selectGreen, selectBlue, selectPurple;
+    private JLabel  g01p1, g01p2, g01p3, g01p4, a01p1, a01p2, a01p3, a01p4,
+                    g02p1, g02p2, g02p3, g02p4, a02p1, a02p2, a02p3, a02p4,
+                    g03p1, g03p2, g03p3, g03p4, a03p1, a03p2, a03p3, a03p4,
+                    g04p1, g04p2, g04p3, g04p4, a04p1, a04p2, a04p3, a04p4,
+                    g05p1, g05p2, g05p3, g05p4, a05p1, a05p2, a05p3, a05p4,
+                    g06p1, g06p2, g06p3, g06p4, a06p1, a06p2, a06p3, a06p4,
+                    g07p1, g07p2, g07p3, g07p4, a07p1, a07p2, a07p3, a07p4,
+                    g08p1, g08p2, g08p3, g08p4, a08p1, a08p2, a08p3, a08p4,
+                    g09p1, g09p2, g09p3, g09p4, a09p1, a09p2, a09p3, a09p4,
+                    g10p1, g10p2, g10p3, g10p4, a10p1, a10p2, a10p3, a10p4;
 
     public MastermindView() {
 
-        JButton[] board = {button1, button2, button3, button4, button5, button6, button7, button8, button9, button10,
-        button11, button12, button13, button14, button15, button16, button17, button18, button19, button20, button21,
-        button22, button23, button24, button25, button26, button27, button28, button29, button30, button31, button32,
-        button33, button34, button35, button36, button37, button38, button39, button40, button41, button42, button43,
-        button44, button45, button46, button47, button48, button49, button50, button51, button52, button53, button54,
-        button55, button56, button57, button58, button59, button60, button61, button62, button63, button64, button65,
-        button66, button67, button68, button69, button70, button71, button72, button73, button74, button75, button76,
-        button77, button78, button79, button80};
+        JLabel[] board = {  g01p1, g01p2, g01p3, g01p4, a01p1, a01p2, a01p3, a01p4,
+                            g02p1, g02p2, g02p3, g02p4, a02p1, a02p2, a02p3, a02p4,
+                            g03p1, g03p2, g03p3, g03p4, a03p1, a03p2, a03p3, a03p4,
+                            g04p1, g04p2, g04p3, g04p4, a04p1, a04p2, a04p3, a04p4,
+                            g05p1, g05p2, g05p3, g05p4, a05p1, a05p2, a05p3, a05p4,
+                            g06p1, g06p2, g06p3, g06p4, a06p1, a06p2, a06p3, a06p4,
+                            g07p1, g07p2, g07p3, g07p4, a07p1, a07p2, a07p3, a07p4,
+                            g08p1, g08p2, g08p3, g08p4, a08p1, a08p2, a08p3, a08p4,
+                            g09p1, g09p2, g09p3, g09p4, a09p1, a09p2, a09p3, a09p4,
+                            g10p1, g10p2, g10p3, g10p4, a10p1, a10p2, a10p3, a10p4 };
 
         try {
 
             Image img = ImageIO.read(getClass().getResource("./peg-red.png"));
-            buttonRed.setIcon(new ImageIcon(img));
+            selectRed.setIcon(new ImageIcon(img));
             img = ImageIO.read(getClass().getResource("./peg-orange.png"));
-            buttonOrange.setIcon(new ImageIcon(img));
+            selectOrange.setIcon(new ImageIcon(img));
             img = ImageIO.read(getClass().getResource("./peg-yellow.png"));
-            buttonYellow.setIcon(new ImageIcon(img));
+            selectYellow.setIcon(new ImageIcon(img));
             img = ImageIO.read(getClass().getResource("./peg-green.png"));
-            buttonGreen.setIcon(new ImageIcon(img));
+            selectGreen.setIcon(new ImageIcon(img));
             img = ImageIO.read(getClass().getResource("./peg-blue.png"));
-            buttonBlue.setIcon(new ImageIcon(img));
+            selectBlue.setIcon(new ImageIcon(img));
             img = ImageIO.read(getClass().getResource("./peg-purple.png"));
-            buttonPurple.setIcon(new ImageIcon(img));
+            selectPurple.setIcon(new ImageIcon(img));
             img = ImageIO.read(getClass().getResource("./peg-black.png"));
-            for (JButton btn : board) { btn.setIcon(new ImageIcon(img)); }
+            for (JLabel peg : board) { peg.setIcon(new ImageIcon(img)); }
 
             // Hardcoded guess
             img = ImageIO.read(getClass().getResource("./peg-red.png"));
-            button73.setIcon(new ImageIcon(img));
-            button74.setIcon(new ImageIcon(img));
+            g01p1.setIcon(new ImageIcon(img));
+            g01p2.setIcon(new ImageIcon(img));
             img = ImageIO.read(getClass().getResource("./peg-blue.png"));
-            button75.setIcon(new ImageIcon(img));
-            button76.setIcon(new ImageIcon(img));
+            g01p3.setIcon(new ImageIcon(img));
+            g01p4.setIcon(new ImageIcon(img));
 
             // Hardcoded answer
             img = ImageIO.read(getClass().getResource("./peg-red.png"));
-            button78.setIcon(new ImageIcon(img));
-            button80.setIcon(new ImageIcon(img));
+            a01p2.setIcon(new ImageIcon(img));
+            a01p4.setIcon(new ImageIcon(img));
             img = ImageIO.read(getClass().getResource("./peg-white.png"));
-            button77.setIcon(new ImageIcon(img));
-            button79.setIcon(new ImageIcon(img));
+            a01p1.setIcon(new ImageIcon(img));
+            a01p3.setIcon(new ImageIcon(img));
 
         } catch (Exception ex) {
             System.out.println(ex);
         }
 
-        JButton[] colorSelectButtons = {buttonRed, buttonOrange, buttonYellow, buttonGreen, buttonBlue, buttonPurple};
+        JLabel[] colorSelect = {selectRed, selectOrange, selectYellow, selectGreen, selectBlue, selectPurple};
 
-        buttonRed.addActionListener(new ActionListener() {
+        selectRed.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                for (JButton btn : colorSelectButtons) { btn.setEnabled(true); }
-                buttonRed.setEnabled(false);
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (selectRed.isEnabled()) {
+                    for (JLabel peg : colorSelect) { peg.setEnabled(true); }
+                    selectRed.setEnabled(false);
+                }
+                else { selectRed.setEnabled(true); }
             }
         });
 
-        buttonOrange.addActionListener(new ActionListener() {
+        selectOrange.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                for (JButton btn : colorSelectButtons) { btn.setEnabled(true); }
-                buttonOrange.setEnabled(false);
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (selectOrange.isEnabled()) {
+                    for (JLabel peg : colorSelect) { peg.setEnabled(true); }
+                    selectOrange.setEnabled(false);
+                }
+                else { selectOrange.setEnabled(true); }
             }
         });
 
-        buttonYellow.addActionListener(new ActionListener() {
+        selectYellow.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                for (JButton btn : colorSelectButtons) { btn.setEnabled(true); }
-                buttonYellow.setEnabled(false);
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (selectYellow.isEnabled()) {
+                    for (JLabel peg : colorSelect) { peg.setEnabled(true); }
+                    selectYellow.setEnabled(false);
+                }
+                else { selectYellow.setEnabled(true); }
             }
         });
 
-        buttonGreen.addActionListener(new ActionListener() {
+        selectGreen.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                for (JButton btn : colorSelectButtons) { btn.setEnabled(true); }
-                buttonGreen.setEnabled(false);
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (selectGreen.isEnabled()) {
+                    for (JLabel peg : colorSelect) { peg.setEnabled(true); }
+                    selectGreen.setEnabled(false);
+                }
+                else { selectGreen.setEnabled(true); }
             }
         });
 
-        buttonBlue.addActionListener(new ActionListener() {
+        selectBlue.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                for (JButton btn : colorSelectButtons) { btn.setEnabled(true); }
-                buttonBlue.setEnabled(false);
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (selectBlue.isEnabled()) {
+                    for (JLabel peg : colorSelect) { peg.setEnabled(true); }
+                    selectBlue.setEnabled(false);
+                }
+                else { selectBlue.setEnabled(true); }
             }
         });
 
-        buttonPurple.addActionListener(new ActionListener() {
+        selectPurple.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                for (JButton btn : colorSelectButtons) { btn.setEnabled(true); }
-                buttonPurple.setEnabled(false);
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (selectPurple.isEnabled()) {
+                    for (JLabel peg : colorSelect) { peg.setEnabled(true); }
+                    selectPurple.setEnabled(false);
+                }
+                else { selectPurple.setEnabled(true); }
             }
         });
 
@@ -231,4 +176,5 @@ public class MastermindView {
         dialog.pack();
         dialog.setVisible(true);
     }
+
 }
