@@ -18,11 +18,18 @@ public class InitMaster {
                 if (!username.equals("")) {
                     try {
                         ctrlP.sendUsername(username);
+                        textField1.setText("");
                     } catch (IOException e1) {
                         e1.printStackTrace();
                     }
                 }
 
+            }
+        });
+        RULESButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ctrlP.showRules();
             }
         });
     }

@@ -78,7 +78,7 @@ public class GameFactory {
 			rank.updateRanking(strDifficulty, turns, strTime, username,role);
 		}
 		rank.showRanking(strDifficulty,role);
-		ctrlP.initGame();
+		ctrlP.newGame();
 	}
 
 	private void instructions() {

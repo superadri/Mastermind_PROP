@@ -1,11 +1,10 @@
-Paco 1 2.60791015625 1 ABCD BBRR ABDC EASY CM
+Paco 0
 pepe 0
 PAco 0
 Felipe 0
 PEPE 0
 PEP 0
 Paqui 0
-1 0
 Pepe 0
 Paq 0
 Alba 0
@@ -16,3 +15,6 @@ adri 0
 adria 0
 ad 0
 adr 0
+paquito 0
+niño 0
+nilo 1 1.4801025390625 1 ABCD RRRR BCDA EASY CM
