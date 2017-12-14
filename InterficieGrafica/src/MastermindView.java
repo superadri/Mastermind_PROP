@@ -97,7 +97,7 @@ public class MastermindView {
         a01p3.setIcon(pegRed);
         a01p4.setIcon(pegRed);
 
-        for (JLabel peg : guesses) {
+        for (final JLabel peg : guesses) {
             peg.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -123,9 +123,9 @@ public class MastermindView {
             });
         }
 
-        JLabel[] colorSelect = {selectRed, selectOrange, selectYellow, selectGreen, selectBlue, selectPurple};
+        final JLabel[] colorSelect = {selectRed, selectOrange, selectYellow, selectGreen, selectBlue, selectPurple};
 
-        for (JLabel peg : colorSelect) {
+        for (final JLabel peg : colorSelect) {
             peg.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -170,7 +170,7 @@ public class MastermindView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        Menu dialog = new Menu();
+        VistaUser dialog = new VistaUser();
         dialog.pack();
         dialog.setVisible(true);
     }

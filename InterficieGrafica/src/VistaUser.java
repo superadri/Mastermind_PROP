@@ -1,13 +1,13 @@
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Menu extends JDialog {
+public class VistaUser extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField textField1;
+    private JTextField textFieldName;
 
-    public Menu() {
+    public VistaUser() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -54,10 +54,10 @@ public class Menu extends JDialog {
         System.exit(0);
     }
 
-    //public static void main(String[] args) {
-        //Menu dialog = new Menu();
-        //dialog.pack();
-        //dialog.setVisible(true);
-        //System.exit(0);
-    //}
+    public static void main(String[] args) {
+        VistaUser dialog = new VistaUser();
+        dialog.pack();
+        dialog.setVisible(true);
+        System.exit(0);
+    }
 }
