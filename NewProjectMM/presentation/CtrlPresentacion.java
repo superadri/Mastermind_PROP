@@ -15,6 +15,7 @@ public class CtrlPresentacion {
 	private VistaEndGame vistaEndGame;
 	private VistaHelp vistaHelp;
 	private VistaAbout vistaAbout;
+	private VistaRoleDifficulty vistaQuestion;
 
 	public int countLevelGuess;
 
@@ -23,12 +24,13 @@ public class CtrlPresentacion {
         /** Constructor **/
 
     public CtrlPresentacion() {
-		controladorDominio = new CtrlDominio();
+		controladorDominio = new CtrlDominio(this);
         vistaRanking = new VistaRanking(this);
         vistaUser = new VistaUser(this);
         vistaPrincipal = new VistaPrincipal(this);
         vistaEndGame = new VistaEndGame(this);
         vistaHelp = new VistaHelp(this);
+        vistaQuestion = new VistaRoleDifficulty(this);
         vistaAbout = new VistaAbout(this);
     }
 
@@ -91,6 +93,11 @@ public class CtrlPresentacion {
         vistaUser.hacerVisible();
     }
 
+    public void sincronizacionVistaRoleDifficulty(String username) {
+        vistaPrincipal.desactivar();
+        vistaQuestion.hacerVisible();
+    }
+
 	    /** Llamadas al controlador de dominio **/
 
     public boolean user_exists(String user) { return controladorDominio.user_exists(user); }
@@ -102,4 +109,10 @@ public class CtrlPresentacion {
 	public List<String> getNameRankings() {
 		return controladorDominio.getNameRankings();
 	}
+
+
+    public void setRoleDificulty(String role, String difficulty) {
+        vistaQuestion.hacerInvisible();
+        //TODO: pasar a dominio el role y difficulty
+    }
 }

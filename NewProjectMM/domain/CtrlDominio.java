@@ -16,14 +16,16 @@ import presentation.CtrlPresentacion;
 public class CtrlDominio {
 
     private CtrlPersistence controladorPersistence;
-    private Register register;
-	    // TODO: Poner todas las grandes estructuras del proyecto aquí, Map, ArrayList...
+    private CtrlPresentacion controladorPresentacion;
+    // TODO: Poner todas las grandes estructuras del proyecto aquí, Map, ArrayList...
 
 	    /** Constructor **/
 
-	public CtrlDominio() {
-        register = new Register(this);
+	public CtrlDominio(CtrlPresentacion controladorPresentacion) {
+        this.controladorPresentacion = controladorPresentacion;
 	    inicializarCtrlDominio();
+	    controladorPersistence.inicializarCtrlPersistencia(); //instanciar registro
+
 	}
 
         /** Métodos públicos **/
@@ -41,6 +43,19 @@ public class CtrlDominio {
     }
 
     public boolean user_exists(String username){
-        return register.user_exists(username);
+        if (controladorPersistence.user_exists(username)){
+            System.out.println("Cargando Datos...");
+            if(controladorPersistence.game_start_user(username)){
+               //dialog si continuar partida
+            } else {
+                //dialog nueva partida
+                controladorPresentacion.sincronizacionVistaRoleDifficulty(username);
+            }
+        }
+        else {
+            //dialog nueva partida
+            controladorPresentacion.sincronizacionVistaRoleDifficulty(username);
+        }
+        return controladorPersistence.user_exists(username);
     }
 }

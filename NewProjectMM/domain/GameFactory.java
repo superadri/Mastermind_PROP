@@ -29,8 +29,6 @@ public class GameFactory {
 	public void menu() throws IOException{
 		this.respuesta = "";
 		instructions(); // gives user instructions
-	 	// this.r = new Register();
-		this.rank = new Ranking();
 		boolean nolimit = true;
 		while(nolimit) {
 			String username = "";

@@ -1,5 +1,8 @@
 package persistence;
 
+import domain.Ranking;
+import domain.Register;
+
 import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.FileReader;
@@ -15,8 +18,10 @@ import java.util.StringTokenizer;
 public class CtrlPersistence {
 	
 	private static CtrlPersistence singletonObject;
+	private Register register;
+    private Ranking rank;
 
-	public static CtrlPersistence getInstance() {
+    public static CtrlPersistence getInstance() {
 		if (singletonObject == null) { singletonObject = new CtrlPersistence(){}; }
 		return singletonObject;
 	}
@@ -24,7 +29,13 @@ public class CtrlPersistence {
 	    /** Constructora privada **/
 	
 	private CtrlPersistence() {
+
 	}
+
+    public void inicializarCtrlPersistencia() {
+        this.register = new Register(this);
+        this.rank = new Ranking(this);
+    }
 
 	public List<String> getNameRankings() {
         LinkedList<String> dataNR = new LinkedList<String>();
@@ -63,4 +74,11 @@ public class CtrlPersistence {
 
 		return dataR;
 	}
+    public boolean user_exists(String username) {
+	    return register.user_exists(username);
+    }
+
+    public boolean game_start_user(String username) {
+	    return register.game_start_user(username);
+    }
 }

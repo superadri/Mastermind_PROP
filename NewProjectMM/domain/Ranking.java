@@ -1,12 +1,13 @@
 package domain;
 
+import persistence.CtrlPersistence;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import javafx.util.*;
 
 public class Ranking {
 
@@ -18,7 +19,7 @@ public class Ranking {
 	private ArrayList<String> nomUsers = new ArrayList<String>();
 
 		// Constructor
-	public Ranking() {
+	public Ranking(CtrlPersistence ctrlPersistence) {
 		this.f = null;
 		this.m = new HashMap<Double, String>();
 	}

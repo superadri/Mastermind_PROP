@@ -1,5 +1,8 @@
 package domain;
 
+import persistence.CtrlPersistence;
+import presentation.CtrlPresentacion;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,13 +15,13 @@ import java.util.Scanner;
 
 public class Register {
 
-    private CtrlDominio controladorDominio;
+    private CtrlPersistence controladorPersistence;
 
     private ArrayList<Player> users = new ArrayList<Player>();
     private ArrayList<String> nomUsers = new ArrayList<String>();
 
-    public Register(CtrlDominio cDominio) {
-        this.controladorDominio = cDominio;
+    public Register(CtrlPersistence ctrlP) {
+        this.controladorPersistence = ctrlP;
   		try {
             File f = new File("./persistence/registro.txt");
             Scanner in = new Scanner(f);
