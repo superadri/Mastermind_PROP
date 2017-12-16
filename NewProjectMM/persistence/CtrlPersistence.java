@@ -30,7 +30,7 @@ public class CtrlPersistence {
         LinkedList<String> dataNR = new LinkedList<String>();
 
         try {
-            File[] files = new File("./").listFiles();
+            File[] files = new File("./persistence").listFiles();
             for (File file : files) {
                 if (file.isFile()) {
                     String extension = file.getName();
@@ -54,7 +54,7 @@ public class CtrlPersistence {
 		LinkedList<String> dataR = new LinkedList<String>();
 
 		try {
-		    FileReader fr = new FileReader("./"+nameRank);
+		    FileReader fr = new FileReader("./persistence/"+nameRank);
 			Scanner scan = new Scanner(fr);
 			while (scan.hasNextLine()) { dataR.add(new String(scan.nextLine())); }
             scan.close();
