@@ -124,6 +124,13 @@ public class VistaPrincipal {
         frameVista.setLocationRelativeTo(null);
         frameVista.setResizable(false);
         frameVista.getRootPane().setDefaultButton(buttonMakeGuess);
+        frameVista.addWindowListener(new WindowAdapter() {
+            @Override  //User clicked 'X'
+            public void windowClosing(WindowEvent arg0) { System.exit(0); }
+
+            @Override //Window is closed, now you can free resources if you need.
+            public void windowClosed(WindowEvent arg0) { }
+        });
     }
 
     private void inicializarMenubarVista() {

@@ -2,9 +2,7 @@ package presentation;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class VistaEndGame {
 
@@ -49,6 +47,13 @@ public class VistaEndGame {
         dialogEndGame.setLocationRelativeTo(null);
         dialogEndGame.setResizable(false);
         dialogEndGame.getRootPane().setDefaultButton(buttonQuit);
+        dialogEndGame.addWindowListener(new WindowAdapter() {
+            @Override //User clicked 'X'
+            public void windowClosing(WindowEvent arg0) { controladorPresentacion.sincronizacionVistaEndGameAPrincipal(); }
+
+            @Override //Window is closed, now you can free resources if you need.
+            public void windowClosed(WindowEvent arg0) { }
+        });
 	}
 	
 	private void asignarListenersComponentes() {

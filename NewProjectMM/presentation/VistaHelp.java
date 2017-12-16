@@ -2,9 +2,7 @@ package presentation;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class VistaHelp {
 
@@ -57,6 +55,13 @@ public class VistaHelp {
         dialogHelp.setLocationRelativeTo(null);
         dialogHelp.setResizable(false);
         dialogHelp.getRootPane().setDefaultButton(buttonQuit);
+        dialogHelp.addWindowListener(new WindowAdapter() {
+            @Override   //User clicked 'X'
+            public void windowClosing(WindowEvent arg0) { controladorPresentacion.sincronizacionVistaHelpAPrincipal(); }
+
+            @Override //Window is closed, now you can free resources if you need.
+            public void windowClosed(WindowEvent arg0) { }
+        });
 	}
 	
 	private void asignarListenersComponentes() {

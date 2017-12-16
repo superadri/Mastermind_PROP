@@ -1,9 +1,7 @@
 package presentation;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.util.List;
 import javax.swing.*;
 
@@ -71,6 +69,13 @@ public class VistaRanking {
         dialogRanking.setLocationRelativeTo(null); // Centro
 		dialogRanking.setResizable(false);
 		dialogRanking.getRootPane().setDefaultButton(buttonQuit);
+        dialogRanking.addWindowListener(new WindowAdapter() {
+            @Override  //User clicked 'X'
+            public void windowClosing(WindowEvent arg0) { controladorPresentacion.sincronizacionVistaRankingAPrincipal(); }
+
+            @Override //Window is closed, now you can free resources if you need.
+            public void windowClosed(WindowEvent arg0) { }
+        });
         textAreaRanking.setEditable(false);
     }
 
@@ -116,10 +121,12 @@ public class VistaRanking {
         textAreaRanking.setMargin(new Insets(10,10,10,10));
     }
 
+    /*
 	public static void main(String[] args) {
 		CtrlPresentacion cP = new CtrlPresentacion();
 		VistaRanking vR = new VistaRanking(cP);
 		vR.hacerVisible();
 		System.exit(0);
 	}
+	*/
 }

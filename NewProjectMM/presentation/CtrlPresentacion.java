@@ -15,15 +15,15 @@ public class CtrlPresentacion {
 	private VistaEndGame vistaEndGame;
 	private VistaHelp vistaHelp;
 
-	//TODO: Hay que definir el role, cuando haces click X, para cerrar la ventana, en global
+	    //TODO: Hay que definir el role, cuando haces click X, para cerrar la ventana, en global
 
         /** Constructor **/
 
     public CtrlPresentacion() {
 		controladorDominio = new CtrlDominio();
-		vistaPrincipal = new VistaPrincipal(this);
-		vistaRanking = new VistaRanking(this);
-		vistaUser = new VistaUser(this);
+        vistaRanking = new VistaRanking(this);
+        vistaUser = new VistaUser(this);
+        vistaPrincipal = new VistaPrincipal(this);
         vistaEndGame = new VistaEndGame(this);
         vistaHelp = new VistaHelp(this);
     }

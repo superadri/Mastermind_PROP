@@ -3,6 +3,10 @@ package persistence;
 import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,7 +30,7 @@ public class CtrlPersistence {
         LinkedList<String> dataNR = new LinkedList<String>();
 
         try {
-            File[] files = new File("../persistence").listFiles();
+            File[] files = new File("./").listFiles();
             for (File file : files) {
                 if (file.isFile()) {
                     String extension = file.getName();
@@ -50,10 +54,12 @@ public class CtrlPersistence {
 		LinkedList<String> dataR = new LinkedList<String>();
 
 		try {
-			FileReader fr = new FileReader("../persistence/"+nameRank);
+		    FileReader fr = new FileReader("./"+nameRank);
 			Scanner scan = new Scanner(fr);
 			while (scan.hasNextLine()) { dataR.add(new String(scan.nextLine())); }
-		} catch (FileNotFoundException ex){ System.out.println("Error3: " + ex); }
+            scan.close();
+            fr.close();
+		} catch (IOException ex){ System.out.println("Error3: " + ex); }
 
 		return dataR;
 	}
