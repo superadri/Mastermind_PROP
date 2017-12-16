@@ -184,8 +184,10 @@ public class VistaPrincipal {
         buttonMakeGuess.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                     // Check Respuesta ... -> To foundAnswer
+                    // 10 = Límite max del tipo de tablero...
                 if ( controladorPresentacion.countLevelGuess == 10 || foundAnswer ) {
                     System.out.println("Fin Game");
+                    if (foundAnswer) { System.out.println("You Win!"); }
                     controladorPresentacion.sincronizacionVistaPrincipalAEndGame();
                 } else{
                     System.out.println("Level: " + controladorPresentacion.countLevelGuess);

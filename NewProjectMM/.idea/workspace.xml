@@ -35,26 +35,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VistaPrincipal.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VistaPrincipal.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-437">
-              <caret line="154" column="101" lean-forward="false" selection-start-line="154" selection-start-column="25" selection-end-line="154" selection-end-column="101" />
+            <state relative-caret-position="348">
+              <caret line="189" column="71" lean-forward="false" selection-start-line="189" selection-start-column="71" selection-end-line="189" selection-end-column="71" />
               <folding>
-                <element signature="e#6872#7460#0" expanded="true" />
-                <element signature="e#7459#7460#0" expanded="true" />
-                <element signature="e#7506#7843#0" expanded="true" />
-                <element signature="e#7842#7843#0" expanded="true" />
-                <element signature="e#7886#8233#0" expanded="true" />
-                <element signature="e#8232#8233#0" expanded="true" />
-                <element signature="e#8278#8612#0" expanded="true" />
-                <element signature="e#8611#8612#0" expanded="true" />
-                <element signature="e#8655#9027#0" expanded="true" />
-                <element signature="e#9026#9027#0" expanded="true" />
-                <element signature="e#9117#9406#0" expanded="true" />
-                <element signature="e#9405#9406#0" expanded="true" />
-                <element signature="e#9498#9605#0" expanded="true" />
-                <element signature="e#9604#9605#0" expanded="true" />
+                <element signature="e#6872#7595#0" expanded="true" />
+                <element signature="e#7594#7595#0" expanded="true" />
+                <element signature="e#7641#7978#0" expanded="true" />
+                <element signature="e#7977#7978#0" expanded="true" />
+                <element signature="e#8021#8368#0" expanded="true" />
+                <element signature="e#8367#8368#0" expanded="true" />
+                <element signature="e#8413#8747#0" expanded="true" />
+                <element signature="e#8746#8747#0" expanded="true" />
+                <element signature="e#8790#9162#0" expanded="true" />
+                <element signature="e#9161#9162#0" expanded="true" />
+                <element signature="e#9252#9541#0" expanded="true" />
+                <element signature="e#9540#9541#0" expanded="true" />
+                <element signature="e#9633#9740#0" expanded="true" />
+                <element signature="e#9739#9740#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Register.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Register.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/domain/Register.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1979">
-              <caret line="130" column="36" lean-forward="true" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
+              <caret line="130" column="36" lean-forward="false" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1196#1204#0" expanded="true" />
@@ -222,12 +222,12 @@
         <option value="$PROJECT_DIR$/presentation/VistaAbout.form" />
         <option value="$PROJECT_DIR$/presentation/VistaAbout.java" />
         <option value="$PROJECT_DIR$/presentation/VistaRanking.java" />
-        <option value="$PROJECT_DIR$/presentation/VistaPrincipal.java" />
         <option value="$PROJECT_DIR$/presentation/CtrlPresentacion.java" />
         <option value="$PROJECT_DIR$/presentation/VistaUser.java" />
         <option value="$PROJECT_DIR$/domain/CtrlDominio.java" />
         <option value="$PROJECT_DIR$/domain/GameFactory.java" />
         <option value="$PROJECT_DIR$/domain/Register.java" />
+        <option value="$PROJECT_DIR$/presentation/VistaPrincipal.java" />
       </list>
     </option>
   </component>
@@ -271,11 +271,6 @@
               <item name="NewProjectMM" type="b2602c69:ProjectViewProjectNode" />
               <item name="NewProjectMM" type="462c0819:PsiDirectoryNode" />
               <item name="persistence" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NewProjectMM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NewProjectMM" type="462c0819:PsiDirectoryNode" />
-              <item name="presentation" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -561,12 +556,12 @@
       <workItem from="1513332894226" duration="392000" />
       <workItem from="1513388102564" duration="3703000" />
       <workItem from="1513431363430" duration="86000" />
-      <workItem from="1513432460449" duration="9404000" />
+      <workItem from="1513432460449" duration="9884000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64159000" />
+    <option name="totallyTimeSpent" value="64639000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -888,29 +883,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-437">
-          <caret line="154" column="101" lean-forward="false" selection-start-line="154" selection-start-column="25" selection-end-line="154" selection-end-column="101" />
-          <folding>
-            <element signature="e#6872#7460#0" expanded="true" />
-            <element signature="e#7459#7460#0" expanded="true" />
-            <element signature="e#7506#7843#0" expanded="true" />
-            <element signature="e#7842#7843#0" expanded="true" />
-            <element signature="e#7886#8233#0" expanded="true" />
-            <element signature="e#8232#8233#0" expanded="true" />
-            <element signature="e#8278#8612#0" expanded="true" />
-            <element signature="e#8611#8612#0" expanded="true" />
-            <element signature="e#8655#9027#0" expanded="true" />
-            <element signature="e#9026#9027#0" expanded="true" />
-            <element signature="e#9117#9406#0" expanded="true" />
-            <element signature="e#9405#9406#0" expanded="true" />
-            <element signature="e#9498#9605#0" expanded="true" />
-            <element signature="e#9604#9605#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/presentation/VistaUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
@@ -952,6 +924,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Register.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1979">
+          <caret line="130" column="36" lean-forward="false" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1196#1204#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/persistence/registro.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -960,13 +943,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/domain/Register.java">
+    <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1979">
-          <caret line="130" column="36" lean-forward="true" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
+        <state relative-caret-position="348">
+          <caret line="189" column="71" lean-forward="false" selection-start-line="189" selection-start-column="71" selection-end-line="189" selection-end-column="71" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1196#1204#0" expanded="true" />
+            <element signature="e#6872#7595#0" expanded="true" />
+            <element signature="e#7594#7595#0" expanded="true" />
+            <element signature="e#7641#7978#0" expanded="true" />
+            <element signature="e#7977#7978#0" expanded="true" />
+            <element signature="e#8021#8368#0" expanded="true" />
+            <element signature="e#8367#8368#0" expanded="true" />
+            <element signature="e#8413#8747#0" expanded="true" />
+            <element signature="e#8746#8747#0" expanded="true" />
+            <element signature="e#8790#9162#0" expanded="true" />
+            <element signature="e#9161#9162#0" expanded="true" />
+            <element signature="e#9252#9541#0" expanded="true" />
+            <element signature="e#9540#9541#0" expanded="true" />
+            <element signature="e#9633#9740#0" expanded="true" />
+            <element signature="e#9739#9740#0" expanded="true" />
           </folding>
         </state>
       </provider>
