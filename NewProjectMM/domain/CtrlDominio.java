@@ -16,12 +16,14 @@ import presentation.CtrlPresentacion;
 public class CtrlDominio {
 
     private CtrlPersistence controladorPersistence;
+    private Register register;
 	    // TODO: Poner todas las grandes estructuras del proyecto aquí, Map, ArrayList...
 
 	    /** Constructor **/
 
 	public CtrlDominio() {
-		inicializarCtrlDominio();
+        register = new Register(this);
+	    inicializarCtrlDominio();
 	}
 
         /** Métodos públicos **/
@@ -36,5 +38,9 @@ public class CtrlDominio {
 
     public List<String> getDataRanking(String nameRank) {
         return controladorPersistence.getDataRanking(nameRank);
+    }
+
+    public boolean user_exists(String username){
+        return register.user_exists(username);
     }
 }

@@ -93,6 +93,8 @@ public class CtrlPresentacion {
 
 	    /** Llamadas al controlador de dominio **/
 
+    public boolean user_exists(String user) { return controladorDominio.user_exists(user); }
+
 	public List<String> getDataRanking(String nameRank) {
 		return controladorDominio.getDataRanking(nameRank);
 	}

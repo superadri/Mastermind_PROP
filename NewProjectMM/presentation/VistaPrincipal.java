@@ -270,7 +270,7 @@ public class VistaPrincipal {
 
         final JLabel[] colorSelect = {selectRed, selectOrange, selectYellow, selectGreen, selectBlue, selectPurple};
 
-        int controlLevelColorSelect = 0;
+        // int controlLevelColorSelect = 0;
         for (final JLabel peg : colorSelect) {
             peg.addMouseListener(new MouseAdapter() {
                 @Override

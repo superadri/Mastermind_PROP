@@ -1,5 +1,7 @@
 package presentation;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -63,7 +65,6 @@ public class VistaUser {
             public void windowClosed(WindowEvent arg0) {
             }
         });
-        dialogUser.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../persistence/windowsGlobal.png")));
     }
 	
 	private void asignarListenersComponentes() {
@@ -71,6 +72,9 @@ public class VistaUser {
             public void actionPerformed(ActionEvent e) {
             if (!textFieldName.getText().equals("")) {
                 System.out.println("Name: " + textFieldName.getText());
+                String messageUser = "User No Registrado";
+                if ( controladorPresentacion.user_exists(textFieldName.getText()) ) { messageUser = "User Registrado"; }
+                System.out.println(messageUser);
                 controladorPresentacion.countLevelGuess = 0;
                 controladorPresentacion.sincronizacionVistaUserAPrincipal();
             } else { System.out.println("Name Error"); }

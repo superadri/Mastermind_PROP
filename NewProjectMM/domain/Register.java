@@ -11,14 +11,17 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Register {
+
+    private CtrlDominio controladorDominio;
+
     private ArrayList<Player> users = new ArrayList<Player>();
     private ArrayList<String> nomUsers = new ArrayList<String>();
 
-    public Register() {
+    public Register(CtrlDominio cDominio) {
+        this.controladorDominio = cDominio;
   		try {
-  		//File f = new File("persistency/registro.txt");
-            File f = new File("persistency/registro.txt");
-  	        Scanner in = new Scanner(f);
+            File f = new File("./persistence/registro.txt");
+            Scanner in = new Scanner(f);
   	        in.useLocale(Locale.ENGLISH);
   	        while(in.hasNext()){
   	           String username = in.next();
@@ -56,6 +59,7 @@ public class Register {
     public boolean user_exists(String username){
         return nomUsers.contains(username);
     }
+
      public Player getPlayer(String username){
         int i = pos_player (username);
         Player p = users.get(i);
@@ -88,9 +92,7 @@ public class Register {
    }
 
     public void finished_game (String newuser) throws IOException{
-        //File f = new File("persistency/registro.txt");
-        String ruta = "persistency/registro.txt";
-        File filename = new File(ruta);
+        File filename = new File("./persistence/registro.txt");
 
         if (!user_exists(newuser)){
             nomUsers.add(newuser);
@@ -126,10 +128,9 @@ public class Register {
         }
     }
      public void set_continueGame (char game_start, String newuser, ArrayList<String> respuestas,double time,String codigo,String dificultat,String rol) throws IOException{
-         //File f = new File("persistency/registro.txt");
-        String ruta = "persistency/registro.txt";
-        File filename = new File(ruta);
-        if (!user_exists(newuser)){
+         File filename = new File("./persistence/registro.txt");
+
+         if (!user_exists(newuser)){
             nomUsers.add(newuser);
             Player p = new Player('1',newuser,respuestas,time,codigo,dificultat,rol);
             users.add(p);
