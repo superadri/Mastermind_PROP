@@ -43,7 +43,7 @@
                     <properties>
                       <horizontalAlignment value="0"/>
                       <horizontalTextPosition value="0"/>
-                      <text value="Red"/>
+                      <text value="Red   "/>
                     </properties>
                   </component>
                   <component id="c6865" class="javax.swing.JLabel" binding="selectRed">
@@ -103,7 +103,7 @@
                     <properties>
                       <horizontalAlignment value="0"/>
                       <horizontalTextPosition value="0"/>
-                      <text value="Green"/>
+                      <text value="Green "/>
                     </properties>
                   </component>
                   <component id="fe499" class="javax.swing.JLabel" binding="selectGreen">
@@ -133,7 +133,7 @@
                     <properties>
                       <horizontalAlignment value="0"/>
                       <horizontalTextPosition value="0"/>
-                      <text value="Blue"/>
+                      <text value="Blue  "/>
                     </properties>
                   </component>
                   <component id="efed0" class="javax.swing.JLabel" binding="selectBlue">

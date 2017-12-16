@@ -13,10 +13,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CtrlPersistence.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CtrlPersistence.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/persistence/CtrlPersistence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
+            <state relative-caret-position="566">
               <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
               <folding />
             </state>
@@ -26,9 +26,57 @@
       <file leaf-file-name="CtrlPresentacion.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/presentation/CtrlPresentacion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="43" column="54" lean-forward="false" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
-              <folding />
+            <state relative-caret-position="306">
+              <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VistaPrincipal.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="190" column="75" lean-forward="false" selection-start-line="190" selection-start-column="75" selection-end-line="190" selection-end-column="75" />
+              <folding>
+                <element signature="e#6872#7460#0" expanded="true" />
+                <element signature="e#7459#7460#0" expanded="true" />
+                <element signature="e#7506#7843#0" expanded="true" />
+                <element signature="e#7842#7843#0" expanded="true" />
+                <element signature="e#7886#8233#0" expanded="true" />
+                <element signature="e#8232#8233#0" expanded="true" />
+                <element signature="e#8278#8612#0" expanded="true" />
+                <element signature="e#8611#8612#0" expanded="true" />
+                <element signature="e#8655#9027#0" expanded="true" />
+                <element signature="e#9026#9027#0" expanded="true" />
+                <element signature="e#9117#9406#0" expanded="true" />
+                <element signature="e#9405#9406#0" expanded="true" />
+                <element signature="e#9498#9605#0" expanded="true" />
+                <element signature="e#9604#9605#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VistaPrincipal.form" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.form">
+          <provider selected="true" editor-type-id="ui-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VistaUser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/presentation/VistaUser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1148">
+              <caret line="72" column="41" lean-forward="false" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1683#1684#0" expanded="true" />
+                <element signature="e#1729#1730#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -36,8 +84,8 @@
       <file leaf-file-name="VistaRanking.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/presentation/VistaRanking.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1428">
-              <caret line="87" column="12" lean-forward="false" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
+            <state relative-caret-position="-175">
+              <caret line="54" column="26" lean-forward="false" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -80,6 +128,7 @@
       <find>dialogUser</find>
       <find>pegBlack</find>
       <find>hacerInvisible</find>
+      <find>dialogHelp</find>
       <find>settextAreaRanking</find>
     </findStrings>
     <replaceStrings>
@@ -91,6 +140,7 @@
       <replace>textAreaRanking</replace>
       <replace>dialogHelp</replace>
       <replace>dialogEndGame</replace>
+      <replace>dialogAbout</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -129,17 +179,19 @@
         <option value="$PROJECT_DIR$/domain/Player.java" />
         <option value="$PROJECT_DIR$/domain/Register.java" />
         <option value="$PROJECT_DIR$/domain/CtrlDominio.java" />
-        <option value="$PROJECT_DIR$/presentation/VistaHelp.form" />
         <option value="$PROJECT_DIR$/presentation/VistaUser.form" />
-        <option value="$PROJECT_DIR$/presentation/VistaPrincipal.form" />
         <option value="$PROJECT_DIR$/presentation/VistaEndGame.form" />
         <option value="$PROJECT_DIR$/presentation/VistaHelp.java" />
-        <option value="$PROJECT_DIR$/presentation/VistaPrincipal.java" />
-        <option value="$PROJECT_DIR$/presentation/VistaUser.java" />
         <option value="$PROJECT_DIR$/presentation/VistaEndGame.java" />
-        <option value="$PROJECT_DIR$/presentation/CtrlPresentacion.java" />
-        <option value="$PROJECT_DIR$/presentation/VistaRanking.java" />
         <option value="$PROJECT_DIR$/persistence/CtrlPersistence.java" />
+        <option value="$PROJECT_DIR$/presentation/VistaPrincipal.form" />
+        <option value="$PROJECT_DIR$/presentation/VistaHelp.form" />
+        <option value="$PROJECT_DIR$/presentation/VistaAbout.form" />
+        <option value="$PROJECT_DIR$/presentation/VistaAbout.java" />
+        <option value="$PROJECT_DIR$/presentation/VistaRanking.java" />
+        <option value="$PROJECT_DIR$/presentation/VistaUser.java" />
+        <option value="$PROJECT_DIR$/presentation/CtrlPresentacion.java" />
+        <option value="$PROJECT_DIR$/presentation/VistaPrincipal.java" />
       </list>
     </option>
   </component>
@@ -206,15 +258,15 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/presentation" />
+      <recent name="$PROJECT_DIR$/out" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="presentation" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/presentation" />
-      <recent name="$PROJECT_DIR$/out" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -468,12 +520,12 @@
       <workItem from="1513332894226" duration="392000" />
       <workItem from="1513388102564" duration="3703000" />
       <workItem from="1513431363430" duration="86000" />
-      <workItem from="1513432460449" duration="840000" />
+      <workItem from="1513432460449" duration="7711000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55595000" />
+    <option name="totallyTimeSpent" value="62466000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -555,25 +607,25 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/presentation/CtrlPresentacion.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="35" column="33" lean-forward="false" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/presentation/VistaDialogo.java" />
     <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3697#3698#0" expanded="false" />
-            <element signature="e#3740#3741#0" expanded="false" />
-            <element signature="e#3772#3773#0" expanded="false" />
-            <element signature="e#3816#3817#0" expanded="false" />
+            <element signature="e#6872#7460#0" expanded="true" />
+            <element signature="e#7459#7460#0" expanded="true" />
+            <element signature="e#7506#7843#0" expanded="true" />
+            <element signature="e#7842#7843#0" expanded="true" />
+            <element signature="e#7886#8233#0" expanded="true" />
+            <element signature="e#8232#8233#0" expanded="true" />
+            <element signature="e#8278#8612#0" expanded="true" />
+            <element signature="e#8611#8612#0" expanded="true" />
+            <element signature="e#8655#9027#0" expanded="true" />
+            <element signature="e#9026#9027#0" expanded="true" />
+            <element signature="e#9117#9406#0" expanded="true" />
+            <element signature="e#9405#9406#0" expanded="true" />
+            <element signature="e#9498#9605#0" expanded="true" />
+            <element signature="e#9604#9605#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -762,16 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/presentation/VistaHelp.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/presentation/VistaEndGame.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -812,57 +854,95 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/presentation/VistaHelp.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/presentation/VistaHelp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
+        <state relative-caret-position="952">
           <caret line="58" column="24" lean-forward="true" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
+    <entry file="file://$PROJECT_DIR$/presentation/VistaAbout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1374">
-          <caret line="254" column="39" lean-forward="false" selection-start-line="254" selection-start-column="39" selection-end-line="254" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3697#3698#0" expanded="false" />
-            <element signature="e#3740#3741#0" expanded="false" />
-            <element signature="e#3772#3773#0" expanded="false" />
-            <element signature="e#3816#3817#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/presentation/VistaUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-528">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        <state relative-caret-position="272">
+          <caret line="18" column="23" lean-forward="false" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/presentation/VistaAbout.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/presentation/VistaRanking.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="87" column="12" lean-forward="false" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
+        <state relative-caret-position="-175">
+          <caret line="54" column="26" lean-forward="false" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/persistence/CtrlPersistence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="566">
+          <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/presentation/CtrlPresentacion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="43" column="54" lean-forward="false" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
-          <folding />
+        <state relative-caret-position="306">
+          <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/persistence/CtrlPersistence.java">
+    <entry file="file://$PROJECT_DIR$/presentation/VistaUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="61" column="33" lean-forward="false" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
-          <folding />
+        <state relative-caret-position="1148">
+          <caret line="72" column="41" lean-forward="false" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1683#1684#0" expanded="true" />
+            <element signature="e#1729#1730#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="190" column="75" lean-forward="false" selection-start-line="190" selection-start-column="75" selection-end-line="190" selection-end-column="75" />
+          <folding>
+            <element signature="e#6872#7460#0" expanded="true" />
+            <element signature="e#7459#7460#0" expanded="true" />
+            <element signature="e#7506#7843#0" expanded="true" />
+            <element signature="e#7842#7843#0" expanded="true" />
+            <element signature="e#7886#8233#0" expanded="true" />
+            <element signature="e#8232#8233#0" expanded="true" />
+            <element signature="e#8278#8612#0" expanded="true" />
+            <element signature="e#8611#8612#0" expanded="true" />
+            <element signature="e#8655#9027#0" expanded="true" />
+            <element signature="e#9026#9027#0" expanded="true" />
+            <element signature="e#9117#9406#0" expanded="true" />
+            <element signature="e#9405#9406#0" expanded="true" />
+            <element signature="e#9498#9605#0" expanded="true" />
+            <element signature="e#9604#9605#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

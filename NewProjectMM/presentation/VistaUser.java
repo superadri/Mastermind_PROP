@@ -1,8 +1,12 @@
 package presentation;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import java.io.IOException;
 
 public class VistaUser {
 
@@ -16,6 +20,7 @@ public class VistaUser {
     private JButton buttonLogin;
     private JButton buttonQuit;
     private JTextField textFieldName;
+    private Image windowsGlobal;
 
 	    /** Constructora **/
 	
@@ -50,18 +55,23 @@ public class VistaUser {
         dialogUser.getRootPane().setDefaultButton(buttonLogin);
         dialogUser.addWindowListener(new WindowAdapter() {
             @Override  //User clicked 'X'
-            public void windowClosing(WindowEvent arg0) { System.exit(0); }
+            public void windowClosing(WindowEvent arg0) {
+                System.exit(0);
+            }
 
             @Override //Window is closed, now you can free resources if you need.
-            public void windowClosed(WindowEvent arg0) { }
+            public void windowClosed(WindowEvent arg0) {
+            }
         });
-	}
+        dialogUser.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("../persistence/windowsGlobal.png")));
+    }
 	
 	private void asignarListenersComponentes() {
         buttonLogin.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             if (!textFieldName.getText().equals("")) {
                 System.out.println("Name: " + textFieldName.getText());
+                controladorPresentacion.countLevelGuess = 0;
                 controladorPresentacion.sincronizacionVistaUserAPrincipal();
             } else { System.out.println("Name Error"); }
             }

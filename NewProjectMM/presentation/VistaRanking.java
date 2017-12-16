@@ -109,7 +109,7 @@ public class VistaRanking {
 
     private void settextAreaRanking() {
         String nameFile = (String) comboBoxRanking.getSelectedItem();
-        System.out.println(nameFile);
+        // System.out.println(nameFile);
         List<String> dataList = controladorPresentacion.getDataRanking(nameFile);
         if (dataList.size() == 0 ) { textAreaRanking.setText("..."); }
         else {

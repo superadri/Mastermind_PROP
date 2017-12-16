@@ -14,6 +14,9 @@ public class CtrlPresentacion {
 	private VistaUser vistaUser;
 	private VistaEndGame vistaEndGame;
 	private VistaHelp vistaHelp;
+	private VistaAbout vistaAbout;
+
+	public int countLevelGuess;
 
 	    //TODO: Hay que definir el role, cuando haces click X, para cerrar la ventana, en global
 
@@ -26,6 +29,7 @@ public class CtrlPresentacion {
         vistaPrincipal = new VistaPrincipal(this);
         vistaEndGame = new VistaEndGame(this);
         vistaHelp = new VistaHelp(this);
+        vistaAbout = new VistaAbout(this);
     }
 
 	public void inicializarPresentacion() {
@@ -35,6 +39,11 @@ public class CtrlPresentacion {
     }
 
 	    /** Métodos de sincronización entre vistas **/
+
+    public void sincronizacionVistaAboutAPrincipal() {
+        vistaPrincipal.activar();
+        vistaAbout.hacerInvisible();
+    }
 
 	public void sincronizacionVistaRankingAPrincipal() {
         vistaPrincipal.activar();
@@ -54,6 +63,11 @@ public class CtrlPresentacion {
     public void sincronizacionVistaUserAPrincipal() {
         vistaPrincipal.activar();
         vistaUser.hacerInvisible();
+    }
+
+    public void sincronizacionVistaPrincipalAAbout() {
+        vistaPrincipal.desactivar();
+        vistaAbout.hacerVisible();
     }
 
 	public void sincronizacionVistaPrincipalARanking() {

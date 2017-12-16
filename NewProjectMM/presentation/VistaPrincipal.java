@@ -76,6 +76,10 @@ public class VistaPrincipal {
     private JMenuItem menuitemRanking = new JMenuItem("Ranking");
     private JMenu menuHelp = new JMenu("Help");
     private JMenuItem menuitemReedme = new JMenuItem("Reedme");
+    private JMenu menuAbout = new JMenu("About");
+    private JMenuItem menuitemInfo = new JMenuItem("Show");
+
+    private boolean foundAnswer;
 
 
         /** Constructora **/
@@ -141,6 +145,8 @@ public class VistaPrincipal {
         menubarVista.add(menuOption);
         menuHelp.add(menuitemReedme);
         menubarVista.add(menuHelp);
+        menuAbout.add(menuitemInfo);
+        menubarVista.add(menuAbout);
         frameVista.setJMenuBar(menubarVista);
     }
 
@@ -165,6 +171,8 @@ public class VistaPrincipal {
 
         for (JLabel peg : board) { peg.setIcon(pegBlack); }
 
+        this.foundAnswer = false;
+
         // Change color Peg
             // g01p1.setIcon(pegRed);
     }
@@ -173,11 +181,32 @@ public class VistaPrincipal {
 
             // Listeners para los botones
 
+        buttonMakeGuess.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                    // Check Respuesta ... -> To foundAnswer
+                if ( controladorPresentacion.countLevelGuess == 10 || foundAnswer ) {
+                    System.out.println("Fin Game");
+                    controladorPresentacion.sincronizacionVistaPrincipalAEndGame();
+                } else{
+                    System.out.println("Level: " + controladorPresentacion.countLevelGuess);
+                    ++controladorPresentacion.countLevelGuess;
+                }
+            }
+        });
+
         menuitemRanking.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
             String texto = ((JMenuItem) event.getSource()).getText();
             System.out.println("Has seleccionado el menuitem con texto: " + texto);
             controladorPresentacion.sincronizacionVistaPrincipalARanking();
+            }
+        });
+
+        menuitemInfo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                String texto = ((JMenuItem) event.getSource()).getText();
+                System.out.println("Has seleccionado el menuitem con texto: " + texto);
+                controladorPresentacion.sincronizacionVistaPrincipalAAbout();
             }
         });
 
@@ -241,6 +270,7 @@ public class VistaPrincipal {
 
         final JLabel[] colorSelect = {selectRed, selectOrange, selectYellow, selectGreen, selectBlue, selectPurple};
 
+        int controlLevelColorSelect = 0;
         for (final JLabel peg : colorSelect) {
             peg.addMouseListener(new MouseAdapter() {
                 @Override

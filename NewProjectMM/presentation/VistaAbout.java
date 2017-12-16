@@ -4,27 +4,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class VistaHelp {
+public class VistaAbout {
 
         /** Controlador de presentacion **/
 
     private CtrlPresentacion controladorPresentacion;
 
         /** Componentes de la interficie grafica **/
-    private JDialog dialogHelp = new JDialog();
+    private JDialog dialogAbout = new JDialog();
     private JPanel contentPaneForm;
     private JButton buttonQuit;
     private JTextPane textPaneAbout;
     private String strTexto =
-            "Bienvenido a Mastermind " + "\n" +
-                    "Instrucciones:  "  + "\n" +
-                    "----------------" + "\n" +
-                    "B -> Posicion y letra correcto"+ "\n" +
-                    "R -> Letra correcta\n";
+            "Andreu x" + "\n" +
+            "Andría x" + "\n" +
+            "Pedro Llanos" + "\n";
 
         /** Constructora **/
 
-	public VistaHelp(CtrlPresentacion pCtrlPresentacion) {
+	public VistaAbout(CtrlPresentacion pCtrlPresentacion) {
         this.controladorPresentacion = pCtrlPresentacion;
         inicializarComponentes();
         asignarListenersComponentes();
@@ -33,29 +31,29 @@ public class VistaHelp {
 	    /** Métodos públicos **/
 	
 	public void hacerVisible() {
-        dialogHelp.pack();
-        dialogHelp.setVisible(true);
+        dialogAbout.pack();
+        dialogAbout.setVisible(true);
 	}
 
     public void hacerInvisible() {
-        dialogHelp.pack();
-        dialogHelp.setVisible(false);
+        dialogAbout.pack();
+        dialogAbout.setVisible(false);
         System.out.println("Estoy Invisible - VistaHelp");
     }
 
 	    /** Métodos privados **/
 	
 	private void inicializarComponentes() {
-        dialogHelp.setTitle("Help");
+        dialogAbout.setTitle("Help");
         textPaneAbout.setText(strTexto);
         textPaneAbout.setEditable(false);
-        dialogHelp.setContentPane(contentPaneForm);
-        dialogHelp.setModal(true);
-        dialogHelp.setMinimumSize(new Dimension(300, 200));
-        dialogHelp.setLocationRelativeTo(null);
-        dialogHelp.setResizable(false);
-        dialogHelp.getRootPane().setDefaultButton(buttonQuit);
-        dialogHelp.addWindowListener(new WindowAdapter() {
+        dialogAbout.setContentPane(contentPaneForm);
+        dialogAbout.setModal(true);
+        dialogAbout.setMinimumSize(new Dimension(300, 200));
+        dialogAbout.setLocationRelativeTo(null);
+        dialogAbout.setResizable(false);
+        dialogAbout.getRootPane().setDefaultButton(buttonQuit);
+        dialogAbout.addWindowListener(new WindowAdapter() {
             @Override   //User clicked 'X'
             public void windowClosing(WindowEvent arg0) { controladorPresentacion.sincronizacionVistaHelpAPrincipal(); }
 
@@ -69,15 +67,15 @@ public class VistaHelp {
             // call .dispose() on cancelButton
         buttonQuit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            // dialogHelp.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                controladorPresentacion.sincronizacionVistaHelpAPrincipal();
+            // dialogAbout.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                controladorPresentacion.sincronizacionVistaAboutAPrincipal();
             }
         });
 
             // call .dispose() on ESCAPE
         contentPaneForm.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controladorPresentacion.sincronizacionVistaHelpAPrincipal();
+                controladorPresentacion.sincronizacionVistaAboutAPrincipal();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 	}
