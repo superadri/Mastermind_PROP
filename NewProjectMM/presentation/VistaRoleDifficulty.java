@@ -52,7 +52,6 @@ public class VistaRoleDifficulty extends JDialog {
     public void hacerVisible() {
         dialogQuestion.pack();
         dialogQuestion.setVisible(true);
-        System.out.println("Estoy Visible - VistaRanking");
     }
 
     public void hacerInvisible() {

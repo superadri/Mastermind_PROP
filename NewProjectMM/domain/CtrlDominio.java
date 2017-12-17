@@ -47,6 +47,7 @@ public class CtrlDominio {
             System.out.println("Cargando Datos...");
             if(controladorPersistence.game_start_user(username)){
                //dialog si continuar partida
+                controladorPresentacion.sincronizacionVistaAQuestion(username);
             } else {
                 //dialog nueva partida
                 controladorPresentacion.sincronizacionVistaRoleDifficulty(username);

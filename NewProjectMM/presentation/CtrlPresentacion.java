@@ -16,6 +16,7 @@ public class CtrlPresentacion {
 	private VistaHelp vistaHelp;
 	private VistaAbout vistaAbout;
 	private VistaRoleDifficulty vistaQuestion;
+	private VistaQuestionToContinue vistaToContinue;
 
 	public int countLevelGuess;
 
@@ -97,6 +98,20 @@ public class CtrlPresentacion {
         vistaPrincipal.desactivar();
         vistaQuestion.hacerVisible();
     }
+    public void sincronizacionRole() {
+        vistaQuestion.hacerVisible();
+    }
+    public void sincronizacionVistaAQuestion(String username) {
+        vistaToContinue = new VistaQuestionToContinue(this,username);
+        vistaToContinue.hacerVisible();
+    }
+
+
+    public void sincronizacionContinueGame() {
+        //TODO: usuario quiere continuar su partida
+    }
+
+
 
 	    /** Llamadas al controlador de dominio **/
 
@@ -115,4 +130,6 @@ public class CtrlPresentacion {
         vistaQuestion.hacerInvisible();
         //TODO: pasar a dominio el role y difficulty
     }
+
+
 }
