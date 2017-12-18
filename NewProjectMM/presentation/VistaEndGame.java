@@ -29,12 +29,12 @@ public class VistaEndGame {
 	public void hacerVisible() {
         dialogEndGame.pack();
         dialogEndGame.setVisible(true);
+        System.out.println("Estoy Invisible - VistaEndGame");
 	}
 
     public void hacerInvisible() {
         dialogEndGame.pack();
         dialogEndGame.setVisible(false);
-        System.out.println("Estoy Invisible - VistaEndGame");
     }
 
 	    /** Métodos privados **/

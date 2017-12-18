@@ -4,26 +4,69 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class VistaQuestionToContinue extends JDialog {
-    private final CtrlPresentacion ctrlP;
+public class VistaQuestionToContinue {
+
+    private CtrlPresentacion controladorPresentacion;
+
+    private JDialog dialogContinue = new JDialog();
     private final String username;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JLabel label;
-    private JDialog dialogQuestion = new JDialog();
 
-    public VistaQuestionToContinue(CtrlPresentacion ctrlP, String username) {
-        this.ctrlP = ctrlP;
+
+    public VistaQuestionToContinue(CtrlPresentacion pCtrlPresentacion, String username) {
+        this.controladorPresentacion = pCtrlPresentacion;
         this.username = username;
-
-        setContentPane(contentPane);
-        setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
-
+        inicializarComponentes();
         inicializarQuestion();
-        label.setText("¿Quieres continuar la partida "+username+"?");
+        asignarListenersComponentes();
+    }
 
+    public void hacerVisible() {
+        dialogContinue.pack();
+        dialogContinue.setVisible(true);
+    }
+
+    public void hacerInvisible() {
+        dialogContinue.pack();
+        dialogContinue.setVisible(false);
+    }
+
+    private void inicializarComponentes() {
+        label.setText("¿Quieres continuar la partida "+username+"?");
+    }
+
+    private void inicializarQuestion() {
+        dialogContinue.setTitle("Continue");
+        dialogContinue.setContentPane(contentPane);
+        dialogContinue.setModal(true);
+        dialogContinue.setMinimumSize(new Dimension(200, 100));
+        dialogContinue.setLocationRelativeTo(null); // Centro
+        dialogContinue.setResizable(false);
+        dialogContinue.getRootPane().setDefaultButton(buttonOK);
+        dialogContinue.addWindowListener(new WindowAdapter() {
+            @Override  //User clicked 'X'
+            public void windowClosing(WindowEvent arg0) { controladorPresentacion.sincronizacionVistaQuestionToContinueAUser(); }
+
+            @Override //Window is closed, now you can free resources if you need.
+            public void windowClosed(WindowEvent arg0) { }
+        });
+    }
+
+    private void onOK() {
+        // add your code here
+        controladorPresentacion.sincronizacionVistaQuestionToContinueAPrincipal();
+    }
+
+    private void onCancel() {
+        // add your code here if necessary
+        controladorPresentacion.sincronizacionVistaQuestionToContinueARoleDifficulty(username);
+    }
+
+
+    private void asignarListenersComponentes() {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -35,51 +78,18 @@ public class VistaQuestionToContinue extends JDialog {
                 onCancel();
             }
         });
+
+        // call .dispose() on ESCAPE
+        contentPane.registerKeyboardAction(new ActionListener() {
+            public void actionPerformed(ActionEvent e) { controladorPresentacion.sincronizacionVistaQuestionToContinueAUser(); }
+        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void inicializarQuestion() {
-        dialogQuestion.setTitle("Question");
-        dialogQuestion.setContentPane(contentPane);
-        dialogQuestion.setModal(true);
-        dialogQuestion.setMinimumSize(new Dimension(200, 100));
-        dialogQuestion.setLocationRelativeTo(null); // Centro
-        dialogQuestion.setResizable(false);
-        /*dialogQuestion.getRootPane().setDefaultButton(buttonQuit);
-        dialogQuestion.addWindowListener(new WindowAdapter() {
-            @Override  //User clicked 'X'
-            public void windowClosing(WindowEvent arg0) { controladorPresentacion.sincronizacionVistaRankingAPrincipal(); }
-
-            @Override //Window is closed, now you can free resources if you need.
-            public void windowClosed(WindowEvent arg0) { }
-        });*/
-    }
-
-    private void onOK() {
-        // add your code here
-        hacerInvisible();
-        ctrlP.sincronizacionContinueGame();
-    }
-
-    private void onCancel() {
-        // add your code here if necessary
-        hacerInvisible();
-        ctrlP.sincronizacionRole();
-    }
-
-
-    public void hacerVisible() {
-        dialogQuestion.pack();
-        dialogQuestion.setVisible(true);
-    }
-
-    public void hacerInvisible() {
-        dialogQuestion.pack();
-        dialogQuestion.setVisible(false);
-    }
+    /*
     public static void main(String[] args) {
         CtrlPresentacion cP = new CtrlPresentacion();
         VistaQuestionToContinue vE = new VistaQuestionToContinue(cP,"niño");
         vE.hacerVisible();
     }
-
+    */
 }

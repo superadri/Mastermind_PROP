@@ -15,12 +15,10 @@ public class CtrlPresentacion {
 	private VistaEndGame vistaEndGame;
 	private VistaHelp vistaHelp;
 	private VistaAbout vistaAbout;
-	private VistaRoleDifficulty vistaQuestion;
+	private VistaRoleDifficulty vistaDifficulty;
 	private VistaQuestionToContinue vistaToContinue;
 
 	public int countLevelGuess;
-
-	    //TODO: Hay que definir el role, cuando haces click X, para cerrar la ventana, en global
 
         /** Constructor **/
 
@@ -31,7 +29,7 @@ public class CtrlPresentacion {
         vistaPrincipal = new VistaPrincipal(this);
         vistaEndGame = new VistaEndGame(this);
         vistaHelp = new VistaHelp(this);
-        vistaQuestion = new VistaRoleDifficulty(this);
+        vistaDifficulty = new VistaRoleDifficulty(this);
         vistaAbout = new VistaAbout(this);
     }
 
@@ -39,38 +37,46 @@ public class CtrlPresentacion {
 		controladorDominio.inicializarCtrlDominio();
         vistaUser.hacerVisible();
         vistaPrincipal.hacerVisible();
+        vistaPrincipal.desactivar();
     }
 
 	    /** Métodos de sincronización entre vistas **/
 
     public void sincronizacionVistaAboutAPrincipal() {
-        vistaPrincipal.activar();
         vistaAbout.hacerInvisible();
+        vistaPrincipal.activar();
     }
 
 	public void sincronizacionVistaRankingAPrincipal() {
-        vistaPrincipal.activar();
         vistaRanking.hacerInvisible();
+        vistaPrincipal.activar();
     }
 
 	public void sincronizacionVistaEndGameAPrincipal() {
-        vistaPrincipal.activar();
         vistaEndGame.hacerInvisible();
+        vistaPrincipal.activar();
     }
 
 	public void sincronizacionVistaHelpAPrincipal() {
+        vistaHelp.hacerInvisible();
         vistaPrincipal.activar();
-		vistaHelp.hacerInvisible();
     }
 
-    public void sincronizacionVistaUserAPrincipal() {
+    public void sincronizacionVistaRoleDifficultyAPrincipal(String role, String difficulty) {
+        vistaDifficulty.hacerInvisible();
         vistaPrincipal.activar();
-        vistaUser.hacerInvisible();
+        setRoleDificulty(role, difficulty);
     }
 
-    public void sincronizacionVistaPrincipalAAbout() {
+    public void sincronizacionVistaQuestionToContinueAPrincipal() {
+        //TODO: usuario quiere continuar su partida
+        vistaToContinue.hacerInvisible();
+        vistaPrincipal.activar();
+    }
+
+    public void sincronizacionVistaPrincipalAEndGame() {
         vistaPrincipal.desactivar();
-        vistaAbout.hacerVisible();
+        vistaEndGame.hacerVisible();
     }
 
 	public void sincronizacionVistaPrincipalARanking() {
@@ -83,39 +89,44 @@ public class CtrlPresentacion {
         vistaHelp.hacerVisible();
     }
 
-    public void sincronizacionVistaPrincipalAEndGame() {
+    public void sincronizacionVistaPrincipalAAbout() {
         vistaPrincipal.desactivar();
-        vistaEndGame.hacerVisible();
+        vistaAbout.hacerVisible();
+    }
+
+    public void sincronizacionVistaRoleDifficultyAUser() {
+        vistaDifficulty.hacerInvisible();
+        vistaUser.hacerVisible();
     }
 
     public void sincronizacionVistaEndGameAUser() {
-        vistaPrincipal.desactivar();
         vistaEndGame.hacerInvisible();
         vistaUser.hacerVisible();
     }
 
-    public void sincronizacionVistaRoleDifficulty(String username) {
-        vistaPrincipal.desactivar();
-        vistaQuestion.hacerVisible();
-    }
-    public void sincronizacionRole() {
-        vistaQuestion.hacerVisible();
-    }
-    public void sincronizacionVistaAQuestion(String username) {
+    public void sincronizacionVistaUserAQuestionToContinue(String username) {
+        vistaUser.hacerInvisible();
         vistaToContinue = new VistaQuestionToContinue(this,username);
         vistaToContinue.hacerVisible();
     }
 
-
-    public void sincronizacionContinueGame() {
-        //TODO: usuario quiere continuar su partida
+    public void sincronizacionVistaUserARoleDifficulty(String username) {
+            // TODO: Save username
+        vistaUser.hacerInvisible();
+        vistaDifficulty.hacerVisible();
     }
 
+    public void sincronizacionVistaQuestionToContinueARoleDifficulty(String username) {
+        vistaToContinue.hacerInvisible();
+        vistaDifficulty.hacerVisible();
+    }
 
+    public void sincronizacionVistaQuestionToContinueAUser() {
+        vistaToContinue.hacerInvisible();
+        vistaUser.hacerVisible();
+    }
 
 	    /** Llamadas al controlador de dominio **/
-
-    public boolean user_exists(String user) { return controladorDominio.user_exists(user); }
 
 	public List<String> getDataRanking(String nameRank) {
 		return controladorDominio.getDataRanking(nameRank);
@@ -125,11 +136,15 @@ public class CtrlPresentacion {
 		return controladorDominio.getNameRankings();
 	}
 
-
-    public void setRoleDificulty(String role, String difficulty) {
-        vistaQuestion.hacerInvisible();
-        //TODO: pasar a dominio el role y difficulty
+    public boolean user_exists(String user) {
+        return controladorDominio.user_exists(user);
     }
 
+    public boolean game_start_user(String username) {
+        return controladorDominio.game_start_user(username);
+    }
 
+	public void setRoleDificulty(String role, String difficulty) {
+        //TODO: pasar a dominio el role y difficulty
+    }
 }

@@ -20,8 +20,8 @@ public class Register {
     private ArrayList<Player> users = new ArrayList<Player>();
     private ArrayList<String> nomUsers = new ArrayList<String>();
 
-    public Register(CtrlPersistence ctrlP) {
-        this.controladorPersistence = ctrlP;
+    public Register(CtrlPersistence ctrlPersistence) {
+        this.controladorPersistence = ctrlPersistence;
   		try {
             File f = new File("./persistence/registro.txt");
             Scanner in = new Scanner(f);

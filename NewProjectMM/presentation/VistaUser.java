@@ -34,14 +34,12 @@ public class VistaUser {
 	    /** Métodos públicos **/
 	
 	public void hacerVisible() {
-        dialogUser.pack();
         dialogUser.setVisible(true);
+        System.out.println("Estoy Visible - VistaUser");
 	}
 
     public void hacerInvisible() {
-        dialogUser.pack();
         dialogUser.setVisible(false);
-        System.out.println("Estoy Invisible - VistaUser");
     }
 
 	    /** Métodos privados **/
@@ -71,11 +69,21 @@ public class VistaUser {
             public void actionPerformed(ActionEvent e) {
             if (!textFieldName.getText().equals("")) {
                 System.out.println("Name: " + textFieldName.getText());
-                String messageUser = "User No Registrado";
-                if ( controladorPresentacion.user_exists(textFieldName.getText()) ) { messageUser = "User Registrado"; }
-                System.out.println(messageUser);
+                if ( controladorPresentacion.user_exists(textFieldName.getText()) ) {
+                    System.out.println("User Registrado");
+                    System.out.println("Cargando Datos...");
+                    if( controladorPresentacion.game_start_user(textFieldName.getText()) ) {
+                        System.out.println("Tiene partida pendiente...");
+                        controladorPresentacion.sincronizacionVistaUserAQuestionToContinue(textFieldName.getText());
+                    } else {
+                        System.out.println("No tiene partida pendiente...");
+                        controladorPresentacion.sincronizacionVistaUserARoleDifficulty(textFieldName.getText());
+                    }
+                } else {
+                    System.out.println("User No Registrado");
+                    controladorPresentacion.sincronizacionVistaUserARoleDifficulty(textFieldName.getText());
+                }
                 controladorPresentacion.countLevelGuess = 0;
-                controladorPresentacion.sincronizacionVistaUserAPrincipal();
             } else { System.out.println("Name Error"); }
             }
         });

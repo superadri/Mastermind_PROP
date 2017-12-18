@@ -93,14 +93,13 @@ public class VistaPrincipal {
 
 	public void hacerVisible() {
 		frameVista.pack();
-		frameVista.setVisible(true);
+        frameVista.setVisible(true);
         System.out.println("Estoy Visible - VistaPrincipal");
 	}
 
     public void hacerInvisible() {
         frameVista.pack();
         frameVista.setVisible(true);
-        System.out.println("Estoy Invisible - VistaPrincipal");
     }
 
     public void activar() {

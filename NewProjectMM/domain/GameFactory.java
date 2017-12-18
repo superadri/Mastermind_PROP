@@ -20,7 +20,7 @@ public class GameFactory {
 	//private String[] allPairsGA;
 
     public static void main(String[] args) throws IOException {
-        // TODO code application logic here
+        // TODO code application logic here -> esto ya no es necesario
 				// new VistaInstrucciones().hacerVisible();
 				GameFactory gf = new GameFactory();
 				gf.menu();
