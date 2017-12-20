@@ -46,6 +46,8 @@ public class VistaPrincipal {
             g08p1, g08p2, g08p3, g08p4, a08p1, a08p2, a08p3, a08p4,
             g09p1, g09p2, g09p3, g09p4, a09p1, a09p2, a09p3, a09p4,
             g10p1, g10p2, g10p3, g10p4, a10p1, a10p2, a10p3, a10p4;
+    private JPanel invalidGuessPanel;
+    private JLabel invalidGuessLabel;
 
     private JLabel[] board = {
             g01p1, g01p2, g01p3, g01p4, a01p1, a01p2, a01p3, a01p4,
@@ -228,51 +230,104 @@ public class VistaPrincipal {
         }
     }
 
+    private boolean checkValidAnswer() {
+        switch (controladorPresentacion.countLevelGuess + 1) {
+            case 1: return (g01p1.getIcon() != pegBlack &&
+                            g01p2.getIcon() != pegBlack &&
+                            g01p3.getIcon() != pegBlack &&
+                            g01p4.getIcon() != pegBlack);
+            case 2: return (g02p1.getIcon() != pegBlack &&
+                            g02p2.getIcon() != pegBlack &&
+                            g02p3.getIcon() != pegBlack &&
+                            g02p4.getIcon() != pegBlack);
+            case 3: return (g03p1.getIcon() != pegBlack &&
+                            g03p2.getIcon() != pegBlack &&
+                            g03p3.getIcon() != pegBlack &&
+                            g03p4.getIcon() != pegBlack);
+            case 4: return (g04p1.getIcon() != pegBlack &&
+                            g04p2.getIcon() != pegBlack &&
+                            g04p3.getIcon() != pegBlack &&
+                            g04p4.getIcon() != pegBlack);
+            case 5: return (g05p1.getIcon() != pegBlack &&
+                            g05p2.getIcon() != pegBlack &&
+                            g05p3.getIcon() != pegBlack &&
+                            g05p4.getIcon() != pegBlack);
+            case 6: return (g06p1.getIcon() != pegBlack &&
+                            g06p2.getIcon() != pegBlack &&
+                            g06p3.getIcon() != pegBlack &&
+                            g06p4.getIcon() != pegBlack);
+            case 7: return (g07p1.getIcon() != pegBlack &&
+                            g07p2.getIcon() != pegBlack &&
+                            g07p3.getIcon() != pegBlack &&
+                            g07p4.getIcon() != pegBlack);
+            case 8: return (g08p1.getIcon() != pegBlack &&
+                            g08p2.getIcon() != pegBlack &&
+                            g08p3.getIcon() != pegBlack &&
+                            g08p4.getIcon() != pegBlack);
+            case 9: return (g09p1.getIcon() != pegBlack &&
+                            g09p2.getIcon() != pegBlack &&
+                            g09p3.getIcon() != pegBlack &&
+                            g09p4.getIcon() != pegBlack);
+            case 10: return (g10p1.getIcon() != pegBlack &&
+                            g10p2.getIcon() != pegBlack &&
+                            g10p3.getIcon() != pegBlack &&
+                            g10p4.getIcon() != pegBlack);
+        }
+        return true;
+    }
+
     private void asignarListenersComponentes() {
 
         // Listeners para los botones
         buttonMakeGuess.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 // Check Respuesta ... -> To foundAnswer
-                // 10 = Límite max del tipo de tablero...
+                if (checkValidAnswer()) {
+                    invalidGuessPanel.setVisible(false);
+                    // 10 = Límite max del tipo de tablero...
 
-                String codeOut = "";
-                for (JLabel peg : guesses) {
-                    MouseListener[] mls = peg.getMouseListeners();
-                    if (mls != null) {
-                        for (MouseListener ml : mls) {
-                            String codePeg = peg.getIcon().toString();
-                            codeOut += traductorColorToStringGuess(codePeg);
+                    String codeOut = "";
+                    for (JLabel peg : guesses) {
+                        MouseListener[] mls = peg.getMouseListeners();
+                        if (mls != null) {
+                            for (MouseListener ml : mls) {
+                                String codePeg = peg.getIcon().toString();
+                                codeOut += traductorColorToStringGuess(codePeg);
+                            }
                         }
                     }
-                }
                     // TODO: Ready to Send code Guess and Answer
-                System.out.println(codeOut);
+                    System.out.println(codeOut);
                     // TODO: Ready to Receiver code Answer and then do the check -> foundAnswer
-                setColorAnswers("RRRR");
-                // foundAnswer = controladorPresentacion.check_Board();
+                    setColorAnswers("RRRR");
+                    // foundAnswer = controladorPresentacion.check_Board();
 
-                if (controladorPresentacion.countLevelGuess == 9 || foundAnswer) {
-                    System.out.println("Fin Game");
-                    if (foundAnswer) {
-                        found = 1;
-                        System.out.println("You Win!");
-                        controladorPresentacion.sincronizacionVistaPrincipalAEndGameWin(0, 0);
+                    if (controladorPresentacion.countLevelGuess == 9 || foundAnswer) {
+                        System.out.println("Fin Game");
+                        if (foundAnswer) {
+                            found = 1;
+                            System.out.println("You Win!");
+                            controladorPresentacion.sincronizacionVistaPrincipalAEndGameWin(0, 0);
+                        } else {
+                            found = 2;
+                            System.out.println("You Lost!");
+                            controladorPresentacion.sincronizacionVistaPrincipalAEndGameNotWin();
+                        }
                     } else {
-                        found = 2;
-                        System.out.println("You Lost!");
-                        controladorPresentacion.sincronizacionVistaPrincipalAEndGameNotWin();
+                        found = 3;
+                        System.out.println("Level: " + controladorPresentacion.countLevelGuess);
+                        ++controladorPresentacion.countLevelGuess;
                     }
+                    listenerPegAll();
+                    System.out.println("1" + inicontrolSec);
+                    if (inicontrolSec) {
+                        controlSecuencia += 4;
+                    }
+                    inicontrolSec = true;
+                    System.out.println("2" + controlSecuencia);
                 } else {
-                    found = 3;
-                    System.out.println("Level: " + controladorPresentacion.countLevelGuess);
-                    ++controladorPresentacion.countLevelGuess;
+                    invalidGuessPanel.setVisible(true);
                 }
-                listenerPegAll();
-                System.out.println("1"+inicontrolSec);
-                if(inicontrolSec) { controlSecuencia += 4; }
-                inicontrolSec = true;
-                System.out.println("2"+controlSecuencia);
             }
         });
 
