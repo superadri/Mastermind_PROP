@@ -100,6 +100,7 @@ public class VistaPrincipal {
     private boolean foundAnswer;
     private int found;
     private int controlSecuencia;
+    private boolean inicontrolSec;
 
     /**
      * Constructora
@@ -204,12 +205,27 @@ public class VistaPrincipal {
         selectBlue.setIcon(pegBlue);
         selectPurple.setIcon(pegPurple);
 
+        inicializarBoardReset();
+        System.out.println(controlSecuencia);
+    }
+
+    public void inicializarBoardContinue() {
+            // mod 4
+        System.out.println(controlSecuencia);
+        this.controlSecuencia = 4;
+        this.foundAnswer = false;
+        for (JLabel peg : guesses) { peg.setIcon(pegBlue); }
+        for (JLabel peg : answers) { peg.setIcon(pegBlack); }
+    }
+
+    public void inicializarBoardReset() {
+        System.out.println(controlSecuencia);
+        this.controlSecuencia = 0;
+        this.inicontrolSec = false;
+        this.foundAnswer = false;
         for (JLabel peg : board) {
             peg.setIcon(pegBlack);
         }
-
-        this.foundAnswer = false;
-        this.controlSecuencia = 0;
     }
 
     private void asignarListenersComponentes() {
@@ -253,7 +269,10 @@ public class VistaPrincipal {
                     ++controladorPresentacion.countLevelGuess;
                 }
                 listenerPegAll();
-                controlSecuencia += 4;
+                System.out.println("1"+inicontrolSec);
+                if(inicontrolSec) { controlSecuencia += 4; }
+                inicontrolSec = true;
+                System.out.println("2"+controlSecuencia);
             }
         });
 
@@ -285,7 +304,7 @@ public class VistaPrincipal {
             public void actionPerformed(ActionEvent event) {
                 String texto = ((JMenuItem) event.getSource()).getText();
                 System.out.println("Has seleccionado el menuitem con texto: " + texto);
-                // TODO: Save game
+                    // TODO: Save game
                 ArrayList<String> codeOutGuess = new ArrayList<>();
                 ArrayList<String> codeOutAnswers = new ArrayList<>();
                 String codePegGuess = "";
@@ -301,7 +320,7 @@ public class VistaPrincipal {
                         codePegAnswers = "";
                     }
                 }
-                System.out.println(codeOutGuess+" "+codeOutAnswers);
+                System.out.println(codeOutGuess+" - "+codeOutAnswers);
                 controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave(found);
             }
         });
@@ -328,8 +347,8 @@ public class VistaPrincipal {
             if (i >= controlSecuencia && i < controlSecuencia + 4) { peg.addMouseListener(ml); }
             else if (i > controlSecuencia + 4) { break; }
         }
-
-        controlSecuencia += 4;
+        if (inicontrolSec) { controlSecuencia += 4; }
+        inicontrolSec = true;
 
         final JLabel[] colorSelect = {selectRed, selectOrange, selectYellow, selectGreen, selectBlue, selectPurple};
 
@@ -365,14 +384,13 @@ public class VistaPrincipal {
         int j = 0;
         for (int i = 0; i < answers.length; ++i) {
             final JLabel peg = answers[i];
-            if (i >= controlSecuencia-4 && i < controlSecuencia) {
+            if (i >= controlSecuencia && i < controlSecuencia+4) {
                 char letter = codeAnswer.charAt(j);
-                if (letter == 'R') { answers[i].setIcon(pegRed); }
-                else if (letter == 'B') { answers[i].setIcon(pegWhite); }
-                else { answers[i].setIcon(pegBlack); }
+                if (letter == 'R') { peg.setIcon(pegRed); }
+                else if (letter == 'B') { peg.setIcon(pegWhite); }
+                else { peg.setIcon(pegBlack); }
                 ++j;
-            }
-            else if (i > controlSecuencia + 4) { break; }
+            } else if (i > controlSecuencia + 4) { break; }
         }
     }
 
@@ -380,9 +398,9 @@ public class VistaPrincipal {
         for (int i = 0; i < guesses.length; ++i) {
             final JLabel peg = guesses[i];
             MouseListener ml = myMouseListener(peg);
-            if (i >= controlSecuencia && i < controlSecuencia + 4) { peg.addMouseListener(ml); }
-            else if (i < controlSecuencia) { removeClickListener(peg); }
-            else if (i > controlSecuencia + 4) { break; }
+            if (i >= controlSecuencia+4 && i < controlSecuencia+8) { peg.addMouseListener(ml); }
+            else if (i < controlSecuencia+4) { removeClickListener(peg); }
+            else if (i > controlSecuencia) { break; }
         }
     }
 

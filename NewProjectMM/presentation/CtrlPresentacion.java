@@ -67,6 +67,7 @@ public class CtrlPresentacion {
         } else {
             vistaDifficulty.hacerInvisible();
             vistaPrincipal.activar();
+            vistaPrincipal.inicializarBoardReset();
         }
     }
 
@@ -74,6 +75,7 @@ public class CtrlPresentacion {
         setRoleDificultyContinuegame(username);
         vistaToContinue.hacerInvisible();
         vistaPrincipal.activar();
+        vistaPrincipal.inicializarBoardContinue();
     }
 
     public void sincronizacionVistaPrincipalAEndGameWin(float time, int numRounds) {
@@ -174,10 +176,10 @@ public class CtrlPresentacion {
     }
 
 	public void setRoleDificultyNewGame(String username, String role, String difficulty) {
-        controladorDominio.setRoleDificultyNewGame(username, role, difficulty);
+        // controladorDominio.setRoleDificultyNewGame(username, role, difficulty);
     }
 
     public void setRoleDificultyContinuegame(String username) {
-        controladorDominio.setRoleDificultyContinueGame(username);
+        // controladorDominio.setRoleDificultyContinueGame(username);
     }
 }
