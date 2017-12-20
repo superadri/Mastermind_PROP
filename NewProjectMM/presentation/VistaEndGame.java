@@ -13,13 +13,18 @@ public class VistaEndGame {
         /** Componentes de la interficie grafica **/
     private JDialog dialogEndGame = new JDialog();
     private JPanel contentPaneForm;
-    private JButton buttonQuit;
+    private JButton buttonShowRanking;
     private JButton buttonNewGame;
+    private JLabel labelOutResult;
+    private int found;
+    public float time;
+    public int numRound;
 
     /** Constructora **/
 
-	public VistaEndGame(CtrlPresentacion pCtrlPresentacion) {
+	public VistaEndGame(CtrlPresentacion pCtrlPresentacion, int foundOut) {
         this.controladorPresentacion = pCtrlPresentacion;
+        this.found = foundOut;
         inicializarComponentes();
         asignarListenersComponentes();
 	}
@@ -40,16 +45,20 @@ public class VistaEndGame {
 	    /** Métodos privados **/
 	
 	private void inicializarComponentes() {
+	    if (found == 1) { labelOutResult.setText("You Won! - Time: "+time+", NumRounds: "+numRound); }
+	    else if (found == 2) { labelOutResult.setText("You Lost!"); }
+	    else { labelOutResult.setText("Result - Save it!"); }
+
         dialogEndGame.setTitle("Result");
         dialogEndGame.setContentPane(contentPaneForm);
         dialogEndGame.setModal(true);
         dialogEndGame.setMinimumSize(new Dimension(300, 200));
         dialogEndGame.setLocationRelativeTo(null);
         dialogEndGame.setResizable(false);
-        dialogEndGame.getRootPane().setDefaultButton(buttonQuit);
+        dialogEndGame.getRootPane().setDefaultButton(buttonShowRanking);
         dialogEndGame.addWindowListener(new WindowAdapter() {
             @Override //User clicked 'X'
-            public void windowClosing(WindowEvent arg0) { controladorPresentacion.sincronizacionVistaEndGameAPrincipal(); }
+            public void windowClosing(WindowEvent arg0) { controladorPresentacion.sincronizacionVistaEndGameAUser(); }
 
             @Override //Window is closed, now you can free resources if you need.
             public void windowClosed(WindowEvent arg0) { }
@@ -66,17 +75,17 @@ public class VistaEndGame {
         });
 
             // call .dispose() on cancelButton
-        buttonQuit.addActionListener(new ActionListener() {
+        buttonShowRanking.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             // dialogEndGame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-            controladorPresentacion.sincronizacionVistaEndGameAPrincipal();
+            controladorPresentacion.sincronizacionVistaEndGameARanking();
             }
         });
 
             // call .dispose() on ESCAPE
         contentPaneForm.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            controladorPresentacion.sincronizacionVistaEndGameAPrincipal();
+            controladorPresentacion.sincronizacionVistaEndGameAUser();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 	}

@@ -23,51 +23,58 @@ String getCode(int n);
 
 public class Board {
 
-  public String[] guesses, answers;
+    private CtrlDominio controladorDominio;
 
-  private int height, currentAttempt;
-  private String code;
+    private int height, currentAttempt;
+    private String code;
 
-  public Board(int height) {
-    this.height = height;
-    this.guesses = new String[height];
-    this.answers = new String[height];
-    this.currentAttempt = 0;
-  }
+    public String[] guesses, answers;
 
-  public String[] getAllPairsGA() {
-    String[] allPairsGA = new String[2*currentAttempt];
-    for (int i = 0; i < currentAttempt; ++i) {
-      allPairsGA[2*i] = getGuess(i);
-      allPairsGA[2*i+1] = getAnswer(i);
+    public Board(CtrlDominio controladorDominio, int height) {
+        this.controladorDominio = controladorDominio;
+        this.height = height;
+        this.guesses = new String[height];
+        this.answers = new String[height];
+        this.currentAttempt = 0;
     }
-    return allPairsGA;
-  }
 
-  public void setCode(String code) {
-    this.code = code;
-  }
+    public String[] getAllPairsGA() {
+        String[] allPairsGA = new String[2*currentAttempt];
+        for (int i = 0; i < currentAttempt; ++i) {
+            allPairsGA[2*i] = getGuess(i);
+            allPairsGA[2*i+1] = getAnswer(i);
+        }
+        return allPairsGA;
+    }
 
-  public void setGuessAndAnswer(String guess, String answer) {
-    setGuess(guess);
-    setAnswer(answer);
-    ++currentAttempt;
-  }
+    public void setGuessAndAnswer(String guess, String answer) {
+        setGuess(guess);
+        setAnswer(answer);
+        ++currentAttempt;
+    }
 
-  public String getGuess(int gi) {
-    return guesses[gi];
-  }
+    public void setCode(String code) {
+        controladorDominio.setCode(code);
+        this.code = code;
+    }
 
-  public String getAnswer(int ai) {
-    return answers[ai];
-  }
+    public String getGuess(int gi) {
+        controladorDominio.getGuess(guesses[gi]);
+        return guesses[gi];
+    }
 
-  private void setGuess(String guess) {
-    guesses[currentAttempt] = guess;
-  }
+    public String getAnswer(int ai) {
+        controladorDominio.getAnswer(answers[ai]);
+        return answers[ai];
+    }
 
-  private void setAnswer(String answer) {
-    answers[currentAttempt] = answer;
-  }
+    private void setGuess(String guess) {
+        controladorDominio.setGuess(guess);
+        guesses[currentAttempt] = guess;
+    }
 
+    private void setAnswer(String answer) {
+        controladorDominio.setAnswer(answer);
+        answers[currentAttempt] = answer;
+    }
 }

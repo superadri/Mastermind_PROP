@@ -21,7 +21,9 @@ import java.util.Scanner;
 
 public class Game {
 
-  public boolean computerCM, computerCB, repetition;
+    private CtrlDominio controladorDominio;
+
+    public boolean computerCM, computerCB, repetition;
   public CodeMaker cm;
   public CodeBreaker cb;
   public String guess, answer;
@@ -34,7 +36,8 @@ public class Game {
   private Mastermind mastermind;
   private String code;
 
-	public Game(Mastermind mastermind) {
+	public Game(CtrlDominio controladorDominio, Mastermind mastermind) {
+	    this.controladorDominio = controladorDominio;
 	    this.mastermind = mastermind;
 	    this.time = new Time();
 	    this.turn = 0;
@@ -44,22 +47,18 @@ public class Game {
 		this.repetition = mastermind.getrepetition();
     	this.height = mastermind.getheight();
 		System.out.println("Initial Configuration>");
-		System.out.println("width = " + this.width +
-      ", nLetters = " + this.nLetters +
-      ", repetition = " + this.repetition + ".");
-    if ((mastermind.getWhoisCM()).equals("MACHINE")) {
-      computerCM = true;
-			System.out.println("Initiazing CodeMaker algorithm...");
-			this.cm = new CodeMaker(width, nLetters, repetition);
-    }
-    else { computerCM = false; }
-    if ((mastermind.getWhoisCB()).equals("MACHINE")) {
-      computerCB = true;
-			System.out.println("Initiazing CodeBreaker algorithm...");
-			this.cb = new CodeBreaker(this, width, nLetters, repetition);
-    }
-    else { computerCB = false; }
-    this.board = new Board(height);
+		System.out.println("width = " + this.width + ", nLetters = " + this.nLetters + ", repetition = " + this.repetition + ".");
+        if ((mastermind.getWhoisCM()).equals("MACHINE")) {
+            computerCM = true;
+            System.out.println("Initiazing CodeMaker algorithm...");
+            this.cm = new CodeMaker(width, nLetters, repetition);
+        } else { computerCM = false; }
+        if ((mastermind.getWhoisCB()).equals("MACHINE")) {
+            computerCB = true;
+            System.out.println("Initiazing CodeBreaker algorithm...");
+            this.cb = new CodeBreaker(this, width, nLetters, repetition);
+        } else { computerCB = false; }
+        this.board = new Board(controladorDominio, height);
 	}
 
   public void continueGame(double lastTime, String code, String[] rounds) {
@@ -68,13 +67,13 @@ public class Game {
     board.setCode(code);
     System.out.println("Showing previous attempts:");
     for (int i = 0; i < rounds.length; i+=2) {
-      this.guess = rounds[i];
-      this.answer = rounds[i + 1];
-      board.setGuessAndAnswer(guess, answer);
-	  System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
-	  System.out.println("Game: answer = " + board.getAnswer(turn));
-      if (computerCB) { cb.updateDiscarded(guess, answer); }
-      ++this.turn;
+        this.guess = rounds[i];
+        this.answer = rounds[i + 1];
+        board.setGuessAndAnswer(guess, answer);
+        System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
+        System.out.println("Game: answer = " + board.getAnswer(turn));
+        if (computerCB) { cb.updateDiscarded(guess, answer); }
+        ++this.turn;
     }
     runGame();
   }
@@ -82,7 +81,7 @@ public class Game {
 	public void startNewGame() {
 		this.lastTime = 0;
 		System.out.println("Starting new game...");
-    if (!repetition) { System.out.print("NO REPETITIONS ALLOWED -> "); }
+    	if (!repetition) { System.out.print("NO REPETITIONS ALLOWED -> "); }
 		Play cmplay = new Play(this, "CODEMAKER");
 		cmplay.makePlay();
 		board.setCode(code);
@@ -99,8 +98,8 @@ public class Game {
 			board.setGuessAndAnswer(guess, answer);
 			System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
 			System.out.println("Game: answer = " + board.getAnswer(turn));
-				++turn;
-		if (!guess.equals(code)) { continuePlaying = askContinue(); }
+			++turn;
+			if (!guess.equals(code)) { continuePlaying = askContinue(); }
 		} while (turn < height && !continuePlaying.equals("n") && !guess.equals(code));
 		time.stopTime();
 		currentTime = time.getTime();
@@ -139,85 +138,85 @@ public class Game {
 		return this.repetition;
 	}
 
-  public void sendCode(Play play, String code) {
+    public void sendCode(Play play, String code) {
     if (play.role.equals("CODEMAKER")) { this.code = code; }
-  }
+    }
 
-  public String sendGuess(String sentGuess) {
-    guess = sentGuess;
-    answer = calculateAnswer(guess, code);
-    return answer;
-  }
+    public String sendGuess(String sentGuess) {
+        guess = sentGuess;
+        answer = calculateAnswer(guess, code);
+        return answer;
+    }
 
-  public void printAnswerMatrix() {
+    public void printAnswerMatrix() {
     cb.printAnswerMatrix();
-  }
+    }
 
-  public String calculateAnswer(String g) {
+    public String calculateAnswer(String g) {
     return calculateAnswer(g, this.code);
-  }
+    }
 
-  public String calculateAnswer(String g, String c) {
-		char[] guess = g.toCharArray();
-		char[] code = c.toCharArray();
-		String answer = "";
-		boolean[] guessChecked = new boolean[width];
-		boolean[] codeChecked = new boolean[width];
-		for (int i = 0; i < width; ++i) {
-		  guessChecked[i] = false;
-		  codeChecked[i] = false;
-		}
-		// first pass: Black pins -> color & position correct
-		for (int i = 0; i < width; ++i) {
-		  if (guess[i] == code[i]) {
-		    answer += 'B'; // B for Black pin
-		    guessChecked[i] = true;
-		    codeChecked[i] = true;
-		  }
-		}
-		// second pass: Red pins: color correct & position incorrect
-		for (int i = 0; i < width; ++i) {
-		  for (int j = 0; j < width && !guessChecked[i]; ++j) {
-		    if (!codeChecked[j] && guess[i] == code[j]) {
-		      answer += 'R'; // R for Red pin
-		      guessChecked[i] = true;
-		      codeChecked[j] = true;
-		    }
-		  }
-		}
-		// third pass: X (no pin): color incorrect & position incorrect
-		// fill remaining slots with X
-		for (int i = 0; i < width; ++i) {
-			if (!guessChecked[i]) {
-				answer += "X"; // X for no pin
-			}
-		}
-		return answer;
-	}
+    public String calculateAnswer(String g, String c) {
+        char[] guess = g.toCharArray();
+        char[] code = c.toCharArray();
+        String answer = "";
+        boolean[] guessChecked = new boolean[width];
+        boolean[] codeChecked = new boolean[width];
+        for (int i = 0; i < width; ++i) {
+            guessChecked[i] = false;
+            codeChecked[i] = false;
+        }
+        // first pass: Black pins -> color & position correct
+        for (int i = 0; i < width; ++i) {
+            if (guess[i] == code[i]) {
+            answer += 'B'; // B for Black pin
+            guessChecked[i] = true;
+            codeChecked[i] = true;
+            }
+        }
+        // second pass: Red pins: color correct & position incorrect
+        for (int i = 0; i < width; ++i) {
+            for (int j = 0; j < width && !guessChecked[i]; ++j) {
+                if (!codeChecked[j] && guess[i] == code[j]) {
+                  answer += 'R'; // R for Red pin
+                  guessChecked[i] = true;
+                  codeChecked[j] = true;
+                }
+            }
+        }
+        // third pass: X (no pin): color incorrect & position incorrect
+        // fill remaining slots with X
+        for (int i = 0; i < width; ++i) {
+            if (!guessChecked[i]) {
+                answer += "X"; // X for no pin
+            }
+        }
+        return answer;
+    }
 
-  private String askContinue() {
-    System.out.print("Continue playing? (y/n): ");
-    Scanner sc = new Scanner(System.in);
-    return sc.nextLine();
-  }
+    private String askContinue() {
+        System.out.print("Continue playing? (y/n): ");
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
 
-  private void askSaveGame() {
-      System.out.print("Save game? (y/n): ");
-      Scanner sc = new Scanner(System.in);
-      String saveGame = sc.nextLine();
-      if (saveGame.equals("y")) { saveGame(); }
-  }
+    private void askSaveGame() {
+        System.out.print("Save game? (y/n): ");
+        Scanner sc = new Scanner(System.in);
+        String saveGame = sc.nextLine();
+        if (saveGame.equals("y")) { saveGame(); }
+    }
 
-  private void saveGame() {
-    mastermind.saveGame(this.code, this.currentTime, board.getAllPairsGA());
-  }
+    private void saveGame() {
+	    mastermind.saveGame(this.code, this.currentTime, board.getAllPairsGA());
+    }
 
-	  // Test Method
-	/*
-	public static void main(String[] args) {
-		String[] gameParameters = {"1","1","4","6","0"};
-		Game game = new Game(gameParameters);
-	}
-	*/
+      // Test Method
+    /*
+    public static void main(String[] args) {
+        String[] gameParameters = {"1","1","4","6","0"};
+        Game game = new Game(gameParameters);
+    }
+    */
 
 }

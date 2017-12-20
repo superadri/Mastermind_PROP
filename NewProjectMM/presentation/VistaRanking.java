@@ -41,7 +41,7 @@ public class VistaRanking {
 	}
 
     public void setComboBoxRankingName() {
-        List<String> dataRanking = controladorPresentacion.getNameRankings();
+        List<String> dataRanking = controladorPresentacion.getNameFileRankings();
         if (dataRanking.size() == 0) { dataRanking.add("..."); } // Value to Default or Empty
         for (String data : dataRanking) { comboBoxRanking.addItem(data); }
     }
@@ -93,7 +93,6 @@ public class VistaRanking {
 		buttonQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
             String texto = ((JButton) event.getSource()).getText();
-            // dialogRanking.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
             System.out.println("Has clickado el boton con texto: " + texto);
             controladorPresentacion.sincronizacionVistaRankingAPrincipal();
 			}
@@ -109,7 +108,6 @@ public class VistaRanking {
 
     private void settextAreaRanking() {
         String nameFile = (String) comboBoxRanking.getSelectedItem();
-        // System.out.println(nameFile);
         List<String> dataList = controladorPresentacion.getDataRanking(nameFile);
         if (dataList.size() == 0 ) { textAreaRanking.setText("..."); }
         else {
@@ -121,12 +119,10 @@ public class VistaRanking {
         textAreaRanking.setMargin(new Insets(10,10,10,10));
     }
 
-    /*
 	public static void main(String[] args) {
 		CtrlPresentacion cP = new CtrlPresentacion();
 		VistaRanking vR = new VistaRanking(cP);
 		vR.hacerVisible();
 		System.exit(0);
 	}
-	*/
 }

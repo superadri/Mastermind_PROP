@@ -1,15 +1,10 @@
 package presentation;
 
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.ImageIcon;
-import java.awt.Image;
-import java.io.IOException;
 
-public class VistaUser {
+public class VistaUser extends JPanel {
 
         /** Controlador de presentacion **/
 
@@ -21,9 +16,8 @@ public class VistaUser {
     private JButton buttonLogin;
     private JButton buttonQuit;
     private JTextField textFieldName;
-    private Image windowsGlobal;
 
-	    /** Constructora **/
+    /** Constructora **/
 	
 	public VistaUser(CtrlPresentacion pCtrlPresentacion) {
         this.controladorPresentacion = pCtrlPresentacion;
@@ -39,11 +33,13 @@ public class VistaUser {
 	}
 
     public void hacerInvisible() {
-        dialogUser.setVisible(false);
+	    dialogUser.setVisible(false);
     }
 
+    public void setNameLabel(String username) { textFieldName.setText(username); }
+
 	    /** Métodos privados **/
-	
+
 	private void inicializarComponentes() {
         dialogUser.setTitle("Login");
         dialogUser.setContentPane(contentPaneForm);

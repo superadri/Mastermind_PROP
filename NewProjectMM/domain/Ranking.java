@@ -1,50 +1,41 @@
 package domain;
 
-import persistence.CtrlPersistence;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Ranking {
 
-	private File f;
+	private CtrlDominio controladorDominio;
+
+	private File file;
 	private String route;
-	private Map<Double, String> m;
+	private Map<Double, String> mapDataRanking;
 
 		// Attribute
 	private ArrayList<String> nomUsers = new ArrayList<String>();
 
 		// Constructor
-	public Ranking(CtrlPersistence ctrlPersistence) {
-		this.f = null;
-		this.m = new HashMap<Double, String>();
+	public Ranking(CtrlDominio controladorDominio) {
+		this.controladorDominio = controladorDominio;
+		this.file = null;
+		this.mapDataRanking = new HashMap<Double, String>();
 	}
 
-	// Ordena primero por dificultad (implicito, un archivo para cada), despues
-	// por turnos, despues por tiempo (que es mas dificil que haya empate)
+        // TODO: Queda pendiente turns
 	public void updateRanking(String difficulty, int turns, Double time, String username, String role) {
-		m.clear();
+        mapDataRanking.clear();
 		openFile(difficulty,role);
-		// A partir de aqui ya hay un fichero abierto en f
-		// y nos podemos olvidar de "difficulty
-		m.put(time, username);
-
+        mapDataRanking.put(time, username);
 		saveFile();
 	}
 
 	public void showRanking(String difficulty, String role) {
-		System.out.println("\nRANKING: " );
-		m.clear();
+		System.out.println("showRanking" );
+        mapDataRanking.clear();
 		openFile(difficulty,role);
-		// A partir de aqui ya hay un fichero abierto en f
-		// y nos podemos olvidar de "difficulty"
-		MyComparator comparator = new MyComparator(m);
+		MyComparator comparator = new MyComparator(mapDataRanking);
 		Map<Double, String> sortedMap = new TreeMap<Double, String>(comparator);
-		sortedMap.putAll(m);
+		sortedMap.putAll(mapDataRanking);
 		Iterator it = sortedMap.entrySet().iterator();
 		int count = 1;
 		while (it.hasNext()) {
@@ -58,9 +49,9 @@ public class Ranking {
 
 	private void openFile(String difficulty,String role) {
 			try {
-				this.route = "persistency/ranking"+difficulty+role+".txt";
-				this.f = new File(route);
-				Scanner s = new Scanner(f);
+				this.route = "./persistence/ranking"+difficulty+role+".txt";
+				this.file = new File(route);
+				Scanner s = new Scanner(file);
 				s.useLocale(Locale.ENGLISH);
 				while( s.hasNext() ) {
 				    //String turn = s.next(); // por implementar
@@ -79,15 +70,15 @@ public class Ranking {
 		Pair<String, String> p = new Pair<String, String>(time, username);
 		m.put(turn, p);
 		*/
-		m.put(time, username);
+        mapDataRanking.put(time, username);
 	}
 
 	private void saveFile() {
 		try {
-			FileWriter fw = new FileWriter(this.f); //the true will append the new data
-			MyComparator comparator = new MyComparator(m);
+			FileWriter fw = new FileWriter(this.file); //the true will append the new data
+			MyComparator comparator = new MyComparator(mapDataRanking);
     		Map<Double, String> sortedMap = new TreeMap<Double, String>(comparator);
-    		sortedMap.putAll(m);
+    		sortedMap.putAll(mapDataRanking);
 			Iterator it = sortedMap.entrySet().iterator();
 			while (it.hasNext()) {
 				Map.Entry e = (Map.Entry)it.next();
@@ -106,15 +97,16 @@ public class Ranking {
 		}
 	}
 
+	/*
 		// Test Method
-		/*
-	public static void main(String[] args) {
-		Ranking rank = new Ranking();
-		rank.showRanking("EASY");
-		rank.updateRanking("EASY", 3, "5.2468", "Paco");
-		rank.saveFile();
-	}
-	*/
+		public static void main(String[] args) {
+            CtrlDominio controladorDominio = null;
+			Ranking rank = new Ranking(controladorDominio);
+			rank.showRanking("EASY","CM");
+			rank.updateRanking("EASY", 3, 7.7, "Paco", "CM");
+            rank.showRanking("EASY","CM");
+        }
+    */
 }
 
 class MyComparator implements Comparator<Double> {
@@ -125,10 +117,6 @@ class MyComparator implements Comparator<Double> {
     }
 
     public int compare(Double a, Double b) {
-		int compD = Double.compare(a, b);
-		if (compD > 0) { compD = 1; }
-		else if (compD < 0) { compD = -1; }
-		else if (compD == 0) { compD = -1; }
-		return compD;
+		return Double.compare(a, b);
     }
 }

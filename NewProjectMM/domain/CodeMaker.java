@@ -21,22 +21,17 @@ public class CodeMaker extends Algorithm {
 
 	public String createCode(String difficulty) {
 		String codeOut = "";
-		if (difficulty == "HARD") {		// Like a HardCoder mode
-			// TODO : We can take the code we never get right, (we tried before) and use one of them (list)
-			codeOut = easyCode();
-		} else if (difficulty == "MEDIUM") {	// Like a HardCoder mode
-			// TODO : We can take the code we sometimes get right, (we tried before) and use one of them (list)
-			codeOut = easyCode();
-		} else if (difficulty == "HARDCODER") { codeOut = "AABB"; }
-		else if (difficulty == "EASY") { codeOut = easyCode(); }
+		if ( difficulty.equals("EASY") || difficulty.equals("MEDIUM") ||  difficulty.equals("HARD") ) { codeOut = easyCode(); }
+		else if ( difficulty.endsWith("HARDCODER") ) { codeOut = "AABB"; }
+		System.out.println(codeOut);
 		return codeOut;
 	}
 
 	private String easyCode() {
 		String code = "";
 		for (int i = 0; i < width; ++i) {
-		  int j = (int)(Math.floor(nColors * Math.random()));
-		  code += (char)('A' + j);
+			int j = (int)(Math.floor(nColors * Math.random()));
+			code += (char)('A' + j);
 		}
 		return code;
 	}

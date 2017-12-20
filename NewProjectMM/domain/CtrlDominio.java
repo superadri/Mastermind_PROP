@@ -1,40 +1,39 @@
 package domain;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import persistence.CtrlPersistence;
-import domain.*;
 import presentation.CtrlPresentacion;
 
 public class CtrlDominio {
 
     private CtrlPersistence controladorPersistence;
-    private CtrlPresentacion controladorPresentacion;
-        // TODO: Poner todas las grandes estructuras del proyecto aquí, Map, ArrayList...
+
+    private GameFactory gameFactory;
+    private Register register;
+    private Ranking ranking;
 
 	    /** Constructor **/
 
-	public CtrlDominio(CtrlPresentacion pCtrlPresentacion) {
-        this.controladorPresentacion = pCtrlPresentacion;
-	    inicializarCtrlDominio();
-	    controladorPersistence.inicializarCtrlPersistencia(); //instanciar registro
+	public CtrlDominio() {
+        this.controladorPersistence = CtrlPersistence.getInstance();
+        this.register = new Register(this);
+        this.ranking = new Ranking(this);
+        this.gameFactory = new GameFactory(this);
 	}
 
         /** Métodos públicos **/
 
-    public void inicializarCtrlDominio() {
-        controladorPersistence = CtrlPersistence.getInstance();
+    public Register passRegister() {
+        return this.register;
     }
 
-	public List<String> getNameRankings() {
-	    return controladorPersistence.getNameRankings();
+    public Ranking passRanking() {
+        return this.ranking;
+    }
+
+	public List<String> getNameFileRankings() {
+	    return controladorPersistence.getNameFileRankings();
 	}
 
     public List<String> getDataRanking(String nameRank) {
@@ -42,10 +41,38 @@ public class CtrlDominio {
     }
 
     public boolean user_exists(String username){
-        return controladorPersistence.user_exists(username);
+        return register.user_exists(username);
     }
 
     public boolean game_start_user(String username) {
-        return controladorPersistence.game_start_user(username);
+        return register.game_start_user(username);
+    }
+
+    public void setRoleDificultyNewGame(String username, String role, String difficulty) {
+        gameFactory.newgame(username,role,difficulty);
+    }
+
+    public void setRoleDificultyContinueGame(String username) {
+        gameFactory.continuegame(username);
+    }
+
+    public String setCode(String code){
+        return code;
+    }
+
+    public String getGuess(String guesses) {
+        return guesses;
+    }
+
+    public String getAnswer(String answers) {
+        return answers;
+    }
+
+    public String setGuess(String guess) {
+        return guess;
+    }
+
+    public String setAnswer(String answer) {
+        return answer;
     }
 }
