@@ -22,7 +22,7 @@ public class Ranking {
 	}
 
         // TODO: Queda pendiente turns
-	public void updateRanking(String difficulty, int turns, Double time, String username, String role) {
+	public void updateRanking(String difficulty, Double time, String username, String role) {
         mapDataRanking.clear();
 		openFile(difficulty,role);
         mapDataRanking.put(time, username);

@@ -1,5 +1,7 @@
 package presentation;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.CtrlDominio;
@@ -18,8 +20,10 @@ public class CtrlPresentacion {
 	private VistaQuestionToContinue vistaToContinue;
 
 	private String nameUserNow;
+    private String role;
+    private String difficulty;
 
-        /** Constructor **/
+    /** Constructor **/
 
     public CtrlPresentacion() {
 		controladorDominio = new CtrlDominio();
@@ -67,6 +71,8 @@ public class CtrlPresentacion {
     }
 
     public void sincronizacionVistaRoleDifficultyAPrincipal(String username, String role, String difficulty) {
+        this.role = role;
+        this.difficulty = difficulty;
         setRoleDificultyNewGame(username, role, difficulty);
         vistaDifficulty.hacerInvisible();
         vistaPrincipal.inicializarBoardReset();
@@ -74,6 +80,9 @@ public class CtrlPresentacion {
     }
 
     public void sincronizacionVistaQuestionToContinueAPrincipal() {
+        //TODO: tenemos que modificar role y dificultad
+        this.difficulty = "EASY";
+        this.role = "CB";
         setRoleDificultyContinuegame(nameUserNow);
         vistaToContinue.hacerInvisible();
         vistaPrincipal.inicializarBoardContinue();
@@ -184,5 +193,16 @@ public class CtrlPresentacion {
     public void setRoleDificultyContinuegame(String username) {
         // TODO : Continuar la partida
         // controladorDominio.setRoleDificultyContinueGame(username);
+    }
+
+
+    public void passDataToRegister(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers) throws IOException {
+	    ArrayList<String> respuestas = new ArrayList<String>();
+	    for (int i = 0; i < codeOutAnswers.size(); ++i) {
+            respuestas.add(codeOutGuess.get(i));
+	        respuestas.add(codeOutAnswers.get(i));
+        }
+        //TODO: pasar codigo y time
+	    controladorDominio.finishGame(1.22,"AAAA",true,nameUserNow,role,difficulty,respuestas);
     }
 }

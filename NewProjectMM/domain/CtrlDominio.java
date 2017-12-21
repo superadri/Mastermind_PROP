@@ -1,5 +1,7 @@
 package domain;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import persistence.CtrlPersistence;
@@ -17,7 +19,7 @@ public class CtrlDominio {
 
 	public CtrlDominio() {
         this.controladorPersistence = CtrlPersistence.getInstance();
-        this.register = new Register(this);
+        this.register = new Register(this,controladorPersistence);
         this.ranking = new Ranking(this);
         this.gameFactory = new GameFactory(this);
 	}
@@ -75,4 +77,9 @@ public class CtrlDominio {
     public String setAnswer(String answer) {
         return answer;
     }
+
+    public void finishGame(Double strTime,String strCode,boolean save, String username, String role, String difficulty, ArrayList<String> respuestas) throws IOException {
+        gameFactory.set_continueGame(strTime,strCode,save,register,ranking,username,role,difficulty,respuestas);
+    }
+
 }

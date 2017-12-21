@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.event.AncestorListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventListener;
 
@@ -365,6 +366,11 @@ public class VistaPrincipal {
                         codePegGuess = "";
                         codePegAnswers = "";
                     }
+                }
+                try {
+                    controladorPresentacion.passDataToRegister(codeOutGuess,codeOutAnswers);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 System.out.println(codeOutGuess+" - "+codeOutAnswers);
                 controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave();

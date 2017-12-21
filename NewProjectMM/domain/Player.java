@@ -32,7 +32,7 @@ public class Player {
         this.rol = rol;
     }
 
-    void delete_all() {
+    public void delete_all() {
         game_start = '0';
         respuestas = null;
         time = 0;

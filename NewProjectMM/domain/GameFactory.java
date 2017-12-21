@@ -1,5 +1,8 @@
 package domain;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class GameFactory {
 
     private CtrlDominio controladorDominio;
@@ -30,6 +33,16 @@ public class GameFactory {
         mastermind = new Mastermind(controladorDominio, computerCM, computerCB, player.getDificultat(), player.getTime(), player.getCodigo(), player.getRespuestas());
     }
 
+    public void set_continueGame(Double strTime, String strCode, boolean gameSave, Register register, Ranking ranking, String username, String role, String strDifficulty, ArrayList<String> respuestas) throws IOException {
+        if (gameSave) {
+            register.set_continueGame('1',username, respuestas, strTime, strCode, strDifficulty, role);
+        } else {
+            register.finished_game(username);
+            ranking.updateRanking(strDifficulty,strTime ,username, role);
+        }
+    }
+}
+
     /*
         public static void main(String[] args) throws IOException {
                     // new VistaInstrucciones().hacerVisible();
@@ -37,7 +50,7 @@ public class GameFactory {
                     gf.menu();
         }
     */
-}
+
 
     /*
 	public void menu() throws IOException{
