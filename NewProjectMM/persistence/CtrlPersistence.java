@@ -3,10 +3,7 @@ package persistence;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class CtrlPersistence {
 	
@@ -34,23 +31,15 @@ public class CtrlPersistence {
                         boolean found = false;
                         StringTokenizer tokens = new StringTokenizer(extension, ".");
                         while (tokens.hasMoreTokens()) {
-                            if (tokens.nextToken().equals("registro")) {
-                                break;
-                            }
+                            if (tokens.nextToken().equals("registro")) { break; }
                             found = tokens.nextToken().equals("txt");
                         }
-                        if (found) {
-                            dataNR.add(file.getName());
-                        }
-                    } else {
-                        throw new IllegalArgumentException("String " + extension + " no contiene .");
-                    }
+                        if (found) { dataNR.add(file.getName()); }
+                    } else { throw new IllegalArgumentException("String " + extension + " no contiene ."); }
                 }
             }
-        } catch (NullPointerException ex) {
-            System.out.println("Error2: " + ex);
-        }
-
+        } catch (NullPointerException ex) { System.out.println("Error2: " + ex); }
+        Collections.sort(dataNR);
         return dataNR;
     }
 

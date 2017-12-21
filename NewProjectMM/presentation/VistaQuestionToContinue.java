@@ -13,13 +13,10 @@ public class VistaQuestionToContinue {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JLabel label;
-    private String userName;
 
-    public VistaQuestionToContinue(CtrlPresentacion pCtrlPresentacion, String username) {
+    public VistaQuestionToContinue(CtrlPresentacion pCtrlPresentacion) {
         this.controladorPresentacion = pCtrlPresentacion;
-        this.userName = username;
         inicializarComponentes();
-        inicializarQuestion();
         asignarListenersComponentes();
     }
 
@@ -33,11 +30,13 @@ public class VistaQuestionToContinue {
         dialogContinue.setVisible(false);
     }
 
-    private void inicializarComponentes() {
-        label.setText("¿Quieres continuar la partida "+userName+"?");
+    public void setNameLabel(String username) {
+        label.setText("¿Quieres continuar la partida "+username+"?");
+        label.revalidate();
+        label.repaint();
     }
 
-    private void inicializarQuestion() {
+    private void inicializarComponentes() {
         dialogContinue.setTitle("Continue");
         dialogContinue.setContentPane(contentPane);
         dialogContinue.setModal(true);
@@ -56,7 +55,7 @@ public class VistaQuestionToContinue {
 
     private void onOK() {
         // add your code here
-        controladorPresentacion.sincronizacionVistaQuestionToContinueAPrincipal(userName);
+        controladorPresentacion.sincronizacionVistaQuestionToContinueAPrincipal();
     }
 
     private void onCancel() {
@@ -84,9 +83,11 @@ public class VistaQuestionToContinue {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /*
     public static void main(String[] args) {
         CtrlPresentacion cP = new CtrlPresentacion();
-        VistaQuestionToContinue vE = new VistaQuestionToContinue(cP,"niño");
+        VistaQuestionToContinue vE = new VistaQuestionToContinue(cP);
         vE.hacerVisible();
     }
+    */
 }

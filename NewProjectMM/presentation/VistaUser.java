@@ -1,8 +1,12 @@
 package presentation;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.IOException;
 
 public class VistaUser extends JPanel {
 
@@ -23,7 +27,7 @@ public class VistaUser extends JPanel {
         this.controladorPresentacion = pCtrlPresentacion;
         inicializarComponentes();
         asignarListenersComponentes();
-	}
+    }
 
 	    /** Métodos públicos **/
 	
@@ -36,11 +40,20 @@ public class VistaUser extends JPanel {
 	    dialogUser.setVisible(false);
     }
 
-    public void setNameLabel(String username) { textFieldName.setText(username); }
+    public void setNameTextField(String username) {
+        textFieldName.setText(username);
+        textFieldName.revalidate();
+        textFieldName.repaint();
+	}
 
 	    /** Métodos privados **/
 
 	private void inicializarComponentes() {
+        // ImageIcon icon = new ImageIcon(ImageIO.read(getClass().getResourceAsStream("../persistence/windowsGlobal.png")));
+        // Image scaleImage  = icon.getImage().getScaledInstance(200, 200,Image.SCALE_DEFAULT);
+        // label = new JLabel(new ImageIcon(scaleImage));
+        // contentPaneForm.add(label);
+        // dialogUser.getContentPane().add(BorderLayout.CENTER, label);
         dialogUser.setTitle("Login");
         dialogUser.setContentPane(contentPaneForm);
         dialogUser.setModal(true);
@@ -79,7 +92,6 @@ public class VistaUser extends JPanel {
                     System.out.println("User No Registrado");
                     controladorPresentacion.sincronizacionVistaUserARoleDifficulty(textFieldName.getText());
                 }
-                controladorPresentacion.countLevelGuess = 0;
             } else { System.out.println("Name Error"); }
             }
         });
@@ -87,8 +99,7 @@ public class VistaUser extends JPanel {
             // call .dispose() on cancelButton
         buttonQuit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            // dialogUser.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-            System.exit(0);
+                System.exit(0);
             }
         });
 

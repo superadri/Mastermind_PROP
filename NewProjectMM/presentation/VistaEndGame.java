@@ -16,15 +16,13 @@ public class VistaEndGame {
     private JButton buttonShowRanking;
     private JButton buttonNewGame;
     private JLabel labelOutResult;
-    private int found;
     public float time;
     public int numRound;
 
     /** Constructora **/
 
-	public VistaEndGame(CtrlPresentacion pCtrlPresentacion, int foundOut) {
+	public VistaEndGame(CtrlPresentacion pCtrlPresentacion) {
         this.controladorPresentacion = pCtrlPresentacion;
-        this.found = foundOut;
         inicializarComponentes();
         asignarListenersComponentes();
 	}
@@ -42,13 +40,17 @@ public class VistaEndGame {
         dialogEndGame.setVisible(false);
     }
 
+    public void setTextJlableResult(int found){
+        if (found == 1) { labelOutResult.setText("You Won! - Time: "+time+", NumRounds: "+numRound); }
+        else if (found == 2) { labelOutResult.setText("You Lost!"); }
+        else { labelOutResult.setText("Result - Save it!"); }
+        labelOutResult.revalidate();
+        labelOutResult.repaint();
+    }
+
 	    /** Métodos privados **/
 	
 	private void inicializarComponentes() {
-	    if (found == 1) { labelOutResult.setText("You Won! - Time: "+time+", NumRounds: "+numRound); }
-	    else if (found == 2) { labelOutResult.setText("You Lost!"); }
-	    else { labelOutResult.setText("Result - Save it!"); }
-
         dialogEndGame.setTitle("Result");
         dialogEndGame.setContentPane(contentPaneForm);
         dialogEndGame.setModal(true);

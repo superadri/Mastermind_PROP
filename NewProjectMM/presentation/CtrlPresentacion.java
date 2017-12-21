@@ -19,18 +19,18 @@ public class CtrlPresentacion {
 
 	private String nameUserNow;
 
-	public int countLevelGuess;
-
         /** Constructor **/
 
     public CtrlPresentacion() {
 		controladorDominio = new CtrlDominio();
         vistaRanking = new VistaRanking(this);
-        vistaUser = new VistaUser(this);
-        vistaPrincipal = new VistaPrincipal(this);
         vistaHelp = new VistaHelp(this);
-        vistaDifficulty = new VistaRoleDifficulty(this);
         vistaAbout = new VistaAbout(this);
+        vistaUser = new VistaUser(this);
+        vistaDifficulty = new VistaRoleDifficulty(this);
+        vistaPrincipal = new VistaPrincipal(this);
+        vistaToContinue = new VistaQuestionToContinue(this);
+        vistaEndGame = new VistaEndGame(this);
     }
 
 	public void inicializarPresentacion() {
@@ -56,47 +56,47 @@ public class CtrlPresentacion {
         vistaPrincipal.activar();
     }
 
+    public void sincronizacionVistaRoleDifficultyAEndGame(String username, String role, String difficulty) {
+        // TODO: Machine
+        setRoleDificultyNewGame(username, role, difficulty);
+        vistaDifficulty.hacerInvisible();
+        vistaEndGame.setTextJlableResult(1);
+        vistaEndGame.time = 0;
+        vistaEndGame.numRound = 0;
+        vistaEndGame.hacerVisible();
+    }
+
     public void sincronizacionVistaRoleDifficultyAPrincipal(String username, String role, String difficulty) {
         setRoleDificultyNewGame(username, role, difficulty);
-        if ( role.equals("Machine vs Machine(Random)") || role.equals("Machine vs Machine(Complex)")) {
-            vistaDifficulty.hacerInvisible();
-            vistaEndGame = new VistaEndGame(this,1);
-            vistaEndGame.time = 0;
-            vistaEndGame.numRound = 0;
-            vistaEndGame.hacerVisible();
-        } else {
-            vistaDifficulty.hacerInvisible();
-            vistaPrincipal.activar();
-            vistaPrincipal.inicializarBoardReset();
-        }
-    }
-
-    public void sincronizacionVistaQuestionToContinueAPrincipal(String username) {
-        setRoleDificultyContinuegame(username);
-        vistaToContinue.hacerInvisible();
+        vistaDifficulty.hacerInvisible();
+        vistaPrincipal.inicializarBoardReset();
         vistaPrincipal.activar();
-        vistaPrincipal.inicializarBoardContinue();
     }
 
-    public void sincronizacionVistaPrincipalAEndGameWin(float time, int numRounds) {
+    public void sincronizacionVistaQuestionToContinueAPrincipal() {
+        setRoleDificultyContinuegame(nameUserNow);
+        vistaToContinue.hacerInvisible();
+        vistaPrincipal.inicializarBoardContinue();
+        vistaPrincipal.activar();
+    }
+
+    public void sincronizacionVistaPrincipalAEndGameWin() {
+        // TODO: Save Data
         vistaPrincipal.desactivar();
-        vistaEndGame = new VistaEndGame(this,1);
-        vistaEndGame.time = time;
-        vistaEndGame.numRound = numRounds;
+        vistaEndGame.setTextJlableResult(1);
         vistaEndGame.hacerVisible();
     }
 
     public void sincronizacionVistaPrincipalAEndGameNotWin() {
         vistaPrincipal.desactivar();
-        vistaEndGame = new VistaEndGame(this,2);
+        vistaEndGame.setTextJlableResult(2);
         vistaEndGame.hacerVisible();
     }
 
-    public void sincronizacionVistaPrincipalAEndGameSave(int found) {
+    public void sincronizacionVistaPrincipalAEndGameSave() {
+        // TODO: Save Data
         vistaPrincipal.desactivar();
-        if (found == 1) { vistaEndGame = new VistaEndGame(this,1); } // You Win
-        else if (found == 2) { vistaEndGame = new VistaEndGame(this,2); } // You Lost
-        else { vistaEndGame = new VistaEndGame(this,3); } // Middle Game
+        vistaEndGame.setTextJlableResult(3);
         vistaEndGame.hacerVisible();
     }
 
@@ -117,13 +117,13 @@ public class CtrlPresentacion {
 
     public void sincronizacionVistaRoleDifficultyAUser() {
         vistaDifficulty.hacerInvisible();
-        vistaUser.setNameLabel(nameUserNow);
+        vistaUser.setNameTextField(nameUserNow);
         vistaUser.hacerVisible();
     }
 
     public void sincronizacionVistaEndGameAUser() {
         vistaEndGame.hacerInvisible();
-        vistaUser.setNameLabel(nameUserNow);
+        vistaUser.setNameTextField(nameUserNow);
         vistaUser.hacerVisible();
     }
 
@@ -134,26 +134,27 @@ public class CtrlPresentacion {
 
     public void sincronizacionVistaUserAQuestionToContinue(String username) {
         this.nameUserNow = username;
-        vistaToContinue = new VistaQuestionToContinue(this, username);
         vistaUser.hacerInvisible();
+        vistaToContinue.setNameLabel(username);
         vistaToContinue.hacerVisible();
     }
 
     public void sincronizacionVistaUserARoleDifficulty(String username) {
-        vistaDifficulty.nameName = username;
+        this.nameUserNow = username;
         vistaUser.hacerInvisible();
+        vistaDifficulty.setNameUserJlabel(username, user_exists(nameUserNow));
         vistaDifficulty.hacerVisible();
     }
 
     public void sincronizacionVistaQuestionToContinueARoleDifficulty() {
-        vistaDifficulty.nameName = nameUserNow;
         vistaToContinue.hacerInvisible();
+        vistaDifficulty.setNameUserJlabel(nameUserNow, user_exists(nameUserNow));
         vistaDifficulty.hacerVisible();
     }
 
     public void sincronizacionVistaQuestionToContinueAUser() {
         vistaToContinue.hacerInvisible();
-        vistaUser.setNameLabel(nameUserNow);
+        vistaUser.setNameTextField(nameUserNow);
         vistaUser.hacerVisible();
     }
 
@@ -176,10 +177,12 @@ public class CtrlPresentacion {
     }
 
 	public void setRoleDificultyNewGame(String username, String role, String difficulty) {
+	    // TODO : Hacer la nueva partida
         // controladorDominio.setRoleDificultyNewGame(username, role, difficulty);
     }
 
     public void setRoleDificultyContinuegame(String username) {
+        // TODO : Continuar la partida
         // controladorDominio.setRoleDificultyContinueGame(username);
     }
 }

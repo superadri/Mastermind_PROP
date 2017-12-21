@@ -30,6 +30,9 @@ public class VistaRanking {
 		/** Métodos públicos **/
 
 	public void hacerVisible() {
+        asignarListenersComponentes();
+        setComboBoxRankingName();
+        settextAreaRanking();
 		dialogRanking.pack();
 		dialogRanking.setVisible(true);
 		System.out.println("Estoy Visible - VistaRanking");
@@ -50,9 +53,6 @@ public class VistaRanking {
 
 	private void inicializarComponentes() {
 		inicializarRanking();
-		asignarListenersComponentes();
-        setComboBoxRankingName();
-        settextAreaRanking();
     }
 
 	private void inicializarRanking() {
@@ -119,10 +119,12 @@ public class VistaRanking {
         textAreaRanking.setMargin(new Insets(10,10,10,10));
     }
 
+    /*
 	public static void main(String[] args) {
 		CtrlPresentacion cP = new CtrlPresentacion();
 		VistaRanking vR = new VistaRanking(cP);
 		vR.hacerVisible();
 		System.exit(0);
 	}
+	*/
 }

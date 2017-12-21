@@ -3,6 +3,7 @@ package presentation;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeListener;
 
 public class VistaRoleDifficulty {
 
@@ -13,10 +14,9 @@ public class VistaRoleDifficulty {
     private JButton buttonOK;
     private JComboBox comboBox1;
     private JComboBox comboBox2;
-    private JLabel LabelNamePlayer;
+    private JLabel labelNamePlayer;
     private JSpinner spinnerNum;
-    public String nameName;
-    private boolean controlMachine = false;
+    private String userName;
 
     public VistaRoleDifficulty(CtrlPresentacion pCtrlPresentacion) {
         this.controladorPresentacion = pCtrlPresentacion;
@@ -36,6 +36,13 @@ public class VistaRoleDifficulty {
         dialogDifficulty.setVisible(false);
     }
 
+    public void setNameUserJlabel(String username, boolean existUser) {
+        if (existUser) { labelNamePlayer.setText("Bienvenido de nuevo "+username); }
+        else { labelNamePlayer.setText("Bienvenido "+username+" - Nuevo Registro"); }
+        labelNamePlayer.revalidate();
+        labelNamePlayer.repaint();
+    }
+
     private void inicializarComponentes() {
         comboBox1.addItem("CB");
         comboBox1.addItem("CM");
@@ -52,7 +59,6 @@ public class VistaRoleDifficulty {
     }
 
     private void inicializarQuestion() {
-        LabelNamePlayer.setText(nameName);
         dialogDifficulty.setTitle("Choose");
         dialogDifficulty.setContentPane(contentPane);
         dialogDifficulty.setModal(true);
@@ -73,8 +79,9 @@ public class VistaRoleDifficulty {
         // add your code here
         String role = (String)comboBox1.getSelectedItem();
         String difficulty = (String)comboBox2.getSelectedItem();
-        int numGames = (int) spinnerNum.getValue();
-        controladorPresentacion.sincronizacionVistaRoleDifficultyAPrincipal(nameName, role, difficulty);
+        Object numGames = spinnerNum.getValue();
+        if ( role.equals("CB") ) { controladorPresentacion.sincronizacionVistaRoleDifficultyAPrincipal(userName, role, difficulty); }
+        else { controladorPresentacion.sincronizacionVistaRoleDifficultyAEndGame(userName, role, difficulty); }
     }
 
     private void asignarListenersComponentes() {
@@ -87,9 +94,7 @@ public class VistaRoleDifficulty {
         comboBox1.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if (e.getItem().equals("Machine vs Machine(Random)") || e.getItem().equals("Machine vs Machine(Complex)")) {
-                    spinnerNum.setEnabled(true);
-                } else { spinnerNum.setEnabled(false); }
+                spinnerNum.setEnabled( !e.getItem().equals("CB") && !e.getItem().equals("CM") );
             }
         });
 
@@ -99,10 +104,12 @@ public class VistaRoleDifficulty {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    /*
     public static void main(String[] args) {
         CtrlPresentacion cP = new CtrlPresentacion();
         VistaRoleDifficulty vR = new VistaRoleDifficulty(cP);
         vR.hacerVisible();
     }
+    */
 
 }
