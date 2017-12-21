@@ -209,7 +209,7 @@ public class VistaPrincipal {
 
     public void inicializarBoardContinue() {
         // TODO: Este sería la reconstrucción de una partida, continuar game
-            // mod 4
+        // mod 4
         this.controlSecuencia = 8;
         this.foundAnswer = false;
         for (JLabel peg : board) { peg.setIcon(pegBlack); }
@@ -221,7 +221,7 @@ public class VistaPrincipal {
     }
 
     public void inicializarBoardReset() {
-            // Existe un desfase, porque indirectamente hace make guess...
+        // Existe un desfase, porque indirectamente hace make guess...
         this.controlSecuencia = 0;
         this.foundAnswer = false;
         for (JLabel peg : board) { peg.setIcon(pegBlack); }

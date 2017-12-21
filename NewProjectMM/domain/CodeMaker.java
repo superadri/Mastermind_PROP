@@ -13,27 +13,21 @@ package domain;
 
 public class CodeMaker extends Algorithm {
 
-	public CodeMaker(int width, int nColors, boolean repetition) {
-		this.width = width;
-		this.nColors = nColors;
-		this.repetition = repetition;
+    private CtrlDominio ctrlDominio;
+
+    public CodeMaker(CtrlDominio controladorDominio) {
+        this.ctrlDominio = controladorDominio;
 	}
 
-	public String createCode(String difficulty) {
-		String codeOut = "";
-		if ( difficulty.equals("EASY") || difficulty.equals("MEDIUM") ||  difficulty.equals("HARD") ) { codeOut = easyCode(); }
-		else if ( difficulty.endsWith("HARDCODER") ) { codeOut = "AABB"; }
-		System.out.println(codeOut);
-		return codeOut;
-	}
-
-	private String easyCode() {
-		String code = "";
-		for (int i = 0; i < width; ++i) {
-			int j = (int)(Math.floor(nColors * Math.random()));
-			code += (char)('A' + j);
-		}
+	public String createCode() {
+		String code = randomCode();
+		System.out.println(code);
 		return code;
+	}
+
+	private String randomCode() {
+        int random = (int)(Math.floor(ctrlDominio.answerMatrix[0].length * Math.random()));
+        return ctrlDominio.answerMatrix[0][random];
 	}
 
 	/*

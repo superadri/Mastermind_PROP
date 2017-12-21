@@ -13,7 +13,7 @@ public class Mastermind {
 	private String difficulty;
 	private String computerCM, computerCB;
 	private ArrayList<String> listItems;
-	private Game game;
+	public Game game;
 
 		// Constructor
 	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, double time, String code, ArrayList<String> respuesta){

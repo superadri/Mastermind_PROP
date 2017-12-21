@@ -58,7 +58,7 @@ public class CtrlPresentacion {
 
     public void sincronizacionVistaRoleDifficultyAEndGame(String username, String role, String difficulty) {
         // TODO: Machine
-        setRoleDificultyNewGame(username, role, difficulty);
+        setRoleDificultyNewGame(role, difficulty);
         vistaDifficulty.hacerInvisible();
         vistaEndGame.setTextJlableResult(1);
         vistaEndGame.time = 0;
@@ -67,7 +67,7 @@ public class CtrlPresentacion {
     }
 
     public void sincronizacionVistaRoleDifficultyAPrincipal(String username, String role, String difficulty) {
-        setRoleDificultyNewGame(username, role, difficulty);
+        setRoleDificultyNewGame(role, difficulty);
         vistaDifficulty.hacerInvisible();
         vistaPrincipal.inicializarBoardReset();
         vistaPrincipal.activar();
@@ -176,13 +176,17 @@ public class CtrlPresentacion {
         return controladorDominio.game_start_user(username);
     }
 
-	public void setRoleDificultyNewGame(String username, String role, String difficulty) {
+	public void setRoleDificultyNewGame(String role, String difficulty) {
 	    // TODO : Hacer la nueva partida
-        // controladorDominio.setRoleDificultyNewGame(username, role, difficulty);
+        controladorDominio.setRoleDificultyNewGame(nameUserNow, role, difficulty);
     }
 
     public void setRoleDificultyContinuegame(String username) {
         // TODO : Continuar la partida
         // controladorDominio.setRoleDificultyContinueGame(username);
+    }
+
+    public void sendGuessToDomain(String guess) {
+        //controladorDominio.
     }
 }

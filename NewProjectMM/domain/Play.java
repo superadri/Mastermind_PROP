@@ -8,18 +8,17 @@ public class Play {
   CodeMaker cm;
   String role;
 
-  public Play(Game game, String role) {
+  public Play(CtrlDominio ctrlDominio, Game game, String role) {
     this.game = game;
     this.role = role;
-    this.cm = new CodeMaker(game.width,game.nLetters,game.repetition);
+    this.cm = new CodeMaker(ctrlDominio);
   }
 
 	public void makePlay() {
 		if ( role.equals("CODEMAKER") ) {
 		  	String code = "";
 		  	if (game.computerCM) {
-		  	    code = cm.createCode("EASY");
-		  	    // code = "FEDC";
+		  	    code = cm.createCode();
             } else { code = scanCombination(); }
 		  	game.sendCode(this, code);
 		} else if ( role.equals("CODEBREAKER") ) {

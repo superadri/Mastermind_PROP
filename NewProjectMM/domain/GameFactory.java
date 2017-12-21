@@ -4,7 +4,7 @@ public class GameFactory {
 
     private CtrlDominio controladorDominio;
 
-    private Mastermind mastermind;
+    public Mastermind mastermind;
 
     public GameFactory (CtrlDominio controladorDominio){
         this.controladorDominio = controladorDominio;

@@ -51,12 +51,12 @@ public class Game {
         if ((mastermind.getWhoisCM()).equals("MACHINE")) {
             computerCM = true;
             System.out.println("Initiazing CodeMaker algorithm...");
-            this.cm = new CodeMaker(width, nLetters, repetition);
+            this.cm = new CodeMaker(controladorDominio);
         } else { computerCM = false; }
         if ((mastermind.getWhoisCB()).equals("MACHINE")) {
             computerCB = true;
             System.out.println("Initiazing CodeBreaker algorithm...");
-            this.cb = new CodeBreaker(this, width, nLetters, repetition);
+            this.cb = new CodeBreaker(controladorDominio, this);
         } else { computerCB = false; }
         this.board = new Board(controladorDominio, height);
 	}
@@ -82,7 +82,7 @@ public class Game {
 		this.lastTime = 0;
 		System.out.println("Starting new game...");
     	if (!repetition) { System.out.print("NO REPETITIONS ALLOWED -> "); }
-		Play cmplay = new Play(this, "CODEMAKER");
+		Play cmplay = new Play(controladorDominio, this, "CODEMAKER");
 		cmplay.makePlay();
 		board.setCode(code);
 		runGame();
@@ -93,7 +93,7 @@ public class Game {
 		System.out.println("CodeMaker: code = " + code);
 		String continuePlaying = "";
 		do {
-			Play cbplay = new Play(this, "CODEBREAKER");
+			Play cbplay = new Play(controladorDominio, this, "CODEBREAKER");
 			cbplay.makePlay();
 			board.setGuessAndAnswer(guess, answer);
 			System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
