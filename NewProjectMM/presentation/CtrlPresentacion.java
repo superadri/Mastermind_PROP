@@ -255,7 +255,5 @@ public class CtrlPresentacion {
 	    return controladorDominio.getAnswer();
     }
 
-    public Double getTime() {
-	    return controladorDominio.getTime();
-    }
+    public double getTime() { return controladorDominio.getTime(); }
 }

@@ -316,16 +316,17 @@ public class VistaPrincipal {
                     }
 
                     // TODO: Check, continuar or fin la partida
-                    System.out.println("Guess: "+codeOut);
+                    // System.out.println("Guess: "+codeOut);
                     // setColorAnswers("RRRR");
                     controladorPresentacion.setGuesstoDominio(codeOut,true);
                     String answerOut = controladorPresentacion.getAnswer();
-                    System.out.println("Answer: "+answerOut);
+                    // System.out.println("Answer: "+answerOut);
                     setColorAnswers(answerOut);
 
-                    foundAnswer = answerOut.equals("BBBB");
+                    foundAnswer = answerOut.equals("RRRR");
 
                     if (controlSecuencia == 36 || foundAnswer) {
+                        deleteAllListenerPeg();
                         // TODO: Sava Time
                         double time = controladorPresentacion.getTime();
                         System.out.println(time);

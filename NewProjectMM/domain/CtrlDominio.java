@@ -16,7 +16,7 @@ public class CtrlDominio {
     private Ranking ranking;
 
     private String guess, answer;
-    private Double time;
+    private double time;
 
 	    /** Constructor **/
 
@@ -53,9 +53,7 @@ public class CtrlDominio {
         return register.game_start_user(username);
     }
 
-    public void setRoleDificultyNewGame(String username, String role, String difficulty) {
-        gameFactory.newgame(username,role,difficulty);
-    }
+    public void setRoleDificultyNewGame(String username, String role, String difficulty) { gameFactory.newgame(username,role,difficulty); }
 
     /*
     public void setRoleDificultyNewGameMachine(String username, String role, String difficulty, int numGames) {
@@ -101,9 +99,7 @@ public class CtrlDominio {
         this.time = time;
     }
 
-    public void setGuess(String guess) {
-        this.guess = guess;
-    }
+    public void setGuess(String guess) { this.guess = guess; }
 
     public void setAnswer(String answer) {
         this.answer = answer;

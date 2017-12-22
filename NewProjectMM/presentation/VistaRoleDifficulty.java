@@ -37,7 +37,7 @@ public class VistaRoleDifficulty {
     }
 
     public void setNameUserJlabel(String username, boolean existUser) {
-        if (existUser) { labelNamePlayer.setText("Bienvenido de nuevo "+username); }
+        if (existUser) { labelNamePlayer.setText("Bienvenido/a de nuevo "+username); }
         else { labelNamePlayer.setText("Bienvenido/a "+username+" - Nuevo Registro"); }
         labelNamePlayer.revalidate();
         labelNamePlayer.repaint();

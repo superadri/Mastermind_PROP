@@ -106,8 +106,8 @@ public class Game {
         System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
         System.out.println("Game: answer = " + board.getAnswer(turn));
         controladorDominio.setAnswer(board.getAnswer(turn));
+        if (board.getAnswer(turn).equals("RRRR")) { stopTime(); }
         ++turn;
-        if (guess.equals(code)) { stopTime(); }
          /*
             if (!guess.equals(code)) {
             continuePlaying = askContinue();
@@ -134,7 +134,7 @@ public class Game {
         controladorDominio.setTime(this.currentTime);
     }
 
-	public Double getTime(){
+	public double getTime(){
 	    return this.currentTime;
 	}
 

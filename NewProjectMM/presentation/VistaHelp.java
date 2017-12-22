@@ -19,8 +19,8 @@ public class VistaHelp {
             "Bienvenido a Mastermind " + "\n" +
                     "Instrucciones:  "  + "\n" +
                     "----------------" + "\n" +
-                    "B -> Posicion y letra correcto"+ "\n" +
-                    "R -> Letra correcta\n";
+                    "Rojo -> Posicion y letra correcto"+ "\n" +
+                    "Blanco -> Letra correcta\n";
 
         /** Constructora **/
 
