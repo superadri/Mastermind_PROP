@@ -323,7 +323,7 @@ public class VistaPrincipal {
                     System.out.println("Answer: "+answerOut);
                     setColorAnswers(answerOut);
 
-                    foundAnswer = answerOut.equals("RRRR");
+                    foundAnswer = answerOut.equals("BBBB");
 
                     if (controlSecuencia == 36 || foundAnswer) {
                         // TODO: Sava Time
