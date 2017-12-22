@@ -7,23 +7,18 @@ import java.io.*;
 import java.util.*;
 
 public class CtrlPersistence {
-
-    private static CtrlPersistence singletonObject;
+	
+	private static CtrlPersistence singletonObject;
 
     public static CtrlPersistence getInstance() {
-        if (singletonObject == null) {
-            singletonObject = new CtrlPersistence() {
-            };
-        }
-        return singletonObject;
-    }
+		if (singletonObject == null) { singletonObject = new CtrlPersistence(){}; }
+		return singletonObject;
+	}
 
-    /**
-     * Constructora privada
-     **/
-
-    private CtrlPersistence() {
-    }
+	    /** Constructora privada **/
+	
+	private CtrlPersistence() {
+	}
 
     public List<String> getNameFileRankings() {
         LinkedList<String> dataNR = new LinkedList<String>();
@@ -37,22 +32,14 @@ public class CtrlPersistence {
                         boolean found = false;
                         StringTokenizer tokens = new StringTokenizer(extension, ".");
                         while (tokens.hasMoreTokens()) {
-                            if (tokens.nextToken().equals("registro")) {
-                                break;
-                            }
+                            if (tokens.nextToken().equals("registro")) { break; }
                             found = tokens.nextToken().equals("txt");
                         }
-                        if (found) {
-                            dataNR.add(file.getName());
-                        }
-                    } else {
-                        throw new IllegalArgumentException("String " + extension + " no contiene .");
-                    }
+                        if (found) { dataNR.add(file.getName()); }
+                    } else { throw new IllegalArgumentException("String " + extension + " no contiene ."); }
                 }
             }
-        } catch (NullPointerException ex) {
-            System.out.println("Error2: " + ex);
-        }
+        } catch (NullPointerException ex) { System.out.println("Error2: " + ex); }
         Collections.sort(dataNR);
         return dataNR;
     }
@@ -67,9 +54,7 @@ public class CtrlPersistence {
             }
             scan.close();
             fr.close();
-        } catch (IOException ex) {
-            System.out.println("Error3: " + ex);
-        }
+        } catch (IOException ex) { System.out.println("Error3: " + ex); }
 
         return dataR;
     }
@@ -178,4 +163,3 @@ public class CtrlPersistence {
         fw.close();
     }
 }
-

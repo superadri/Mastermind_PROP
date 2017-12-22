@@ -8,6 +8,8 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.HashMap;
+import java.util.Map;
 
 public class VistaPrincipal {
 
@@ -36,6 +38,8 @@ public class VistaPrincipal {
     private JPanel panelLabels;
     private JPanel panelGuesses;
     private JPanel panelAnswers;
+    private JPanel invalidGuessPanel;
+    private JLabel invalidGuessLabel;
     private JLabel selectRed, selectOrange, selectYellow, selectGreen, selectBlue, selectPurple;
     private JLabel g01p1, g01p2, g01p3, g01p4, a01p1, a01p2, a01p3, a01p4,
             g02p1, g02p2, g02p3, g02p4, a02p1, a02p2, a02p3, a02p4,
@@ -47,8 +51,6 @@ public class VistaPrincipal {
             g08p1, g08p2, g08p3, g08p4, a08p1, a08p2, a08p3, a08p4,
             g09p1, g09p2, g09p3, g09p4, a09p1, a09p2, a09p3, a09p4,
             g10p1, g10p2, g10p3, g10p4, a10p1, a10p2, a10p3, a10p4;
-    private JPanel invalidGuessPanel;
-    private JLabel invalidGuessLabel;
 
     private JLabel[] board = {
             g01p1, g01p2, g01p3, g01p4, a01p1, a01p2, a01p3, a01p4,
@@ -102,7 +104,6 @@ public class VistaPrincipal {
 
     private boolean foundAnswer;
     private int controlSecuencia;
-    boolean lastRow;
 
     /**
      * Constructora
@@ -209,14 +210,16 @@ public class VistaPrincipal {
     }
 
     public void inicializarBoardContinue() {
-        // TODO: Este sería la reconstrucción de una partida, continuar game
+            // TODO: Este sería la reconstrucción de una partida, continuar game
             // mod 4
         this.controlSecuencia = 8;
         this.foundAnswer = false;
         for (JLabel peg : board) { peg.setIcon(pegBlack); }
+        /*
         for (int i = 0; i < guesses.length; ++i) {
             if (i < this.controlSecuencia) { guesses[i].setIcon(pegBlue); }
         }
+        */
         deleteAllListenerPeg();
         listenerPegAll();
     }
@@ -228,6 +231,21 @@ public class VistaPrincipal {
         for (JLabel peg : board) { peg.setIcon(pegBlack); }
         deleteAllListenerPeg();
         listenerPegAll();
+    }
+
+    // Coloca en función de las letras Answer -> Color en Answer Tablero
+    public void setColorAnswers(String codeAnswer){
+        int j = 0;
+        for (int i = 0; i < answers.length; ++i) {
+            final JLabel peg = answers[i];
+            if (i >= controlSecuencia && i < controlSecuencia+4) {
+                char letter = codeAnswer.charAt(j);
+                if (letter == 'R') { peg.setIcon(pegRed); }
+                else if (letter == 'B') { peg.setIcon(pegWhite); }
+                else { peg.setIcon(pegBlack); }
+                ++j;
+            } else if (i > controlSecuencia + 4) { break; }
+        }
     }
 
     private boolean checkValidAnswer() {
@@ -292,19 +310,25 @@ public class VistaPrincipal {
                         MouseListener[] mls = peg.getMouseListeners();
                         if (mls != null) {
                             for (MouseListener ml : mls) {
-                                String codePeg = peg.getIcon().toString();
-                                codeOut += traductorColorToStringGuess(codePeg);
+                                codeOut += traductorColorToStringGuess(peg);
                             }
                         }
                     }
-                    // TODO: Ready to Send code Guess and Answer
-                    System.out.println(codeOut);
-                    // TODO: Ready to Receiver code Answer and then do the check -> foundAnswer
-                    setColorAnswers("RRRR");
 
-                    // foundAnswer = controladorPresentacion.check_Board();
+                    // TODO: Check, continuar or fin la partida
+                    System.out.println("Guess: "+codeOut);
+                    // setColorAnswers("RRRR");
+                    controladorPresentacion.setGuesstoDominio(codeOut,true);
+                    String answerOut = controladorPresentacion.getAnswer();
+                    System.out.println("Answer: "+answerOut);
+                    setColorAnswers(answerOut);
+
+                    foundAnswer = answerOut.equals("RRRR");
 
                     if (controlSecuencia == 36 || foundAnswer) {
+                        // TODO: Sava Time
+                        double time = controladorPresentacion.getTime();
+                        System.out.println(time);
                         System.out.println("Fin Game");
                         if (foundAnswer) {
                             System.out.println("You Win!");
@@ -320,6 +344,7 @@ public class VistaPrincipal {
                     }
                     listenerPegAll();
                 } else { invalidGuessPanel.setVisible(true); }
+
             }
         });
 
@@ -351,14 +376,15 @@ public class VistaPrincipal {
             public void actionPerformed(ActionEvent event) {
                 String texto = ((JMenuItem) event.getSource()).getText();
                 System.out.println("Has seleccionado el menuitem con texto: " + texto);
-                // TODO: Save game
                 ArrayList<String> codeOutGuess = new ArrayList<String>();
                 ArrayList<String> codeOutAnswers = new ArrayList<String>();
                 String codePegGuess = "";
                 String codePegAnswers = "";
                 for (int i = 1; i <= guesses.length; ++i) {
-                    codePegGuess += traductorColorToStringGuess(guesses[i-1].getIcon().toString());
-                    codePegAnswers += traductorColorToStringAnswer(answers[i-1].getIcon().toString());
+                    JLabel peg1 = guesses[i-1];
+                    JLabel peg2 = answers[i-1];
+                    codePegGuess += traductorColorToStringGuess(peg1);
+                    codePegAnswers += traductorColorToStringAnswer(peg2);
                     if (i % 4 == 0) {
                         if (codePegGuess.equals("nnnn")) { break; }
                         codeOutGuess.add(codePegGuess);
@@ -367,13 +393,9 @@ public class VistaPrincipal {
                         codePegAnswers = "";
                     }
                 }
-                try {
-                    controladorPresentacion.passDataToRegister(codeOutGuess,codeOutAnswers);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 System.out.println(codeOutGuess+" - "+codeOutAnswers);
-                controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave();
+                try { controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave(codeOutGuess,codeOutAnswers); }
+                catch (IOException e) { e.printStackTrace(); }
             }
         });
 
@@ -392,16 +414,6 @@ public class VistaPrincipal {
                 System.exit(0);
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-
-        /*
-                // Primera
-            for (int i = 0; i < guesses.length; ++i) {
-                final JLabel peg = guesses[i];
-                MouseListener ml = myMouseListener(peg);
-                if (i >= controlSecuencia && i < controlSecuencia + 4) { peg.addMouseListener(ml); }
-                else if (i > controlSecuencia + 4) { break; }
-            }
-        */
 
         final JLabel[] colorSelect = {selectRed, selectOrange, selectYellow, selectGreen, selectBlue, selectPurple};
 
@@ -433,24 +445,8 @@ public class VistaPrincipal {
         }
     }
 
-        // Coloca en función de las letras Answer -> Color en Answer Tablero
-    private void setColorAnswers(String codeAnswer){
-        int j = 0;
-        for (int i = 0; i < answers.length; ++i) {
-            final JLabel peg = answers[i];
-            if (i >= controlSecuencia && i < controlSecuencia+4) {
-                char letter = codeAnswer.charAt(j);
-                if (letter == 'R') { peg.setIcon(pegRed); }
-                else if (letter == 'B') { peg.setIcon(pegWhite); }
-                else { peg.setIcon(pegBlack); }
-                ++j;
-            } else if (i > controlSecuencia + 4) { break; }
-        }
-    }
-
         // Activa o Desactiva, el cursor para poder leer las secuencias de los Guess Tablero
     private void listenerPegAll() {
-        lastRow = false;
         for (int i = 0; i < guesses.length; ++i) {
             final JLabel peg = guesses[i];
             MouseListener ml = myMouseListener(peg);
@@ -461,10 +457,7 @@ public class VistaPrincipal {
     }
 
     private void deleteAllListenerPeg() {
-        for (int i = 0; i < guesses.length; ++i) {
-            final JLabel peg = guesses[i];
-            removeClickListener(peg);
-        }
+        for (int i = 0; i < guesses.length; ++i) { removeClickListener(guesses[i]); }
     }
 
     private MouseListener myMouseListener(final JLabel peg){
@@ -494,35 +487,28 @@ public class VistaPrincipal {
     private void removeClickListener(JLabel peg) {
         MouseListener[] mls = peg.getMouseListeners();
         if (mls != null) {
-            for (MouseListener ml : mls) {
-                peg.removeMouseListener(ml);
-            }
+            for (MouseListener ml : mls) { peg.removeMouseListener(ml); }
         }
     }
 
         // Traduce sintaxis peg to código algoritmo to Guess
-    private char traductorColorToStringGuess(String code){
+    private char traductorColorToStringGuess(JLabel peg){
         char outLetter = 'n';
-            // Hay un error, si dejas algún negro, hacer que revise, lo introducido
-            // TODO: Faltan colores, ya que 2 son para los Tips, y 6 son para la partida
-        if (code.equals("g")) { outLetter = 'A'; }
-        else if (code.equals("b")) { outLetter = 'B'; }
-        else if (code.equals("o")) { outLetter = 'C'; }
-        else if (code.equals("r")) { outLetter = 'D'; }
-        else if (code.equals("p")) { outLetter = 'E'; }
-        else if (code.equals("y")) { outLetter = 'F'; }
+        if (peg.getIcon().toString().equals("g")) { outLetter = 'A'; }
+        else if (peg.getIcon().toString().equals("b")) { outLetter = 'B'; }
+        else if (peg.getIcon().toString().equals("o")) { outLetter = 'C'; }
+        else if (peg.getIcon().toString().equals("r")) { outLetter = 'D'; }
+        else if (peg.getIcon().toString().equals("p")) { outLetter = 'E'; }
+        else if (peg.getIcon().toString().equals("y")) { outLetter = 'F'; }
         return outLetter;
     }
 
         // Traduce sintaxis peg to código algoritmo to Answer
-    private char traductorColorToStringAnswer(String code){
+    private char traductorColorToStringAnswer(JLabel peg){
         char outLetter = 'n';
-            // Hay un error, si dejas algún negro, hacer que revise, lo introducido
-            // TODO: Faltan colores, ya que 2 son para los Tips, y 6 son para la partida
-        if (code.equals("n")) { outLetter = 'N'; }
-        else if (code.equals("r")) { outLetter = 'R'; }
-        else if (code.equals("w")) { outLetter = 'B'; }
-
+        if (peg.getIcon().toString().equals("n")) { outLetter = 'N'; }
+        else if (peg.getIcon().toString().equals("r")) { outLetter = 'R'; }
+        else if (peg.getIcon().toString().equals("w")) { outLetter = 'B'; }
         return outLetter;
     }
 

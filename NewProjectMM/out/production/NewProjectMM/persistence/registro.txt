@@ -1,13 +1,20 @@
-Paco 1 2.60791015625 1 ABCD BBRR ABDC EASY CM
-pepe 0
-PAco 0
+Paqui 0
+Paq 0
 Felipe 0
 PEPE 0
-PEP 0
-Paqui 0
 Pepe 0
-Paq 0
-Alba 0
-rafa 1 2.0498046875 1 ABCD BBRX ABDc EASY CM
-PACO2 0
 LDF 0
+PACO2 0
+Alba 0
+Paco 1 1.22 3 BBBB nnnn BBBB nnnn CCCC nnnn AAAA EASY CB
+PAco 0
+PEP 0
+pepe 0
+rafa 1 2.0498046875 1 BBBB nnnn BBBB nnnn CCCC nnnn ABDc EASY CM
+asd 1 1.22 3 BBBB nnnn BBBB nnnn BBBB nnnn AAAA EASY CB
+aksd 1 1.22 5 CCCC nnnn BBBB nnnn AAAA nnnn FFBB nnnn EFBD nnnR AAAA EASY CB
+asdlkm 1 1.22 6 CCCC nnnn BBBB nnnn EFBA nnnn EDBA nRnn DFBE Rnnn FEBD nnnR AAAA EASY CB
+knas 1 1.22 1 ECBD nnnR AAAA EASY CB
+lkasd 1 1.22 2 BBBB nnnn DEBA Rnnn AAAA EASY CB
+klansd 1 1.22 1 EDBB nRnn AAAA EASY CB
+lkmasd 1 1.22 2 CDBC RNNN FDBA RRRN AAAA EASY CB

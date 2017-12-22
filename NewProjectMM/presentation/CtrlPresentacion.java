@@ -18,12 +18,14 @@ public class CtrlPresentacion {
 	private VistaAbout vistaAbout;
 	private VistaRoleDifficulty vistaDifficulty;
 	private VistaQuestionToContinue vistaToContinue;
+	private VistaCM vistaCM;
 
 	private String nameUserNow;
-    private String role;
-    private String difficulty;
+	private String role;
+	private String difficulty;
+	private boolean control;
 
-    /** Constructor **/
+        /** Constructor **/
 
     public CtrlPresentacion() {
 		controladorDominio = new CtrlDominio();
@@ -35,6 +37,7 @@ public class CtrlPresentacion {
         vistaPrincipal = new VistaPrincipal(this);
         vistaToContinue = new VistaQuestionToContinue(this);
         vistaEndGame = new VistaEndGame(this);
+        vistaCM = new VistaCM(this);
     }
 
 	public void inicializarPresentacion() {
@@ -60,9 +63,12 @@ public class CtrlPresentacion {
         vistaPrincipal.activar();
     }
 
-    public void sincronizacionVistaRoleDifficultyAEndGame(String username, String role, String difficulty) {
-        // TODO: Machine
-        setRoleDificultyNewGame(username, role, difficulty);
+    public void sincronizacionVistaRoleDifficultyAEndGame(String role, String difficulty, Integer numGames) {
+            // TODO: Machine
+        // numGames -> número de partidas que se quieren que jueguen
+        this.role = role;
+        this.difficulty = difficulty;
+        setRoleDificultyNewGameMachine(numGames);
         vistaDifficulty.hacerInvisible();
         vistaEndGame.setTextJlableResult(1);
         vistaEndGame.time = 0;
@@ -70,40 +76,76 @@ public class CtrlPresentacion {
         vistaEndGame.hacerVisible();
     }
 
-    public void sincronizacionVistaRoleDifficultyAPrincipal(String username, String role, String difficulty) {
+    public void sincronizacionVistaRoleDifficultyAPrincipal(String role, String difficulty) {
         this.role = role;
         this.difficulty = difficulty;
-        setRoleDificultyNewGame(username, role, difficulty);
+        this.control = false;
         vistaDifficulty.hacerInvisible();
+        vistaPrincipal.inicializarBoardReset();
+        vistaPrincipal.activar();
+        setRoleDificultyNewGame();
+    }
+
+    public void sincronizacionVistaRoleDifficultyACM(String role, String difficulty) {
+        this.role = role;
+        this.difficulty = difficulty;
+        vistaDifficulty.hacerInvisible();
+        vistaCM.hacerVisible();
+    }
+
+    public void sincronizacionVistaCMARoleDifficulty() {
+        vistaCM.hacerInvisible();
+        vistaDifficulty.hacerVisible();
+    }
+
+    public void sincronizacionVistaCMAPrincipal(String codeCM) {
+        // TODO: Para poner el resultado
+        // this.difficulty;
+        // this.role;
+        // codeCM -> CM, que has definido tú para la máquina lo adivine
+        controladorDominio.setCodeMake(codeCM, this.role, this.difficulty);
+        vistaCM.hacerInvisible();
         vistaPrincipal.inicializarBoardReset();
         vistaPrincipal.activar();
     }
 
     public void sincronizacionVistaQuestionToContinueAPrincipal() {
-        //TODO: tenemos que modificar role y dificultad
+        // TODO: Tienes que cargarlo y ponerlo aquí, para poder restablecer la partida, y luego si es necesario guardar
+            // Ahora está HardCoder, hay que coger el de la partida guardada
         this.difficulty = "EASY";
         this.role = "CB";
-        setRoleDificultyContinuegame(nameUserNow);
+        setRoleDificultyContinuegame();
         vistaToContinue.hacerInvisible();
         vistaPrincipal.inicializarBoardContinue();
         vistaPrincipal.activar();
     }
 
     public void sincronizacionVistaPrincipalAEndGameWin() {
-        // TODO: Save Data
+        // TODO: Hay que comprobar, que estás registarado, y ponerlo 0, si lo estás y sino lo creas (por la partidas pendientes)
+        // TODO: Ranking, hacer una update, en función de si, existes, y luego si has mejorado, sino se deja el mejor time
+        // TODO: A la hora de guardar hay que hacerlo ordenado
+            // this.difficulty;
+            // this.role;
+            // this.nameUserNow;
         vistaPrincipal.desactivar();
         vistaEndGame.setTextJlableResult(1);
         vistaEndGame.hacerVisible();
     }
 
     public void sincronizacionVistaPrincipalAEndGameNotWin() {
+        // TODO: Hay que comprobar, que estás registarado, y ponerlo 0, si lo estás y sino lo creas (por la partidas pendientes)
+        // TODO: Ranking, hacer una update, en función de si, existes, y luego si has mejorado, sino se deja el mejor time
+        // TODO: A la hora de guardar hay que hacerlo ordenado
+            // this.difficulty;
+            // this.role;
+            // this.nameUserNow;
         vistaPrincipal.desactivar();
         vistaEndGame.setTextJlableResult(2);
         vistaEndGame.hacerVisible();
     }
 
-    public void sincronizacionVistaPrincipalAEndGameSave() {
-        // TODO: Save Data
+    public void sincronizacionVistaPrincipalAEndGameSave(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers) throws IOException {
+        controladorDominio.passDataToRegister(codeOutGuess,codeOutAnswers,nameUserNow,role,difficulty);
         vistaPrincipal.desactivar();
         vistaEndGame.setTextJlableResult(3);
         vistaEndGame.hacerVisible();
@@ -177,32 +219,43 @@ public class CtrlPresentacion {
 		return controladorDominio.getNameFileRankings();
 	}
 
+	    // Si existe
     public boolean user_exists(String user) {
         return controladorDominio.user_exists(user);
     }
 
+        // Si tiene partida pendiente
     public boolean game_start_user(String username) {
         return controladorDominio.game_start_user(username);
     }
 
-	public void setRoleDificultyNewGame(String username, String role, String difficulty) {
+    public void setRoleDificultyNewGameMachine(int numGames) {
+        // TODO : Hacer la nueva partida
+        // controladorDominio.setRoleDificultyNewGameMachine(nameUserNow, role, difficulty, numGames);
+    }
+
+	public void setRoleDificultyNewGame() {
 	    // TODO : Hacer la nueva partida
-        // controladorDominio.setRoleDificultyNewGame(username, role, difficulty);
+        controladorDominio.setRoleDificultyNewGame(nameUserNow, role, difficulty);
     }
 
-    public void setRoleDificultyContinuegame(String username) {
+    public void setRoleDificultyContinuegame() {
         // TODO : Continuar la partida
-        // controladorDominio.setRoleDificultyContinueGame(username);
+        controladorDominio.setRoleDificultyContinueGame(nameUserNow);
     }
 
+    public void setGuesstoDominio(String code, boolean start) {
+        controladorDominio.setGuess(code);
+        if (!control) { controladorDominio.gameFactory.mastermind.game.startNewGame(); }
+        else { controladorDominio.gameFactory.mastermind.game.runGame(); }
+        control = start;
+    }
 
-    public void passDataToRegister(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers) throws IOException {
-	    ArrayList<String> respuestas = new ArrayList<String>();
-	    for (int i = 0; i < codeOutAnswers.size(); ++i) {
-            respuestas.add(codeOutGuess.get(i));
-	        respuestas.add(codeOutAnswers.get(i));
-        }
-        //TODO: pasar codigo y time
-	    controladorDominio.finishGame(1.22,"AAAA",true,nameUserNow,role,difficulty,respuestas);
+    public String getAnswer(){
+	    return controladorDominio.getAnswer();
+    }
+
+    public Double getTime() {
+	    return controladorDominio.getTime();
     }
 }

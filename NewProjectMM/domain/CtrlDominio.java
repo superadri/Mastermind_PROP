@@ -2,24 +2,27 @@ package domain;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import persistence.CtrlPersistence;
-import presentation.CtrlPresentacion;
 
 public class CtrlDominio {
 
     private CtrlPersistence controladorPersistence;
 
-    private GameFactory gameFactory;
+    public GameFactory gameFactory;
     private Register register;
     private Ranking ranking;
+
+    private String guess, answer;
+    private Double time;
 
 	    /** Constructor **/
 
 	public CtrlDominio() {
         this.controladorPersistence = CtrlPersistence.getInstance();
-        this.register = new Register(this,controladorPersistence);
+        this.register = new Register(this);
         this.ranking = new Ranking(this);
         this.gameFactory = new GameFactory(this);
 	}
@@ -54,32 +57,63 @@ public class CtrlDominio {
         gameFactory.newgame(username,role,difficulty);
     }
 
+    /*
+    public void setRoleDificultyNewGameMachine(String username, String role, String difficulty, int numGames) {
+        gameFactory.newgameMachine(username,role,difficulty,numGames);
+        getMastermindAttributes();
+    }
+    */
+
     public void setRoleDificultyContinueGame(String username) {
         gameFactory.continuegame(username);
     }
 
-    public String setCode(String code){
-        return code;
+    public void passDataToRegister(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers, String nameUserNow, String role, String difficulty) throws IOException {
+        // TODO: Hay que coger el time, codeCM, para guardarlo (1.22,"AAAA") -> HardCoder
+        ArrayList<String> respuestas = new ArrayList<String>();
+        for (int i = 0; i < codeOutAnswers.size(); ++i) {
+            respuestas.add(codeOutGuess.get(i));
+            respuestas.add(codeOutAnswers.get(i));
+        }
+        gameFactory.set_continueGame(1.22,"AAAA", true, register, ranking, nameUserNow, role, difficulty, respuestas);
     }
 
-    public String getGuess(String guesses) {
-        return guesses;
+    public HashMap<String, Player> getListUsers(){
+        return controladorPersistence.getListUsers();
     }
 
-    public String getAnswer(String answers) {
-        return answers;
+    public void finished_game(String newNameUser, Register register) throws IOException {
+        controladorPersistence.finished_Game(newNameUser, register);
+    }
+    public void set_continueGame(char game_start, String newNameUser, ArrayList<String> respuestas,double time,String codigo,String dificultat,String rol) throws IOException {
+        controladorPersistence.set_continueGame(game_start, newNameUser, respuestas, time, codigo, dificultat, rol, register);
     }
 
-    public String setGuess(String guess) {
-        return guess;
+    public void setCodeMake(String code, String role, String difficulty){
+        // TODO: Hacer Check de "code", para devolver el Answer
     }
 
-    public String setAnswer(String answer) {
-        return answer;
+    public double getTime(){
+        return this.time;
     }
 
-    public void finishGame(Double strTime,String strCode,boolean save, String username, String role, String difficulty, ArrayList<String> respuestas) throws IOException {
-        gameFactory.set_continueGame(strTime,strCode,save,register,ranking,username,role,difficulty,respuestas);
+    public void setTime(Double time){
+        this.time = time;
     }
 
+    public void setGuess(String guess) {
+        this.guess = guess;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public String getAnswer() {
+        return this.answer;
+    }
+
+    public String getGuess() {
+        return this.guess;
+    }
 }

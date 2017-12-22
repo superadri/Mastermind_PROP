@@ -13,9 +13,21 @@ public class Mastermind {
 	private String difficulty;
 	private String computerCM, computerCB;
 	private ArrayList<String> listItems;
-	private Game game;
+	public Game game;
 
 		// Constructor
+    public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty) {
+        System.out.println("Mastermind - NewGame");
+        this.controladorDominio = controladorDominio;
+        this.computerCM = computerCM;
+        this.computerCB = computerCB;
+        this.gameSave = false;
+        this.difficulty = difficulty;
+        setDataNextGame(difficulty);
+        this.game = new Game(controladorDominio, this);
+        // game.startNewGame();
+    }
+
 	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, double time, String code, ArrayList<String> respuesta){
 		System.out.println("Mastermind - ContinueGame");
 		this.controladorDominio = controladorDominio;
@@ -23,34 +35,18 @@ public class Mastermind {
 		this.computerCB = computerCB;
 		this.gameSave = false;
 		this.difficulty = difficulty;
-		setDataNextGame(this.difficulty);
+		setDataNextGame(difficulty);
 		game = new Game(controladorDominio, this);
 		String[] respuestaFinal = new String[respuesta.size()];
-		for (int i = 0; i < respuesta.size(); ++i) {
-			respuestaFinal[i] = respuesta.get(i);
-		}
+		for (int i = 0; i < respuesta.size(); ++i) { respuestaFinal[i] = respuesta.get(i); }
 		game.continueGame(time, code, respuestaFinal);
-	}
-
-	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty) {
-		System.out.println("Mastermind - NewGame");
-		this.controladorDominio = controladorDominio;
-		this.computerCM = computerCM;
-		this.computerCB = computerCB;
-		this.gameSave = false;
-		this.difficulty = difficulty;
-		setDataNextGame(difficulty);
-		this.game = new Game(controladorDominio, this);
-		game.startNewGame();
 	}
 
 	public void saveGame(String code, double time, String[] allPairsGA) {
 		System.out.println("Mastermind - saveGame");
 		listItems = new ArrayList<String>();
 		this.gameSave = true;
-		for (int i = 0; i < allPairsGA.length; ++i) {
-			listItems.add(allPairsGA[i]);
-		}
+		for (int i = 0; i < allPairsGA.length; ++i) { listItems.add(allPairsGA[i]); }
 		listItems.add(Double.toString(time));
 		listItems.add(code);
 		listItems.add(this.difficulty);
