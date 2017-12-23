@@ -450,7 +450,7 @@ public class VistaPrincipal {
                     // System.out.println("Answer: "+answerOut);
                     setColorAnswers(answerOut);
 
-                    foundAnswer = answerOut.equals("BBBB");
+                    foundAnswer = answerOut.equals("RRRR");
 
                     if (controlSecuencia == 36 || foundAnswer) {
                         deleteAllListenerPeg();
