@@ -106,7 +106,7 @@ public class Game {
         System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
         System.out.println("Game: answer = " + board.getAnswer(turn));
         controladorDominio.setAnswer(board.getAnswer(turn));
-        if (board.getAnswer(turn).equals("RRRR")) { stopTime(); }
+        if (board.getAnswer(turn).equals("BBBB")) { stopTime(); }
         ++turn;
          /*
             if (!guess.equals(code)) {

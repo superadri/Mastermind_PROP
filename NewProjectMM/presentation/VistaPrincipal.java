@@ -444,13 +444,13 @@ public class VistaPrincipal {
 
                     // TODO: Check, continuar or fin la partida
                     // System.out.println("Guess: "+codeOut);
-                    // setColorAnswers("RRRR");
+                    // setColorAnswers("BBBB");
                     controladorPresentacion.setGuesstoDominio(codeOut,true);
                     String answerOut = controladorPresentacion.getAnswer();
                     // System.out.println("Answer: "+answerOut);
                     setColorAnswers(answerOut);
 
-                    foundAnswer = answerOut.equals("RRRR");
+                    foundAnswer = answerOut.equals("BBBB");
 
                     if (controlSecuencia == 36 || foundAnswer) {
                         deleteAllListenerPeg();
