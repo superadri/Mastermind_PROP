@@ -250,6 +250,83 @@ public class VistaPrincipal {
 
     private boolean checkValidAnswer() {
         int check = (controlSecuencia/4)+1;
+        // Controla que no haya repeticion si es dificultad EASY o MEDIUM
+        // TODO esta hardcodeado, seria mejor acceder a un booleano repetition ya que si se cambia que dificultades aceptan repeticion habra que cambiar esto manualmente.
+        if (!controladorPresentacion.difficulty.equals("HARD")) {
+            switch (check) {
+                case 1:
+                    if (g01p1.getIcon() == g01p2.getIcon() || g01p1.getIcon() == g01p3.getIcon() ||
+                            g01p1.getIcon() == g01p4.getIcon() || g01p2.getIcon() == g01p3.getIcon() ||
+                            g01p2.getIcon() == g01p4.getIcon() || g01p3.getIcon() == g01p4.getIcon()) {
+                        return false;
+                    }
+                    break;
+                case 2:
+                    if (g02p1.getIcon() == g02p2.getIcon() || g02p1.getIcon() == g02p3.getIcon() ||
+                            g02p1.getIcon() == g02p4.getIcon() || g02p2.getIcon() == g02p3.getIcon() ||
+                            g02p2.getIcon() == g02p4.getIcon() || g02p3.getIcon() == g02p4.getIcon()) {
+                        return false;
+                    }
+                    break;
+                case 3:
+                    if (g03p1.getIcon() == g03p2.getIcon() || g03p1.getIcon() == g03p3.getIcon() ||
+                            g03p1.getIcon() == g03p4.getIcon() || g03p2.getIcon() == g03p3.getIcon() ||
+                            g03p2.getIcon() == g03p4.getIcon() || g03p3.getIcon() == g03p4.getIcon()) {
+                        return false;
+                    }
+                    break;
+                case 4:
+                    if (g04p1.getIcon() == g04p2.getIcon() || g04p1.getIcon() == g04p3.getIcon() ||
+                            g04p1.getIcon() == g04p4.getIcon() || g04p2.getIcon() == g04p3.getIcon() ||
+                            g04p2.getIcon() == g04p4.getIcon() || g04p3.getIcon() == g04p4.getIcon()) {
+                        return false;
+                    }
+                    break;
+                case 5:
+                    if (g05p1.getIcon() == g05p2.getIcon() || g05p1.getIcon() == g05p3.getIcon() ||
+                            g05p1.getIcon() == g05p4.getIcon() || g05p2.getIcon() == g05p3.getIcon() ||
+                            g05p2.getIcon() == g05p4.getIcon() || g05p3.getIcon() == g05p4.getIcon()) {
+                        return false;
+                    }
+                    break;
+                case 6:
+                    if (g06p1.getIcon() == g06p2.getIcon() || g06p1.getIcon() == g06p3.getIcon() ||
+                            g06p1.getIcon() == g06p4.getIcon() || g06p2.getIcon() == g06p3.getIcon() ||
+                            g06p2.getIcon() == g06p4.getIcon() || g06p3.getIcon() == g06p4.getIcon()) {
+                        return false;
+                    }
+                    break;
+                case 7:
+                    if (g07p1.getIcon() == g07p2.getIcon() || g07p1.getIcon() == g07p3.getIcon() ||
+                            g07p1.getIcon() == g07p4.getIcon() || g07p2.getIcon() == g07p3.getIcon() ||
+                            g07p2.getIcon() == g07p4.getIcon() || g07p3.getIcon() == g07p4.getIcon()) {
+                        return false;
+                    }
+                    break;
+                case 8:
+                    if (g08p1.getIcon() == g08p2.getIcon() || g08p1.getIcon() == g08p3.getIcon() ||
+                            g08p1.getIcon() == g08p4.getIcon() || g08p2.getIcon() == g08p3.getIcon() ||
+                            g08p2.getIcon() == g08p4.getIcon() || g08p3.getIcon() == g08p4.getIcon()) {
+                        return false;
+                    }
+                    break;
+                case 9:
+                    if (g09p1.getIcon() == g09p2.getIcon() || g09p1.getIcon() == g09p3.getIcon() ||
+                            g09p1.getIcon() == g09p4.getIcon() || g09p2.getIcon() == g09p3.getIcon() ||
+                            g09p2.getIcon() == g09p4.getIcon() || g09p3.getIcon() == g09p4.getIcon()) {
+                        return false;
+                    }
+                    break;
+                case 10:
+                    if (g10p1.getIcon() == g10p2.getIcon() || g10p1.getIcon() == g10p3.getIcon() ||
+                            g10p1.getIcon() == g10p4.getIcon() || g10p2.getIcon() == g10p3.getIcon() ||
+                            g10p2.getIcon() == g10p4.getIcon() || g10p3.getIcon() == g10p4.getIcon()) {
+                        return false;
+                    }
+                    break;
+            }
+        }
+        // Controla que no haya huecos vacios (pegs negros)
         switch (check)  {
             case 1: return (g01p1.getIcon() != pegBlack &&
                     g01p2.getIcon() != pegBlack &&

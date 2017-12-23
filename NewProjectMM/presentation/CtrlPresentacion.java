@@ -22,7 +22,7 @@ public class CtrlPresentacion {
 
 	private String nameUserNow;
 	private String role;
-	private String difficulty;
+	public String difficulty;
 	private boolean control;
 
         /** Constructor **/
