@@ -71,15 +71,17 @@ public class Ranking {
     		Map<Double, String> sortedMap = new TreeMap<Double, String>(comparator);
     		sortedMap.putAll(mapDataRanking);
 			Iterator it = sortedMap.entrySet().iterator();
+			boolean first = true;
 			while (it.hasNext()) {
 				Map.Entry e = (Map.Entry)it.next();
 				StringBuilder stringBuilder = new StringBuilder();
+                if (!first) { stringBuilder.append("\n"); }
 				stringBuilder.append(e.getKey());
 				stringBuilder.append(" ");
 				stringBuilder.append(e.getValue());
-				stringBuilder.append("\n");
 				String finalString = stringBuilder.toString();
 				fw.write(finalString);//appends the string to the file
+                first = false;
 			}
 			fw.close();
 		} catch(Exception e) { e.printStackTrace(); }

@@ -212,14 +212,18 @@ public class VistaPrincipal {
     public void inicializarBoardContinue() {
             // TODO: Este sería la reconstrucción de una partida, continuar game
             // mod 4
-        this.controlSecuencia = 8;
+        String[] rounds = controladorPresentacion.getRounds();
+        this.controlSecuencia = (rounds.length/2)*4;
         this.foundAnswer = false;
         for (JLabel peg : board) { peg.setIcon(pegBlack); }
-        /*
-        for (int i = 0; i < guesses.length; ++i) {
-            if (i < this.controlSecuencia) { guesses[i].setIcon(pegBlue); }
+        int controlS = 0;
+        for (int i = 0; i < rounds.length; i+=2) {
+            String guess = rounds[i];
+            String answer = rounds[i + 1];
+            setColorGuessIni(guess,controlS);
+            setColorAnswersIni(answer,controlS);
+            controlS += 4;
         }
-        */
         deleteAllListenerPeg();
         listenerPegAll();
     }
@@ -233,7 +237,6 @@ public class VistaPrincipal {
         listenerPegAll();
     }
 
-    // Coloca en función de las letras Answer -> Color en Answer Tablero
     public void setColorAnswers(String codeAnswer){
         int j = 0;
         for (int i = 0; i < answers.length; ++i) {
@@ -242,6 +245,56 @@ public class VistaPrincipal {
                 char letter = codeAnswer.charAt(j);
                 if (letter == 'R') { peg.setIcon(pegRed); }
                 else if (letter == 'B') { peg.setIcon(pegWhite); }
+                else { peg.setIcon(pegBlack); }
+                ++j;
+            } else if (i > controlSecuencia + 4) { break; }
+        }
+    }
+
+    public void setColorGuess(String codeGuess){
+        int j = 0;
+        for (int i = 0; i < guesses.length; ++i) {
+            final JLabel peg = guesses[i];
+            if (i >= controlSecuencia && i < controlSecuencia+4) {
+                char letter = codeGuess.charAt(j);
+                if (letter == 'A') { peg.setIcon(pegGreen); }
+                else if (letter == 'B') { peg.setIcon(pegBlue); }
+                else if (letter == 'C') { peg.setIcon(pegOrange); }
+                else if (letter == 'D') { peg.setIcon(pegRed); }
+                else if (letter == 'E') { peg.setIcon(pegPurple); }
+                else if (letter == 'F') { peg.setIcon(pegYellow); }
+                else { peg.setIcon(pegBlack); }
+                ++j;
+            } else if (i > controlSecuencia + 4) { break; }
+        }
+    }
+
+    public void setColorAnswersIni(String codeAnswer, int controlS){
+        int j = 0;
+        for (int i = 0; i < answers.length; ++i) {
+            final JLabel peg = answers[i];
+            if (i >= controlS && i < controlS+4) {
+                char letter = codeAnswer.charAt(j);
+                if (letter == 'R') { peg.setIcon(pegRed); }
+                else if (letter == 'B') { peg.setIcon(pegWhite); }
+                else { peg.setIcon(pegBlack); }
+                ++j;
+            } else if (i > controlSecuencia + 4) { break; }
+        }
+    }
+
+    public void setColorGuessIni(String codeGuess, int controlS){
+        int j = 0;
+        for (int i = 0; i < guesses.length; ++i) {
+            final JLabel peg = guesses[i];
+            if (i >= controlS && i < controlS+4) {
+                char letter = codeGuess.charAt(j);
+                if (letter == 'A') { peg.setIcon(pegGreen); }
+                else if (letter == 'B') { peg.setIcon(pegBlue); }
+                else if (letter == 'C') { peg.setIcon(pegOrange); }
+                else if (letter == 'D') { peg.setIcon(pegRed); }
+                else if (letter == 'E') { peg.setIcon(pegPurple); }
+                else if (letter == 'F') { peg.setIcon(pegYellow); }
                 else { peg.setIcon(pegBlack); }
                 ++j;
             } else if (i > controlSecuencia + 4) { break; }
@@ -333,6 +386,7 @@ public class VistaPrincipal {
                 }
                 break;
         }
+
         // Controla que no haya repeticion si es dificultad EASY o MEDIUM
         // TODO esta hardcodeado, seria mejor acceder a un booleano repetition ya que si se cambia que dificultades aceptan repeticion habra que cambiar esto manualmente.
         if (!controladorPresentacion.difficulty.equals("HARD")) {
@@ -429,8 +483,6 @@ public class VistaPrincipal {
             public void actionPerformed(ActionEvent event) {
                 if ( checkValidAnswer() ) {
                     invalidGuessPanel.setVisible(false);
-                    // Check Respuesta ... -> To foundAnswer
-                    // 10 = Límite max del tipo de tablero...
 
                     String codeOut = "";
                     for (JLabel peg : guesses) {
@@ -442,29 +494,24 @@ public class VistaPrincipal {
                         }
                     }
 
-                    // TODO: Check, continuar or fin la partida
-                    // System.out.println("Guess: "+codeOut);
-                    // setColorAnswers("BBBB");
                     controladorPresentacion.setGuesstoDominio(codeOut,true);
                     String answerOut = controladorPresentacion.getAnswer();
-                    // System.out.println("Answer: "+answerOut);
                     setColorAnswers(answerOut);
-
                     foundAnswer = answerOut.equals("BBBB");
 
                     if (controlSecuencia == 36 || foundAnswer) {
                         deleteAllListenerPeg();
-                        // TODO: Sava Time
                         double time = controladorPresentacion.getTime();
-                        System.out.println(time);
-                        System.out.println("Fin Game");
+                        int numRound = (controlSecuencia/4)+1;
+                        System.out.println("Fin Game - " + time);
+                        int found = 2;
+                        String messageEnd = "You Lost!";
                         if (foundAnswer) {
-                            System.out.println("You Win!");
-                            controladorPresentacion.sincronizacionVistaPrincipalAEndGameWin();
-                        } else {
-                            System.out.println("You Lost!");
-                            controladorPresentacion.sincronizacionVistaPrincipalAEndGameNotWin();
+                            found = 1;
+                            messageEnd = "You Win!";
                         }
+                        System.out.println(messageEnd);
+                        controladorPresentacion.sincronizacionVistaPrincipalAEndGame(found, time, numRound, codeOut);
                     } else {
                         controlSecuencia += 4;
                         int Level = (controlSecuencia/4)+1;
@@ -472,7 +519,6 @@ public class VistaPrincipal {
                     }
                     listenerPegAll();
                 } else { invalidGuessPanel.setVisible(true); }
-
             }
         });
 
@@ -522,7 +568,13 @@ public class VistaPrincipal {
                     }
                 }
                 System.out.println(codeOutGuess+" - "+codeOutAnswers);
-                try { controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave(codeOutGuess,codeOutAnswers); }
+                try {
+                    controladorPresentacion.stopTime();
+                    double time = controladorPresentacion.getTime();
+                    int numRound = (controlSecuencia/4)+1;
+                    String codeMaker = controladorPresentacion.getcodeMaker();
+                    controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave(codeOutGuess,codeOutAnswers,time,numRound,codeMaker);
+                }
                 catch (IOException e) { e.printStackTrace(); }
             }
         });

@@ -63,12 +63,11 @@ public class CtrlPersistence {
         HashMap<String, Player> listUsers = new HashMap<String, Player>();
         try {
             File f = new File("./persistence/registro.txt");
-            Player player;
             Scanner in = new Scanner(f);
+            Player player;
             in.useLocale(Locale.ENGLISH);
-            while (in.hasNext()) {
+            while (in.hasNextLine()) {
                 String username = in.next();
-                //pendingGame
                 String a = in.next();
                 char c = a.charAt(0);
                 if (a.equals("1")) {
@@ -88,9 +87,7 @@ public class CtrlPersistence {
                 }
                 listUsers.put(username, player);
             }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        }
+        } catch (IOException e) { e.printStackTrace(); }
         return listUsers;
     }
 
@@ -103,13 +100,15 @@ public class CtrlPersistence {
             player = new Player('0',newNameUser);
             register.listUsers.put(newNameUser,player);
             fw = new FileWriter(filename,true); //the true will append the new data
-            stringBuilder.append(newNameUser+" 0\n");
+            stringBuilder.append("\n"+newNameUser+" 0");
         } else {
             player = register.listUsers.get(newNameUser);
             if (player.getGame_start() == '1') { player.delete_all(); }
             fw = new FileWriter(filename);
+            boolean first= true;
             for ( Player itr : register.listUsers.values() ) {
                 player = itr;
+                if (!first) { stringBuilder.append("\n"); }
                 stringBuilder.append(player.getUsername()+" "+player.getGame_start());
                 if (player.getGame_start() == '1') {
                     stringBuilder.append(" "+player.getTime()+" ");
@@ -118,7 +117,7 @@ public class CtrlPersistence {
                     for ( String itr1 : respuestas ) { stringBuilder.append(itr1+" "); }
                     stringBuilder.append(player.getCodigo()+" "+player.getDificultat()+" "+player.getRol());
                 }
-                stringBuilder.append("\n");
+                first = false;
             }
         }
         fw.write(stringBuilder.toString());//appends the string to the file
@@ -134,20 +133,21 @@ public class CtrlPersistence {
             player = new Player('1',newNameUser,respuestas,time,codigo,dificultat,rol);
             register.listUsers.put(newNameUser,player);
             fw = new FileWriter(filename,true); //the true will append the new data
-            stringBuilder.append(newNameUser+" 1 ");
+            stringBuilder.append("\n"+newNameUser+" 1 ");
             String cadena = String.valueOf(time);
             stringBuilder.append(cadena+" ");
             String size = String.valueOf(respuestas.size()/2);
             stringBuilder.append(size+" ");
             for ( String itr1 : respuestas ) { stringBuilder.append(itr1+" "); }
-            stringBuilder.append(codigo+" "+dificultat+" "+rol+"\n");
-        }
-        else {
+            stringBuilder.append(codigo+" "+dificultat+" "+rol);
+        } else {
             player = register.listUsers.get(newNameUser);
             player.setSaveGame(respuestas,time,codigo,dificultat,rol);
             fw = new FileWriter(filename);
+            boolean first = true;
             for ( Player itr : register.listUsers.values() ) {
                 player = itr;
+                if (!first) { stringBuilder.append("\n"); }
                 stringBuilder.append(player.getUsername()+" "+player.getGame_start());
                 if (player.getGame_start() == '1') {
                     stringBuilder.append(" "+ player.getTime()+" ");
@@ -156,7 +156,7 @@ public class CtrlPersistence {
                     for ( String itr1 : respuestas ) { stringBuilder.append(itr1+" "); }
                     stringBuilder.append(player.getCodigo()+" "+player.getDificultat()+" "+player.getRol());
                 }
-                stringBuilder.append("\n");
+                first = false;
             }
         }
         fw.write(stringBuilder.toString());//appends the string to the file

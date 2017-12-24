@@ -15,8 +15,11 @@ public class CtrlDominio {
     private Register register;
     private Ranking ranking;
 
-    private String guess, answer;
+    private String guess, answer, codeMaker;
     private double time;
+    private String[][] answerMatrix;
+    private String[] rounds;
+    private String difficulty, role;
 
 	    /** Constructor **/
 
@@ -66,14 +69,17 @@ public class CtrlDominio {
         gameFactory.continuegame(username);
     }
 
-    public void passDataToRegister(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers, String nameUserNow, String role, String difficulty) throws IOException {
-        // TODO: Hay que coger el time, codeCM, para guardarlo (1.22,"AAAA") -> HardCoder
+    public void passDataToRegister(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers, String nameUserNow, String role, String difficulty, double time, String codeMaker) throws IOException {
         ArrayList<String> respuestas = new ArrayList<String>();
         for (int i = 0; i < codeOutAnswers.size(); ++i) {
             respuestas.add(codeOutGuess.get(i));
             respuestas.add(codeOutAnswers.get(i));
         }
-        gameFactory.set_continueGame(1.22,"AAAA", true, register, ranking, nameUserNow, role, difficulty, respuestas);
+        gameFactory.set_continueGame(time,codeMaker, true, register, ranking, nameUserNow, role, difficulty, respuestas);
+    }
+
+    public void passDataToRanking(String nameUserNow, String role, String difficulty, double time, String codeMaker) throws IOException {
+        gameFactory.set_continueGame(time, codeMaker, false, register, ranking, nameUserNow, role, difficulty,null);
     }
 
     public HashMap<String, Player> getListUsers(){
@@ -105,11 +111,32 @@ public class CtrlDominio {
         this.answer = answer;
     }
 
-    public String getAnswer() {
-        return this.answer;
-    }
+    public String getAnswer() { return this.answer; }
+
+    public String[][] getAnswerMatrix() { return this.answerMatrix; }
+
+    public void setAnswerMatrix(String[][] answerMatrix) { this.answerMatrix = answerMatrix; }
 
     public String getGuess() {
         return this.guess;
     }
+
+    public void setCodeMaker(String codeMaker) { this.codeMaker = codeMaker; }
+
+    public String getCodeMaker() { return this.codeMaker; }
+
+    public void stopTime() { gameFactory.mastermind.game.stopTime(); }
+
+    public void setRounds(String[] rounds) { this.rounds = rounds; }
+
+    public String[] getRounds() { return this.rounds; }
+
+    public void passUpdateDataDifficultyAndRole(String difficulty, String role) {
+        this.difficulty = difficulty;
+        this.role = role;
+    }
+
+    public String getDifficulty() { return this.difficulty; }
+
+    public String getRole() { return this.role; }
 }

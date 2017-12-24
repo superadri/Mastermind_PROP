@@ -26,8 +26,11 @@ public class CodeMaker extends Algorithm {
     }
 
     private String randomCode() {
-        // int random = (int)(Math.floor(ctrlDominio.answerMatrix[0].length * Math.random()));
-        return "EFAB";// ctrlDominio.answerMatrix[0][random];
+        // TODO: Falla en el acceso, en teoría debería tener una referencia a si estructura
+        // String[][] answerMatrix = ctrlDominio.getAnswerMatrix();
+        // int random = (int)(Math.floor(answerMatrix[0].length * Math.random()));
+        // return answerMatrix[0][random];
+        return "EFAB";
     }
 }
 

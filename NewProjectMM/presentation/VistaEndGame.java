@@ -3,6 +3,7 @@ package presentation;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 
 public class VistaEndGame {
 
@@ -16,8 +17,6 @@ public class VistaEndGame {
     private JButton buttonShowRanking;
     private JButton buttonNewGame;
     private JLabel labelOutResult;
-    public float time;
-    public int numRound;
 
     /** Constructora **/
 
@@ -40,10 +39,12 @@ public class VistaEndGame {
         dialogEndGame.setVisible(false);
     }
 
-    public void setTextJlableResult(int found){
-        if (found == 1) { labelOutResult.setText("You Won! - Time: "+time+", NumRounds: "+numRound); }
-        else if (found == 2) { labelOutResult.setText("You Lost!"); }
-        else { labelOutResult.setText("Result - Save it!"); }
+    public void setTextJlableResult(int found, double time, int numRound){
+        DecimalFormat decimal = new DecimalFormat("0.000");
+        String messageOut = "Result - Save it!";
+        if (found == 1) { messageOut = "You Won! - Time: "+ decimal.format(time) +" seg., NumRounds: "+numRound; }
+        else if (found == 2) { messageOut = "You Lost!"; }
+        labelOutResult.setText(messageOut);
         labelOutResult.revalidate();
         labelOutResult.repaint();
     }

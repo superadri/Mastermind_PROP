@@ -94,6 +94,10 @@ public class CodeBreaker extends Algorithm {
         }
     }
 
+    public void setAnswerMatrix() {
+        controladorDominio.setAnswerMatrix(this.answerMatrix);
+    }
+
     public void printAllCombs() {
         System.out.println("size = " + size + ", allCombs size = " +
                 allCombs.length);

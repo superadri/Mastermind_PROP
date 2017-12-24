@@ -2,6 +2,7 @@ package presentation;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.*;
 
@@ -113,7 +114,10 @@ public class VistaRanking {
         else {
             textAreaRanking.setText("");
             for (String data : dataList) {
-                textAreaRanking.append(data + "\n");
+                String contentData [] = data.split(" ");
+                DecimalFormat decimal = new DecimalFormat("0.000");
+                double time = Double.parseDouble(contentData[0]);
+                textAreaRanking.append(decimal.format(time) +" "+contentData[1]+"\n");
             }
         }
         textAreaRanking.setMargin(new Insets(10,10,10,10));

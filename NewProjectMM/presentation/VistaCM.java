@@ -93,10 +93,34 @@ public class VistaCM {
     }
 
     private boolean checkValidAnswer() {
-        return (g01p1.getIcon() != pegBlack &&
-                g01p2.getIcon() != pegBlack &&
-                g01p3.getIcon() != pegBlack &&
-                g01p4.getIcon() != pegBlack);
+        int check = 1;
+        // Controla que no haya huecos vacios (pegs negros)
+        switch (check) {
+            case 1:
+                if (g01p1.getIcon() == pegBlack ||
+                        g01p2.getIcon() == pegBlack ||
+                        g01p3.getIcon() == pegBlack ||
+                        g01p4.getIcon() == pegBlack) {
+                    invalidGuessLabel.setText("Invalid guess: you must fill all pegs.");
+                    return false;
+                }
+        }
+
+        // Controla que no haya repeticion si es dificultad EASY o MEDIUM
+        // TODO esta hardcodeado, seria mejor acceder a un booleano repetition ya que si se cambia que dificultades aceptan repeticion habra que cambiar esto manualmente.
+        if (!controladorPresentacion.difficulty.equals("HARD")) {
+            switch (check) {
+                case 1:
+                    if (g01p1.getIcon() == g01p2.getIcon() || g01p1.getIcon() == g01p3.getIcon() ||
+                            g01p1.getIcon() == g01p4.getIcon() || g01p2.getIcon() == g01p3.getIcon() ||
+                            g01p2.getIcon() == g01p4.getIcon() || g01p3.getIcon() == g01p4.getIcon()) {
+                        invalidGuessLabel.setText("Invalid guess: repetition is not allowed in this difficulty mode.");
+                        return false;
+                    }
+                    break;
+            }
+        }
+        return true;
     }
 	
 	private void asignarListenersComponentes() {

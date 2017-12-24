@@ -36,6 +36,7 @@ public class GameFactory {
             computerCM = username;
             computerCB = "MACHINE";
         }
+        controladorDominio.passUpdateDataDifficultyAndRole(player.getDificultat(),player.getRol());
         mastermind = new Mastermind(controladorDominio, computerCM, computerCB, player.getDificultat(), player.getTime(), player.getCodigo(), player.getRespuestas());
     }
 

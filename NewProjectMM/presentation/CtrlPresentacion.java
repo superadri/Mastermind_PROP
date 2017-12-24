@@ -70,9 +70,7 @@ public class CtrlPresentacion {
         this.difficulty = difficulty;
         setRoleDificultyNewGameMachine(numGames);
         vistaDifficulty.hacerInvisible();
-        vistaEndGame.setTextJlableResult(1);
-        vistaEndGame.time = 0;
-        vistaEndGame.numRound = 0;
+        vistaEndGame.setTextJlableResult(1,0,0);
         vistaEndGame.hacerVisible();
     }
 
@@ -111,43 +109,32 @@ public class CtrlPresentacion {
 
     public void sincronizacionVistaQuestionToContinueAPrincipal() {
         // TODO: Tienes que cargarlo y ponerlo aquí, para poder restablecer la partida, y luego si es necesario guardar
-            // Ahora está HardCoder, hay que coger el de la partida guardada
-        this.difficulty = "EASY";
-        this.role = "CB";
         setRoleDificultyContinuegame();
+        this.difficulty = controladorDominio.getDifficulty();
+        this.role = controladorDominio.getRole();
         vistaToContinue.hacerInvisible();
         vistaPrincipal.inicializarBoardContinue();
         vistaPrincipal.activar();
     }
 
-    public void sincronizacionVistaPrincipalAEndGameWin() {
+    public void sincronizacionVistaPrincipalAEndGame(int found, double time, int numRound, String codeMaker) {
         // TODO: Hay que comprobar, que estás registarado, y ponerlo 0, si lo estás y sino lo creas (por la partidas pendientes)
         // TODO: Ranking, hacer una update, en función de si, existes, y luego si has mejorado, sino se deja el mejor time
         // TODO: A la hora de guardar hay que hacerlo ordenado
             // this.difficulty;
             // this.role;
             // this.nameUserNow;
+        try { controladorDominio.passDataToRanking(nameUserNow, role, difficulty, time, codeMaker); }
+        catch (IOException e) { e.printStackTrace(); }
         vistaPrincipal.desactivar();
-        vistaEndGame.setTextJlableResult(1);
+        vistaEndGame.setTextJlableResult(found, time, numRound);
         vistaEndGame.hacerVisible();
     }
 
-    public void sincronizacionVistaPrincipalAEndGameNotWin() {
-        // TODO: Hay que comprobar, que estás registarado, y ponerlo 0, si lo estás y sino lo creas (por la partidas pendientes)
-        // TODO: Ranking, hacer una update, en función de si, existes, y luego si has mejorado, sino se deja el mejor time
-        // TODO: A la hora de guardar hay que hacerlo ordenado
-            // this.difficulty;
-            // this.role;
-            // this.nameUserNow;
+    public void sincronizacionVistaPrincipalAEndGameSave(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers, double time, int numRounds, String codeMaker) throws IOException {
+        controladorDominio.passDataToRegister(codeOutGuess,codeOutAnswers,nameUserNow,role,difficulty,time, codeMaker);
         vistaPrincipal.desactivar();
-        vistaEndGame.setTextJlableResult(2);
-        vistaEndGame.hacerVisible();
-    }
-
-    public void sincronizacionVistaPrincipalAEndGameSave(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers) throws IOException {
-        controladorDominio.passDataToRegister(codeOutGuess,codeOutAnswers,nameUserNow,role,difficulty);
-        vistaPrincipal.desactivar();
-        vistaEndGame.setTextJlableResult(3);
+        vistaEndGame.setTextJlableResult(3,time,numRounds);
         vistaEndGame.hacerVisible();
     }
 
@@ -255,5 +242,13 @@ public class CtrlPresentacion {
 	    return controladorDominio.getAnswer();
     }
 
+    public void stopTime() {
+	    controladorDominio.stopTime();
+    }
+
     public double getTime() { return controladorDominio.getTime(); }
+
+    public String getcodeMaker() { return  controladorDominio.getCodeMaker(); }
+
+    public String[] getRounds() { return controladorDominio.getRounds(); }
 }
