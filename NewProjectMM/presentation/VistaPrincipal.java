@@ -567,15 +567,21 @@ public class VistaPrincipal {
                         codePegAnswers = "";
                     }
                 }
-                System.out.println(codeOutGuess+" - "+codeOutAnswers);
-                try {
-                    controladorPresentacion.stopTime();
-                    double time = controladorPresentacion.getTime();
-                    int numRound = (controlSecuencia/4)+1;
-                    String codeMaker = controladorPresentacion.getcodeMaker();
-                    controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave(codeOutGuess,codeOutAnswers,time,numRound,codeMaker);
+                if (codeOutGuess.size()>0) {
+                    System.out.println(codeOutGuess + " - " + codeOutAnswers);
+                    try {
+                        controladorPresentacion.stopTime();
+                        double time = controladorPresentacion.getTime();
+                        int numRound = (controlSecuencia / 4) + 1;
+                        String codeMaker = controladorPresentacion.getcodeMaker();
+                        controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave(codeOutGuess, codeOutAnswers, time, numRound, codeMaker);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    invalidGuessLabel.setText("Invalid action: you must make at least one guess before saving.");
+                    invalidGuessPanel.setVisible(true);
                 }
-                catch (IOException e) { e.printStackTrace(); }
             }
         });
 
