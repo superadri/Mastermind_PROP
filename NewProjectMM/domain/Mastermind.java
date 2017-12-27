@@ -6,7 +6,7 @@ public class Mastermind {
 
 	private CtrlDominio controladorDominio;
 
-	// Attribute
+		// Attribute
 	public boolean gameSave;
 	public boolean repetition;
 	public int height, width, nLetters;
@@ -25,7 +25,6 @@ public class Mastermind {
         this.difficulty = difficulty;
         setDataNextGame(difficulty);
         this.game = new Game(controladorDominio, this);
-        // game.startNewGame();
     }
 
 	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, double time, String code, ArrayList<String> respuesta){
@@ -52,52 +51,38 @@ public class Mastermind {
 		listItems.add(this.difficulty);
 	}
 
+	/*
 	public ArrayList<String> saveGametoGameFactory() {
 		return listItems;
 	}
+	*/
 
-	public double getTime(){
-		return (this.game).getTime();
-	}
+	public double getTime(){ return (this.game).getTime(); }
 
-		// name User or Machine
-	public String getWhoisCM(){
-		return this.computerCM;
-	}
-		// name User or Machine
-	public String getWhoisCB(){
-		return this.computerCB;
-	}
+	public String getWhoisCM(){ return this.computerCM; }
 
-	public int getwidth(){
-		return this.width;
-	}
+	public String getWhoisCB(){ return this.computerCB; }
 
-	public int getheight(){
-		return this.height;
-	}
+	public int getwidth(){ return this.width; }
 
-	public int getnLetters(){
-		return this.nLetters;
-	}
+	public int getheight(){ return this.height; }
 
-	public boolean getrepetition(){
-		return this.repetition;
-	}
+	public int getnLetters(){ return this.nLetters; }
 
-	public void setDataNextGame(String difficulty) {
+	public boolean getrepetition(){ return this.repetition; }
 
-		if ( difficulty.equals("EASY") ){ // EASY
+	private void setDataNextGame(String difficulty) {
+		if ( difficulty.equals("EASY") ){
 			this.repetition = false;
 			this.nLetters = 6;
 			this.height = 10;
 			this.width = 4;
-		} else if ( difficulty.equals("MEDIUM") ) { // MEDIUM
+		} else if ( difficulty.equals("MEDIUM") ) {
 			this.repetition = false;
 			this.nLetters = 6;
 			this.height = 7;
 			this.width = 4;
-		} else if ( difficulty.equals("HARD") ) { // HARD
+		} else if ( difficulty.equals("HARD") ) {
 			this.repetition = true;
 			this.nLetters = 6;
 			this.height = 7;

@@ -51,12 +51,12 @@ public class Game {
 		if ((mastermind.getWhoisCM()).equals("MACHINE")) {
             computerCM = true;
             System.out.println("Initiazing CodeMaker algorithm...");
-            this.cm = new CodeMaker(controladorDominio);
+            this.cm = new CodeMaker(controladorDominio, this.width, this.repetition, this.nLetters);
         } else { computerCM = false; }
         if ((mastermind.getWhoisCB()).equals("MACHINE")) {
             computerCB = true;
             System.out.println("Initiazing CodeBreaker algorithm...");
-            // this.cb = new CodeBreaker(controladorDominio,this, width, nLetters, repetition);
+            this.cb = new CodeBreaker(controladorDominio,this, width, nLetters, repetition);
         } else { computerCB = false; }
         this.board = new Board(controladorDominio, height);
     }

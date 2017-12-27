@@ -20,6 +20,8 @@ public class CtrlDominio {
     private String[][] answerMatrix;
     private String[] rounds;
     private String difficulty, role;
+    private String whoMachine;
+    private int numRightGame;
 
 	    /** Constructor **/
 
@@ -36,9 +38,7 @@ public class CtrlDominio {
         return this.register;
     }
 
-    public Ranking passRanking() {
-        return this.ranking;
-    }
+    public Ranking passRanking() { return this.ranking; }
 
 	public List<String> getNameFileRankings() {
 	    return controladorPersistence.getNameFileRankings();
@@ -58,12 +58,11 @@ public class CtrlDominio {
 
     public void setRoleDificultyNewGame(String username, String role, String difficulty) { gameFactory.newgame(username,role,difficulty); }
 
-    /*
     public void setRoleDificultyNewGameMachine(String username, String role, String difficulty, int numGames) {
         gameFactory.newgameMachine(username,role,difficulty,numGames);
-        getMastermindAttributes();
+            // Fin de la simulación
+        // getMastermindAttributes();
     }
-    */
 
     public void setRoleDificultyContinueGame(String username) {
         gameFactory.continuegame(username);
@@ -95,6 +94,7 @@ public class CtrlDominio {
 
     public void setCodeMake(String code, String role, String difficulty){
         // TODO: Hacer Check de "code", para devolver el Answer
+        // cont
     }
 
     public double getTime(){
@@ -117,9 +117,7 @@ public class CtrlDominio {
 
     public void setAnswerMatrix(String[][] answerMatrix) { this.answerMatrix = answerMatrix; }
 
-    public String getGuess() {
-        return this.guess;
-    }
+    public String getGuess() { return this.guess; }
 
     public void setCodeMaker(String codeMaker) { this.codeMaker = codeMaker; }
 
@@ -139,4 +137,12 @@ public class CtrlDominio {
     public String getDifficulty() { return this.difficulty; }
 
     public String getRole() { return this.role; }
+
+    public void setWhoMachine(String wMachine) { this.whoMachine = wMachine; }
+
+    public String getWhoMachine() { return this.whoMachine; }
+
+    public void setNumRightGame(int num) { this.numRightGame = num; }
+
+    public int getNumRightGame() { return this.numRightGame; }
 }

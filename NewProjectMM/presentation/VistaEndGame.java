@@ -44,6 +44,13 @@ public class VistaEndGame {
         String messageOut = "Result - Save it!";
         if (found == 1) { messageOut = "You Won! - Time: "+ decimal.format(time) +" seg., NumRounds: "+numRound; }
         else if (found == 2) { messageOut = "You Lost!"; }
+        else if (found == 3) {
+            int num = (int)time;
+            messageOut = "You Won! - Num Game Right: "+ num +" de " + numRound;
+            if (num == 0) {
+                messageOut = "You Lost! - Num Game Right: "+ num +" de " + numRound;
+            }
+        }
         labelOutResult.setText(messageOut);
         labelOutResult.revalidate();
         labelOutResult.repaint();

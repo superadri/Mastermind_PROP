@@ -68,9 +68,11 @@ public class CtrlPresentacion {
         // numGames -> número de partidas que se quieren que jueguen
         this.role = role;
         this.difficulty = difficulty;
+        controladorDominio.setNumRightGame(0);
         setRoleDificultyNewGameMachine(numGames);
+        int numGameRight = controladorDominio.getNumRightGame();
         vistaDifficulty.hacerInvisible();
-        vistaEndGame.setTextJlableResult(1,0,0);
+        vistaEndGame.setTextJlableResult(3, numGameRight, numGames);
         vistaEndGame.hacerVisible();
     }
 
@@ -108,7 +110,6 @@ public class CtrlPresentacion {
     }
 
     public void sincronizacionVistaQuestionToContinueAPrincipal() {
-        // TODO: Tienes que cargarlo y ponerlo aquí, para poder restablecer la partida, y luego si es necesario guardar
         setRoleDificultyContinuegame();
         this.difficulty = controladorDominio.getDifficulty();
         this.role = controladorDominio.getRole();
@@ -118,12 +119,6 @@ public class CtrlPresentacion {
     }
 
     public void sincronizacionVistaPrincipalAEndGame(int found, double time, int numRound, String codeMaker) {
-        // TODO: Hay que comprobar, que estás registarado, y ponerlo 0, si lo estás y sino lo creas (por la partidas pendientes)
-        // TODO: Ranking, hacer una update, en función de si, existes, y luego si has mejorado, sino se deja el mejor time
-        // TODO: A la hora de guardar hay que hacerlo ordenado
-            // this.difficulty;
-            // this.role;
-            // this.nameUserNow;
         try { controladorDominio.passDataToRanking(nameUserNow, role, difficulty, time, codeMaker); }
         catch (IOException e) { e.printStackTrace(); }
         vistaPrincipal.desactivar();
@@ -198,38 +193,21 @@ public class CtrlPresentacion {
 
 	    /** Llamadas al controlador de dominio **/
 
-	public List<String> getDataRanking(String nameRank) {
-		return controladorDominio.getDataRanking(nameRank);
-	}
+	public List<String> getDataRanking(String nameRank) { return controladorDominio.getDataRanking(nameRank); }
 
-	public List<String> getNameFileRankings() {
-		return controladorDominio.getNameFileRankings();
-	}
+	public List<String> getNameFileRankings() { return controladorDominio.getNameFileRankings(); }
 
 	    // Si existe
-    public boolean user_exists(String user) {
-        return controladorDominio.user_exists(user);
-    }
+    public boolean user_exists(String user) { return controladorDominio.user_exists(user); }
 
         // Si tiene partida pendiente
-    public boolean game_start_user(String username) {
-        return controladorDominio.game_start_user(username);
-    }
+    public boolean game_start_user(String username) { return controladorDominio.game_start_user(username); }
 
-    public void setRoleDificultyNewGameMachine(int numGames) {
-        // TODO : Hacer la nueva partida
-        // controladorDominio.setRoleDificultyNewGameMachine(nameUserNow, role, difficulty, numGames);
-    }
+    public void setRoleDificultyNewGameMachine(int numGames) { controladorDominio.setRoleDificultyNewGameMachine(nameUserNow, role, difficulty, numGames); }
 
-	public void setRoleDificultyNewGame() {
-	    // TODO : Hacer la nueva partida
-        controladorDominio.setRoleDificultyNewGame(nameUserNow, role, difficulty);
-    }
+	public void setRoleDificultyNewGame() { controladorDominio.setRoleDificultyNewGame(nameUserNow, role, difficulty); }
 
-    public void setRoleDificultyContinuegame() {
-        // TODO : Continuar la partida
-        controladorDominio.setRoleDificultyContinueGame(nameUserNow);
-    }
+    public void setRoleDificultyContinuegame() { controladorDominio.setRoleDificultyContinueGame(nameUserNow); }
 
     public void setGuesstoDominio(String code, boolean start) {
         controladorDominio.setGuess(code);
@@ -238,13 +216,9 @@ public class CtrlPresentacion {
         control = start;
     }
 
-    public String getAnswer(){
-	    return controladorDominio.getAnswer();
-    }
+    public String getAnswer(){ return controladorDominio.getAnswer(); }
 
-    public void stopTime() {
-	    controladorDominio.stopTime();
-    }
+    public void stopTime() { controladorDominio.stopTime(); }
 
     public double getTime() { return controladorDominio.getTime(); }
 

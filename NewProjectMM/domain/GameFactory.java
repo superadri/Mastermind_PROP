@@ -20,10 +20,29 @@ public class GameFactory {
     }
 
     public void newgameMachine(String username, String role, String difficult, int numGames) {
-        System.out.println("GameFactory - Creando nueva partida...");
         String roleMachine = "MACHINEC";
         if (role.equals("Machine vs Machine(Random)")) { roleMachine = "MACHINER"; }
-        mastermind = new Mastermind(controladorDominio,roleMachine,"MACHINE", difficult);
+        controladorDominio.setWhoMachine(roleMachine);
+        System.out.println("GameFactory - Creando nueva partida(MACHINE vs "+roleMachine+")...");
+        mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult);
+        boolean controlMachine = true;
+        for (int i = 0; i < numGames; ++i) {
+            this.mastermind.game.startNewGame();
+            while (this.mastermind.game.turn < 10) {
+                this.mastermind.game.runGame();
+                if (this.mastermind.game.board.getAnswer(this.mastermind.game.turn-1).equals("BBBB")) {
+                    controlMachine = false;
+                    System.out.println(this.mastermind.game.turn);
+                    int num = controladorDominio.getNumRightGame();
+                    controladorDominio.setNumRightGame(++num);
+                    if (i+1 < numGames) { mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult); }
+                    break;
+                }
+                System.out.println(this.mastermind.game.turn);
+            }
+            if (controlMachine && i+1 < numGames) { mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult); }
+            controlMachine = false;
+        }
     }
 
     public void continuegame(String username) {
