@@ -16,7 +16,20 @@ public class GameFactory {
     public void newgame(String username, String role, String difficult) {
         System.out.println("GameFactory - Creando nueva partida...");
         if (role.equals("CB")) { mastermind = new Mastermind(controladorDominio, "MACHINE", username, difficult); }
-        else { mastermind = new Mastermind(controladorDominio, username,"MACHINE", difficult); }
+        else {
+            ArrayList<String> result = new ArrayList<String>();
+            mastermind = new Mastermind(controladorDominio, username,"MACHINE", difficult);
+            // Aquí hacer while, coger las respuestas y devolver result
+            this.mastermind.game.startNewGame();
+            while (this.mastermind.game.turn < 10) {
+                if (!this.mastermind.game.board.getAnswer(this.mastermind.game.turn-1).equals("BBBB")) {
+                    mastermind.game.runGame();
+                } else {
+                    controladorDominio.setRounds(this.mastermind.game.board.getAllPairsGA());
+                    break;
+                }
+            }
+        }
     }
 
     public void newgameMachine(String username, String role, String difficult, int numGames) {

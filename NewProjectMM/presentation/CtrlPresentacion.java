@@ -22,10 +22,11 @@ public class CtrlPresentacion {
 
 	private String nameUserNow;
 	private String role;
-	public String difficulty;
 	private boolean control;
+    private boolean codeMakerRight;
+    public String difficulty;
 
-        /** Constructor **/
+    /** Constructor **/
 
     public CtrlPresentacion() {
 		controladorDominio = new CtrlDominio();
@@ -64,8 +65,7 @@ public class CtrlPresentacion {
     }
 
     public void sincronizacionVistaRoleDifficultyAEndGame(String role, String difficulty, Integer numGames) {
-            // TODO: Machine
-        // numGames -> número de partidas que se quieren que jueguen
+            // TODO: Machine -> Hay que hacer Refactor de la matriz, para que no la haga todo el tiempo, pero la implementación es la misma
         this.role = role;
         this.difficulty = difficulty;
         controladorDominio.setNumRightGame(0);
@@ -80,6 +80,7 @@ public class CtrlPresentacion {
         this.role = role;
         this.difficulty = difficulty;
         this.control = false;
+        this.codeMakerRight = false;
         vistaDifficulty.hacerInvisible();
         vistaPrincipal.inicializarBoardReset();
         vistaPrincipal.activar();
@@ -89,7 +90,9 @@ public class CtrlPresentacion {
     public void sincronizacionVistaRoleDifficultyACM(String role, String difficulty) {
         this.role = role;
         this.difficulty = difficulty;
+        this.codeMakerRight = true;
         vistaDifficulty.hacerInvisible();
+        vistaCM.iniPegCM();
         vistaCM.hacerVisible();
     }
 
@@ -100,12 +103,10 @@ public class CtrlPresentacion {
 
     public void sincronizacionVistaCMAPrincipal(String codeCM) {
         // TODO: Para poner el resultado
-        // this.difficulty;
-        // this.role;
-        // codeCM -> CM, que has definido tú para la máquina lo adivine
-        controladorDominio.setCodeMake(codeCM, this.role, this.difficulty);
+        controladorDominio.setGuess(codeCM);
+        controladorDominio.setCodeMake(codeCM, this.nameUserNow, this.role, this.difficulty);
         vistaCM.hacerInvisible();
-        vistaPrincipal.inicializarBoardReset();
+        vistaPrincipal.inicializarBoardContinue();
         vistaPrincipal.activar();
     }
 
@@ -150,6 +151,12 @@ public class CtrlPresentacion {
 
     public void sincronizacionVistaRoleDifficultyAUser() {
         vistaDifficulty.hacerInvisible();
+        vistaUser.setNameTextField(nameUserNow);
+        vistaUser.hacerVisible();
+    }
+
+    public void sincronizacionVistaPrincipalAUser() {
+        vistaPrincipal.desactivar();
         vistaUser.setNameTextField(nameUserNow);
         vistaUser.hacerVisible();
     }
@@ -225,4 +232,6 @@ public class CtrlPresentacion {
     public String getcodeMaker() { return  controladorDominio.getCodeMaker(); }
 
     public String[] getRounds() { return controladorDominio.getRounds(); }
+
+    public boolean isCodeMakerRight() { return this.codeMakerRight; }
 }

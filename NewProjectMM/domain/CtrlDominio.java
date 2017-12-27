@@ -38,7 +38,9 @@ public class CtrlDominio {
         return this.register;
     }
 
+    /*
     public Ranking passRanking() { return this.ranking; }
+    */
 
 	public List<String> getNameFileRankings() {
 	    return controladorPersistence.getNameFileRankings();
@@ -60,8 +62,6 @@ public class CtrlDominio {
 
     public void setRoleDificultyNewGameMachine(String username, String role, String difficulty, int numGames) {
         gameFactory.newgameMachine(username,role,difficulty,numGames);
-            // Fin de la simulación
-        // getMastermindAttributes();
     }
 
     public void setRoleDificultyContinueGame(String username) {
@@ -92,24 +92,21 @@ public class CtrlDominio {
         controladorPersistence.set_continueGame(game_start, newNameUser, respuestas, time, codigo, dificultat, rol, register);
     }
 
-    public void setCodeMake(String code, String role, String difficulty){
+    public void setCodeMake(String code, String username, String role, String difficulty){
         // TODO: Hacer Check de "code", para devolver el Answer
-        // cont
+        this.codeMaker = code;
+        this.whoMachine = "MACHINEC";
+        gameFactory.newgame(username,role,difficulty);
+        
     }
 
-    public double getTime(){
-        return this.time;
-    }
+    public double getTime(){ return this.time; }
 
-    public void setTime(Double time){
-        this.time = time;
-    }
+    public void setTime(Double time){ this.time = time; }
 
     public void setGuess(String guess) { this.guess = guess; }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
+    public void setAnswer(String answer) { this.answer = answer; }
 
     public String getAnswer() { return this.answer; }
 

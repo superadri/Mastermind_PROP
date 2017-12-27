@@ -104,6 +104,7 @@ public class VistaPrincipal {
 
     private boolean foundAnswer;
     private int controlSecuencia;
+    private boolean controlMaker;
 
     /**
      * Constructora
@@ -225,7 +226,12 @@ public class VistaPrincipal {
             controlS += 4;
         }
         deleteAllListenerPeg();
-        listenerPegAll();
+        boolean controlCM;
+        if (!controladorPresentacion.isCodeMakerRight()) {
+            listenerPegAll();
+            controlCM = false;
+        } else { controlCM = true; }
+        setNewBarBanner(controlCM);
     }
 
     public void inicializarBoardReset() {
@@ -233,6 +239,7 @@ public class VistaPrincipal {
         this.controlSecuencia = 0;
         this.foundAnswer = false;
         for (JLabel peg : board) { peg.setIcon(pegBlack); }
+        setNewBarBanner(false);
         deleteAllListenerPeg();
         listenerPegAll();
     }
@@ -299,6 +306,13 @@ public class VistaPrincipal {
                 ++j;
             } else if (i > controlSecuencia + 4) { break; }
         }
+    }
+
+    private void setNewBarBanner(boolean codeMakerRight){
+        if (codeMakerRight) { menuitemSave.setText("New Game"); }
+        else { menuitemSave.setText("Save"); }
+        menuitemSave.revalidate();
+        menuitemSave.repaint();
     }
 
     private boolean checkValidAnswer() {
@@ -481,44 +495,48 @@ public class VistaPrincipal {
         // Listeners para los botones
         buttonMakeGuess.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                if ( checkValidAnswer() ) {
-                    invalidGuessPanel.setVisible(false);
+                if ( !controladorPresentacion.isCodeMakerRight() ) {
+                    if (checkValidAnswer()) {
+                        invalidGuessPanel.setVisible(false);
 
-                    String codeOut = "";
-                    for (JLabel peg : guesses) {
-                        MouseListener[] mls = peg.getMouseListeners();
-                        if (mls != null) {
-                            for (MouseListener ml : mls) {
-                                codeOut += traductorColorToStringGuess(peg);
+                        String codeOut = "";
+                        for (JLabel peg : guesses) {
+                            MouseListener[] mls = peg.getMouseListeners();
+                            if (mls != null) {
+                                for (MouseListener ml : mls) {
+                                    codeOut += traductorColorToStringGuess(peg);
+                                }
                             }
                         }
-                    }
 
-                    controladorPresentacion.setGuesstoDominio(codeOut,true);
-                    String answerOut = controladorPresentacion.getAnswer();
-                    setColorAnswers(answerOut);
-                    foundAnswer = answerOut.equals("BBBB");
+                        controladorPresentacion.setGuesstoDominio(codeOut, true);
+                        String answerOut = controladorPresentacion.getAnswer();
+                        setColorAnswers(answerOut);
+                        foundAnswer = answerOut.equals("BBBB");
 
-                    if (controlSecuencia == 36 || foundAnswer) {
-                        deleteAllListenerPeg();
-                        double time = controladorPresentacion.getTime();
-                        int numRound = (controlSecuencia/4)+1;
-                        System.out.println("Fin Game - " + time);
-                        int found = 2;
-                        String messageEnd = "You Lost!";
-                        if (foundAnswer) {
-                            found = 1;
-                            messageEnd = "You Win!";
+                        if (controlSecuencia == 36 || foundAnswer) {
+                            deleteAllListenerPeg();
+                            double time = controladorPresentacion.getTime();
+                            int numRound = (controlSecuencia / 4) + 1;
+                            System.out.println("Fin Game - " + time);
+                            int found = 2;
+                            String messageEnd = "You Lost!";
+                            if (foundAnswer) {
+                                found = 1;
+                                messageEnd = "You Win!";
+                            }
+                            System.out.println(messageEnd);
+                            controladorPresentacion.sincronizacionVistaPrincipalAEndGame(found, time, numRound, codeOut);
+                        } else {
+                            controlSecuencia += 4;
+                            int Level = (controlSecuencia / 4) + 1;
+                            System.out.println("Level: " + Level);
                         }
-                        System.out.println(messageEnd);
-                        controladorPresentacion.sincronizacionVistaPrincipalAEndGame(found, time, numRound, codeOut);
+                        listenerPegAll();
                     } else {
-                        controlSecuencia += 4;
-                        int Level = (controlSecuencia/4)+1;
-                        System.out.println("Level: " + Level );
+                        invalidGuessPanel.setVisible(true);
                     }
-                    listenerPegAll();
-                } else { invalidGuessPanel.setVisible(true); }
+                }
             }
         });
 
@@ -550,38 +568,42 @@ public class VistaPrincipal {
             public void actionPerformed(ActionEvent event) {
                 String texto = ((JMenuItem) event.getSource()).getText();
                 System.out.println("Has seleccionado el menuitem con texto: " + texto);
-                ArrayList<String> codeOutGuess = new ArrayList<String>();
-                ArrayList<String> codeOutAnswers = new ArrayList<String>();
-                String codePegGuess = "";
-                String codePegAnswers = "";
-                for (int i = 1; i <= guesses.length; ++i) {
-                    JLabel peg1 = guesses[i-1];
-                    JLabel peg2 = answers[i-1];
-                    codePegGuess += traductorColorToStringGuess(peg1);
-                    codePegAnswers += traductorColorToStringAnswer(peg2);
-                    if (i % 4 == 0) {
-                        if (codePegGuess.equals("nnnn")) { break; }
-                        codeOutGuess.add(codePegGuess);
-                        codeOutAnswers.add(codePegAnswers);
-                        codePegGuess = "";
-                        codePegAnswers = "";
+                if ( !controladorPresentacion.isCodeMakerRight() ) {
+                    ArrayList<String> codeOutGuess = new ArrayList<String>();
+                    ArrayList<String> codeOutAnswers = new ArrayList<String>();
+                    String codePegGuess = "";
+                    String codePegAnswers = "";
+                    for (int i = 1; i <= guesses.length; ++i) {
+                        JLabel peg1 = guesses[i - 1];
+                        JLabel peg2 = answers[i - 1];
+                        codePegGuess += traductorColorToStringGuess(peg1);
+                        codePegAnswers += traductorColorToStringAnswer(peg2);
+                        if (i % 4 == 0) {
+                            if (codePegGuess.equals("nnnn")) {
+                                break;
+                            }
+                            codeOutGuess.add(codePegGuess);
+                            codeOutAnswers.add(codePegAnswers);
+                            codePegGuess = "";
+                            codePegAnswers = "";
+                        }
                     }
-                }
-                if (codeOutGuess.size()>0) {
-                    System.out.println(codeOutGuess + " - " + codeOutAnswers);
-                    try {
-                        controladorPresentacion.stopTime();
-                        double time = controladorPresentacion.getTime();
-                        int numRound = (controlSecuencia / 4) + 1;
-                        String codeMaker = controladorPresentacion.getcodeMaker();
-                        controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave(codeOutGuess, codeOutAnswers, time, numRound, codeMaker);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if (codeOutGuess.size() > 0) {
+                        System.out.println(codeOutGuess + " - " + codeOutAnswers);
+                        try {
+                            controladorPresentacion.stopTime();
+                            double time = controladorPresentacion.getTime();
+                            int numRound = (controlSecuencia / 4) + 1;
+                            String codeMaker = controladorPresentacion.getcodeMaker();
+                            controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave(codeOutGuess, codeOutAnswers, time, numRound, codeMaker);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        invalidGuessLabel.setText("Invalid action: you must make at least one guess before saving.");
+                        invalidGuessPanel.setVisible(true);
                     }
-                } else {
-                    invalidGuessLabel.setText("Invalid action: you must make at least one guess before saving.");
-                    invalidGuessPanel.setVisible(true);
-                }
+                } else { controladorPresentacion.sincronizacionVistaPrincipalAUser(); }
             }
         });
 

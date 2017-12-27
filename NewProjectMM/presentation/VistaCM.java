@@ -47,6 +47,10 @@ public class VistaCM {
 	    dialogCM.setVisible(false);
     }
 
+    public void iniPegCM() {
+        for (JLabel peg : guesses) { peg.setIcon(pegBlack); }
+    }
+
 	    /** Métodos privados **/
     private void inicializarComponentes() {
         inicializardialogCM();
@@ -172,7 +176,6 @@ public class VistaCM {
                             }
                         }
                     }
-                    // Establecer tablero resultado
                     System.out.println("CM: "+codeOut);
                     controladorPresentacion.sincronizacionVistaCMAPrincipal(codeOut);
                 } else { invalidGuessPanel.setVisible(true); }
