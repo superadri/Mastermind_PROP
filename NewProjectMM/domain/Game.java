@@ -97,7 +97,6 @@ public class Game {
 	public void runGame() {
         Play cbplay = new Play(controladorDominio,this, "CODEBREAKER");
         cbplay.makePlay();
-        System.out.println(guess+" "+answer);
         board.setGuessAndAnswer(guess, answer);
         System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
         System.out.println("Game: answer = " + board.getAnswer(turn));

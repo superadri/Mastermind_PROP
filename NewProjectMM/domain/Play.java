@@ -35,7 +35,6 @@ public class Play {
             } else { // User - Input
 				game.guess = scanCombination();
                 game.answer = game.calculateAnswer(game.guess);
-                System.out.println(game.guess+" "+game.answer);
 		    }
 		}
 	}

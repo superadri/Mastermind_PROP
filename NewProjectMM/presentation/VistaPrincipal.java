@@ -237,18 +237,9 @@ public class VistaPrincipal {
     }
 
     public void inicializarBoardReset() {
-            // Existe un desfase, porque indirectamente hace make guess...
         this.controlSecuencia = 0;
         this.foundAnswer = false;
-        int i = 0;
-        for (JLabel peg : board) {
-            peg.setIcon(pegBlack);
-            /*
-            if (i < 10) { peg.disable(); }
-            else { peg.setIcon(pegBlack); }
-            ++i;
-            */
-        }
+        for (JLabel peg : board) { peg.setIcon(pegBlack); }
         setNewBarBanner(false);
         deleteAllListenerPeg();
         listenerPegAll();
@@ -319,10 +310,8 @@ public class VistaPrincipal {
     }
 
     private void setNewBarBanner(boolean codeMakerRight){
-        if (codeMakerRight) { menuitemSave.setText("New Game"); }
-        else { menuitemSave.setText("Save"); }
-        menuitemSave.revalidate();
-        menuitemSave.repaint();
+        if (codeMakerRight) { menuitemSave.setEnabled(false); }
+        else { menuitemSave.setEnabled(true); }
     }
 
     private boolean checkValidAnswer() {
@@ -506,12 +495,13 @@ public class VistaPrincipal {
         buttonMakeGuess.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 if ( !controladorPresentacion.isCodeMakerRight() ) {
-                    if (checkValidAnswer()) {
+                    if ( checkValidAnswer() ) {
                         invalidGuessPanel.setVisible(false);
 
                         String codeOut = "";
                         for (JLabel peg : guesses) {
                             MouseListener[] mls = peg.getMouseListeners();
+                            // System.out.println(mls.length);
                             if (mls != null) {
                                 for (MouseListener ml : mls) {
                                     codeOut += traductorColorToStringGuess(peg);
@@ -543,9 +533,7 @@ public class VistaPrincipal {
                             System.out.println("Level: " + Level);
                         }
                         listenerPegAll();
-                    } else {
-                        invalidGuessPanel.setVisible(true);
-                    }
+                    } else { invalidGuessPanel.setVisible(true); }
                 }
             }
         });
@@ -683,7 +671,7 @@ public class VistaPrincipal {
     }
 
     private void deleteAllListenerPeg() {
-        for (int i = 0; i < guesses.length; ++i) { removeClickListener(guesses[i]); }
+        for (JLabel peg : guesses) { removeClickListener(peg); }
     }
 
     private MouseListener myMouseListener(final JLabel peg){

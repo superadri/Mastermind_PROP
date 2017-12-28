@@ -90,7 +90,6 @@ public class CtrlPresentacion {
     public void sincronizacionVistaRoleDifficultyACM(String role, String difficulty) {
         this.role = role;
         this.difficulty = difficulty;
-        this.codeMakerRight = true;
         vistaDifficulty.hacerInvisible();
         vistaCM.iniPegCM();
         vistaCM.hacerVisible();
@@ -106,6 +105,7 @@ public class CtrlPresentacion {
         controladorDominio.setGuess(codeCM);
         controladorDominio.setCodeMake(codeCM, this.nameUserNow, this.role, this.difficulty);
         vistaCM.hacerInvisible();
+        this.codeMakerRight = true;
         vistaPrincipal.inicializarBoardContinue();
         vistaPrincipal.activar();
     }
@@ -114,6 +114,7 @@ public class CtrlPresentacion {
         setRoleDificultyContinuegame();
         this.difficulty = controladorDominio.getDifficulty();
         this.role = controladorDominio.getRole();
+        this.codeMakerRight = false;
         vistaToContinue.hacerInvisible();
         vistaPrincipal.inicializarBoardContinue();
         vistaPrincipal.activar();
@@ -220,6 +221,7 @@ public class CtrlPresentacion {
         controladorDominio.setGuess(code);
         if (!control) { controladorDominio.gameFactory.mastermind.game.startNewGame(); }
         else { controladorDominio.gameFactory.mastermind.game.runGame(); }
+        System.out.println(control);
         control = start;
     }
 
