@@ -47,7 +47,7 @@ public class Game {
 		this.repetition = mastermind.getrepetition();
     	this.height = mastermind.getheight();
 		System.out.println("Initial Configuration>");
-		System.out.println("width = " + this.width + ", nLetters = " + this.nLetters + ", repetition = " + this.repetition + ".");
+		System.out.println("height = "+ mastermind.height +", width = " + this.width + ", nLetters = " + this.nLetters + ", repetition = " + this.repetition + ".");
 		if ((mastermind.getWhoisCM()).equals("MACHINE")) {
             computerCM = true;
             System.out.println("Initiazing CodeMaker algorithm...");
@@ -97,6 +97,7 @@ public class Game {
 	public void runGame() {
         Play cbplay = new Play(controladorDominio,this, "CODEBREAKER");
         cbplay.makePlay();
+        System.out.println(guess+" "+answer);
         board.setGuessAndAnswer(guess, answer);
         System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
         System.out.println("Game: answer = " + board.getAnswer(turn));

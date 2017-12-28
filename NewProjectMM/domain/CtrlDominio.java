@@ -142,4 +142,6 @@ public class CtrlDominio {
     public void setNumRightGame(int num) { this.numRightGame = num; }
 
     public int getNumRightGame() { return this.numRightGame; }
+
+    public int getHeight() { return gameFactory.mastermind.height; }
 }

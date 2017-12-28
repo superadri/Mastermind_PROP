@@ -93,6 +93,7 @@ public class VistaPrincipal {
 
     private JMenuBar menubarVista = new JMenuBar();
     private JMenu menuFile = new JMenu("File");
+    private JMenuItem menuitemNGame = new JMenuItem("New Game");
     private JMenuItem menuitemSave = new JMenuItem("Save");
     private JMenuItem menuitemQuit = new JMenuItem("Quit");
     private JMenu menuOption = new JMenu("Option");
@@ -170,6 +171,7 @@ public class VistaPrincipal {
     }
 
     private void inicializarMenubarVista() {
+        menuFile.add(menuitemNGame);
         menuFile.add(menuitemSave);
         menuFile.add(menuitemQuit);
         menubarVista.add(menuFile);
@@ -238,7 +240,15 @@ public class VistaPrincipal {
             // Existe un desfase, porque indirectamente hace make guess...
         this.controlSecuencia = 0;
         this.foundAnswer = false;
-        for (JLabel peg : board) { peg.setIcon(pegBlack); }
+        int i = 0;
+        for (JLabel peg : board) {
+            peg.setIcon(pegBlack);
+            /*
+            if (i < 10) { peg.disable(); }
+            else { peg.setIcon(pegBlack); }
+            ++i;
+            */
+        }
         setNewBarBanner(false);
         deleteAllListenerPeg();
         listenerPegAll();
@@ -514,7 +524,7 @@ public class VistaPrincipal {
                         setColorAnswers(answerOut);
                         foundAnswer = answerOut.equals("BBBB");
 
-                        if (controlSecuencia == 36 || foundAnswer) {
+                        if (controlSecuencia == (controladorPresentacion.getHeight()*4)-4 || foundAnswer) {
                             deleteAllListenerPeg();
                             double time = controladorPresentacion.getTime();
                             int numRound = (controlSecuencia / 4) + 1;
@@ -537,6 +547,14 @@ public class VistaPrincipal {
                         invalidGuessPanel.setVisible(true);
                     }
                 }
+            }
+        });
+
+        menuitemNGame.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                String texto = ((JMenuItem) event.getSource()).getText();
+                System.out.println("Has seleccionado el menuitem con texto: " + texto);
+                controladorPresentacion.sincronizacionVistaPrincipalAUser();
             }
         });
 

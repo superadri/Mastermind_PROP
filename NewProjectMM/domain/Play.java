@@ -22,23 +22,20 @@ public class Play {
 		if ( role.equals("CODEMAKER") ) {
 		  	String code = "";
 		  	if (game.computerCM) { code = cm.createCode(); } // Machine
-		  	else { code = scanCombination(); } // // User - Input
-                // Inicialias the Game, con este nuevo CodeMaker
+		  	else { code = scanCombination(); } // User - Input
 		  	game.sendCode(this, code);
-
-		  	// Defines quien hará de CodeBreaker
-		} else if ( role.equals("CODEBREAKER") ) {
-		        // Aquí hay que definir que Machine debe ejecutarse
-			if (game.computerCB) {  // Machine Complex
-                if (controladorDominio.getWhoMachine().equals("MACHINEC")) {
+		} else if ( role.equals("CODEBREAKER") ) { // Defines quien hará de CodeBreaker
+			if (game.computerCB) {
+                if (controladorDominio.getWhoMachine().equals("MACHINEC")) { // Machine Complex
                     game.cb.playCombination();
                 } else {    // Machine Randome
                     game.guess = cm.createCode();
                     game.answer = game.calculateAnswer(game.guess);
                 }
-            } else {
-				game.guess = scanCombination(); // User - Input
+            } else { // User - Input
+				game.guess = scanCombination();
                 game.answer = game.calculateAnswer(game.guess);
+                System.out.println(game.guess+" "+game.answer);
 		    }
 		}
 	}

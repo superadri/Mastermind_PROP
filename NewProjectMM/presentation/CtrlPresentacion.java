@@ -130,7 +130,7 @@ public class CtrlPresentacion {
     public void sincronizacionVistaPrincipalAEndGameSave(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers, double time, int numRounds, String codeMaker) throws IOException {
         controladorDominio.passDataToRegister(codeOutGuess,codeOutAnswers,nameUserNow,role,difficulty,time, codeMaker);
         vistaPrincipal.desactivar();
-        vistaEndGame.setTextJlableResult(3,time,numRounds);
+        vistaEndGame.setTextJlableResult(4,time,numRounds);
         vistaEndGame.hacerVisible();
     }
 
@@ -234,4 +234,6 @@ public class CtrlPresentacion {
     public String[] getRounds() { return controladorDominio.getRounds(); }
 
     public boolean isCodeMakerRight() { return this.codeMakerRight; }
+
+    public int getHeight() { return controladorDominio.getHeight(); }
 }
