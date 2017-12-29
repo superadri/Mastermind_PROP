@@ -24,11 +24,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VistaPrincipal.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VistaPrincipal.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="831">
-              <caret line="511" column="56" lean-forward="false" selection-start-line="511" selection-start-column="56" selection-end-line="511" selection-end-column="56" />
+            <state relative-caret-position="8517">
+              <caret line="516" column="89" lean-forward="false" selection-start-line="516" selection-start-column="49" selection-end-line="516" selection-end-column="89" />
               <folding>
                 <element signature="e#29871#29872#0" expanded="true" />
                 <element signature="e#29956#29957#0" expanded="true" />
@@ -41,24 +41,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registro.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/persistence/registro.txt">
+      <file leaf-file-name="CtrlDominio.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/CtrlDominio.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VistaCM.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/presentation/VistaCM.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2856">
-              <caret line="179" column="48" lean-forward="false" selection-start-line="179" selection-start-column="48" selection-end-line="179" selection-end-column="48" />
+            <state relative-caret-position="816">
+              <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
               <folding>
-                <element signature="e#1420#1421#0" expanded="true" />
-                <element signature="e#1488#1489#0" expanded="true" />
+                <element signature="e#1056#1057#0" expanded="true" />
+                <element signature="e#1117#1118#0" expanded="true" />
+                <element signature="e#1176#1177#0" expanded="true" />
+                <element signature="e#1246#1247#0" expanded="true" />
+                <element signature="e#1296#1297#0" expanded="true" />
+                <element signature="e#1349#1350#0" expanded="true" />
+                <element signature="e#1404#1405#0" expanded="true" />
+                <element signature="e#1461#1462#0" expanded="true" />
+                <element signature="e#1857#1858#0" expanded="true" />
+                <element signature="e#1907#1908#0" expanded="true" />
+                <element signature="e#2787#2788#0" expanded="true" />
+                <element signature="e#2847#2848#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,8 +67,8 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/domain/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="63" column="16" lean-forward="false" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
+            <state relative-caret-position="1683">
+              <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
               <folding>
                 <element signature="e#4184#4185#0" expanded="true" />
                 <element signature="e#4217#4218#0" expanded="true" />
@@ -97,29 +97,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CtrlDominio.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/domain/CtrlDominio.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1479">
-              <caret line="106" column="22" lean-forward="false" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="22" />
-              <folding>
-                <element signature="e#1056#1057#0" expanded="true" />
-                <element signature="e#1117#1118#0" expanded="true" />
-                <element signature="e#1176#1177#0" expanded="true" />
-                <element signature="e#1246#1247#0" expanded="true" />
-                <element signature="e#1296#1297#0" expanded="true" />
-                <element signature="e#1349#1350#0" expanded="true" />
-                <element signature="e#1404#1405#0" expanded="true" />
-                <element signature="e#1461#1462#0" expanded="true" />
-                <element signature="e#1857#1858#0" expanded="true" />
-                <element signature="e#1907#1908#0" expanded="true" />
-                <element signature="e#2787#2788#0" expanded="true" />
-                <element signature="e#2847#2848#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Play.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/domain/Play.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -133,11 +110,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CodeBreaker.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/domain/CodeBreaker.java">
+      <file leaf-file-name="GameFactory.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/domain/GameFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1190">
-              <caret line="70" column="26" lean-forward="false" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
+            <state relative-caret-position="183">
+              <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1037">
+              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -260,7 +247,6 @@
         <option value="$PROJECT_DIR$/domain/Mastermind.java" />
         <option value="$PROJECT_DIR$/presentation/VistaRoleDifficulty.java" />
         <option value="$PROJECT_DIR$/presentation/VistaEndGame.java" />
-        <option value="$PROJECT_DIR$/domain/GameFactory.java" />
         <option value="$PROJECT_DIR$/presentation/VistaCM.java" />
         <option value="$PROJECT_DIR$/domain/CodeBreaker.java" />
         <option value="$PROJECT_DIR$/domain/CodeMaker.java" />
@@ -274,6 +260,7 @@
         <option value="$PROJECT_DIR$/persistence/registro.txt" />
         <option value="$PROJECT_DIR$/presentation/CtrlPresentacion.java" />
         <option value="$PROJECT_DIR$/presentation/CtrlPresentacion.java" />
+        <option value="$PROJECT_DIR$/domain/GameFactory.java" />
       </list>
     </option>
   </component>
@@ -283,9 +270,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-14" />
+    <option name="y" value="-19" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -306,9 +295,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -319,12 +305,20 @@
             <path>
               <item name="NewProjectMM" type="b2602c69:ProjectViewProjectNode" />
               <item name="NewProjectMM" type="462c0819:PsiDirectoryNode" />
+              <item name="domain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NewProjectMM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NewProjectMM" type="462c0819:PsiDirectoryNode" />
               <item name="presentation" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -744,15 +738,16 @@
       <workItem from="1514393870193" duration="11102000" />
       <workItem from="1514494506986" duration="1955000" />
       <workItem from="1514566256213" duration="85000" />
-      <workItem from="1514569808895" duration="210000" />
+      <workItem from="1514569808895" duration="945000" />
+      <workItem from="1514572746740" duration="613000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="259103000" />
+    <option name="totallyTimeSpent" value="260451000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -763,7 +758,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28588235" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1940615" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19294117" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1075,13 +1070,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/domain/GameFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="28" column="26" lean-forward="false" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/persistence/CtrlPersistence.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -1110,13 +1098,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/domain/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/presentation/VistaEndGame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
@@ -1125,9 +1106,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/presentation/CtrlPresentacion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3723">
+          <caret line="223" column="35" lean-forward="false" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Mastermind.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/persistence/registro.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/presentation/VistaCM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2856">
+        <state relative-caret-position="605">
           <caret line="179" column="48" lean-forward="false" selection-start-line="179" selection-start-column="48" selection-end-line="179" selection-end-column="48" />
           <folding>
             <element signature="e#1420#1421#0" expanded="true" />
@@ -1136,10 +1140,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/domain/CodeBreaker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1381">
+          <caret line="70" column="26" lean-forward="false" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Play.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#1377#1378#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8517">
+          <caret line="516" column="89" lean-forward="false" selection-start-line="516" selection-start-column="49" selection-end-line="516" selection-end-column="89" />
+          <folding>
+            <element signature="e#29871#29872#0" expanded="true" />
+            <element signature="e#29956#29957#0" expanded="true" />
+            <element signature="e#30039#30040#0" expanded="true" />
+            <element signature="e#30127#30128#0" expanded="true" />
+            <element signature="e#30719#30720#0" expanded="true" />
+            <element signature="e#30790#30791#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/domain/CtrlDominio.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1479">
-          <caret line="106" column="22" lean-forward="false" selection-start-line="106" selection-start-column="22" selection-end-line="106" selection-end-column="22" />
+        <state relative-caret-position="816">
+          <caret line="63" column="30" lean-forward="false" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
           <folding>
             <element signature="e#1056#1057#0" expanded="true" />
             <element signature="e#1117#1118#0" expanded="true" />
@@ -1157,37 +1202,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/domain/CodeBreaker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="70" column="26" lean-forward="false" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/domain/Play.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <element signature="e#1377#1378#0" expanded="true" />
-            <element signature="e#1429#1430#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/domain/Mastermind.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="22" lean-forward="false" selection-start-line="40" selection-start-column="22" selection-end-line="40" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/domain/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="63" column="16" lean-forward="false" selection-start-line="63" selection-start-column="16" selection-end-line="63" selection-end-column="16" />
+        <state relative-caret-position="1683">
+          <caret line="99" column="0" lean-forward="false" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding>
             <element signature="e#4184#4185#0" expanded="true" />
             <element signature="e#4217#4218#0" expanded="true" />
@@ -1215,34 +1233,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/presentation/CtrlPresentacion.java">
+    <entry file="file://$PROJECT_DIR$/domain/GameFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3723">
-          <caret line="223" column="35" lean-forward="false" selection-start-line="223" selection-start-column="35" selection-end-line="223" selection-end-column="35" />
+        <state relative-caret-position="183">
+          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/persistence/registro.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="831">
-          <caret line="511" column="56" lean-forward="false" selection-start-line="511" selection-start-column="56" selection-end-line="511" selection-end-column="56" />
-          <folding>
-            <element signature="e#29871#29872#0" expanded="true" />
-            <element signature="e#29956#29957#0" expanded="true" />
-            <element signature="e#30039#30040#0" expanded="true" />
-            <element signature="e#30127#30128#0" expanded="true" />
-            <element signature="e#30719#30720#0" expanded="true" />
-            <element signature="e#30790#30791#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

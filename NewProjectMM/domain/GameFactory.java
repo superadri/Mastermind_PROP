@@ -32,11 +32,39 @@ public class GameFactory {
         }
     }
 
+    private int factorial(int f) {
+        if (f == 0) { return 1; }
+        return f * factorial(f - 1);
+    }
+
+    private int partialPermutations(int n, int k) {
+        return factorial(n) / factorial(n - k);
+    }
+
+    private int setSize(String difficult) {
+        boolean repetition; int nColors, width;
+        nColors = 6; width = 4;
+        if (difficult.equals("HARD")) { repetition = false; }
+        else { repetition = true; }
+        if (repetition) {
+            return (int)(Math.pow((double)(nColors), (double)(width)));
+        }
+        return partialPermutations(nColors, width);
+    }
+
     public void newgameMachine(String username, String role, String difficult, int numGames) {
         String roleMachine = "MACHINEC";
         if (role.equals("Machine vs Machine(Random)")) { roleMachine = "MACHINER"; }
         controladorDominio.setWhoMachine(roleMachine);
         System.out.println("GameFactory - Creando nueva partida(MACHINE vs "+roleMachine+")...");
+        //=====[Intento de crear la matriz]=====
+        /*
+        * La idea es usar un constructor en mastermind que reciba la referencia a la matriz ya creada y
+        * la vaya pasando hacia la clase CodeBreaker, que no la creará sinó que usará la que le llegue.
+        * */
+        int size = setSize(difficult);
+        String[][] answerMatrix = new String[size][size];
+        //======================================
         mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult);
         boolean controlMachine = true;
         for (int i = 0; i < numGames; ++i) {
