@@ -21,7 +21,7 @@ public class GameFactory {
             mastermind = new Mastermind(controladorDominio, username,"MACHINE", difficult);
             // Aquí hacer while, coger las respuestas y devolver result
             this.mastermind.game.startNewGame();
-            while (this.mastermind.game.turn < 10) {
+            while ( this.mastermind.game.turn < controladorDominio.getHeight() ) {
                 if (!this.mastermind.game.board.getAnswer(this.mastermind.game.turn-1).equals("BBBB")) {
                     mastermind.game.runGame();
                 } else {
@@ -41,7 +41,7 @@ public class GameFactory {
         boolean controlMachine = true;
         for (int i = 0; i < numGames; ++i) {
             this.mastermind.game.startNewGame();
-            while (this.mastermind.game.turn < 10) {
+            while ( this.mastermind.game.turn < controladorDominio.getHeight() ) {
                 this.mastermind.game.runGame();
                 if (this.mastermind.game.board.getAnswer(this.mastermind.game.turn-1).equals("BBBB")) {
                     controlMachine = false;
