@@ -36,19 +36,19 @@ public class Game {
     private Mastermind mastermind;
     private String code;
 
-	public Game(CtrlDominio controladorDominio, Mastermind mastermind) {
-	    this.controladorDominio = controladorDominio;
-	    this.mastermind = mastermind;
-	    this.time = new Time();
-	    this.turn = 0;
-		this.code = this.guess = this.answer = ""; // Initialization just in case
-		this.width = mastermind.getwidth();
-		this.nLetters = mastermind.getnLetters();
-		this.repetition = mastermind.getrepetition();
-    	this.height = mastermind.getheight();
-		System.out.println("Initial Configuration>");
-		System.out.println("height = "+ mastermind.height +", width = " + this.width + ", nLetters = " + this.nLetters + ", repetition = " + this.repetition + ".");
-		if ((mastermind.getWhoisCM()).equals("MACHINE")) {
+    public Game(CtrlDominio controladorDominio, Mastermind mastermind) {
+        this.controladorDominio = controladorDominio;
+        this.mastermind = mastermind;
+        this.time = new Time();
+        this.turn = 0;
+        this.code = this.guess = this.answer = ""; // Initialization just in case
+        this.width = mastermind.getwidth();
+        this.nLetters = mastermind.getnLetters();
+        this.repetition = mastermind.getrepetition();
+        this.height = mastermind.getheight();
+        System.out.println("Initial Configuration>");
+        System.out.println("height = "+ mastermind.height +", width = " + this.width + ", nLetters = " + this.nLetters + ", repetition = " + this.repetition + ".");
+        if ((mastermind.getWhoisCM()).equals("MACHINE")) {
             computerCM = true;
             System.out.println("Initiazing CodeMaker algorithm...");
             this.cm = new CodeMaker(controladorDominio, this.width, this.repetition, this.nLetters);
@@ -58,6 +58,28 @@ public class Game {
             System.out.println("Initiazing CodeBreaker algorithm...");
             this.cb = new CodeBreaker(controladorDominio,this, width, nLetters, repetition);
         } else { computerCB = false; }
+        this.board = new Board(controladorDominio, height);
+    }
+
+    // MVM
+    public Game(CtrlDominio controladorDominio, Mastermind mastermind, String[][] answerMatrix) {
+        this.controladorDominio = controladorDominio;
+        this.mastermind = mastermind;
+        this.time = new Time();
+        this.turn = 0;
+        this.code = this.guess = this.answer = ""; // Initialization just in case
+        this.width = mastermind.getwidth();
+        this.nLetters = mastermind.getnLetters();
+        this.repetition = mastermind.getrepetition();
+        this.height = mastermind.getheight();
+        System.out.println("Initial Configuration>");
+        System.out.println("height = "+ mastermind.height +", width = " + this.width + ", nLetters = " + this.nLetters + ", repetition = " + this.repetition + ".");
+        computerCM = true;
+        System.out.println("Initiazing CodeMaker algorithm...");
+        this.cm = new CodeMaker(controladorDominio, this.width, this.repetition, this.nLetters);
+        computerCB = true;
+        System.out.println("Initiazing CodeBreaker algorithm...");
+        this.cb = new CodeBreaker(controladorDominio,this, width, nLetters, repetition, answerMatrix);
         this.board = new Board(controladorDominio, height);
     }
 

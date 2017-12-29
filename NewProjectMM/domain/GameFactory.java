@@ -9,6 +9,8 @@ public class GameFactory {
 
     public Mastermind mastermind;
 
+    public String[] allCombs;
+
     public GameFactory (CtrlDominio controladorDominio){
         this.controladorDominio = controladorDominio;
     }
@@ -52,6 +54,56 @@ public class GameFactory {
         return partialPermutations(nColors, width);
     }
 
+    public String calculateAnswer(String g, String c) {
+        int width = 4;
+        char[] guess = g.toCharArray();
+        char[] code = c.toCharArray();
+        String answer = "";
+        boolean[] guessChecked = new boolean[width];
+        boolean[] codeChecked = new boolean[width];
+        for (int i = 0; i < width; ++i) {
+            guessChecked[i] = false;
+            codeChecked[i] = false;
+        }
+        // first pass: Black pins -> color & position correct
+        for (int i = 0; i < width; ++i) {
+            if (guess[i] == code[i]) {
+                answer += 'B'; // B for Black pin
+                guessChecked[i] = true;
+                codeChecked[i] = true;
+            }
+        }
+        // second pass: Red pins: color correct & position incorrect
+        for (int i = 0; i < width; ++i) {
+            for (int j = 0; j < width && !guessChecked[i]; ++j) {
+                if (!codeChecked[j] && guess[i] == code[j]) {
+                    answer += 'R'; // R for Red pin
+                    guessChecked[i] = true;
+                    codeChecked[j] = true;
+                }
+            }
+        }
+        // third pass: X (no pin): color incorrect & position incorrect
+        // fill remaining slots with X
+        for (int i = 0; i < width; ++i) {
+            if (!guessChecked[i]) {
+                answer += "X"; // X for no pin
+            }
+        }
+        return answer;
+    }
+
+    private void fillAnswerMatrix(int size, String[][] answerMatrix) {
+        for (int gi = 0; gi < size; ++gi) {
+            for (int ci = 0; ci < size; ++ci) {
+                String guess = allCombs[gi];
+                String code = allCombs[ci];
+                String answer = calculateAnswer(guess, code);
+                answerMatrix[gi][ci] = answer;
+            }
+        }
+    }
+
     public void newgameMachine(String username, String role, String difficult, int numGames) {
         String roleMachine = "MACHINEC";
         if (role.equals("Machine vs Machine(Random)")) { roleMachine = "MACHINER"; }
@@ -64,8 +116,9 @@ public class GameFactory {
         * */
         int size = setSize(difficult);
         String[][] answerMatrix = new String[size][size];
+        fillAnswerMatrix(size, answerMatrix);
         //======================================
-        mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult);
+        mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix);
         boolean controlMachine = true;
         for (int i = 0; i < numGames; ++i) {
             this.mastermind.game.startNewGame();

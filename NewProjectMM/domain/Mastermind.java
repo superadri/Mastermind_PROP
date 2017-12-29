@@ -15,7 +15,7 @@ public class Mastermind {
 	private ArrayList<String> listItems;
 	public Game game;
 
-		// Constructor
+    // Constructor
     public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty) {
         System.out.println("Mastermind - NewGame");
         this.controladorDominio = controladorDominio;
@@ -25,6 +25,18 @@ public class Mastermind {
         this.difficulty = difficulty;
         setDataNextGame(difficulty);
         this.game = new Game(controladorDominio, this);
+    }
+
+    // MVM
+    public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, String[][] answerMatrix) {
+        System.out.println("Mastermind - MvM");
+        this.controladorDominio = controladorDominio;
+        this.computerCM = computerCM;
+        this.computerCB = computerCB;
+        this.gameSave = false;
+        this.difficulty = difficulty;
+        setDataNextGame(difficulty);
+        this.game = new Game(controladorDominio, this, answerMatrix);
     }
 
 	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, double time, String code, ArrayList<String> respuesta){

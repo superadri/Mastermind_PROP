@@ -68,6 +68,26 @@ public class CodeBreaker extends Algorithm {
         //printAnswerMatrix();
     }
 
+    // MVM
+    public CodeBreaker(CtrlDominio controladorDominio,Game game, int width, int nColors, boolean repetition, String[][] answerMatrixExternal) {
+        this.controladorDominio = controladorDominio;
+        this.comb = "";
+        this.guessIndex = 0; // Initialization just in case
+        this.game = game;
+        this.width = width;
+        this.nColors = nColors;
+        this.repetition = repetition;
+        //this.allColors = new String[nColors];
+        //generateColors();
+        this.size = answerMatrixExternal[0].length;
+        this.allCombs = answerMatrixExternal[0];
+        this.discarded = new boolean[size];
+        this.minDiscard = new int[size];
+        for (int i = 0; i < size; ++i) { discarded[i] = false; }
+        this.answerMatrix = answerMatrixExternal;
+        //printAnswerMatrix();
+    }
+
     public void playCombination() {
         getMin();
         String guess = getMaxMin();
