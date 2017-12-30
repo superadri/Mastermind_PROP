@@ -61,8 +61,8 @@ public class Game {
         this.board = new Board(controladorDominio, height);
     }
 
-    // MVM
-    public Game(CtrlDominio controladorDominio, Mastermind mastermind, String[][] answerMatrix) {
+    //MVM
+    public Game(CtrlDominio controladorDominio, Mastermind mastermind, String[][] am) {
         this.controladorDominio = controladorDominio;
         this.mastermind = mastermind;
         this.time = new Time();
@@ -79,7 +79,7 @@ public class Game {
         this.cm = new CodeMaker(controladorDominio, this.width, this.repetition, this.nLetters);
         computerCB = true;
         System.out.println("Initiazing CodeBreaker algorithm...");
-        this.cb = new CodeBreaker(controladorDominio,this, width, nLetters, repetition, answerMatrix);
+        this.cb = new CodeBreaker(controladorDominio,this, width, nLetters, repetition, am);
         this.board = new Board(controladorDominio, height);
     }
 

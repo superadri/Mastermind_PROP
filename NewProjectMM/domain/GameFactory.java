@@ -9,7 +9,10 @@ public class GameFactory {
 
     public Mastermind mastermind;
 
-    public String[] allCombs;
+    public String[] allCombs, allColors;
+    public String comb;
+    public int width, size, nColors;
+    public boolean repetition;
 
     public GameFactory (CtrlDominio controladorDominio){
         this.controladorDominio = controladorDominio;
@@ -43,11 +46,7 @@ public class GameFactory {
         return factorial(n) / factorial(n - k);
     }
 
-    private int setSize(String difficult) {
-        boolean repetition; int nColors, width;
-        nColors = 6; width = 4;
-        if (difficult.equals("HARD")) { repetition = false; }
-        else { repetition = true; }
+    private int setSize() {
         if (repetition) {
             return (int)(Math.pow((double)(nColors), (double)(width)));
         }
@@ -93,7 +92,7 @@ public class GameFactory {
         return answer;
     }
 
-    private void fillAnswerMatrix(int size, String[][] answerMatrix) {
+    private void fillAnswerMatrix(String[][] answerMatrix) {
         for (int gi = 0; gi < size; ++gi) {
             for (int ci = 0; ci < size; ++ci) {
                 String guess = allCombs[gi];
@@ -104,20 +103,64 @@ public class GameFactory {
         }
     }
 
+    private int setAllCombs(int n) {
+        if (comb.length() < width) {
+            for (int i = 0; i < allColors.length; ++i) {
+                String oldComb = comb;
+                comb += allColors[i];
+                n = setAllCombs(n);
+                comb = oldComb;
+            }
+        } else {
+            allCombs[n] = comb;
+            ++n;
+        }
+        return n;
+    }
+
+    private int setAllCombsNoRep(int n) {
+        if (comb.length() < width) {
+            for (int i = 0; i < allColors.length; ++i) {
+                String oldComb = comb;
+                if (!comb.contains(allColors[i])) {
+                    comb += allColors[i];
+                    n = setAllCombsNoRep(n);
+                }
+                comb = oldComb;
+            }
+        } else {
+            allCombs[n] = comb;
+            ++n;
+        }
+        return n;
+    }
+
+    private void generateColors() {
+        for (char c = 'A'; c < (char)('A' + nColors); ++c) {
+            String color = new String();
+            color += c;
+            int i = (int)(c - 'A');
+            allColors[i] = color;
+        }
+    }
+
     public void newgameMachine(String username, String role, String difficult, int numGames) {
         String roleMachine = "MACHINEC";
         if (role.equals("Machine vs Machine(Random)")) { roleMachine = "MACHINER"; }
         controladorDominio.setWhoMachine(roleMachine);
         System.out.println("GameFactory - Creando nueva partida(MACHINE vs "+roleMachine+")...");
-        //=====[Intento de crear la matriz]=====
-        /*
-        * La idea es usar un constructor en mastermind que reciba la referencia a la matriz ya creada y
-        * la vaya pasando hacia la clase CodeBreaker, que no la creará sinó que usará la que le llegue.
-        * */
-        int size = setSize(difficult);
+        this.comb = "";
+        this.width = 4;
+        this.nColors = 6;
+        this.repetition = difficult.equals("HARD");
+        this.allColors = new String[nColors];
+        generateColors();
+        this.size = setSize();
+        this.allCombs = new String[size];
+        if (repetition) { setAllCombs(0); }
+        else { setAllCombsNoRep(0); }
         String[][] answerMatrix = new String[size][size];
-        fillAnswerMatrix(size, answerMatrix);
-        //======================================
+        fillAnswerMatrix(answerMatrix);
         mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix);
         boolean controlMachine = true;
         for (int i = 0; i < numGames; ++i) {

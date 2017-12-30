@@ -68,8 +68,7 @@ public class CodeBreaker extends Algorithm {
         //printAnswerMatrix();
     }
 
-    // MVM
-    public CodeBreaker(CtrlDominio controladorDominio,Game game, int width, int nColors, boolean repetition, String[][] answerMatrixExternal) {
+    public CodeBreaker(CtrlDominio controladorDominio,Game game, int width, int nColors, boolean repetition, String[][] am) {
         this.controladorDominio = controladorDominio;
         this.comb = "";
         this.guessIndex = 0; // Initialization just in case
@@ -77,14 +76,20 @@ public class CodeBreaker extends Algorithm {
         this.width = width;
         this.nColors = nColors;
         this.repetition = repetition;
-        //this.allColors = new String[nColors];
-        //generateColors();
-        this.size = answerMatrixExternal[0].length;
-        this.allCombs = answerMatrixExternal[0];
+        this.allColors = new String[nColors];
+        generateColors();
+        this.size = 0; // Initialization just in case
+        size = setSize();
+        this.allCombs = new String[size];
+        if (repetition) {
+            setAllCombs(0);
+        } else {
+            setAllCombsNoRep(0);
+        }
         this.discarded = new boolean[size];
         this.minDiscard = new int[size];
         for (int i = 0; i < size; ++i) { discarded[i] = false; }
-        this.answerMatrix = answerMatrixExternal;
+        this.answerMatrix = am;
         //printAnswerMatrix();
     }
 

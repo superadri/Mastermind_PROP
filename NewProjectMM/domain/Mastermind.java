@@ -15,29 +15,29 @@ public class Mastermind {
 	private ArrayList<String> listItems;
 	public Game game;
 
-    // Constructor
-    public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty) {
-        System.out.println("Mastermind - NewGame");
-        this.controladorDominio = controladorDominio;
-        this.computerCM = computerCM;
-        this.computerCB = computerCB;
-        this.gameSave = false;
-        this.difficulty = difficulty;
-        setDataNextGame(difficulty);
-        this.game = new Game(controladorDominio, this);
-    }
+	// Constructor
+	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty) {
+		System.out.println("Mastermind - NewGame");
+		this.controladorDominio = controladorDominio;
+		this.computerCM = computerCM;
+		this.computerCB = computerCB;
+		this.gameSave = false;
+		this.difficulty = difficulty;
+		setDataNextGame(difficulty);
+		this.game = new Game(controladorDominio, this);
+	}
 
-    // MVM
-    public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, String[][] answerMatrix) {
-        System.out.println("Mastermind - MvM");
-        this.controladorDominio = controladorDominio;
-        this.computerCM = computerCM;
-        this.computerCB = computerCB;
-        this.gameSave = false;
-        this.difficulty = difficulty;
-        setDataNextGame(difficulty);
-        this.game = new Game(controladorDominio, this, answerMatrix);
-    }
+	// MVM
+	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, String[][] am) {
+		System.out.println("Mastermind - NewGame");
+		this.controladorDominio = controladorDominio;
+		this.computerCM = computerCM;
+		this.computerCB = computerCB;
+		this.gameSave = false;
+		this.difficulty = difficulty;
+		setDataNextGame(difficulty);
+		this.game = new Game(controladorDominio, this, am);
+	}
 
 	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, double time, String code, ArrayList<String> respuesta){
 		System.out.println("Mastermind - ContinueGame");
