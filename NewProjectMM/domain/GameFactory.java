@@ -162,6 +162,7 @@ public class GameFactory {
         String[][] answerMatrix = new String[size][size];
         fillAnswerMatrix(answerMatrix);
         mastermind = new Mastermind(controladorDominio, difficult, answerMatrix);
+        if (roleMachine.equals("MACHINER")) { this.mastermind.setRandomCB(); }
         boolean controlMachine = true;
         for (int i = 0; i < numGames; ++i) {
             this.mastermind.game.startNewGame();
