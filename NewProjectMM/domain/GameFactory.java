@@ -173,12 +173,18 @@ public class GameFactory {
                     System.out.println(this.mastermind.game.turn);
                     int num = controladorDominio.getNumRightGame();
                     controladorDominio.setNumRightGame(++num);
-                    if (i+1 < numGames) { mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult); }
+                    if (i+1 < numGames) {
+                        mastermind = new Mastermind(controladorDominio, difficult, answerMatrix);
+                        if (roleMachine.equals("MACHINER")) { this.mastermind.setRandomCB(); }
+                    }
                     break;
                 }
                 System.out.println(this.mastermind.game.turn);
             }
-            if (controlMachine && i+1 < numGames) { mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult); }
+            if (controlMachine && i+1 < numGames) {
+                mastermind = new Mastermind(controladorDominio, difficult, answerMatrix);
+                if (roleMachine.equals("MACHINER")) { this.mastermind.setRandomCB(); }
+            }
             controlMachine = false;
         }
     }
