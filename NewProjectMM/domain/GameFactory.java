@@ -50,8 +50,7 @@ public class GameFactory {
         else { setAllCombsNoRep(0); }
         String[][] answerMatrix = new String[size][size];
         fillAnswerMatrix(answerMatrix);
-        mastermind = new Mastermind(controladorDominio, "MACHINE", "MACHINE", difficult, answerMatrix);
-        if (roleMachine.equals("MACHINER")) { this.mastermind.setRandomCB(); }
+        mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix);
         boolean controlMachine = true;
         for (int i = 0; i < numGames; ++i) {
             while ( this.mastermind.game.turn < controladorDominio.getHeight() ) {
@@ -60,17 +59,11 @@ public class GameFactory {
                     controlMachine = false;
                     int num = controladorDominio.getNumRightGame();
                     controladorDominio.setNumRightGame(++num);
-                    if (i+1 < numGames) {
-                        mastermind = new Mastermind(controladorDominio, "MACHINE", "MACHINE", difficult, answerMatrix);
-                        if (roleMachine.equals("MACHINER")) { this.mastermind.setRandomCB(); }
-                    }
+                    if (i+1 < numGames) { mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix); }
                     break;
                 }
             }
-            if (controlMachine && i+1 < numGames) {
-                mastermind = new Mastermind(controladorDominio, "MACHINE", "MACHINE", difficult, answerMatrix);
-                if (roleMachine.equals("MACHINER")) { this.mastermind.setRandomCB(); }
-            }
+            if (controlMachine && i+1 < numGames) { mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix); }
             controlMachine = false;
         }
     }

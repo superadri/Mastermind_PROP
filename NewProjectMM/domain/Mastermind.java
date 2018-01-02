@@ -55,8 +55,6 @@ public class Mastermind {
 		for (int i = 0; i < respuesta.size(); ++i) { respuestaFinal[i] = respuesta.get(i); }
 		game.continueGame(time, code, respuestaFinal);
 	}
-
-	public void setRandomCB() { this.game.setRandomCB(); }
 	
 	public double getTime(){ return (this.game).getTime(); }
 
