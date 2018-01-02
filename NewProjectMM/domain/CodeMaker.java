@@ -38,7 +38,6 @@ public class CodeMaker extends Algorithm {
     private String randomCode() {
         int random = (int)(Math.floor(allCombs.length * Math.random()));
         return allCombs[random];
-        // return "EFAB";
     }
 
     private int setSize() {

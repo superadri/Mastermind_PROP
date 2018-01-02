@@ -176,7 +176,6 @@ public class VistaCM {
                             }
                         }
                     }
-                    System.out.println("CM: "+codeOut);
                     controladorPresentacion.sincronizacionVistaCMAPrincipal(codeOut);
                 } else { invalidGuessPanel.setVisible(true); }
             }

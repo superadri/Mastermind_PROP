@@ -83,9 +83,23 @@ public class Game {
         this.board = new Board(controladorDominio, height);
     }
 
+    public void startNewGame() {
+        this.lastTime = 0;
+        System.out.println("Starting new game...");
+        if (!repetition) { System.out.print("NO REPETITIONS ALLOWED -> "); }
+        Play cmplay = new Play(controladorDominio,this, "CODEMAKER");
+        cmplay.makePlay();
+        controladorDominio.setCodeMaker(this.code);
+        board.setCode(code);
+        System.out.println("CodeMaker: code = " + code);
+        startTime();
+        // runGame();
+    }
+
     public void continueGame(double lastTime, String code, String[] rounds) {
         this.lastTime = lastTime;
         this.code = code;
+        controladorDominio.setCodeMaker(code);
         board.setCode(code);
         System.out.println("Showing previous attempts:");
         controladorDominio.setRounds(rounds);
@@ -100,21 +114,7 @@ public class Game {
         }
         System.out.println("CodeMaker: code = " + code);
         startTime();
-        // runGame();
     }
-
-	public void startNewGame() {
-		this.lastTime = 0;
-		System.out.println("Starting new game...");
-    	if (!repetition) { System.out.print("NO REPETITIONS ALLOWED -> "); }
-		Play cmplay = new Play(controladorDominio,this, "CODEMAKER");
-		cmplay.makePlay();
-		controladorDominio.setCodeMaker(this.code);
-		board.setCode(code);
-        System.out.println("CodeMaker: code = " + code);
-        startTime();
-        runGame();
-	}
 
 	public void runGame() {
         Play cbplay = new Play(controladorDominio,this, "CODEBREAKER");
@@ -123,13 +123,16 @@ public class Game {
         System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
         System.out.println("Game: answer = " + board.getAnswer(turn));
         controladorDominio.setAnswer(board.getAnswer(turn));
-        if (board.getAnswer(turn).equals("BBBB")) { stopTime(); }
+        if (board.getAnswer(turn).equals("BBBB")) {
+            stopTime();
+            controladorDominio.gameFactory.mastermind.controlFin = true;
+        }
         ++turn;
 	}
 
-	public void startTime(){ time.startTime(); }
+	public void startTime() { time.startTime(); }
 
-    public void stopTime(){
+    public void stopTime() {
         time.stopTime();
         currentTime = time.getTime();
         currentTime += lastTime;
@@ -218,23 +221,6 @@ public class Game {
             }
         }
         return answer;
-    }
-
-    private String askContinue() {
-        System.out.print("Continue playing? (y/n): ");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
-    }
-
-    private void askSaveGame() {
-        System.out.print("Save game? (y/n): ");
-        Scanner sc = new Scanner(System.in);
-        String saveGame = sc.nextLine();
-        if (saveGame.equals("y")) { saveGame(); }
-    }
-
-    private void saveGame() {
-	    mastermind.saveGame(this.code, this.currentTime, board.getAllPairsGA());
     }
 
       // Test Method

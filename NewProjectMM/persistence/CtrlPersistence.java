@@ -64,8 +64,8 @@ public class CtrlPersistence {
         try {
             File f = new File("./persistence/registro.txt");
             Scanner in = new Scanner(f);
-            Player player;
             in.useLocale(Locale.ENGLISH);
+            Player player;
             while (in.hasNextLine()) {
                 String username = in.next();
                 String a = in.next();
@@ -81,10 +81,9 @@ public class CtrlPersistence {
                     String codigo = in.next();
                     String dificultat = in.next();
                     String rol = in.next();
+                    System.out.println(username+" "+a+" "+c+" "+time+" "+respuestas+" "+codigo+" "+dificultat+" "+rol);
                     player = new Player(c, username, respuestas, time, codigo, dificultat, rol);
-                } else {
-                    player = new Player(c, username);
-                }
+                } else { player = new Player(c, username); }
                 listUsers.put(username, player);
             }
         } catch (IOException e) { e.printStackTrace(); }
@@ -96,28 +95,30 @@ public class CtrlPersistence {
         FileWriter fw;
         StringBuilder stringBuilder = new StringBuilder();
         Player player;
-        if (!register.user_exists(newNameUser)){
+        if ( !register.user_exists(newNameUser) ){
             player = new Player('0',newNameUser);
             register.listUsers.put(newNameUser,player);
             fw = new FileWriter(filename,true); //the true will append the new data
-            stringBuilder.append("\n"+newNameUser+" 0");
+            if (filename.length() != 0) { stringBuilder.append("\n"+newNameUser+" 0 "); }
+            else { stringBuilder.append(newNameUser+" 0 "); }
         } else {
             player = register.listUsers.get(newNameUser);
             if (player.getGame_start() == '1') { player.delete_all(); }
             fw = new FileWriter(filename);
-            boolean first= true;
-            for ( Player itr : register.listUsers.values() ) {
-                player = itr;
-                if (!first) { stringBuilder.append("\n"); }
-                stringBuilder.append(player.getUsername()+" "+player.getGame_start());
-                if (player.getGame_start() == '1') {
-                    stringBuilder.append(" "+player.getTime()+" ");
-                    ArrayList<String> respuestas = player.getRespuestas();
-                    stringBuilder.append(respuestas.size()/2+" ");
-                    for ( String itr1 : respuestas ) { stringBuilder.append(itr1+" "); }
-                    stringBuilder.append(player.getCodigo()+" "+player.getDificultat()+" "+player.getRol());
+            boolean controlIni = true;
+            for ( Player ply : register.listUsers.values() ) {
+                if (!controlIni) { stringBuilder.append("\n"+ply.getUsername()+" "+ply.getGame_start()); }
+                else {
+                    stringBuilder.append(ply.getUsername()+" "+ply.getGame_start());
+                    controlIni = false;
                 }
-                first = false;
+                if (ply.getGame_start() == '1') {
+                    stringBuilder.append(" "+ply.getTime()+" ");
+                    ArrayList<String> respuestasFinal = ply.getRespuestas();
+                    stringBuilder.append(respuestasFinal.size()/2+" ");
+                    for ( String itr1 : respuestasFinal ) { stringBuilder.append(itr1+" "); }
+                    stringBuilder.append(ply.getCodigo()+" "+ply.getDificultat()+" "+ply.getRol());
+                }
             }
         }
         fw.write(stringBuilder.toString());//appends the string to the file
@@ -129,34 +130,36 @@ public class CtrlPersistence {
         Player player;
         FileWriter fw;
         StringBuilder stringBuilder = new StringBuilder();
-        if (!register.user_exists(newNameUser)){
+        if ( !register.user_exists(newNameUser) ){
             player = new Player('1',newNameUser,respuestas,time,codigo,dificultat,rol);
             register.listUsers.put(newNameUser,player);
             fw = new FileWriter(filename,true); //the true will append the new data
-            stringBuilder.append("\n"+newNameUser+" 1 ");
-            String cadena = String.valueOf(time);
-            stringBuilder.append(cadena+" ");
+            if (filename.length() != 0) { stringBuilder.append("\n"+newNameUser+" 1 "); }
+            else { stringBuilder.append(newNameUser+" 1 "); }
+            String timeS = String.valueOf(time);
+            stringBuilder.append(timeS+" ");
             String size = String.valueOf(respuestas.size()/2);
             stringBuilder.append(size+" ");
             for ( String itr1 : respuestas ) { stringBuilder.append(itr1+" "); }
             stringBuilder.append(codigo+" "+dificultat+" "+rol);
         } else {
             player = register.listUsers.get(newNameUser);
-            player.setSaveGame(respuestas,time,codigo,dificultat,rol);
+            player.setSaveGame(respuestas, time, codigo, dificultat, rol);
             fw = new FileWriter(filename);
-            boolean first = true;
-            for ( Player itr : register.listUsers.values() ) {
-                player = itr;
-                if (!first) { stringBuilder.append("\n"); }
-                stringBuilder.append(player.getUsername()+" "+player.getGame_start());
-                if (player.getGame_start() == '1') {
-                    stringBuilder.append(" "+ player.getTime()+" ");
-                    ArrayList<String> respuestas1 = player.getRespuestas();
-                    stringBuilder.append(respuestas1.size()/2+" ");
-                    for ( String itr1 : respuestas ) { stringBuilder.append(itr1+" "); }
-                    stringBuilder.append(player.getCodigo()+" "+player.getDificultat()+" "+player.getRol());
+            boolean controlIni = true;
+            for ( Player ply : register.listUsers.values() ) {
+                if (!controlIni) { stringBuilder.append("\n"+ply.getUsername()+" "+ply.getGame_start()); }
+                else {
+                    stringBuilder.append(ply.getUsername()+" "+ply.getGame_start());
+                    controlIni = false;
                 }
-                first = false;
+                if (ply.getGame_start() == '1') {
+                    stringBuilder.append(" "+ ply.getTime()+" ");
+                    ArrayList<String> respuestasFinal = ply.getRespuestas();
+                    stringBuilder.append(respuestasFinal.size()/2+" ");
+                    for ( String itr1 : respuestasFinal ) { stringBuilder.append(itr1+" "); }
+                    stringBuilder.append(ply.getCodigo()+" "+ply.getDificultat()+" "+ply.getRol());
+                }
             }
         }
         fw.write(stringBuilder.toString());//appends the string to the file

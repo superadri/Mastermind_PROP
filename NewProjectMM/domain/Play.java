@@ -42,5 +42,4 @@ public class Play {
     private String scanCombination() {
         return controladorDominio.getGuess();
     }
-
 }

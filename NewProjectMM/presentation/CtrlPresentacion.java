@@ -22,7 +22,6 @@ public class CtrlPresentacion {
 
 	private String nameUserNow;
 	private String role;
-	private boolean control;
     private boolean codeMakerRight;
     public String difficulty;
 
@@ -79,7 +78,6 @@ public class CtrlPresentacion {
     public void sincronizacionVistaRoleDifficultyAPrincipal(String role, String difficulty) {
         this.role = role;
         this.difficulty = difficulty;
-        this.control = false;
         this.codeMakerRight = false;
         vistaDifficulty.hacerInvisible();
         vistaPrincipal.inicializarBoardReset();
@@ -101,7 +99,6 @@ public class CtrlPresentacion {
     }
 
     public void sincronizacionVistaCMAPrincipal(String codeCM) {
-        // TODO: Para poner el resultado
         controladorDominio.setGuess(codeCM);
         controladorDominio.setCodeMake(codeCM, this.nameUserNow, this.role, this.difficulty);
         vistaCM.hacerInvisible();
@@ -120,8 +117,8 @@ public class CtrlPresentacion {
         vistaPrincipal.activar();
     }
 
-    public void sincronizacionVistaPrincipalAEndGame(int found, double time, int numRound, String codeMaker) {
-        try { controladorDominio.passDataToRanking(nameUserNow, role, difficulty, time, codeMaker); }
+    public void sincronizacionVistaPrincipalAEndGame(int found, double time, int numRound) {
+        try { controladorDominio.passDataToRanking(nameUserNow, role, difficulty, time); }
         catch (IOException e) { e.printStackTrace(); }
         vistaPrincipal.desactivar();
         vistaEndGame.setTextJlableResult(found, time, numRound);
@@ -129,7 +126,7 @@ public class CtrlPresentacion {
     }
 
     public void sincronizacionVistaPrincipalAEndGameSave(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers, double time, int numRounds, String codeMaker) throws IOException {
-        controladorDominio.passDataToRegister(codeOutGuess,codeOutAnswers,nameUserNow,role,difficulty,time, codeMaker);
+        controladorDominio.passDataToRegister(codeOutGuess, codeOutAnswers, nameUserNow, role, difficulty, time, codeMaker);
         vistaPrincipal.desactivar();
         vistaEndGame.setTextJlableResult(4,time,numRounds);
         vistaEndGame.hacerVisible();
@@ -217,12 +214,9 @@ public class CtrlPresentacion {
 
     public void setRoleDificultyContinuegame() { controladorDominio.setRoleDificultyContinueGame(nameUserNow); }
 
-    public void setGuesstoDominio(String code, boolean start) {
+    public void setGuesstoDominio(String code) {
         controladorDominio.setGuess(code);
-        if (!control) { controladorDominio.gameFactory.mastermind.game.startNewGame(); }
-        else { controladorDominio.gameFactory.mastermind.game.runGame(); }
-        System.out.println(control);
-        control = start;
+        controladorDominio.gameFactory.mastermind.game.runGame();
     }
 
     public String getAnswer(){ return controladorDominio.getAnswer(); }

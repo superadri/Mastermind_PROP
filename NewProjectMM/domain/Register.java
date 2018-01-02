@@ -26,7 +26,7 @@ public class Register {
     }
 
     public void set_continueGame(char game_start, String newNameUser, ArrayList<String> respuestas,double time,String codigo,String dificultat,String rol) throws IOException {
-        controladorDominio.set_continueGame(game_start,newNameUser, respuestas, time, codigo, dificultat, rol);
+        controladorDominio.set_continueGame(game_start, newNameUser, respuestas, time, codigo, dificultat, rol);
     }
 
 	/*

@@ -1,5 +1,7 @@
 package presentation;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.AncestorListener;
@@ -213,8 +215,6 @@ public class VistaPrincipal {
     }
 
     public void inicializarBoardContinue() {
-            // TODO: Este sería la reconstrucción de una partida, continuar game
-            // mod 4
         String[] rounds = controladorPresentacion.getRounds();
         this.controlSecuencia = (rounds.length/2)*4;
         this.foundAnswer = false;
@@ -501,7 +501,6 @@ public class VistaPrincipal {
                         String codeOut = "";
                         for (JLabel peg : guesses) {
                             MouseListener[] mls = peg.getMouseListeners();
-                            // System.out.println(mls.length);
                             if (mls != null) {
                                 for (MouseListener ml : mls) {
                                     codeOut += traductorColorToStringGuess(peg);
@@ -509,7 +508,7 @@ public class VistaPrincipal {
                             }
                         }
 
-                        controladorPresentacion.setGuesstoDominio(codeOut, true);
+                        controladorPresentacion.setGuesstoDominio(codeOut);
                         String answerOut = controladorPresentacion.getAnswer();
                         setColorAnswers(answerOut);
                         foundAnswer = answerOut.equals("BBBB");
@@ -526,7 +525,7 @@ public class VistaPrincipal {
                                 messageEnd = "You Win!";
                             }
                             System.out.println(messageEnd);
-                            controladorPresentacion.sincronizacionVistaPrincipalAEndGame(found, time, numRound, codeOut);
+                            controladorPresentacion.sincronizacionVistaPrincipalAEndGame(found, time, numRound);
                         } else {
                             controlSecuencia += 4;
                             int Level = (controlSecuencia / 4) + 1;
@@ -585,9 +584,11 @@ public class VistaPrincipal {
                         codePegGuess += traductorColorToStringGuess(peg1);
                         codePegAnswers += traductorColorToStringAnswer(peg2);
                         if (i % 4 == 0) {
-                            if (codePegGuess.equals("nnnn")) {
-                                break;
-                            }
+                            if (codePegGuess.equals("nnnn") ||
+                                codePegGuess.charAt(0) == 'n' ||
+                                codePegGuess.charAt(1) == 'n' ||
+                                codePegGuess.charAt(2) == 'n' ||
+                                codePegGuess.charAt(3) == 'n') { break; }
                             codeOutGuess.add(codePegGuess);
                             codeOutAnswers.add(codePegAnswers);
                             codePegGuess = "";
@@ -595,16 +596,14 @@ public class VistaPrincipal {
                         }
                     }
                     if (codeOutGuess.size() > 0) {
-                        System.out.println(codeOutGuess + " - " + codeOutAnswers);
                         try {
+                            System.out.println(codeOutGuess + " - " + codeOutAnswers);
                             controladorPresentacion.stopTime();
                             double time = controladorPresentacion.getTime();
                             int numRound = (controlSecuencia / 4) + 1;
                             String codeMaker = controladorPresentacion.getcodeMaker();
                             controladorPresentacion.sincronizacionVistaPrincipalAEndGameSave(codeOutGuess, codeOutAnswers, time, numRound, codeMaker);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        } catch (IOException e) { e.printStackTrace(); }
                     } else {
                         invalidGuessLabel.setText("Invalid action: you must make at least one guess before saving.");
                         invalidGuessPanel.setVisible(true);

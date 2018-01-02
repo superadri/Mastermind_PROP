@@ -69,16 +69,11 @@ public class CtrlDominio {
     }
 
     public void passDataToRegister(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers, String nameUserNow, String role, String difficulty, double time, String codeMaker) throws IOException {
-        ArrayList<String> respuestas = new ArrayList<String>();
-        for (int i = 0; i < codeOutAnswers.size(); ++i) {
-            respuestas.add(codeOutGuess.get(i));
-            respuestas.add(codeOutAnswers.get(i));
-        }
-        gameFactory.set_continueGame(time,codeMaker, true, register, ranking, nameUserNow, role, difficulty, respuestas);
+        gameFactory.set_continueGameRegister(time, codeMaker, register, nameUserNow, role, difficulty, codeOutGuess, codeOutAnswers);
     }
 
-    public void passDataToRanking(String nameUserNow, String role, String difficulty, double time, String codeMaker) throws IOException {
-        gameFactory.set_continueGame(time, codeMaker, false, register, ranking, nameUserNow, role, difficulty,null);
+    public void passDataToRanking(String nameUserNow, String role, String difficulty, double time) throws IOException {
+        gameFactory.set_continueGameRanking(time, register, ranking, nameUserNow, role, difficulty);
     }
 
     public HashMap<String, Player> getListUsers(){
@@ -88,16 +83,14 @@ public class CtrlDominio {
     public void finished_game(String newNameUser, Register register) throws IOException {
         controladorPersistence.finished_Game(newNameUser, register);
     }
-    public void set_continueGame(char game_start, String newNameUser, ArrayList<String> respuestas,double time,String codigo,String dificultat,String rol) throws IOException {
+    public void set_continueGame(char game_start, String newNameUser, ArrayList<String> respuestas, double time, String codigo, String dificultat, String rol) throws IOException {
         controladorPersistence.set_continueGame(game_start, newNameUser, respuestas, time, codigo, dificultat, rol, register);
     }
 
     public void setCodeMake(String code, String username, String role, String difficulty){
-        // TODO: Hacer Check de "code", para devolver el Answer
         this.codeMaker = code;
         this.whoMachine = "MACHINEC";
         gameFactory.newgame(username,role,difficulty);
-        
     }
 
     public double getTime(){ return this.time; }

@@ -12,8 +12,8 @@ public class Mastermind {
 	public int height, width, nLetters;
 	private String difficulty;
 	private String computerCM, computerCB;
-	private ArrayList<String> listItems;
 	public Game game;
+	public boolean controlFin;
 
 	// Constructor
 	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty) {
@@ -25,11 +25,12 @@ public class Mastermind {
 		this.difficulty = difficulty;
 		setDataNextGame(difficulty);
 		this.game = new Game(controladorDominio, this);
-	}
+        this.game.startNewGame();
+        this.controlFin = false;
+    }
 
-	// MVM
 	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, String[][] am) {
-		System.out.println("Mastermind - NewGame");
+		System.out.println("Mastermind - NewGame M vs M");
 		this.controladorDominio = controladorDominio;
 		this.computerCM = computerCM;
 		this.computerCB = computerCB;
@@ -37,7 +38,9 @@ public class Mastermind {
 		this.difficulty = difficulty;
 		setDataNextGame(difficulty);
 		this.game = new Game(controladorDominio, this, am);
-	}
+        this.game.startNewGame();
+        this.controlFin = false;
+    }
 
 	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, double time, String code, ArrayList<String> respuesta){
 		System.out.println("Mastermind - ContinueGame");
@@ -52,23 +55,7 @@ public class Mastermind {
 		for (int i = 0; i < respuesta.size(); ++i) { respuestaFinal[i] = respuesta.get(i); }
 		game.continueGame(time, code, respuestaFinal);
 	}
-
-	public void saveGame(String code, double time, String[] allPairsGA) {
-		System.out.println("Mastermind - saveGame");
-		listItems = new ArrayList<String>();
-		this.gameSave = true;
-		for (int i = 0; i < allPairsGA.length; ++i) { listItems.add(allPairsGA[i]); }
-		listItems.add(Double.toString(time));
-		listItems.add(code);
-		listItems.add(this.difficulty);
-	}
-
-	/*
-	public ArrayList<String> saveGametoGameFactory() {
-		return listItems;
-	}
-	*/
-
+	
 	public double getTime(){ return (this.game).getTime(); }
 
 	public String getWhoisCM(){ return this.computerCM; }
