@@ -93,7 +93,6 @@ public class Game {
         board.setCode(code);
         System.out.println("CodeMaker: code = " + code);
         startTime();
-        // runGame();
     }
 
     public void continueGame(double lastTime, String code, String[] rounds) {
