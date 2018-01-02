@@ -83,6 +83,8 @@ public class Game {
         this.board = new Board(controladorDominio, height);
     }
 
+    public void setRandomCB() { this.cb.setRandomCB(); }
+
     public void startNewGame() {
         this.lastTime = 0;
         System.out.println("Starting new game...");
