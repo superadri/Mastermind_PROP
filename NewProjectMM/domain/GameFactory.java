@@ -22,78 +22,19 @@ public class GameFactory {
         System.out.println("GameFactory - Creando nueva partida...");
         if (role.equals("CB")) { mastermind = new Mastermind(controladorDominio, "MACHINE", username, difficult); }
         else {
+            ArrayList<String> result = new ArrayList<String>();
             mastermind = new Mastermind(controladorDominio, username,"MACHINE", difficult);
+            // Aquí hacer while, coger las respuestas y devolver result
+            this.mastermind.game.startNewGame();
             while ( this.mastermind.game.turn < controladorDominio.getHeight() ) {
-                if ( !mastermind.controlFin ) { this.mastermind.game.runGame(); }
-                else {
+                if (!this.mastermind.game.board.getAnswer(this.mastermind.game.turn-1).equals("BBBB")) {
+                    mastermind.game.runGame();
+                } else {
                     controladorDominio.setRounds(this.mastermind.game.board.getAllPairsGA());
                     break;
                 }
             }
         }
-    }
-
-    public void newgameMachine(String username, String role, String difficult, int numGames) {
-        String roleMachine = "MACHINEC";
-        if (role.equals("Machine vs Machine(Random)")) { roleMachine = "MACHINER"; }
-        controladorDominio.setWhoMachine(roleMachine);
-        System.out.println("GameFactory - Creando nueva partida(MACHINE vs "+roleMachine+")...");
-        this.comb = "";
-        this.width = 4;
-        this.nColors = 6;
-        this.repetition = difficult.equals("HARD");
-        this.allColors = new String[nColors];
-        generateColors();
-        this.size = setSize();
-        this.allCombs = new String[size];
-        if (repetition) { setAllCombs(0); }
-        else { setAllCombsNoRep(0); }
-        String[][] answerMatrix = new String[size][size];
-        fillAnswerMatrix(answerMatrix);
-        mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix);
-        boolean controlMachine = true;
-        for (int i = 0; i < numGames; ++i) {
-            while ( this.mastermind.game.turn < controladorDominio.getHeight() ) {
-                if ( !mastermind.controlFin ) { this.mastermind.game.runGame(); }
-                else {
-                    controlMachine = false;
-                    int num = controladorDominio.getNumRightGame();
-                    controladorDominio.setNumRightGame(++num);
-                    if (i+1 < numGames) { mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult); }
-                    break;
-                }
-            }
-            if (controlMachine && i+1 < numGames) { mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult); }
-            controlMachine = false;
-        }
-    }
-
-    public void continuegame(String username) {
-        System.out.println("GameFactory - ContinueGame");
-        Player player = controladorDominio.passRegister().getPlayer(username);
-        String computerCM, computerCB;
-        computerCB = username;
-        computerCM = "MACHINE";
-        if (player.getRol().equals("CM")) {
-            computerCM = username;
-            computerCB = "MACHINE";
-        }
-        controladorDominio.passUpdateDataDifficultyAndRole(player.getDificultat(), player.getRol());
-        mastermind = new Mastermind(controladorDominio, computerCM, computerCB, player.getDificultat(), player.getTime(), player.getCodigo(), player.getRespuestas());
-    }
-
-    public void set_continueGameRegister(Double strTime, String strCode, Register register, String username, String role, String strDifficulty, ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers) throws IOException {
-        ArrayList<String> respuestas = new ArrayList<String>();
-        for (int i = 0; i < codeOutAnswers.size(); ++i) {
-            respuestas.add(codeOutGuess.get(i));
-            respuestas.add(codeOutAnswers.get(i));
-        }
-        register.set_continueGame('1',username, respuestas, strTime, strCode, strDifficulty, role);
-    }
-
-    public void set_continueGameRanking(Double strTime, Register register, Ranking ranking, String username, String role, String strDifficulty) throws IOException {
-        register.finished_game(username);
-        ranking.updateRanking(strDifficulty, strTime, username, role);
     }
 
     private int factorial(int f) {
@@ -200,6 +141,74 @@ public class GameFactory {
             color += c;
             int i = (int)(c - 'A');
             allColors[i] = color;
+        }
+    }
+
+    public void newgameMachine(String username, String role, String difficult, int numGames) {
+        String roleMachine = "MACHINEC";
+        if (role.equals("Machine vs Machine(Random)")) { roleMachine = "MACHINER"; }
+        controladorDominio.setWhoMachine(roleMachine);
+        System.out.println("GameFactory - Creando nueva partida(MACHINE vs "+roleMachine+")...");
+        this.comb = "";
+        this.width = 4;
+        this.nColors = 6;
+        this.repetition = difficult.equals("HARD");
+        this.allColors = new String[nColors];
+        generateColors();
+        this.size = setSize();
+        this.allCombs = new String[size];
+        if (repetition) { setAllCombs(0); }
+        else { setAllCombsNoRep(0); }
+        String[][] answerMatrix = new String[size][size];
+        fillAnswerMatrix(answerMatrix);
+        mastermind = new Mastermind(controladorDominio, difficult, answerMatrix);
+        if (roleMachine.equals("MACHINER")) { this.mastermind.setRandomCB(); }
+        boolean controlMachine = true;
+        for (int i = 0; i < numGames; ++i) {
+            this.mastermind.game.startNewGame();
+            while ( this.mastermind.game.turn < controladorDominio.getHeight() ) {
+                this.mastermind.game.runGame();
+                if (this.mastermind.game.board.getAnswer(this.mastermind.game.turn-1).equals("BBBB")) {
+                    controlMachine = false;
+                    System.out.println(this.mastermind.game.turn);
+                    int num = controladorDominio.getNumRightGame();
+                    controladorDominio.setNumRightGame(++num);
+                    if (i+1 < numGames) {
+                        mastermind = new Mastermind(controladorDominio, difficult, answerMatrix);
+                        if (roleMachine.equals("MACHINER")) { this.mastermind.setRandomCB(); }
+                    }
+                    break;
+                }
+                System.out.println(this.mastermind.game.turn);
+            }
+            if (controlMachine && i+1 < numGames) {
+                mastermind = new Mastermind(controladorDominio, difficult, answerMatrix);
+                if (roleMachine.equals("MACHINER")) { this.mastermind.setRandomCB(); }
+            }
+            controlMachine = false;
+        }
+    }
+
+    public void continuegame(String username) {
+        System.out.println("GameFactory - ContinueGame");
+        Player player = controladorDominio.passRegister().getPlayer(username);
+        String computerCM, computerCB;
+        computerCB = username;
+        computerCM = "MACHINE";
+        if (player.getRol().equals("CM")) {
+            computerCM = username;
+            computerCB = "MACHINE";
+        }
+        controladorDominio.passUpdateDataDifficultyAndRole(player.getDificultat(),player.getRol());
+        mastermind = new Mastermind(controladorDominio, computerCM, computerCB, player.getDificultat(), player.getTime(), player.getCodigo(), player.getRespuestas());
+    }
+
+    public void set_continueGame(Double strTime, String strCode, boolean gameSave, Register register, Ranking ranking, String username, String role, String strDifficulty, ArrayList<String> respuestas) throws IOException {
+        if (gameSave) {
+            register.set_continueGame('1',username, respuestas, strTime, strCode, strDifficulty, role);
+        } else {
+            register.finished_game(username);
+            ranking.updateRanking(strDifficulty,strTime ,username, role);
         }
     }
 
