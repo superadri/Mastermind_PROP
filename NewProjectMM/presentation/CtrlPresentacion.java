@@ -64,7 +64,8 @@ public class CtrlPresentacion {
     }
 
     public void sincronizacionVistaRoleDifficultyAEndGame(String role, String difficulty, Integer numGames) {
-            // TODO: Machine -> Hay que hacer Refactor de la matriz, para que no la haga todo el tiempo, pero la implementación es la misma
+            // TODO: Machine -> Hay que hacer Refactor de la matriz,
+            //  para que no la haga todo el tiempo, pero la implementación es la misma
         this.role = role;
         this.difficulty = difficulty;
         controladorDominio.setNumRightGame(0);

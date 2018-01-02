@@ -81,7 +81,6 @@ public class CtrlPersistence {
                     String codigo = in.next();
                     String dificultat = in.next();
                     String rol = in.next();
-                    System.out.println(username+" "+a+" "+c+" "+time+" "+respuestas+" "+codigo+" "+dificultat+" "+rol);
                     player = new Player(c, username, respuestas, time, codigo, dificultat, rol);
                 } else { player = new Player(c, username); }
                 listUsers.put(username, player);
