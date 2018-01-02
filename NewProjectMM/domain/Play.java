@@ -26,12 +26,7 @@ public class Play {
 		  	game.sendCode(this, code);
 		} else if ( role.equals("CODEBREAKER") ) { // Defines quien hará de CodeBreaker
 			if (game.computerCB) {
-                if (controladorDominio.getWhoMachine().equals("MACHINEC")) { // Machine Complex
-                    game.cb.playCombination();
-                } else {    // Machine Randome
-                    game.guess = cm.createCode();
-                    game.answer = game.calculateAnswer(game.guess);
-                }
+                game.cb.playCombination();
             } else { // User - Input
 				game.guess = scanCombination();
                 game.answer = game.calculateAnswer(game.guess);

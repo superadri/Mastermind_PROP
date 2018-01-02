@@ -40,9 +40,10 @@ import java.util.Scanner;
 public class CodeBreaker extends Algorithm {
 
     private CtrlDominio controladorDominio;
-
+    private boolean random;
 
     public CodeBreaker(CtrlDominio controladorDominio,Game game, int width, int nColors, boolean repetition) {
+        this.random = false;
         this.controladorDominio = controladorDominio;
         this.comb = "";
         this.guessIndex = 0; // Initialization just in case
@@ -69,6 +70,7 @@ public class CodeBreaker extends Algorithm {
     }
 
     public CodeBreaker(CtrlDominio controladorDominio,Game game, int width, int nColors, boolean repetition, String[][] am) {
+        this.random = false;
         this.controladorDominio = controladorDominio;
         this.comb = "";
         this.guessIndex = 0; // Initialization just in case
@@ -93,9 +95,20 @@ public class CodeBreaker extends Algorithm {
         //printAnswerMatrix();
     }
 
+    public void setRandomCB() {
+        this.random = true;
+    }
+
     public void playCombination() {
-        getMin();
-        String guess = getMaxMin();
+        String guess = "";
+        if (random) {
+            int rnum = (int)(Math.floor(allCombs.length * Math.random()));
+            while (discarded[rnum]) { ++rnum; if (rnum >= allCombs.length) { rnum = 0; } } // cycle through options
+            guess = allCombs[rnum];
+        } else {
+            getMin();
+            guess = getMaxMin();
+        }
         String answer = game.sendGuess(guess);
         updateDiscarded(answer);
     }
