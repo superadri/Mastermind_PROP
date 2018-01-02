@@ -94,7 +94,7 @@ public class CodeBreaker extends Algorithm {
         //printAnswerMatrix();
     }
 
-    public void setAlgorithmToRandom() {
+    public void setRandomCB() {
         this.random = true;
     }
 

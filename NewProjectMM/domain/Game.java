@@ -80,9 +80,10 @@ public class Game {
         computerCB = true;
         System.out.println("Initiazing CodeBreaker algorithm...");
         this.cb = new CodeBreaker(controladorDominio,this, width, nLetters, repetition, am);
-        this.cb.setAlgorithmToRandom();
         this.board = new Board(controladorDominio, height);
     }
+
+    public void setRandomCB() { this.cb.setRandomCB(); }
 
     public void continueGame(double lastTime, String code, String[] rounds) {
         this.lastTime = lastTime;

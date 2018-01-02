@@ -37,6 +37,7 @@ public class Mastermind {
 		this.difficulty = difficulty;
 		setDataNextGame(difficulty);
 		this.game = new Game(controladorDominio, this, am);
+		if (!difficulty.equals("HARD")) { this.game.setRandomCB(); }
 	}
 
 	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, double time, String code, ArrayList<String> respuesta){
