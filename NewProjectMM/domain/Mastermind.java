@@ -28,11 +28,11 @@ public class Mastermind {
 	}
 
 	// MVM
-	public Mastermind(CtrlDominio controladorDominio, String computerCM, String computerCB, String difficulty, String[][] am) {
+	public Mastermind(CtrlDominio controladorDominio, String difficulty, String[][] am) {
 		System.out.println("Mastermind - NewGame");
 		this.controladorDominio = controladorDominio;
-		this.computerCM = computerCM;
-		this.computerCB = computerCB;
+		this.computerCM = "MACHINE";
+		this.computerCB = "MACHINE";
 		this.gameSave = false;
 		this.difficulty = difficulty;
 		setDataNextGame(difficulty);

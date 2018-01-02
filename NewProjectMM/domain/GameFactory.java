@@ -161,7 +161,7 @@ public class GameFactory {
         else { setAllCombsNoRep(0); }
         String[][] answerMatrix = new String[size][size];
         fillAnswerMatrix(answerMatrix);
-        mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix);
+        mastermind = new Mastermind(controladorDominio, difficult, answerMatrix);
         boolean controlMachine = true;
         for (int i = 0; i < numGames; ++i) {
             this.mastermind.game.startNewGame();
