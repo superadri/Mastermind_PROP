@@ -1,9 +1,11 @@
 package domain;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import persistence.CtrlPersistence;
-import presentation.CtrlPresentacion;
 
 public class CtrlDominio {
 
@@ -13,14 +15,13 @@ public class CtrlDominio {
     private Register register;
     private Ranking ranking;
 
-    public int width;
-    public int nColors;
-    public int size;
-    public boolean repetition;
-    public String[][] answerMatrix;
-    public String[] allCombs;
-    public String[] allColors;
-    public String comb;
+    private String guess, answer, codeMaker;
+    private double time;
+    private String[][] answerMatrix;
+    private String[] rounds;
+    private String difficulty, role;
+    private String whoMachine;
+    private int numRightGame;
 
 	    /** Constructor **/
 
@@ -29,17 +30,6 @@ public class CtrlDominio {
         this.register = new Register(this);
         this.ranking = new Ranking(this);
         this.gameFactory = new GameFactory(this);
-        this.comb = "";
-        generateColors();
-        size = setSize();
-        allColors = new String[nColors];
-        allCombs = new String[size];
-        answerMatrix = new String[size][size];
-        if (repetition) {
-            setAllCombs(0);
-        } else {
-            setAllCombsNoRep(0);
-        }
 	}
 
         /** Métodos públicos **/
@@ -48,9 +38,9 @@ public class CtrlDominio {
         return this.register;
     }
 
-    public Ranking passRanking() {
-        return this.ranking;
-    }
+    /*
+    public Ranking passRanking() { return this.ranking; }
+    */
 
 	public List<String> getNameFileRankings() {
 	    return controladorPersistence.getNameFileRankings();
@@ -68,111 +58,83 @@ public class CtrlDominio {
         return register.game_start_user(username);
     }
 
-    public void setRoleDificultyNewGame(String username, String role, String difficulty) {
-        gameFactory.newgame(username,role,difficulty);
-        getMastermindAttributes();
+    public void setRoleDificultyNewGame(String username, String role, String difficulty) { gameFactory.newgame(username,role,difficulty); }
+
+    public void setRoleDificultyNewGameMachine(String username, String role, String difficulty, int numGames) {
+        gameFactory.newgameMachine(username,role,difficulty,numGames);
     }
 
     public void setRoleDificultyContinueGame(String username) {
         gameFactory.continuegame(username);
-        getMastermindAttributes();
     }
 
-    private void getMastermindAttributes() {
-        this.width = gameFactory.mastermind.width;
-        this.nColors = gameFactory.mastermind.nLetters;
-        this.repetition = gameFactory.mastermind.repetition;
-        this.size = setSize();
-        fillAnswerMatrix();
+    public void passDataToRegister(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers, String nameUserNow, String role, String difficulty, double time, String codeMaker) throws IOException {
+        gameFactory.set_continueGameRegister(time, codeMaker, register, nameUserNow, role, difficulty, codeOutGuess, codeOutAnswers);
     }
 
-    public String setCode(String code){
-        return code;
+    public void passDataToRanking(String nameUserNow, String role, String difficulty, double time) throws IOException {
+        gameFactory.set_continueGameRanking(time, register, ranking, nameUserNow, role, difficulty);
     }
 
-    public String getGuess(String guesses) {
-        return guesses;
+    public HashMap<String, Player> getListUsers(){
+        return controladorPersistence.getListUsers();
     }
 
-    public String getAnswer(String answers) {
-        return answers;
+    public void finished_game(String newNameUser, Register register) throws IOException {
+        controladorPersistence.finished_Game(newNameUser, register);
+    }
+    public void set_continueGame(char game_start, String newNameUser, ArrayList<String> respuestas, double time, String codigo, String dificultat, String rol) throws IOException {
+        controladorPersistence.set_continueGame(game_start, newNameUser, respuestas, time, codigo, dificultat, rol, register);
     }
 
-    public String setGuess(String guess) {
-        return guess;
+    public void setCodeMake(String code, String username, String role, String difficulty){
+        this.codeMaker = code;
+        this.whoMachine = "MACHINEC";
+        gameFactory.newgame(username,role,difficulty);
     }
 
-    public String setAnswer(String answer) {
-        return answer;
+    public double getTime(){ return this.time; }
+
+    public void setTime(Double time){ this.time = time; }
+
+    public void setGuess(String guess) { this.guess = guess; }
+
+    public void setAnswer(String answer) { this.answer = answer; }
+
+    public String getAnswer() { return this.answer; }
+
+    public String[][] getAnswerMatrix() { return this.answerMatrix; }
+
+    public void setAnswerMatrix(String[][] answerMatrix) { this.answerMatrix = answerMatrix; }
+
+    public String getGuess() { return this.guess; }
+
+    public void setCodeMaker(String codeMaker) { this.codeMaker = codeMaker; }
+
+    public String getCodeMaker() { return this.codeMaker; }
+
+    public void stopTime() { gameFactory.mastermind.game.stopTime(); }
+
+    public void setRounds(String[] rounds) { this.rounds = rounds; }
+
+    public String[] getRounds() { return this.rounds; }
+
+    public void passUpdateDataDifficultyAndRole(String difficulty, String role) {
+        this.difficulty = difficulty;
+        this.role = role;
     }
 
-    private int setSize() {
-        if (repetition) {
-            return (int)(Math.pow((double)(nColors), (double)(width)));
-        }
-        return partialPermutations(nColors, width);
-    }
+    public String getDifficulty() { return this.difficulty; }
 
-    // answerMatrix[i][j] = "la resposta que donaria si haguessim " +
-    // + "proposat la combinacio [i] i el code fos la combinacio [j] ?"
-    private void fillAnswerMatrix() {
-        for (int gi = 0; gi < size; ++gi) {
-            for (int ci = 0; ci < size; ++ci) {
-                String guess = allCombs[gi];
-                String code = allCombs[ci];
-                String answer = gameFactory.mastermind.game.calculateAnswer(guess, code);
-                answerMatrix[gi][ci] = answer;
-            }
-        }
-    }
+    public String getRole() { return this.role; }
 
-    private int partialPermutations(int n, int k) {
-        return factorial(n) / factorial(n - k);
-    }
+    public void setWhoMachine(String wMachine) { this.whoMachine = wMachine; }
 
-    private int factorial(int f) {
-        if (f == 0) { return 1; }
-        return f * factorial(f - 1);
-    }
+    public String getWhoMachine() { return this.whoMachine; }
 
-    private void generateColors() {
-        for (char c = 'A'; c < (char)('A' + nColors); ++c) {
-            String color = new String();
-            color += c;
-            int i = (int)(c - 'A');
-            allColors[i] = color;
-        }
-    }
+    public void setNumRightGame(int num) { this.numRightGame = num; }
 
-    private int setAllCombs(int n) {
-        if (comb.length() < width) {
-            for (int i = 0; i < allColors.length; ++i) {
-                String oldComb = comb;
-                comb += allColors[i];
-                n = setAllCombs(n);
-                comb = oldComb;
-            }
-        } else {
-            allCombs[n] = comb;
-            ++n;
-        }
-        return n;
-    }
+    public int getNumRightGame() { return this.numRightGame; }
 
-    private int setAllCombsNoRep(int n) {
-        if (comb.length() < width) {
-            for (int i = 0; i < allColors.length; ++i) {
-                String oldComb = comb;
-                if (!comb.contains(allColors[i])) {
-                    comb += allColors[i];
-                    n = setAllCombsNoRep(n);
-                }
-                comb = oldComb;
-            }
-        } else {
-            allCombs[n] = comb;
-            ++n;
-        }
-        return n;
-    }
+    public int getHeight() { return gameFactory.mastermind.height; }
 }

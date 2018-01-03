@@ -23,7 +23,7 @@ public class Player {
         this.rol = rol;
     }
 
-    public void setSaveGame(ArrayList<String> respuestas,double time,String codigo,String dificultat,String rol) {
+    public void setSaveGame(ArrayList<String> respuestas,double time, String codigo, String dificultat, String rol) {
         this.game_start = '1';
         this.respuestas = respuestas;
         this.time = time;
@@ -32,7 +32,7 @@ public class Player {
         this.rol = rol;
     }
 
-    void delete_all() {
+    public void delete_all() {
         game_start = '0';
         respuestas = null;
         time = 0;

@@ -8,7 +8,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
-public class VistaUser extends JPanel {
+public class VistaUser {
 
         /** Controlador de presentacion **/
 

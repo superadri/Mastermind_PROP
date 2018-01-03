@@ -19,8 +19,8 @@ public class VistaHelp {
             "Bienvenido a Mastermind " + "\n" +
                     "Instrucciones:  "  + "\n" +
                     "----------------" + "\n" +
-                    "B -> Posicion y letra correcto"+ "\n" +
-                    "R -> Letra correcta\n";
+                    "Blanco -> Posicion y letra correcto"+ "\n" +
+                    "Rojo -> Letra correcta\n";
 
         /** Constructora **/
 
@@ -51,7 +51,7 @@ public class VistaHelp {
         textPaneAbout.setEditable(false);
         dialogHelp.setContentPane(contentPaneForm);
         dialogHelp.setModal(true);
-        dialogHelp.setMinimumSize(new Dimension(300, 200));
+        dialogHelp.setMinimumSize(new Dimension(350, 250));
         dialogHelp.setLocationRelativeTo(null);
         dialogHelp.setResizable(false);
         dialogHelp.getRootPane().setDefaultButton(buttonQuit);

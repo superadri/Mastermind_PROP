@@ -24,94 +24,125 @@ public class Game {
     private CtrlDominio controladorDominio;
 
     public boolean computerCM, computerCB, repetition;
-  public CodeMaker cm;
-  public CodeBreaker cb;
-  public String guess, answer;
-  public Time time;
-  public Board board;
-  public int turn, width, height, nLetters;
-  public double lastTime, currentTime;
-  //public Player playerCM, playerCB;
+    public CodeMaker cm;
+    public CodeBreaker cb;
+    public String guess, answer;
+    public Time time;
+    public Board board;
+    public int turn, width, height, nLetters;
+    public double lastTime, currentTime;
+    //public Player playerCM, playerCB;
 
-  private Mastermind mastermind;
-  private String code;
+    private Mastermind mastermind;
+    private String code;
 
-	public Game(CtrlDominio controladorDominio, Mastermind mastermind) {
-	    this.controladorDominio = controladorDominio;
-	    this.mastermind = mastermind;
-	    this.time = new Time();
-	    this.turn = 0;
-		this.code = this.guess = this.answer = ""; // Initialization just in case
-		this.width = mastermind.getwidth();
-		this.nLetters = mastermind.getnLetters();
-		this.repetition = mastermind.getrepetition();
-    	this.height = mastermind.getheight();
-		System.out.println("Initial Configuration>");
-		System.out.println("width = " + this.width + ", nLetters = " + this.nLetters + ", repetition = " + this.repetition + ".");
+    public Game(CtrlDominio controladorDominio, Mastermind mastermind) {
+        this.controladorDominio = controladorDominio;
+        this.mastermind = mastermind;
+        this.time = new Time();
+        this.turn = 0;
+        this.code = this.guess = this.answer = ""; // Initialization just in case
+        this.width = mastermind.getwidth();
+        this.nLetters = mastermind.getnLetters();
+        this.repetition = mastermind.getrepetition();
+        this.height = mastermind.getheight();
+        System.out.println("Initial Configuration>");
+        System.out.println("height = "+ mastermind.height +", width = " + this.width + ", nLetters = " + this.nLetters + ", repetition = " + this.repetition + ".");
         if ((mastermind.getWhoisCM()).equals("MACHINE")) {
             computerCM = true;
             System.out.println("Initiazing CodeMaker algorithm...");
-            this.cm = new CodeMaker(controladorDominio);
+            this.cm = new CodeMaker(controladorDominio, this.width, this.repetition, this.nLetters);
         } else { computerCM = false; }
         if ((mastermind.getWhoisCB()).equals("MACHINE")) {
             computerCB = true;
             System.out.println("Initiazing CodeBreaker algorithm...");
-            this.cb = new CodeBreaker(controladorDominio, this);
+            this.cb = new CodeBreaker(controladorDominio,this, width, nLetters, repetition);
         } else { computerCB = false; }
         this.board = new Board(controladorDominio, height);
-	}
+    }
 
-  public void continueGame(double lastTime, String code, String[] rounds) {
-    this.lastTime = lastTime;
-    this.code = code;
-    board.setCode(code);
-    System.out.println("Showing previous attempts:");
-    for (int i = 0; i < rounds.length; i+=2) {
-        this.guess = rounds[i];
-        this.answer = rounds[i + 1];
+    //MVM
+    public Game(CtrlDominio controladorDominio, Mastermind mastermind, String[][] am) {
+        this.controladorDominio = controladorDominio;
+        this.mastermind = mastermind;
+        this.time = new Time();
+        this.turn = 0;
+        this.code = this.guess = this.answer = ""; // Initialization just in case
+        this.width = mastermind.getwidth();
+        this.nLetters = mastermind.getnLetters();
+        this.repetition = mastermind.getrepetition();
+        this.height = mastermind.getheight();
+        System.out.println("Initial Configuration>");
+        System.out.println("height = "+ mastermind.height +", width = " + this.width + ", nLetters = " + this.nLetters + ", repetition = " + this.repetition + ".");
+        computerCM = true;
+        System.out.println("Initiazing CodeMaker algorithm...");
+        this.cm = new CodeMaker(controladorDominio, this.width, this.repetition, this.nLetters);
+        computerCB = true;
+        System.out.println("Initiazing CodeBreaker algorithm...");
+        this.cb = new CodeBreaker(controladorDominio,this, width, nLetters, repetition, am);
+        this.board = new Board(controladorDominio, height);
+    }
+
+    public void startNewGame() {
+        this.lastTime = 0;
+        System.out.println("Starting new game...");
+        if (!repetition) { System.out.print("NO REPETITIONS ALLOWED -> "); }
+        Play cmplay = new Play(controladorDominio,this, "CODEMAKER");
+        cmplay.makePlay();
+        System.out.println();
+        controladorDominio.setCodeMaker(this.code);
+        board.setCode(code);
+        System.out.println("CodeMaker: code = " + code);
+        startTime();
+    }
+
+    public void continueGame(double lastTime, String code, String[] rounds) {
+        this.lastTime = lastTime;
+        this.code = code;
+        controladorDominio.setCodeMaker(code);
+        board.setCode(code);
+        System.out.println("Showing previous attempts:");
+        controladorDominio.setRounds(rounds);
+        for (int i = 0; i < rounds.length; i+=2) {
+            this.guess = rounds[i];
+            this.answer = rounds[i + 1];
+            board.setGuessAndAnswer(guess, answer);
+            System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
+            System.out.println("Game: answer = " + board.getAnswer(turn));
+            if (computerCB) { cb.updateDiscarded(guess, answer); }
+            ++this.turn;
+        }
+        System.out.println("CodeMaker: code = " + code);
+        startTime();
+    }
+
+	public void runGame() {
+        Play cbplay = new Play(controladorDominio,this, "CODEBREAKER");
+        cbplay.makePlay();
         board.setGuessAndAnswer(guess, answer);
         System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
         System.out.println("Game: answer = " + board.getAnswer(turn));
-        if (computerCB) { cb.updateDiscarded(guess, answer); }
-        ++this.turn;
+        controladorDominio.setAnswer(board.getAnswer(turn));
+        if (board.getAnswer(turn).equals("BBBB")) {
+            stopTime();
+            controladorDominio.gameFactory.mastermind.controlFin = true;
+        }
+        ++turn;
+	}
+
+	public void startTime() { time.startTime(); }
+
+    public void stopTime() {
+        time.stopTime();
+        currentTime = time.getTime();
+        currentTime += lastTime;
+        controladorDominio.setTime(this.currentTime);
     }
-    runGame();
-  }
 
-	public void startNewGame() {
-		this.lastTime = 0;
-		System.out.println("Starting new game...");
-    	if (!repetition) { System.out.print("NO REPETITIONS ALLOWED -> "); }
-		Play cmplay = new Play(controladorDominio, this, "CODEMAKER");
-		cmplay.makePlay();
-		board.setCode(code);
-		runGame();
-	}
-
-	public void runGame() {
-		time.startTime();
-		System.out.println("CodeMaker: code = " + code);
-		String continuePlaying = "";
-		do {
-			Play cbplay = new Play(controladorDominio, this, "CODEBREAKER");
-			cbplay.makePlay();
-			board.setGuessAndAnswer(guess, answer);
-			System.out.println("CodeBreaker: guess = " + board.getGuess(turn));
-			System.out.println("Game: answer = " + board.getAnswer(turn));
-			++turn;
-			if (!guess.equals(code)) { continuePlaying = askContinue(); }
-		} while (turn < height && !continuePlaying.equals("n") && !guess.equals(code));
-		time.stopTime();
-		currentTime = time.getTime();
-		currentTime += lastTime;
-		time.printTime(currentTime);
-		if (continuePlaying.equals("n")) { askSaveGame(); }
-		else if (guess.equals(code)) { System.out.println("Game: code guessed in " + turn + " turns."); }
-		else { System.out.println("You didn't guess the code."); }
-	}
+    public void setRandomCB() { this.cb.setRandomCB(); }
 
 	public double getTime(){
-		return this.currentTime;
+	    return this.currentTime;
 	}
 
 	public boolean getIsComputerCM(){
@@ -139,7 +170,7 @@ public class Game {
 	}
 
     public void sendCode(Play play, String code) {
-    if (play.role.equals("CODEMAKER")) { this.code = code; }
+        if (play.role.equals("CODEMAKER")) { this.code = code; }
     }
 
     public String sendGuess(String sentGuess) {
@@ -149,11 +180,11 @@ public class Game {
     }
 
     public void printAnswerMatrix() {
-    cb.printAnswerMatrix();
+        cb.printAnswerMatrix();
     }
 
     public String calculateAnswer(String g) {
-    return calculateAnswer(g, this.code);
+        return calculateAnswer(g, this.code);
     }
 
     public String calculateAnswer(String g, String c) {
@@ -192,23 +223,6 @@ public class Game {
             }
         }
         return answer;
-    }
-
-    private String askContinue() {
-        System.out.print("Continue playing? (y/n): ");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
-    }
-
-    private void askSaveGame() {
-        System.out.print("Save game? (y/n): ");
-        Scanner sc = new Scanner(System.in);
-        String saveGame = sc.nextLine();
-        if (saveGame.equals("y")) { saveGame(); }
-    }
-
-    private void saveGame() {
-	    mastermind.saveGame(this.code, this.currentTime, board.getAllPairsGA());
     }
 
       // Test Method

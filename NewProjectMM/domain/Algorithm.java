@@ -36,8 +36,16 @@ package domain;
 public class Algorithm {
 
   public Game game;
+  public int width;
+  public int nColors;
+  public int size;
+  public boolean repetition;
+  public String[] allColors;
+  public String[] allCombs;
   public boolean[] discarded;
   public int[] minDiscard;
+  public String[][] answerMatrix;
+  public String comb;
   public int guessIndex;
 
   // TODO is anything necessary here?

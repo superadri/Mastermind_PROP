@@ -1,8 +1,9 @@
 package persistence;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import domain.Player;
+import domain.Register;
+
+import java.io.*;
 import java.util.*;
 
 public class CtrlPersistence {
@@ -56,5 +57,111 @@ public class CtrlPersistence {
         } catch (IOException ex) { System.out.println("Error3: " + ex); }
 
         return dataR;
+    }
+
+    public HashMap<String, Player> getListUsers() {
+        HashMap<String, Player> listUsers = new HashMap<String, Player>();
+        try {
+            File f = new File("./persistence/registro.txt");
+            Scanner in = new Scanner(f);
+            in.useLocale(Locale.ENGLISH);
+            Player player;
+            while (in.hasNextLine()) {
+                String username = in.next();
+                String a = in.next();
+                char c = a.charAt(0);
+                if (a.equals("1")) {
+                    double time = in.nextDouble();
+                    int i = in.nextInt() * 2;
+                    ArrayList<String> respuestas = new ArrayList<String>();
+                    while (i > 0) {
+                        respuestas.add(in.next());
+                        --i;
+                    }
+                    String codigo = in.next();
+                    String dificultat = in.next();
+                    String rol = in.next();
+                    player = new Player(c, username, respuestas, time, codigo, dificultat, rol);
+                } else { player = new Player(c, username); }
+                listUsers.put(username, player);
+            }
+        } catch (IOException e) { e.printStackTrace(); }
+        return listUsers;
+    }
+
+    public void finished_Game(String newNameUser, Register register) throws IOException {
+        File filename = new File("./persistence/registro.txt");
+        FileWriter fw;
+        StringBuilder stringBuilder = new StringBuilder();
+        Player player;
+        if ( !register.user_exists(newNameUser) ){
+            player = new Player('0',newNameUser);
+            register.listUsers.put(newNameUser,player);
+            fw = new FileWriter(filename,true); //the true will append the new data
+            if (filename.length() != 0) { stringBuilder.append("\n"+newNameUser+" 0 "); }
+            else { stringBuilder.append(newNameUser+" 0 "); }
+        } else {
+            player = register.listUsers.get(newNameUser);
+            if (player.getGame_start() == '1') { player.delete_all(); }
+            fw = new FileWriter(filename);
+            boolean controlIni = true;
+            for ( Player ply : register.listUsers.values() ) {
+                if (!controlIni) { stringBuilder.append("\n"+ply.getUsername()+" "+ply.getGame_start()); }
+                else {
+                    stringBuilder.append(ply.getUsername()+" "+ply.getGame_start());
+                    controlIni = false;
+                }
+                if (ply.getGame_start() == '1') {
+                    stringBuilder.append(" "+ply.getTime()+" ");
+                    ArrayList<String> respuestasFinal = ply.getRespuestas();
+                    stringBuilder.append(respuestasFinal.size()/2+" ");
+                    for ( String itr1 : respuestasFinal ) { stringBuilder.append(itr1+" "); }
+                    stringBuilder.append(ply.getCodigo()+" "+ply.getDificultat()+" "+ply.getRol());
+                }
+            }
+        }
+        fw.write(stringBuilder.toString());//appends the string to the file
+        fw.close();
+    }
+
+    public void set_continueGame(char game_start, String newNameUser, ArrayList<String> respuestas, double time, String codigo, String dificultat, String rol, Register register) throws IOException {
+        File filename = new File("./persistence/registro.txt");
+        Player player;
+        FileWriter fw;
+        StringBuilder stringBuilder = new StringBuilder();
+        if ( !register.user_exists(newNameUser) ){
+            player = new Player('1',newNameUser,respuestas,time,codigo,dificultat,rol);
+            register.listUsers.put(newNameUser,player);
+            fw = new FileWriter(filename,true); //the true will append the new data
+            if (filename.length() != 0) { stringBuilder.append("\n"+newNameUser+" 1 "); }
+            else { stringBuilder.append(newNameUser+" 1 "); }
+            String timeS = String.valueOf(time);
+            stringBuilder.append(timeS+" ");
+            String size = String.valueOf(respuestas.size()/2);
+            stringBuilder.append(size+" ");
+            for ( String itr1 : respuestas ) { stringBuilder.append(itr1+" "); }
+            stringBuilder.append(codigo+" "+dificultat+" "+rol);
+        } else {
+            player = register.listUsers.get(newNameUser);
+            player.setSaveGame(respuestas, time, codigo, dificultat, rol);
+            fw = new FileWriter(filename);
+            boolean controlIni = true;
+            for ( Player ply : register.listUsers.values() ) {
+                if (!controlIni) { stringBuilder.append("\n"+ply.getUsername()+" "+ply.getGame_start()); }
+                else {
+                    stringBuilder.append(ply.getUsername()+" "+ply.getGame_start());
+                    controlIni = false;
+                }
+                if (ply.getGame_start() == '1') {
+                    stringBuilder.append(" "+ ply.getTime()+" ");
+                    ArrayList<String> respuestasFinal = ply.getRespuestas();
+                    stringBuilder.append(respuestasFinal.size()/2+" ");
+                    for ( String itr1 : respuestasFinal ) { stringBuilder.append(itr1+" "); }
+                    stringBuilder.append(ply.getCodigo()+" "+ply.getDificultat()+" "+ply.getRol());
+                }
+            }
+        }
+        fw.write(stringBuilder.toString());//appends the string to the file
+        fw.close();
     }
 }

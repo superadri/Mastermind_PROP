@@ -53,28 +53,13 @@ public class Board {
         ++currentAttempt;
     }
 
-    public void setCode(String code) {
-        controladorDominio.setCode(code);
-        this.code = code;
-    }
+    public void setCode(String code) { this.code = code; }
 
-    public String getGuess(int gi) {
-        controladorDominio.getGuess(guesses[gi]);
-        return guesses[gi];
-    }
+    public String getGuess(int gi) { return guesses[gi]; }
 
-    public String getAnswer(int ai) {
-        controladorDominio.getAnswer(answers[ai]);
-        return answers[ai];
-    }
+    public String getAnswer(int ai) { return answers[ai]; }
 
-    private void setGuess(String guess) {
-        controladorDominio.setGuess(guess);
-        guesses[currentAttempt] = guess;
-    }
+    private void setGuess(String guess) { guesses[currentAttempt] = guess; }
 
-    private void setAnswer(String answer) {
-        controladorDominio.setAnswer(answer);
-        answers[currentAttempt] = answer;
-    }
+    private void setAnswer(String answer) { answers[currentAttempt] = answer; }
 }

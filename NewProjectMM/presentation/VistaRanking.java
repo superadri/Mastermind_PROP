@@ -2,6 +2,7 @@ package presentation;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.*;
 
@@ -111,9 +112,18 @@ public class VistaRanking {
         List<String> dataList = controladorPresentacion.getDataRanking(nameFile);
         if (dataList.size() == 0 ) { textAreaRanking.setText("..."); }
         else {
+            char num = '1';
             textAreaRanking.setText("");
-            for (String data : dataList) {
-                textAreaRanking.append(data + "\n");
+            int i = 0;
+            while(i < dataList.size() && i < 10){
+                String data = dataList.get(i);
+                String contentData [] = data.split(" ");
+                DecimalFormat decimal = new DecimalFormat("0.000");
+                double time = Double.parseDouble(contentData[0]);
+                if (num <= '9')textAreaRanking.append(num+".- "+contentData[1]+" "+decimal.format(time) +"\n");
+                else  textAreaRanking.append("10.- "+contentData[1]+" "+decimal.format(time) +"\n");
+                ++i;
+                ++num;
             }
         }
         textAreaRanking.setMargin(new Insets(10,10,10,10));

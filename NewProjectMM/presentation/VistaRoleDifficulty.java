@@ -16,7 +16,6 @@ public class VistaRoleDifficulty {
     private JComboBox comboBox2;
     private JLabel labelNamePlayer;
     private JSpinner spinnerNum;
-    private String userName;
 
     public VistaRoleDifficulty(CtrlPresentacion pCtrlPresentacion) {
         this.controladorPresentacion = pCtrlPresentacion;
@@ -37,8 +36,8 @@ public class VistaRoleDifficulty {
     }
 
     public void setNameUserJlabel(String username, boolean existUser) {
-        if (existUser) { labelNamePlayer.setText("Bienvenido de nuevo "+username); }
-        else { labelNamePlayer.setText("Bienvenido "+username+" - Nuevo Registro"); }
+        if (existUser) { labelNamePlayer.setText("Bienvenido/a de nuevo "+username); }
+        else { labelNamePlayer.setText("Bienvenido/a "+username+" - Nuevo Registro"); }
         labelNamePlayer.revalidate();
         labelNamePlayer.repaint();
     }
@@ -54,7 +53,13 @@ public class VistaRoleDifficulty {
         comboBox2.addItem("MEDIUM");
         comboBox2.addItem("HARD");
 
-        spinnerNum.setValue(1);
+        SpinnerNumberModel model = new SpinnerNumberModel();
+        model.setStepSize(1);
+        model.setValue(1);
+        model.setMaximum(100);
+        model.setMinimum(1);
+
+        spinnerNum.setModel(model);
         spinnerNum.setEnabled(false);
     }
 
@@ -79,9 +84,10 @@ public class VistaRoleDifficulty {
         // add your code here
         String role = (String)comboBox1.getSelectedItem();
         String difficulty = (String)comboBox2.getSelectedItem();
-        Object numGames = spinnerNum.getValue();
-        if ( role.equals("CB") ) { controladorPresentacion.sincronizacionVistaRoleDifficultyAPrincipal(userName, role, difficulty); }
-        else { controladorPresentacion.sincronizacionVistaRoleDifficultyAEndGame(userName, role, difficulty); }
+        Integer numGames = (Integer) spinnerNum.getValue();
+        if ( role.equals("CB") ) { controladorPresentacion.sincronizacionVistaRoleDifficultyAPrincipal(role, difficulty); }
+        else if ( role.equals("CM") ){ controladorPresentacion.sincronizacionVistaRoleDifficultyACM(role, difficulty); }
+        else { controladorPresentacion.sincronizacionVistaRoleDifficultyAEndGame(role, difficulty,numGames); }
     }
 
     private void asignarListenersComponentes() {

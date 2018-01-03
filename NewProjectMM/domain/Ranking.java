@@ -21,8 +21,7 @@ public class Ranking {
 		this.mapDataRanking = new HashMap<Double, String>();
 	}
 
-        // TODO: Queda pendiente turns
-	public void updateRanking(String difficulty, int turns, Double time, String username, String role) {
+	public void updateRanking(String difficulty, Double time, String username, String role) {
         mapDataRanking.clear();
 		openFile(difficulty,role);
         mapDataRanking.put(time, username);
@@ -48,28 +47,20 @@ public class Ranking {
 	}
 
 	private void openFile(String difficulty,String role) {
-			try {
-				this.route = "./persistence/ranking"+difficulty+role+".txt";
-				this.file = new File(route);
-				Scanner s = new Scanner(file);
-				s.useLocale(Locale.ENGLISH);
-				while( s.hasNext() ) {
-				    //String turn = s.next(); // por implementar
-						Double time = Double.parseDouble(s.next());
-						String username = s.next();
-						addToMap(/*turn,*/ time, username);
-				}
-	    } catch (FileNotFoundException ex) {
-				ex.printStackTrace();
-	    }
+		try {
+			this.route = "./persistence/ranking"+difficulty+role+".txt";
+			this.file = new File(route);
+			Scanner s = new Scanner(file);
+			s.useLocale(Locale.ENGLISH);
+			while( s.hasNext() ) {
+				Double time = Double.parseDouble(s.next());
+				String username = s.next();
+				addToMap(time, username);
+			}
+	    } catch (FileNotFoundException ex) { ex.printStackTrace(); }
 	}
 
-		// Campos: turnos tiempo username
-	private void addToMap(/*String turn,*/ Double time, String username) {
-		/*
-		Pair<String, String> p = new Pair<String, String>(time, username);
-		m.put(turn, p);
-		*/
+	private void addToMap(Double time, String username) {
         mapDataRanking.put(time, username);
 	}
 
@@ -80,21 +71,20 @@ public class Ranking {
     		Map<Double, String> sortedMap = new TreeMap<Double, String>(comparator);
     		sortedMap.putAll(mapDataRanking);
 			Iterator it = sortedMap.entrySet().iterator();
+			boolean first = true;
 			while (it.hasNext()) {
 				Map.Entry e = (Map.Entry)it.next();
 				StringBuilder stringBuilder = new StringBuilder();
+                if (!first) { stringBuilder.append("\n"); }
 				stringBuilder.append(e.getKey());
 				stringBuilder.append(" ");
 				stringBuilder.append(e.getValue());
-				stringBuilder.append("\n");
 				String finalString = stringBuilder.toString();
 				fw.write(finalString);//appends the string to the file
+                first = false;
 			}
-			// m = sortedMap;
 			fw.close();
-		} catch(Exception e) {
-				e.printStackTrace();
-		}
+		} catch(Exception e) { e.printStackTrace(); }
 	}
 
 	/*
