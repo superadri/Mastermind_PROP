@@ -101,7 +101,7 @@ public class VistaPrincipal {
     private JMenu menuOption = new JMenu("Option");
     private JMenuItem menuitemRanking = new JMenuItem("Ranking");
     private JMenu menuHelp = new JMenu("Help");
-    private JMenuItem menuitemReedme = new JMenuItem("Reedme");
+    private JMenuItem menuitemReadme = new JMenuItem("Readme");
     private JMenu menuAbout = new JMenu("About");
     private JMenuItem menuitemInfo = new JMenuItem("Show");
 
@@ -179,7 +179,7 @@ public class VistaPrincipal {
         menubarVista.add(menuFile);
         menuOption.add(menuitemRanking);
         menubarVista.add(menuOption);
-        menuHelp.add(menuitemReedme);
+        menuHelp.add(menuitemReadme);
         menubarVista.add(menuHelp);
         menuAbout.add(menuitemInfo);
         menubarVista.add(menuAbout);
@@ -571,7 +571,7 @@ public class VistaPrincipal {
             }
         });
 
-        menuitemReedme.addActionListener(new ActionListener() {
+        menuitemReadme.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 String texto = ((JMenuItem) event.getSource()).getText();
                 System.out.println("Has seleccionado el menuitem con texto: " + texto);
