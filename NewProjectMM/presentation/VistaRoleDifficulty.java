@@ -56,7 +56,7 @@ public class VistaRoleDifficulty {
         SpinnerNumberModel model = new SpinnerNumberModel();
         model.setStepSize(1);
         model.setValue(1);
-        model.setMaximum(100);
+        model.setMaximum(10000);
         model.setMinimum(1);
 
         spinnerNum.setModel(model);

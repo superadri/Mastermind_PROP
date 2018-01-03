@@ -84,7 +84,7 @@ public class Mastermind {
 		} else if ( difficulty.equals("HARD") ) {
 			this.repetition = true;
 			this.nLetters = 6;
-			this.height = 7;
+			this.height = 6;
 			this.width = 4;
 		}
 	}

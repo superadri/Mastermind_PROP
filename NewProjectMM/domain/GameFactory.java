@@ -30,6 +30,7 @@ public class GameFactory {
                     break;
                 }
             }
+            System.out.println(this.mastermind.game.turn + " NewGame");
         }
     }
 
@@ -53,18 +54,28 @@ public class GameFactory {
         mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix);
         boolean controlMachine = true;
         for (int i = 0; i < numGames; ++i) {
+            System.out.println("Num de Games jugados: "+(i+1));
             while ( this.mastermind.game.turn < controladorDominio.getHeight() ) {
                 if ( !mastermind.controlFin ) { this.mastermind.game.runGame(); }
                 else {
-                    controlMachine = false;
+                    System.out.println(this.mastermind.game.turn + " NewGame Machine Won");
                     int num = controladorDominio.getNumRightGame();
                     controladorDominio.setNumRightGame(++num);
+                    controlMachine = false;
                     if (i+1 < numGames) { mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix); }
                     break;
                 }
             }
-            if (controlMachine && i+1 < numGames) { mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix); }
-            controlMachine = false;
+            if(controlMachine) {
+                if (mastermind.controlFin) {
+                    System.out.println(this.mastermind.game.turn + " NewGame Machine End");
+                    int num = controladorDominio.getNumRightGame();
+                    controladorDominio.setNumRightGame(++num);
+                }
+                if (i + 1 < numGames) {
+                    mastermind = new Mastermind(controladorDominio, "MACHINE", "MACHINE", difficult, answerMatrix);
+                }
+            } else { controlMachine = true; }
         }
     }
 
