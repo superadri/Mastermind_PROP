@@ -80,10 +80,10 @@ public class CtrlPresentacion {
         this.role = role;
         this.difficulty = difficulty;
         this.codeMakerRight = false;
+        setRoleDificultyNewGame();
         vistaDifficulty.hacerInvisible();
         vistaPrincipal.inicializarBoardReset();
         vistaPrincipal.activar();
-        setRoleDificultyNewGame();
     }
 
     public void sincronizacionVistaRoleDifficultyACM(String role, String difficulty) {

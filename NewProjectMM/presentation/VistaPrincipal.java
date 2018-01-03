@@ -218,7 +218,12 @@ public class VistaPrincipal {
         String[] rounds = controladorPresentacion.getRounds();
         this.controlSecuencia = (rounds.length/2)*4;
         this.foundAnswer = false;
-        for (JLabel peg : board) { peg.setIcon(pegBlack); }
+        for (int i = 0; i < board.length; ++i) {
+            JLabel peg = board[i];
+            peg.setIcon(pegBlack);
+            peg.setEnabled(true);
+            if (i > ((controladorPresentacion.getHeight()*8)-1)) { peg.setEnabled(false); }
+        }
         int controlS = 0;
         for (int i = 0; i < rounds.length; i+=2) {
             String guess = rounds[i];
@@ -239,7 +244,12 @@ public class VistaPrincipal {
     public void inicializarBoardReset() {
         this.controlSecuencia = 0;
         this.foundAnswer = false;
-        for (JLabel peg : board) { peg.setIcon(pegBlack); }
+        for (int i = 0; i < board.length; ++i) {
+            JLabel peg = board[i];
+            peg.setIcon(pegBlack);
+            peg.setEnabled(true);
+            if (i > ((controladorPresentacion.getHeight()*8)-1)) { peg.setEnabled(false); }
+        }
         setNewBarBanner(false);
         deleteAllListenerPeg();
         listenerPegAll();

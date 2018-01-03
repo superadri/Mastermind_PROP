@@ -16,8 +16,8 @@ public class VistaAbout {
     private JButton buttonQuit;
     private JTextPane textPaneAbout;
     private String strTexto =
-            "Andreu x" + "\n" +
-            "Andría x" + "\n" +
+            "Andreu Esteras" + "\n" +
+            "Andrià Marcoval" + "\n" +
             "Pedro Llanos" + "\n";
 
         /** Constructora **/

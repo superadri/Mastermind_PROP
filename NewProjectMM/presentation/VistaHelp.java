@@ -20,7 +20,14 @@ public class VistaHelp {
                     "Instrucciones:  "  + "\n" +
                     "----------------" + "\n" +
                     "Blanco -> Posicion y letra correcto"+ "\n" +
-                    "Rojo -> Letra correcta\n";
+                    "Rojo -> Letra correcta\n" +
+                    "++++++++++++++++" + "\n" +
+                    "Dificultad: \n" +
+                    "----------------" + "\n" +
+                    "EASY -> F: 10, L: 6, C: 4, R: No\n" +
+                    "MEDIUM -> F: 7, L: 6, C: 4, R: No\n" +
+                    "HARD -> F: 6, L: 6, C: 4, R: Sí\n" +
+                    "(F:Filas, L:Colores, C:Columnas, R:Repetidos)\n";
 
         /** Constructora **/
 
@@ -51,7 +58,7 @@ public class VistaHelp {
         textPaneAbout.setEditable(false);
         dialogHelp.setContentPane(contentPaneForm);
         dialogHelp.setModal(true);
-        dialogHelp.setMinimumSize(new Dimension(350, 250));
+        dialogHelp.setMinimumSize(new Dimension(650, 350));
         dialogHelp.setLocationRelativeTo(null);
         dialogHelp.setResizable(false);
         dialogHelp.getRootPane().setDefaultButton(buttonQuit);
