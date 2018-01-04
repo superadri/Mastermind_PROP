@@ -11,7 +11,7 @@ public class CtrlDominio {
 
     private CtrlPersistence controladorPersistence;
 
-    public GameFactory gameFactory;
+    public MastermindFactory mastermindFactory;
     private Register register;
     private Ranking ranking;
 
@@ -29,7 +29,7 @@ public class CtrlDominio {
         this.controladorPersistence = CtrlPersistence.getInstance();
         this.register = new Register(this);
         this.ranking = new Ranking(this);
-        this.gameFactory = new GameFactory(this);
+        this.mastermindFactory = new MastermindFactory(this);
 	}
 
         /** Métodos públicos **/
@@ -58,22 +58,22 @@ public class CtrlDominio {
         return register.game_start_user(username);
     }
 
-    public void setRoleDificultyNewGame(String username, String role, String difficulty) { gameFactory.newgame(username,role,difficulty); }
+    public void setRoleDificultyNewGame(String username, String role, String difficulty) { mastermindFactory.newgame(username,role,difficulty); }
 
     public void setRoleDificultyNewGameMachine(String username, String role, String difficulty, int numGames) {
-        gameFactory.newgameMachine(username,role,difficulty,numGames);
+        mastermindFactory.newgameMachine(username,role,difficulty,numGames);
     }
 
     public void setRoleDificultyContinueGame(String username) {
-        gameFactory.continuegame(username);
+        mastermindFactory.continuegame(username);
     }
 
     public void passDataToRegister(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers, String nameUserNow, String role, String difficulty, double time, String codeMaker) throws IOException {
-	    gameFactory.set_continueGameRegister(time, codeMaker, register, nameUserNow, role, difficulty, codeOutGuess, codeOutAnswers);
+	    mastermindFactory.set_continueGameRegister(time, codeMaker, register, nameUserNow, role, difficulty, codeOutGuess, codeOutAnswers);
     }
 
     public void passDataToRanking(String nameUserNow, String role, String difficulty, double time) throws IOException {
-        gameFactory.set_continueGameRanking(time, register, ranking, nameUserNow, role, difficulty);
+        mastermindFactory.set_continueGameRanking(time, register, ranking, nameUserNow, role, difficulty);
     }
 
     public HashMap<String, Player> getListUsers(){
@@ -95,7 +95,7 @@ public class CtrlDominio {
     public void setCodeMake(String code, String username, String role, String difficulty){
         this.codeMaker = code;
         this.whoMachine = "MACHINEC";
-        gameFactory.newgame(username,role,difficulty);
+        mastermindFactory.newgame(username,role,difficulty);
     }
 
     public double getTime(){ return this.time; }
@@ -118,7 +118,7 @@ public class CtrlDominio {
 
     public String getCodeMaker() { return this.codeMaker; }
 
-    public void stopTime() { gameFactory.mastermind.game.stopTime(); }
+    public void stopTime() { mastermindFactory.mastermind.game.stopTime(); }
 
     public void setRounds(String[] rounds) { this.rounds = rounds; }
 
@@ -141,5 +141,5 @@ public class CtrlDominio {
 
     public int getNumRightGame() { return this.numRightGame; }
 
-    public int getHeight() { return gameFactory.mastermind.height; }
+    public int getHeight() { return mastermindFactory.mastermind.height; }
 }

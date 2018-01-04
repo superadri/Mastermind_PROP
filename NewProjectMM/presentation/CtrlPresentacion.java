@@ -218,7 +218,7 @@ public class CtrlPresentacion {
 
     public void setGuesstoDominio(String code) {
         controladorDominio.setGuess(code);
-        controladorDominio.gameFactory.mastermind.game.runGame();
+        controladorDominio.mastermindFactory.mastermind.game.runGame();
     }
 
     public String getAnswer(){ return controladorDominio.getAnswer(); }

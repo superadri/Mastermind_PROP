@@ -17,8 +17,6 @@ package domain;
 
 */
 
-import java.util.Scanner;
-
 public class Game {
 
     private CtrlDominio controladorDominio;
@@ -124,7 +122,7 @@ public class Game {
         controladorDominio.setAnswer(board.getAnswer(turn));
         if (board.getAnswer(turn).equals("BBBB")) {
             stopTime();
-            controladorDominio.gameFactory.mastermind.controlFin = true;
+            controladorDominio.mastermindFactory.mastermind.controlFin = true;
         }
         ++turn;
 	}

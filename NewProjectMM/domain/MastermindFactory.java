@@ -3,7 +3,7 @@ package domain;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GameFactory {
+public class MastermindFactory {
 
     private CtrlDominio controladorDominio;
 
@@ -14,12 +14,12 @@ public class GameFactory {
     public int width, size, nColors;
     public boolean repetition;
 
-    public GameFactory (CtrlDominio controladorDominio){
+    public MastermindFactory(CtrlDominio controladorDominio){
         this.controladorDominio = controladorDominio;
     }
 
     public void newgame(String username, String role, String difficult) {
-        System.out.println("GameFactory - Creando nueva partida...");
+        System.out.println("MastermindFactory - Creando nueva partida...");
         if (role.equals("CB")) { mastermind = new Mastermind(controladorDominio, "MACHINE", username, difficult); }
         else {
             mastermind = new Mastermind(controladorDominio, username,"MACHINE", difficult);
@@ -38,7 +38,7 @@ public class GameFactory {
         String roleMachine = "MACHINEC";
         if (role.equals("Machine vs Machine(Random)")) { roleMachine = "MACHINER"; }
         controladorDominio.setWhoMachine(roleMachine);
-        System.out.println("GameFactory - Creando nueva partida(MACHINE vs "+roleMachine+")...");
+        System.out.println("MastermindFactory - Creando nueva partida(MACHINE vs "+roleMachine+")...");
         this.comb = "";
         this.width = 4;
         this.nColors = 6;
@@ -82,7 +82,7 @@ public class GameFactory {
     }
 
     public void continuegame(String username) {
-        System.out.println("GameFactory - ContinueGame");
+        System.out.println("MastermindFactory - ContinueGame");
         Player player = controladorDominio.getRegister().getPlayer(username);
         String computerCM, computerCB;
         computerCB = username;
@@ -219,7 +219,7 @@ public class GameFactory {
     /*
         public static void main(String[] args) throws IOException {
                     // new VistaInstrucciones().hacerVisible();
-                    GameFactory gf = new GameFactory();
+                    MastermindFactory gf = new MastermindFactory();
                     gf.menu();
         }
     */
