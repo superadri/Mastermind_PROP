@@ -104,6 +104,7 @@ public class CtrlPresentacion {
         controladorDominio.setCodeMake(codeCM, this.nameUserNow, this.role, this.difficulty);
         vistaCM.hacerInvisible();
         this.codeMakerRight = true;
+        // TODO: Hay que hacer un Wait or Sleep, ya que a veces, no carga el resultado que debe
         vistaPrincipal.inicializarBoardContinue();
         vistaPrincipal.activar();
     }
@@ -233,4 +234,6 @@ public class CtrlPresentacion {
     public boolean isCodeMakerRight() { return this.codeMakerRight; }
 
     public int getHeight() { return controladorDominio.getHeight(); }
+
+    public CtrlDominio getControladorDominio() { return controladorDominio; }
 }

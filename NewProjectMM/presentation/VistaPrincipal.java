@@ -224,6 +224,7 @@ public class VistaPrincipal {
             peg.setEnabled(true);
             if (i > ((controladorPresentacion.getHeight()*8)-1)) { peg.setEnabled(false); }
         }
+
         int controlS = 0;
         for (int i = 0; i < rounds.length; i+=2) {
             String guess = rounds[i];

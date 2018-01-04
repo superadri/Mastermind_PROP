@@ -102,7 +102,7 @@ public class CtrlPersistence {
             else { stringBuilder.append(newNameUser+" 0 "); }
         } else {
             player = register.listUsers.get(newNameUser);
-            if (player.getGame_start() == '1') { player.delete_all(); }
+            if ( player.getGame_start() == '1' ) { player.delete_all(); }
             fw = new FileWriter(filename);
             boolean controlIni = true;
             for ( Player ply : register.listUsers.values() ) {
@@ -122,6 +122,22 @@ public class CtrlPersistence {
         }
         fw.write(stringBuilder.toString());//appends the string to the file
         fw.close();
+    }
+
+    public void finished_Game_CM_MvM(String newNameUser, Register register) throws IOException {
+        File filename = new File("./persistence/registro.txt");
+        FileWriter fw;
+        StringBuilder stringBuilder = new StringBuilder();
+        Player player;
+        if ( !register.user_exists(newNameUser) ){
+            player = new Player('0',newNameUser);
+            register.listUsers.put(newNameUser,player);
+            fw = new FileWriter(filename,true); //the true will append the new data
+            if (filename.length() != 0) { stringBuilder.append("\n"+newNameUser+" 0 "); }
+            else { stringBuilder.append(newNameUser+" 0 "); }
+            fw.write(stringBuilder.toString());//appends the string to the file
+            fw.close();
+        }
     }
 
     public void set_continueGame(char game_start, String newNameUser, ArrayList<String> respuestas, double time, String codigo, String dificultat, String rol, Register register) throws IOException {

@@ -25,6 +25,10 @@ public class Register {
         controladorDominio.finished_game(newNameUser,this);
     }
 
+    public void finished_game_CM_MvM(String newNameUser) throws IOException {
+        controladorDominio.finished_game_CM_MvM(newNameUser,this);
+    }
+
     public void set_continueGame(char game_start, String newNameUser, ArrayList<String> respuestas,double time,String codigo,String dificultat,String rol) throws IOException {
         controladorDominio.set_continueGame(game_start, newNameUser, respuestas, time, codigo, dificultat, rol);
     }

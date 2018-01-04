@@ -23,7 +23,7 @@ public class CtrlDominio {
     private String whoMachine;
     private int numRightGame;
 
-	    /** Constructor **/
+    /** Constructor **/
 
 	public CtrlDominio() {
         this.controladorPersistence = CtrlPersistence.getInstance();
@@ -34,7 +34,7 @@ public class CtrlDominio {
 
         /** Métodos públicos **/
 
-    public Register passRegister() {
+    public Register getRegister() {
         return this.register;
     }
 
@@ -69,7 +69,7 @@ public class CtrlDominio {
     }
 
     public void passDataToRegister(ArrayList<String> codeOutGuess, ArrayList<String> codeOutAnswers, String nameUserNow, String role, String difficulty, double time, String codeMaker) throws IOException {
-        gameFactory.set_continueGameRegister(time, codeMaker, register, nameUserNow, role, difficulty, codeOutGuess, codeOutAnswers);
+	    gameFactory.set_continueGameRegister(time, codeMaker, register, nameUserNow, role, difficulty, codeOutGuess, codeOutAnswers);
     }
 
     public void passDataToRanking(String nameUserNow, String role, String difficulty, double time) throws IOException {
@@ -83,6 +83,11 @@ public class CtrlDominio {
     public void finished_game(String newNameUser, Register register) throws IOException {
         controladorPersistence.finished_Game(newNameUser, register);
     }
+
+    public void finished_game_CM_MvM(String newNameUser, Register register) throws IOException {
+        controladorPersistence.finished_Game_CM_MvM(newNameUser, register);
+    }
+
     public void set_continueGame(char game_start, String newNameUser, ArrayList<String> respuestas, double time, String codigo, String dificultat, String rol) throws IOException {
         controladorPersistence.set_continueGame(game_start, newNameUser, respuestas, time, codigo, dificultat, rol, register);
     }

@@ -23,13 +23,13 @@ public class GameFactory {
         if (role.equals("CB")) { mastermind = new Mastermind(controladorDominio, "MACHINE", username, difficult); }
         else {
             mastermind = new Mastermind(controladorDominio, username,"MACHINE", difficult);
+            try { controladorDominio.getRegister().finished_game_CM_MvM(username); }
+            catch (IOException e) { e.printStackTrace(); }
             while ( this.mastermind.game.turn < controladorDominio.getHeight() ) {
                 if ( !mastermind.controlFin ) { this.mastermind.game.runGame(); }
-                else {
-                    controladorDominio.setRounds(this.mastermind.game.board.getAllPairsGA());
-                    break;
-                }
+                else { break; }
             }
+            controladorDominio.setRounds(this.mastermind.game.board.getAllPairsGA());
             System.out.println(this.mastermind.game.turn + " NewGame");
         }
     }
@@ -52,6 +52,8 @@ public class GameFactory {
         String[][] answerMatrix = new String[size][size];
         fillAnswerMatrix(answerMatrix);
         mastermind = new Mastermind(controladorDominio,"MACHINE", "MACHINE", difficult, answerMatrix);
+        try { controladorDominio.getRegister().finished_game_CM_MvM(username); }
+        catch (IOException e) { e.printStackTrace(); }
         boolean controlMachine = true;
         for (int i = 0; i < numGames; ++i) {
             System.out.println("Num de Games jugados: "+(i+1));
@@ -81,7 +83,7 @@ public class GameFactory {
 
     public void continuegame(String username) {
         System.out.println("GameFactory - ContinueGame");
-        Player player = controladorDominio.passRegister().getPlayer(username);
+        Player player = controladorDominio.getRegister().getPlayer(username);
         String computerCM, computerCB;
         computerCB = username;
         computerCM = "MACHINE";
