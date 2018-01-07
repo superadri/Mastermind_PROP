@@ -187,24 +187,14 @@ public class VistaPrincipal {
     }
 
     private void inicializarPeg() {
-        try {
-            pegRed = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-red.png")));
-            pegRed.setDescription("r");
-            pegOrange = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-orange.png")));
-            pegOrange.setDescription("o");
-            pegYellow = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-yellow.png")));
-            pegYellow.setDescription("y");
-            pegGreen = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-green.png")));
-            pegGreen.setDescription("g");
-            pegBlue = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-blue.png")));
-            pegBlue.setDescription("b");
-            pegPurple = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-purple.png")));
-            pegPurple.setDescription("p");
-            pegBlack = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-black.png")));
-            pegBlack.setDescription("n");
-            pegWhite = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-white.png")));
-            pegWhite.setDescription("w");
-        } catch (java.io.IOException ex) { System.out.println("Error1: " + ex); }
+        pegRed = new ImageIcon("./persistence/peg-red.png"); pegRed.setDescription("r");
+        pegOrange = new ImageIcon("./persistence/peg-orange.png"); pegOrange.setDescription("o");
+        pegYellow = new ImageIcon("./persistence/peg-yellow.png"); pegYellow.setDescription("y");
+        pegGreen = new ImageIcon("./persistence/peg-green.png"); pegGreen.setDescription("g");
+        pegBlue = new ImageIcon("./persistence/peg-blue.png"); pegBlue.setDescription("b");
+        pegPurple = new ImageIcon("./persistence/peg-purple.png"); pegPurple.setDescription("p");
+        pegBlack = new ImageIcon("./persistence/peg-black.png"); pegBlack.setDescription("n");
+        pegWhite = new ImageIcon("./persistence/peg-white.png"); pegWhite.setDescription("w");
 
         selectRed.setIcon(pegRed);
         selectOrange.setIcon(pegOrange);

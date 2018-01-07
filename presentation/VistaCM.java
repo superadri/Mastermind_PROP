@@ -77,15 +77,14 @@ public class VistaCM {
     }
 
     private void inicializarPeg() {
-        try {
-            pegRed = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-red.png")));
-            pegOrange = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-orange.png")));
-            pegYellow = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-yellow.png")));
-            pegGreen = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-green.png")));
-            pegBlue = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-blue.png")));
-            pegPurple = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-purple.png")));
-            pegBlack = new ImageIcon(ImageIO.read(getClass().getResource("../persistence/peg-black.png")));
-        } catch (java.io.IOException ex) { System.out.println("Error1: " + ex); }
+
+        pegRed = new ImageIcon("./persistence/peg-red.png");
+        pegOrange = new ImageIcon("./persistence/peg-orange.png");
+        pegYellow = new ImageIcon("./persistence/peg-yellow.png");
+        pegGreen = new ImageIcon("./persistence/peg-green.png");
+        pegBlue = new ImageIcon("./persistence/peg-blue.png");
+        pegPurple = new ImageIcon("./persistence/peg-purple.png");
+        pegBlack = new ImageIcon("./persistence/peg-black.png");
 
         selectRed.setIcon(pegRed);
         selectOrange.setIcon(pegOrange);

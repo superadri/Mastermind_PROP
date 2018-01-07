@@ -62,7 +62,7 @@ public class CtrlPersistence {
     public HashMap<String, Player> getListUsers() {
         HashMap<String, Player> listUsers = new HashMap<String, Player>();
         try {
-            File f = new File("./persistence/registro.txt");
+            FileReader f = new FileReader("./persistence/registro.txt");
             Scanner in = new Scanner(f);
             in.useLocale(Locale.ENGLISH);
             Player player;
