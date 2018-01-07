@@ -8,22 +8,81 @@
   <component name="ChangeListManager">
     <list default="true" id="62e1ba38-bc38-46f2-83c2-9f31989d2334" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/Prop_Mastermind_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Prop_Mastermind_jar.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
-      <change beforePath="$PROJECT_DIR$/Mastermind_Paco.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Prop_Mastermind.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Prop_Mastermind_jar/Mastermind_Paco.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/artifacts/Prop_Mastermind_jar.xml" afterPath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/artifacts/Prop_Mastermind_jar.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/misc.xml" afterPath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/Class_Diagram.diagram" afterPath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/Class_Diagram.diagram" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/propDiagrama.xml" afterPath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/propDiagrama.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/out/production/Prop_Mastermind/META-INF/MANIFEST.MF" />
-      <change beforePath="$PROJECT_DIR$/persistence/CtrlPersistence.java" afterPath="$PROJECT_DIR$/persistence/CtrlPersistence.java" />
-      <change beforePath="$PROJECT_DIR$/persistence/registro.txt" afterPath="$PROJECT_DIR$/persistence/registro.txt" />
-      <change beforePath="$PROJECT_DIR$/presentation/VistaCM.java" afterPath="$PROJECT_DIR$/presentation/VistaCM.java" />
-      <change beforePath="$PROJECT_DIR$/presentation/VistaPrincipal.java" afterPath="$PROJECT_DIR$/presentation/VistaPrincipal.java" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Prop_Mastermind_jar/Prop_Mastermind.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.gitignore" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/Prop_Mastermind.iml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/artifacts/Prop_Mastermind_jar.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/libraries/hamcrest_core_1_3.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/libraries/junit_4_12.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/misc.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/modules.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/uiDesigner.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/vcs.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/workspace.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/CasosDeUso.docx" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/CasosDeUso.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/Class_Diagram.diagram" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/manual_adri.docx" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/manual_adri.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/propDiagrama.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/propDiagrama.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Junit/hamcrest-core-1.3.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Junit/junit-4.12.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/META-INF/MANIFEST.MF" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Makefile" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/README.md" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego1_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego1_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego2_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego2_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego3_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego3_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego4_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego4_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego5_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego5_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego6_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego6_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego7_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego7_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego1_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego1_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego2_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego2_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego3_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego3_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego4_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego4_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego5_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego5_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego6_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego6_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego7_in.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego7_out.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/manifest.mf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/hombre-de-negocios (1).png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/info.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/manifest.mf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-black.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-blue.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-green.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-orange.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-purple.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-red.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-white.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-yellow.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingEASYCB.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingEASYCM.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingHARDCB.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingHARDCM.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingMEDIUMCB.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingMEDIUMCM.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/registro.txt" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/table1.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/table2.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/trofeo.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/windowsGlobal.png" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,8 +106,8 @@
       <file leaf-file-name="CtrlPersistence.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/persistence/CtrlPersistence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="64" column="57" lean-forward="false" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
+            <state relative-caret-position="160">
+              <caret line="52" column="55" lean-forward="false" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -192,11 +251,6 @@
               <item name="Prop_MasterMind" type="b2602c69:ProjectViewProjectNode" />
               <item name="Prop_MasterMind" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Prop_MasterMind" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Prop_MasterMind" type="462c0819:PsiDirectoryNode" />
-              <item name="presentation" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -212,7 +266,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Junit/junit-4.12.jar!/" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -286,7 +340,7 @@
     </configuration>
     <configuration name="Prop_Mastermind.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Prop_Mastermind_jar/Prop_Mastermind.jar" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/Prop_Mastermind.jar" />
       <envs />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -354,15 +408,16 @@
       <updated>1515342110660</updated>
       <workItem from="1515342114448" duration="1402000" />
       <workItem from="1515345364602" duration="456000" />
-      <workItem from="1515363967152" duration="1706000" />
+      <workItem from="1515363967152" duration="2270000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3564000" />
+    <option name="totallyTimeSpent" value="4128000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -641,8 +696,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/persistence/CtrlPersistence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="64" column="57" lean-forward="false" selection-start-line="64" selection-start-column="57" selection-end-line="64" selection-end-column="57" />
+        <state relative-caret-position="160">
+          <caret line="52" column="55" lean-forward="false" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
           <folding />
         </state>
       </provider>
