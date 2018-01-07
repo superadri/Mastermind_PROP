@@ -66,7 +66,7 @@ public class CtrlPersistence {
             Scanner in = new Scanner(f);
             in.useLocale(Locale.ENGLISH);
             Player player;
-            while (in.hasNextLine()) {
+            while (in.hasNext()) {
                 String username = in.next();
                 String a = in.next();
                 char c = a.charAt(0);
