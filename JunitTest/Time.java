@@ -1,4 +1,4 @@
-
+package JunitTest;
 // package mastermind;
 
 import java.util.*;

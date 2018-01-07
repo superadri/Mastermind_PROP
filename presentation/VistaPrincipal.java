@@ -1,17 +1,17 @@
 package presentation;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+//import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.AncestorListener;
+//import javax.swing.event.AncestorListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.HashMap;
-import java.util.Map;
+//import java.util.EventListener;
+//import java.util.HashMap;
+//import java.util.Map;
 
 public class VistaPrincipal {
 

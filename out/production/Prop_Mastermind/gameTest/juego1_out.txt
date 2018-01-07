@@ -1,0 +1,44 @@
+Instructiones para el juego Mastermind:
+
+		Mastermind - Rules of the game
+
+---------------
+
+Escribe un usuario: paco
+Cargando Datos...
+paco - Usuario existe!
+Creando nueva partida...
+Quieres ser [ CodeMaker(1) / CodeBreaker(2) /MaquinavsMaquina(3) ]: 1
+Escoge dificultat[ EASY(1) / MEDIUM(2) / HARD(3) ]: 1
+Initial Configuration>
+width = 4, nLetters = 6, repetition = false.
+Initiazing CodeBreaker algorithm...
+Starting new game...
+NO REPETITIONS ALLOWED -> Enter your combination[----]: ADBC
+Start_Crono
+CodeMaker: code = ADBC
+CodeBreaker: guess = ABCD
+Game: answer = BRRR
+Continue playing? (y/n): y
+CodeBreaker: guess = ACDB
+Game: answer = BRRR
+Continue playing? (y/n): y
+CodeBreaker: guess = ADBC
+Game: answer = BBBB
+Stop_Crono
+Minute: 0, Second: 1, MillSecond: 508
+Game: code guessed in 3 turns.
+
+RANKING:
+0.81103515625 asd
+2.37890625 paco
+532.8645 jskvdb
+456.651 paco
+45.45 paco
+4521.48643 ugsukvj
+0.484130859375 as
+1.508056640625 paco
+54.98 ygbh
+5.41796875 pepeeee
+
+Quieres jugar otra partida? (s/n): n
