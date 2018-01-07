@@ -522,6 +522,7 @@ public class VistaPrincipal {
                         if (codeOut.length() > 4) {
                             String[] output = codeOut.split("");
                             codeOut = output[0] + output[2] + output[4] + output[6];
+                            System.out.println(codeOut);
                         }
 
                         controladorPresentacion.setGuesstoDominio(codeOut);
