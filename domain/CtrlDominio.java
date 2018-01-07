@@ -76,7 +76,7 @@ public class CtrlDominio {
         mastermindFactory.set_continueGameRanking(time, register, ranking, nameUserNow, role, difficulty);
     }
 
-    public HashMap<String, Player> getListUsers(){
+    public HashMap<String, Player_User> getListUsers(){
         return controladorPersistence.getListUsers();
     }
 

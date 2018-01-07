@@ -7,82 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62e1ba38-bc38-46f2-83c2-9f31989d2334" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Prop_Mastermind_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Prop_Mastermind_jar.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Prop_Mastermind_jar/Prop_Mastermind.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.gitignore" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/Prop_Mastermind.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/artifacts/Prop_Mastermind_jar.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/libraries/hamcrest_core_1_3.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/libraries/junit_4_12.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/misc.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/modules.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/uiDesigner.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/vcs.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/workspace.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/CasosDeUso.docx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/CasosDeUso.pdf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/Class_Diagram.diagram" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/manual_adri.docx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/manual_adri.pdf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/propDiagrama.pdf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Docs/propDiagrama.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Junit/hamcrest-core-1.3.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Junit/junit-4.12.jar" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/META-INF/MANIFEST.MF" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Makefile" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/README.md" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego1_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego1_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego2_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego2_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego3_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego3_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego4_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego4_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego5_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego5_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego6_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego6_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego7_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/gameTest/juego7_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego1_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego1_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego2_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego2_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego3_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego3_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego4_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego4_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego5_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego5_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego6_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego6_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego7_in.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/juegoPrueba/juego7_out.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/manifest.mf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/hombre-de-negocios (1).png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/info.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/manifest.mf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-black.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-blue.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-green.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-orange.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-purple.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-red.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-white.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/peg-yellow.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingEASYCB.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingEASYCM.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingHARDCB.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingHARDCM.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingMEDIUMCB.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/rankingMEDIUMCM.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/registro.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/table1.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/table2.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/trofeo.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/windowsGlobal.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Prop_Mastermind.jar" afterPath="$PROJECT_DIR$/Prop_Mastermind.jar" />
+      <change beforePath="$PROJECT_DIR$/domain/CtrlDominio.java" afterPath="$PROJECT_DIR$/domain/CtrlDominio.java" />
+      <change beforePath="$PROJECT_DIR$/domain/MastermindFactory.java" afterPath="$PROJECT_DIR$/domain/MastermindFactory.java" />
+      <change beforePath="$PROJECT_DIR$/domain/Player.java" afterPath="$PROJECT_DIR$/domain/Player.java" />
+      <change beforePath="$PROJECT_DIR$/domain/Player_Machine.java" afterPath="$PROJECT_DIR$/domain/Player_Machine.java" />
+      <change beforePath="$PROJECT_DIR$/domain/Player_User.java" afterPath="$PROJECT_DIR$/domain/Player_User.java" />
+      <change beforePath="$PROJECT_DIR$/domain/Register.java" afterPath="$PROJECT_DIR$/domain/Register.java" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Prop_Mastermind/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/Prop_Mastermind.jar" afterPath="$PROJECT_DIR$/out/production/Prop_Mastermind/Prop_Mastermind.jar" />
+      <change beforePath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/registro.txt" afterPath="$PROJECT_DIR$/out/production/Prop_Mastermind/persistence/registro.txt" />
+      <change beforePath="$PROJECT_DIR$/persistence/CtrlPersistence.java" afterPath="$PROJECT_DIR$/persistence/CtrlPersistence.java" />
+      <change beforePath="$PROJECT_DIR$/persistence/registro.txt" afterPath="$PROJECT_DIR$/persistence/registro.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -93,64 +30,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CtrlPersistence.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CtrlPersistence.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/persistence/CtrlPersistence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="52" column="55" lean-forward="false" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VistaPrincipal.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="196" column="65" lean-forward="false" selection-start-line="196" selection-start-column="65" selection-end-line="196" selection-end-column="65" />
+            <state relative-caret-position="174">
+              <caret line="164" column="61" lean-forward="false" selection-start-line="164" selection-start-column="61" selection-end-line="164" selection-end-column="61" />
               <folding>
-                <element signature="e#30896#30897#0" expanded="true" />
-                <element signature="e#30967#30968#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#521#529#0" expanded="true" />
+                <element signature="e#1625#1633#0" expanded="true" />
+                <element signature="e#2150#2171#0" expanded="true" />
+                <element signature="e#2731#2739#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VistaCM.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/presentation/VistaCM.java">
+      <file leaf-file-name="Player_Machine.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/Player_Machine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="102" column="47" lean-forward="false" selection-start-line="102" selection-start-column="39" selection-end-line="102" selection-end-column="47" />
+            <state relative-caret-position="102">
+              <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registro.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/persistence/registro.txt">
+      <file leaf-file-name="Player_User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/Player_User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+            <state relative-caret-position="187">
+              <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CtrlPresentacion.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/presentation/CtrlPresentacion.java">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="68">
+              <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CodeBreaker.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/CodeBreaker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -159,11 +89,45 @@
       <file leaf-file-name="CtrlDominio.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/domain/CtrlDominio.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+            <state relative-caret-position="-914">
+              <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
               <folding>
-                <element signature="e#2642#2643#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#923#924#0" expanded="true" />
+                <element signature="e#959#960#0" expanded="true" />
+                <element signature="e#2587#2588#0" expanded="true" />
+                <element signature="e#2647#2648#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MastermindFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/MastermindFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="53" column="31" lean-forward="false" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mastermind.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/domain/Mastermind.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="39" column="27" lean-forward="false" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/domain/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-576">
+              <caret line="62" column="11" lean-forward="false" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -171,9 +135,11 @@
       <file leaf-file-name="Register.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/domain/Register.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="323">
+              <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -197,7 +163,13 @@
         <option value="$PROJECT_DIR$/persistence/registro.txt" />
         <option value="$PROJECT_DIR$/presentation/VistaCM.java" />
         <option value="$PROJECT_DIR$/presentation/VistaPrincipal.java" />
+        <option value="$PROJECT_DIR$/domain/Player_Machine.java" />
+        <option value="$PROJECT_DIR$/domain/Player.java" />
+        <option value="$PROJECT_DIR$/domain/Player_User.java" />
         <option value="$PROJECT_DIR$/persistence/CtrlPersistence.java" />
+        <option value="$PROJECT_DIR$/domain/CtrlDominio.java" />
+        <option value="$PROJECT_DIR$/domain/MastermindFactory.java" />
+        <option value="$PROJECT_DIR$/domain/Register.java" />
       </list>
     </option>
   </component>
@@ -208,9 +180,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="22" />
     <option name="width" value="1440" />
-    <option name="height" value="812" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -243,7 +214,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -251,13 +221,19 @@
               <item name="Prop_MasterMind" type="b2602c69:ProjectViewProjectNode" />
               <item name="Prop_MasterMind" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Prop_MasterMind" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Prop_MasterMind" type="462c0819:PsiDirectoryNode" />
+              <item name="persistence" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -408,12 +384,13 @@
       <updated>1515342110660</updated>
       <workItem from="1515342114448" duration="1402000" />
       <workItem from="1515345364602" duration="456000" />
-      <workItem from="1515363967152" duration="2270000" />
+      <workItem from="1515363967152" duration="2392000" />
+      <workItem from="1515367206384" duration="1410000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4128000" />
+    <option name="totallyTimeSpent" value="5660000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -421,14 +398,14 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -438,8 +415,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -459,6 +436,87 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3332">
+          <caret line="196" column="65" lean-forward="false" selection-start-line="196" selection-start-column="65" selection-end-line="196" selection-end-column="65" />
+          <folding>
+            <element signature="e#30896#30897#0" expanded="false" />
+            <element signature="e#30967#30968#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/presentation/VistaCM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="102" column="47" lean-forward="false" selection-start-line="102" selection-start-column="39" selection-end-line="102" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/persistence/registro.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/presentation/CtrlPresentacion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/CtrlDominio.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#923#924#0" expanded="true" />
+            <element signature="e#959#960#0" expanded="true" />
+            <element signature="e#2587#2588#0" expanded="true" />
+            <element signature="e#2647#2648#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Register.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/persistence/CtrlPersistence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="52" column="55" lean-forward="false" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#521#529#0" expanded="true" />
+            <element signature="e#1625#1633#0" expanded="true" />
+            <element signature="e#2150#2171#0" expanded="true" />
+            <element signature="e#2731#2739#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -488,7 +546,11 @@
         <state relative-caret-position="1054">
           <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding>
-            <element signature="e#2642#2643#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#923#924#0" expanded="true" />
+            <element signature="e#959#960#0" expanded="true" />
+            <element signature="e#2587#2588#0" expanded="true" />
+            <element signature="e#2647#2648#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -497,7 +559,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -505,7 +569,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#521#529#0" expanded="true" />
+            <element signature="e#1625#1633#0" expanded="true" />
+            <element signature="e#2150#2171#0" expanded="true" />
+            <element signature="e#2731#2739#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -522,8 +592,8 @@
         <state relative-caret-position="180">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
-            <element signature="e#30896#30897#0" expanded="true" />
-            <element signature="e#30967#30968#0" expanded="true" />
+            <element signature="e#30896#30897#0" expanded="false" />
+            <element signature="e#30967#30968#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -532,9 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -542,9 +609,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -561,7 +625,11 @@
         <state relative-caret-position="1240">
           <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding>
-            <element signature="e#2642#2643#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#923#924#0" expanded="true" />
+            <element signature="e#959#960#0" expanded="true" />
+            <element signature="e#2587#2588#0" expanded="true" />
+            <element signature="e#2647#2648#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -570,7 +638,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -578,7 +648,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1300">
           <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#521#529#0" expanded="true" />
+            <element signature="e#1625#1633#0" expanded="true" />
+            <element signature="e#2150#2171#0" expanded="true" />
+            <element signature="e#2731#2739#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -616,9 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -626,9 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -649,27 +719,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/domain/CtrlDominio.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding>
-            <element signature="e#2642#2643#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/persistence/registro.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/presentation/VistaCM.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
+        <state relative-caret-position="1615">
           <caret line="102" column="47" lean-forward="false" selection-start-line="102" selection-start-column="39" selection-end-line="102" selection-end-column="47" />
           <folding />
         </state>
@@ -677,27 +729,121 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/presentation/VistaPrincipal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="3128">
           <caret line="196" column="65" lean-forward="false" selection-start-line="196" selection-start-column="65" selection-end-line="196" selection-end-column="65" />
           <folding>
-            <element signature="e#30896#30897#0" expanded="true" />
-            <element signature="e#30967#30968#0" expanded="true" />
+            <element signature="e#30896#30897#0" expanded="false" />
+            <element signature="e#30967#30968#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/domain/Register.java">
+    <entry file="file://$PROJECT_DIR$/domain/Algorithm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="434">
+          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/persistence/CtrlPersistence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="52" column="55" lean-forward="false" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
+        <state relative-caret-position="174">
+          <caret line="164" column="61" lean-forward="false" selection-start-line="164" selection-start-column="61" selection-end-line="164" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#521#529#0" expanded="true" />
+            <element signature="e#1625#1633#0" expanded="true" />
+            <element signature="e#2150#2171#0" expanded="true" />
+            <element signature="e#2731#2739#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Register.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/persistence/registro.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Player_User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="22" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Player_Machine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/CodeBreaker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/CtrlDominio.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-914">
+          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#923#924#0" expanded="true" />
+            <element signature="e#959#960#0" expanded="true" />
+            <element signature="e#2587#2588#0" expanded="true" />
+            <element signature="e#2647#2648#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/MastermindFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="53" column="31" lean-forward="false" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Mastermind.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="39" column="27" lean-forward="false" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/domain/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-576">
+          <caret line="62" column="11" lean-forward="false" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
           <folding />
         </state>
       </provider>

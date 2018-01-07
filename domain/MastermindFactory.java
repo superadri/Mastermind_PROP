@@ -83,7 +83,7 @@ public class MastermindFactory {
 
     public void continuegame(String username) {
         System.out.println("MastermindFactory - ContinueGame");
-        Player player = controladorDominio.getRegister().getPlayer(username);
+        Player_User player = controladorDominio.getRegister().getPlayer(username);
         String computerCM, computerCB;
         computerCB = username;
         computerCM = "MACHINE";

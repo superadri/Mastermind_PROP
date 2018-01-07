@@ -7,17 +7,17 @@ public class Register {
 
     private  CtrlDominio controladorDominio;
 
-    public HashMap<String, Player> listUsers;
+    public HashMap<String, Player_User> listUsers;
 
     public Register(CtrlDominio controladorDominio) {
         this.controladorDominio = controladorDominio;
-        listUsers = new HashMap<String, Player>();
+        listUsers = new HashMap<String, Player_User>();
         listUsers = controladorDominio.getListUsers();
     }
 
     public boolean user_exists(String username){ return listUsers.containsKey(username); }
 
-    public Player getPlayer(String username){ return listUsers.get(username); }
+    public Player_User getPlayer(String username){ return listUsers.get(username); }
 
     public boolean game_start_user(String username){ return listUsers.get(username).getGame_start() == '1'; }
 

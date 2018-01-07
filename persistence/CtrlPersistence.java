@@ -1,6 +1,6 @@
 package persistence;
 
-import domain.Player;
+import domain.Player_User;
 import domain.Register;
 
 import java.io.*;
@@ -59,13 +59,13 @@ public class CtrlPersistence {
         return dataR;
     }
 
-    public HashMap<String, Player> getListUsers() {
-        HashMap<String, Player> listUsers = new HashMap<String, Player>();
+    public HashMap<String, Player_User> getListUsers() {
+        HashMap<String, Player_User> listUsers = new HashMap<String, Player_User>();
         try {
             FileReader f = new FileReader("./persistence/registro.txt");
             Scanner in = new Scanner(f);
             in.useLocale(Locale.ENGLISH);
-            Player player;
+            Player_User player;
             while (in.hasNext()) {
                 String username = in.next();
                 String a = in.next();
@@ -81,8 +81,8 @@ public class CtrlPersistence {
                     String codigo = in.next();
                     String dificultat = in.next();
                     String rol = in.next();
-                    player = new Player(c, username, respuestas, time, codigo, dificultat, rol);
-                } else { player = new Player(c, username); }
+                    player = new Player_User(c, username, respuestas, time, codigo, dificultat, rol);
+                } else { player = new Player_User(c, username); }
                 listUsers.put(username, player);
             }
         } catch (IOException e) { e.printStackTrace(); }
@@ -93,9 +93,9 @@ public class CtrlPersistence {
         File filename = new File("./persistence/registro.txt");
         FileWriter fw;
         StringBuilder stringBuilder = new StringBuilder();
-        Player player;
+        Player_User player;
         if ( !register.user_exists(newNameUser) ){
-            player = new Player('0',newNameUser);
+            player = new Player_User('0',newNameUser);
             register.listUsers.put(newNameUser,player);
             fw = new FileWriter(filename,true); //the true will append the new data
             if (filename.length() != 0) { stringBuilder.append("\n"+newNameUser+" 0 "); }
@@ -105,7 +105,7 @@ public class CtrlPersistence {
             if ( player.getGame_start() == '1' ) { player.delete_all(); }
             fw = new FileWriter(filename);
             boolean controlIni = true;
-            for ( Player ply : register.listUsers.values() ) {
+            for ( Player_User ply : register.listUsers.values() ) {
                 if (!controlIni) { stringBuilder.append("\n"+ply.getUsername()+" "+ply.getGame_start()); }
                 else {
                     stringBuilder.append(ply.getUsername()+" "+ply.getGame_start());
@@ -128,9 +128,9 @@ public class CtrlPersistence {
         File filename = new File("./persistence/registro.txt");
         FileWriter fw;
         StringBuilder stringBuilder = new StringBuilder();
-        Player player;
+        Player_User player;
         if ( !register.user_exists(newNameUser) ){
-            player = new Player('0',newNameUser);
+            player = new Player_User('0',newNameUser);
             register.listUsers.put(newNameUser,player);
             fw = new FileWriter(filename,true); //the true will append the new data
             if (filename.length() != 0) { stringBuilder.append("\n"+newNameUser+" 0 "); }
@@ -142,11 +142,11 @@ public class CtrlPersistence {
 
     public void set_continueGame(char game_start, String newNameUser, ArrayList<String> respuestas, double time, String codigo, String dificultat, String rol, Register register) throws IOException {
         File filename = new File("./persistence/registro.txt");
-        Player player;
+        Player_User player;
         FileWriter fw;
         StringBuilder stringBuilder = new StringBuilder();
         if ( !register.user_exists(newNameUser) ){
-            player = new Player('1',newNameUser,respuestas,time,codigo,dificultat,rol);
+            player = new Player_User('1',newNameUser,respuestas,time,codigo,dificultat,rol);
             register.listUsers.put(newNameUser,player);
             fw = new FileWriter(filename,true); //the true will append the new data
             if (filename.length() != 0) { stringBuilder.append("\n"+newNameUser+" 1 "); }
@@ -162,7 +162,7 @@ public class CtrlPersistence {
             player.setSaveGame(respuestas, time, codigo, dificultat, rol);
             fw = new FileWriter(filename);
             boolean controlIni = true;
-            for ( Player ply : register.listUsers.values() ) {
+            for ( Player_User ply : register.listUsers.values() ) {
                 if (!controlIni) { stringBuilder.append("\n"+ply.getUsername()+" "+ply.getGame_start()); }
                 else {
                     stringBuilder.append(ply.getUsername()+" "+ply.getGame_start());
